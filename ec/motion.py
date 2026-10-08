@@ -186,18 +186,21 @@ def predictive_cost(tx, ty, tp, fx, fy, fp, ft_us, support, window_us, warp, spe
     iy, ix = cells(np.asarray(tx, dtype=np.float64), np.asarray(ty, dtype=np.float64))
     np.add.at(hist, (np.asarray(tp, dtype=np.int64), iy, ix), 1.0)
     hist /= max(1, len(tx))
-    lat = [cells(*warp(px, py, np.full(px.shape, tk))) for tk in ts]
     fiy, fix = cells(fu, fv)
     fpi = np.asarray(fp, dtype=np.int64)
+    # one smoothed template per bandwidth (float32 keeps large boxes within memory)
+    gs = [np.stack([gaussian_filter(hist[q], sigma=b / cell, mode="constant") for q in (0, 1)]).astype(np.float32)
+          for b in bandwidths]
+    zs = np.zeros(len(bandwidths))
+    for tk in ts:                                   # lattice of S at each time sample, never stored
+        liy, lix = cells(*warp(px, py, np.full(px.shape, tk)))
+        for j, g in enumerate(gs):
+            zs[j] += (float(g[0][liy, lix].sum(dtype=np.float64)) + float(g[1][liy, lix].sum(dtype=np.float64))) * dt
     best = None
-    for b in bandwidths:
-        g = np.stack([gaussian_filter(hist[q], sigma=b / cell, mode="constant") for q in (0, 1)])
-        z = 0.0
-        for liy, lix in lat:
-            z += float(g[0][liy, lix].sum() + g[1][liy, lix].sum()) * dt
+    for b, g, z in zip(bandwidths, gs, zs):
         if z <= 0:
             continue
-        a = g[fpi, fiy, fix] / z
+        a = g[fpi, fiy, fix].astype(np.float64) / z
         eps = _fit_eps(a, uni)
         bits = float(-np.mean(np.log2(((1.0 - eps) * a + eps * uni) * DELTA_S)))
         if best is None or bits < best["bits"]:
