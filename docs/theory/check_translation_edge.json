@@ -1,0 +1,339 @@
+{
+ "N1_lemma1": {
+  "ramp": {
+   "n": 4,
+   "max_abs_time_error_s": 1.595781696363957e-06,
+   "time_step_s": 2e-06
+  },
+  "tanh_edge": {
+   "max_abs_time_error_s": 1.9290174327335485e-06,
+   "time_step_s": 2e-06,
+   "counts": [
+    3,
+    4,
+    4,
+    3,
+    4,
+    3,
+    3,
+    3
+   ],
+   "V_over_C": 3.2
+  },
+  "zigzag": {
+   "profiles": 20000,
+   "rule_mismatches": 0,
+   "events": 105149,
+   "reversals": 79916
+  }
+ },
+ "N2_theorem1": [
+  {
+   "n": 3,
+   "sigma_over_tau": 0.05,
+   "kl_estimate_nats": -0.4866440078717318,
+   "closed_form_nats": -0.47269367508930715,
+   "difference_nats": -0.013950332782424635,
+   "small_jitter_form_nats": -0.5248397946847456
+  },
+  {
+   "n": 3,
+   "sigma_over_tau": 0.3,
+   "kl_estimate_nats": 3.366441479332499,
+   "closed_form_nats": 3.3715546379722916,
+   "difference_nats": -0.005113158639792559,
+   "small_jitter_form_nats": 3.0586791437713643
+  },
+  {
+   "n": 3,
+   "sigma_over_tau": 1.5,
+   "kl_estimate_nats": 7.5967409112723345,
+   "closed_form_nats": 7.605329664567797,
+   "difference_nats": -0.008588753295462048,
+   "small_jitter_form_nats": 6.277554968639564
+  },
+  {
+   "n": 5,
+   "sigma_over_tau": 0.15,
+   "kl_estimate_nats": 2.4476988517400535,
+   "closed_form_nats": 2.4789056839494266,
+   "difference_nats": -0.031206832209373037,
+   "small_jitter_form_nats": 2.3577290522919423
+  },
+  {
+   "n": 2,
+   "sigma_over_tau": 0.2,
+   "kl_estimate_nats": 0.41867058073178853,
+   "closed_form_nats": 0.41153697048470095,
+   "difference_nats": 0.007133610247087585,
+   "small_jitter_form_nats": 0.1560742110505451
+  }
+ ],
+ "N3_theorem2": {
+  "n": 3,
+  "sigma_ms": 0.1,
+  "tau_phi_ms": 5.0,
+  "gamma_bits_per_pass": 0.22567518925487093,
+  "D_A_rms_ms": 1.446835627614047,
+  "operating_points": [
+   {
+    "coder": "phase-free",
+    "rate_nats": 0.0,
+    "D": 2.0930163283522845,
+    "rms_error_ms": 1.4467260723275448,
+    "rate_bits_per_event": 0.0,
+    "L_bits_per_event": 0.0,
+    "U_bits_per_event": 3.6531649929764995e-05,
+    "excess_over_L_bits_per_pass": 0.0
+   },
+   {
+    "coder": "phase-only",
+    "step": 4.0,
+    "rate_nats": 1.0577847514406626,
+    "D": 0.42115845702281307,
+    "rms_error_ms": 0.6489672233809756,
+    "rate_bits_per_event": 0.5086869384104696,
+    "L_bits_per_event": 0.31340572426536184,
+    "U_bits_per_event": 0.3886307873503188,
+    "excess_over_L_bits_per_pass": 0.5858436424353233
+   },
+   {
+    "coder": "phase-only",
+    "step": 2.0,
+    "rate_nats": 1.5811733151755105,
+    "D": 0.11334831589403437,
+    "rms_error_ms": 0.3366724162951791,
+    "rate_bits_per_event": 0.7603836335298904,
+    "L_bits_per_event": 0.6397443065890592,
+    "U_bits_per_event": 0.7149693696740163,
+    "excess_over_L_bits_per_pass": 0.3619179808224934
+   },
+   {
+    "coder": "phase-only",
+    "step": 1.0,
+    "rate_nats": 2.2332322241522444,
+    "D": 0.03487270697153828,
+    "rms_error_ms": 0.1867423545196383,
+    "rate_bits_per_event": 1.073957684979291,
+    "L_bits_per_event": 0.9596169699672302,
+    "U_bits_per_event": 1.0348420330521872,
+    "excess_over_L_bits_per_pass": 0.34302214503618217
+   },
+   {
+    "coder": "phase-only",
+    "step": 0.5,
+    "rate_nats": 2.887077049938363,
+    "D": 0.013586185106933397,
+    "rms_error_ms": 0.11655979198219854,
+    "rate_bits_per_event": 1.388390580870138,
+    "L_bits_per_event": 1.2974937374548428,
+    "U_bits_per_event": 1.3727188005397997,
+    "excess_over_L_bits_per_pass": 0.27269053024588624
+   },
+   {
+    "coder": "phase-only",
+    "step": 0.25,
+    "rate_nats": 3.5703213769764934,
+    "D": 0.008402008226765597,
+    "rms_error_ms": 0.09166246901958072,
+    "rate_bits_per_event": 1.7169616483146142,
+    "L_bits_per_event": 1.598708359632725,
+    "U_bits_per_event": 1.598708359632725,
+    "excess_over_L_bits_per_pass": 0.35475986604566745
+   },
+   {
+    "coder": "phase-only",
+    "step": 0.12,
+    "rate_nats": 4.300909571236153,
+    "D": 0.007062548313434628,
+    "rms_error_ms": 0.08403896901696634,
+    "rate_bits_per_event": 2.068300303244759,
+    "L_bits_per_event": 1.7239810430335893,
+    "U_bits_per_event": 1.7239810430335893,
+    "excess_over_L_bits_per_pass": 1.0329577806335084
+   },
+   {
+    "coder": "transform",
+    "step": 0.2,
+    "rate_nats": 5.510929405822388,
+    "D": 0.0033141981722953355,
+    "rms_error_ms": 0.057569073053987375,
+    "rate_bits_per_event": 2.650196841489707,
+    "L_bits_per_event": 2.26974552334334,
+    "U_bits_per_event": 2.26974552334334,
+    "excess_over_L_bits_per_pass": 1.1413539544391018
+   },
+   {
+    "coder": "transform",
+    "step": 0.1,
+    "rate_nats": 7.400930485202204,
+    "D": 0.000833255414978391,
+    "rms_error_ms": 0.028866163842436548,
+    "rate_bits_per_event": 3.5590952363217236,
+    "L_bits_per_event": 3.265660112372386,
+    "U_bits_per_event": 3.265660112372386,
+    "excess_over_L_bits_per_pass": 0.8803053718480122
+   },
+   {
+    "coder": "transform",
+    "step": 0.05,
+    "rate_nats": 9.419804615687742,
+    "D": 0.0002085428612125239,
+    "rms_error_ms": 0.01444101316433594,
+    "rate_bits_per_event": 4.5299684683985575,
+    "L_bits_per_event": 4.264867542744295,
+    "U_bits_per_event": 4.264867542744295,
+    "excess_over_L_bits_per_pass": 0.7953027769627894
+   },
+   {
+    "coder": "transform",
+    "step": 0.02,
+    "rate_nats": 12.150578832772613,
+    "D": 3.335371878548507e-05,
+    "rms_error_ms": 0.0057752678540034024,
+    "rate_bits_per_event": 5.84319327532382,
+    "L_bits_per_event": 5.587079741631488,
+    "U_bits_per_event": 5.587079741631488,
+    "excess_over_L_bits_per_pass": 0.7683406010769958
+   },
+   {
+    "coder": "transform",
+    "step": 0.01,
+    "rate_nats": 14.226703720670887,
+    "D": 8.331211639553178e-06,
+    "rms_error_ms": 0.0028863838344116983,
+    "rate_bits_per_event": 6.841598302002818,
+    "L_bits_per_event": 6.587704437461308,
+    "U_bits_per_event": 6.587704437461308,
+    "excess_over_L_bits_per_pass": 0.7616815936245336
+   }
+  ],
+  "bound_curve": [
+   {
+    "rms_error_ms": 0.005,
+    "L_bits_per_event": 5.795039506291176,
+    "U_bits_per_event": 5.795039506291176
+   },
+   {
+    "rms_error_ms": 0.0065271907766529125,
+    "L_bits_per_event": 5.41050539418718,
+    "U_bits_per_event": 5.41050539418718
+   },
+   {
+    "rms_error_ms": 0.008520843886964564,
+    "L_bits_per_event": 5.025971282083186,
+    "U_bits_per_event": 5.025971282083186
+   },
+   {
+    "rms_error_ms": 0.011123434725658892,
+    "L_bits_per_event": 4.641437169979191,
+    "U_bits_per_event": 4.641437169979191
+   },
+   {
+    "rms_error_ms": 0.014520956109204284,
+    "L_bits_per_event": 4.256903057875196,
+    "U_bits_per_event": 4.256903057875196
+   },
+   {
+    "rms_error_ms": 0.018956210156835986,
+    "L_bits_per_event": 3.872368945771201,
+    "U_bits_per_event": 3.872368945771201
+   },
+   {
+    "rms_error_ms": 0.024746160019198826,
+    "L_bits_per_event": 3.4878348336672054,
+    "U_bits_per_event": 3.4878348336672054
+   },
+   {
+    "rms_error_ms": 0.03230458148697832,
+    "L_bits_per_event": 3.10330072156321,
+    "U_bits_per_event": 3.10330072156321
+   },
+   {
+    "rms_error_ms": 0.04217163326508745,
+    "L_bits_per_event": 2.7187666094592156,
+    "U_bits_per_event": 2.7187666094592156
+   },
+   {
+    "rms_error_ms": 0.0550524591368536,
+    "L_bits_per_event": 2.3342324973552198,
+    "U_bits_per_event": 2.3342324973552198
+   },
+   {
+    "rms_error_ms": 0.07186758070202641,
+    "L_bits_per_event": 1.9496983852512253,
+    "U_bits_per_event": 1.9496983852512253
+   },
+   {
+    "rms_error_ms": 0.0938186819797251,
+    "L_bits_per_event": 1.5651642731472302,
+    "U_bits_per_event": 1.5651642731472302
+   },
+   {
+    "rms_error_ms": 0.12247448713915891,
+    "L_bits_per_event": 1.252790062255919,
+    "U_bits_per_event": 1.3280151253408758
+   },
+   {
+    "rms_error_ms": 0.15988286856600273,
+    "L_bits_per_event": 1.0559392342462635,
+    "U_bits_per_event": 1.1311642973312204
+   },
+   {
+    "rms_error_ms": 0.2087171970097645,
+    "L_bits_per_event": 0.8950389440570228,
+    "U_bits_per_event": 0.9702640071419797
+   },
+   {
+    "rms_error_ms": 0.27246739265019676,
+    "L_bits_per_event": 0.7495473991963045,
+    "U_bits_per_event": 0.8247724622812616
+   },
+   {
+    "rms_error_ms": 0.3556893304490063,
+    "L_bits_per_event": 0.6117615387847392,
+    "U_bits_per_event": 0.6869866018696963
+   },
+   {
+    "rms_error_ms": 0.4643304234121206,
+    "L_bits_per_event": 0.4781193765784398,
+    "U_bits_per_event": 0.5533444396633967
+   },
+   {
+    "rms_error_ms": 0.6061546514029872,
+    "L_bits_per_event": 0.34679188418241186,
+    "U_bits_per_event": 0.4220169472673689
+   },
+   {
+    "rms_error_ms": 0.7912974099725671,
+    "L_bits_per_event": 0.21678478318395353,
+    "U_bits_per_event": 0.2920098462689105
+   },
+   {
+    "rms_error_ms": 1.032989831192456,
+    "L_bits_per_event": 0.08753990005944301,
+    "U_bits_per_event": 0.1627649631444
+   },
+   {
+    "rms_error_ms": 1.34850433970713,
+    "L_bits_per_event": 0.0,
+    "U_bits_per_event": 0.03396310126238129
+   },
+   {
+    "rms_error_ms": 1.7603890176825592,
+    "L_bits_per_event": 0.0,
+    "U_bits_per_event": 0.0
+   },
+   {
+    "rms_error_ms": 2.2980789919077367,
+    "L_bits_per_event": 0.0,
+    "U_bits_per_event": 0.0
+   },
+   {
+    "rms_error_ms": 3.0,
+    "L_bits_per_event": 0.0,
+    "U_bits_per_event": 0.0
+   }
+  ]
+ }
+}

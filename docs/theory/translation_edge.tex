@@ -1,0 +1,292 @@
+\documentclass[10pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs}
+\newtheorem{lemma}{Lemma}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+\newcommand{\tphi}{\tau_\varphi}
+\title{Events of a translating edge:\\ lossless code length and rate under a timing tolerance}
+\author{event-coding project, theory note 1 (revised after independent checks)}
+\date{October 9, 2026}
+\begin{document}
+\maketitle
+
+\noindent\textbf{Summary.} An edge that translates across $M$ event pixels produces $M$ copies of
+one event pattern. Given the edge and its velocity, the copies differ only by a threshold phase per
+pixel and a timing jitter per event. Theorem~\ref{thm:lossless} gives the lossless code length,
+which stays constant per event as $M$ grows. Theorem~\ref{thm:rd} gives the rate under a
+mean-squared timing error $D$: it is known exactly for $D\le\sigma^2$, within $0.255$ bit per
+pixel above that, and it is zero from $D_A=\sigma^2+\tphi^2/12$ on. Corollary~\ref{cor:path} shows
+that beyond $D_A$ a pass over $M$ pixels needs at most $2\ln M+O(1)$ nats in total. Rates are in nats unless bits are named.
+
+\section{Model}
+Pixels sit at integer positions $i=0,\dots,M-1$ on a line. A continuous log-intensity profile $g$
+translates at speed $v>0$ pixels per second, so pixel $i$ observes
+\begin{equation}\label{eq:signal}
+  s_i(t)=g(vt-i).
+\end{equation}
+\textbf{(A1) Pixel.} Pixel $i$ holds a reference $r_i$. It emits an event at the first time $t$ at
+which $|s_i(t)-r_i|=C$, with polarity $p=\operatorname{sign}(s_i(t)-r_i)$, and then sets
+$r_i\leftarrow r_i+pC$. The threshold $C>0$ is common to all pixels and known to the decoder.
+
+\noindent\textbf{(A2) Edge.} $g(u)=0$ for $u\le 0$, $g(u)=\gamma u$ for $0\le u\le w$, and
+$g(u)=V$ for $u\ge w$, with $\gamma>0$ and $V=\gamma w=nC$ for an integer $n\ge 1$.
+
+\noindent\textbf{(A3) Phase, first pass.} Before the edge arrives, $r_i(0)\in(-C,0]$. The phases
+$a_i=r_i(0)+C\in(0,C]$ are independent, uniform, and independent of everything else.
+
+\noindent\textbf{(A4) Jitter and clock.} The $k$th event of pixel $i$ is recorded at
+$T_{i,k}=t_{i,k}+\varepsilon_{i,k}$, where $t_{i,k}$ is the time given by (A1) and the
+$\varepsilon_{i,k}$ are independent $\mathcal N(0,\sigma^2)$, independent of the phases, with
+$\sigma>0$ the same for all events. The stored value is $Y_{i,k}=\delta\lfloor T_{i,k}/\delta\rfloor$.
+The level index $k$ of each recorded event is known.
+
+\noindent Write $\tphi=C/(\gamma v)$ for the time between successive events of one pixel, and
+$\eta(a,\sigma)=h(U_a+Z_\sigma)$ for the differential entropy of the sum of independent
+$U_a\sim\mathrm{Unif}(0,a)$ and $Z_\sigma\sim\mathcal N(0,\sigma^2)$. Then
+\begin{equation}\label{eq:eta}
+  \tfrac12\ln\!\big(a^2+2\pi e\sigma^2\big)\ \le\ \eta(a,\sigma)\ \le\ \tfrac12\ln\!\big(2\pi e(a^2/12+\sigma^2)\big),
+\end{equation}
+by the entropy power inequality and by the Gaussian maximum-entropy bound at the variance of
+$U_a+Z_\sigma$. Moreover $\eta(a,\sigma)-\ln a\to 0$ as $\sigma/a\to 0$.
+
+\section{Structure of the events}
+\begin{lemma}\label{lem:levels}
+Under (A1), every event of pixel $i$ occurs at a time $t$ with $s_i(t)\in a_i+C\mathbb Z$. Under
+(A1) to (A3), pixel $i$ emits exactly $n$ events, all of positive polarity, at
+\begin{equation}\label{eq:times}
+  t_{i,k}=\frac{i}{v}+A_i+(k-1)\tphi,\qquad k=1,\dots,n,\qquad A_i=\frac{a_i}{\gamma v}\sim\mathrm{Unif}(0,\tphi].
+\end{equation}
+\end{lemma}
+\begin{proof}
+The reference starts in $a_i+C\mathbb Z$ and changes by $\pm C$, so it stays there, and an event
+requires $s_i=r_i\pm C$. Under (A2), $s_i$ is nondecreasing and $r_i(0)\le 0=s_i(0)$, so events
+occur when $s_i$ reaches $a_i+(k-1)C$, $k=1,2,\dots$, as long as this level is at most $V=nC$.
+Since $0<a_i\le C$, exactly the levels $k=1,\dots,n$ are reached. Solving
+$\gamma(vt-i)=a_i+(k-1)C$ gives \eqref{eq:times}.
+\end{proof}
+In the coordinate $u=vt-i$ attached to the profile, an event is a point of the graph of $g$ on the
+level lattice $a_i+C\mathbb Z$ of its pixel. Given $(g,v)$, the noise-free events of pixel $i$ are
+a function of the single number $a_i$.
+
+\section{Lossless code length}
+Let $T_i=(T_{i,1},\dots,T_{i,n})$ and $Y_i=(Y_{i,1},\dots,Y_{i,n})$.
+\begin{theorem}\label{thm:lossless}
+Under (A1) to (A4), the vectors $T_0,\dots,T_{M-1}$ are independent given $(g,v)$,
+\begin{equation}\label{eq:hT}
+  h(T_i)=\frac{n-1}{2}\ln(2\pi e\sigma^2)+\eta(\sqrt n\,\tphi,\sigma),
+\end{equation}
+and, as $\delta/\sigma\to 0$,
+\begin{equation}\label{eq:HY}
+  H(Y_i\mid g,v)=n\ln\frac1\delta+\frac{n-1}{2}\ln(2\pi e\sigma^2)+\eta(\sqrt n\,\tphi,\sigma)+o(1).
+\end{equation}
+\end{theorem}
+\begin{proof}
+By Lemma~\ref{lem:levels}, $T_i=c_i+A_i\mathbf 1+\varepsilon_i$ with $c_i$ a function of $(g,v)$,
+$\mathbf 1$ the all-ones vector, and $\varepsilon_i\sim\mathcal N(0,\sigma^2I_n)$. Independence
+over $i$ follows from (A3) and (A4). Let $Q$ be an orthogonal matrix whose first row is
+$\mathbf 1^{\!\top}/\sqrt n$. Then $Q(T_i-c_i)=(X_i,W_i)$ with
+\begin{equation}\label{eq:XW}
+  X_i=\sqrt n\,A_i+\varepsilon^{\parallel}_i,\qquad W_i\sim\mathcal N(0,\sigma^2I_{n-1}),
+\end{equation}
+where $\varepsilon^{\parallel}_i\sim\mathcal N(0,\sigma^2)$, and $X_i$ and $W_i$ are independent
+because $Q\varepsilon_i$ has independent coordinates and $A_i$ is independent of $\varepsilon_i$.
+Differential entropy is invariant under translations and orthogonal maps, so
+$h(T_i)=h(X_i)+h(W_i)$, which is \eqref{eq:hT}. Since $\sigma>0$, $T_i$ has a bounded density and
+finite variance, and \eqref{eq:HY} is the relation between the entropy of a uniformly quantized
+vector and its differential entropy \cite[Ch.~8]{cover}.
+\end{proof}
+When $\sigma\ll\tphi$ the cost per event is
+\begin{equation}\label{eq:perevent}
+  \frac{H(Y_i\mid g,v)}{n}\approx\frac{n-1}{n}\ln\frac{\sigma\sqrt{2\pi e}}{\delta}+\frac1n\ln\frac{\sqrt n\,\tphi}{\delta}.
+\end{equation}
+One event per pixel pays for the phase and the other $n-1$ pay for jitter only. Neither term
+depends on $M$: a decoder that knows the edge and its velocity exactly still pays
+\eqref{eq:perevent} for every event. With $\sigma=0.3$\,ms, $\tphi=2$\,ms, $n=3$ and
+$\delta=1\,\mu$s this is $10.8$ bits per event.
+
+\section{Rate under a timing tolerance}
+The encoder and the decoder know $(g,v)$. The decoder outputs $\hat T_i\in\mathbb R^n$ for each
+pixel, and the distortion is $d(T_i,\hat T_i)=\tfrac1n\|T_i-\hat T_i\|^2$, the mean-squared error
+against the recorded times. Let $R_1(D)$ be the rate-distortion function of $T_i$ in nats per
+pixel. It is an operational rate for joint coding of many pixels. Define
+\begin{equation}\label{eq:defs}
+  s_X^2=\frac{n\tphi^2}{12}+\sigma^2,\qquad D_A=\sigma^2+\frac{\tphi^2}{12},\qquad
+  \Gamma=\tfrac12\ln(2\pi e\,s_X^2)-\eta(\sqrt n\,\tphi,\sigma).
+\end{equation}
+By \eqref{eq:eta}, $0\le\Gamma\le\tfrac12\ln(2\pi e/12)$, which is $0.255$ bit, for every $\sigma$.
+\begin{theorem}\label{thm:rd}
+Under (A1) to (A4):
+\begin{align}
+  R_1(D)&=h(T_i)-\frac n2\ln(2\pi eD), && 0<D\le\sigma^2, \label{eq:rdlow}\\
+  \big[U(D)-\Gamma\big]^+\le R_1(D)&\le U(D),\quad U(D)=\frac12\ln\frac{s_X^2}{nD-(n-1)\sigma^2}, && \sigma^2<D<D_A, \label{eq:rdmid}\\
+  R_1(D)&=0, && D\ge D_A, \label{eq:rdzero}
+\end{align}
+and $R_1(D)>0$ for $D<D_A$.
+\end{theorem}
+\begin{proof}
+The distortion is invariant under the translation by $c_i$ and the orthogonal map $Q$, so $R_1$ is
+the rate-distortion function of the independent components $(X_i,W_i)$ of \eqref{eq:XW} under
+total squared error $nD$. Their variances are $s_X^2$ and $\sigma^2$ ($n-1$ times).
+
+\emph{Lower bound for all $D$.} Let $(\hat X,\hat W)$ have component errors $d_X$ and
+$d_1,\dots,d_{n-1}$ with $d_X+\sum_jd_j\le nD$. Independence of the components gives
+$I(X,W;\hat X,\hat W)\ge I(X;\hat X)+\sum_jI(W_j;\hat W_j)$. For a Gaussian component
+$I(W_j;\hat W_j)\ge\tfrac12\ln^+(\sigma^2/d_j)$, and
+$I(X;\hat X)\ge h(X)-h(X-\hat X)\ge\eta-\tfrac12\ln(2\pi e\,d_X)$. The function $\ln^+(\sigma^2/d)$
+is convex in $d$, so the Gaussian terms are smallest when all $d_j$ equal a common $d_W$, and
+$d_W>\sigma^2$ brings no benefit. For $n\ge 2$ this gives
+\begin{equation}\label{eq:lb}
+  R_1(D)\ \ge\ \min_{\substack{0<d_W\le\sigma^2\\ d_W<nD/(n-1)}}\Big[\eta-\tfrac12\ln\!\big(2\pi e\,(nD-(n-1)d_W)\big)+\tfrac{n-1}{2}\ln\frac{\sigma^2}{d_W}\Big].
+\end{equation}
+The bracket is convex in $d_W$ and its derivative vanishes only at $d_W=D$. The minimum is at
+$d_W=D$ when $D\le\sigma^2$, where it equals the right side of \eqref{eq:rdlow}, and at
+$d_W=\sigma^2$ otherwise, where it equals $U(D)-\Gamma$. For $n=1$ there is no $W$ and the same
+values follow with $d_X=D$.
+
+\emph{Equality for $D\le\sigma^2$.} Write $\varepsilon_i=\varepsilon'+N$ with independent
+$\varepsilon'\sim\mathcal N(0,(\sigma^2-D)I_n)$ and $N\sim\mathcal N(0,DI_n)$, and let
+$\hat T=c_i+A_i\mathbf 1+\varepsilon'$. Then $T_i=\hat T+N$ with $N$ independent of $\hat T$, the
+distortion is $D$, and $I(T_i;\hat T)=h(T_i)-h(N)$, which is the lower bound.
+
+\emph{Upper bound for $\sigma^2<D<D_A$.} Spend no rate on $W_i$, at error $\sigma^2$ per
+component, and describe $X_i$ at error $d_X=nD-(n-1)\sigma^2\in(\sigma^2,s_X^2)$. A source of
+variance $s^2$ needs at most $\tfrac12\ln(s^2/d)$ nats at squared error $d$ \cite[Ch.~10]{cover}.
+
+\emph{Zero rate.} With no description the best output is the mean, at distortion
+$\tfrac1n(s_X^2+(n-1)\sigma^2)=D_A$. This is the smallest distortion at which a rate-distortion
+function vanishes \cite[Ch.~10]{cover}.
+\end{proof}
+Per event and per decade of the root-mean-square tolerance $\sqrt D$, the rate falls by
+$\log_210=3.32$ bits for $\sqrt D<\sigma$. Above $\sigma$ the slope of $U$ is
+\begin{equation}\label{eq:slope}
+  \frac{3.32}{n}\Big[1-\frac{(n-1)\sigma^2}{nD}\Big]^{-1}\ \text{bits},
+\end{equation}
+which decreases continuously from $3.32$ at $D=\sigma^2$ to $3.32\,D_A/s_X^2$ at $D_A$, a value
+close to $3.32/n$ when $\sigma\ll\tphi$. The rate reaches zero with a kink at $D_A$. The intermediate regime, in which only one phase per pixel is described,
+is distinct only when $\sigma\ll\tphi$. At $D=D_A$ the decoder regenerates the events of every
+pixel at the mean phase, $\hat T_{i,k}=i/v+(k-\tfrac12)\tphi$. Each regenerated event is then within
+$\tphi/2$ of its noise-free time, and the count and the polarities are exact.
+
+\begin{corollary}\label{cor:path}
+Let (A1) to (A4) hold, let $\gamma$ and $v$ range over a compact set bounded away from zero and
+the edge position over a range of order $M$, let the encoder know these three parameters, and let
+the decoder know $C$, $\sigma$, $n$ and the pixels traversed. Fix $\beta>0$. For
+$D\ge(1+\beta)D_A$ the $nM$ events of a pass over $M$ pixels can be described with at most
+\begin{equation}\label{eq:B}
+  B=2\ln M+O(1)\quad\text{nats in total, that is } O\!\Big(\frac{\ln M}{M}\Big)\text{ per event,}
+\end{equation}
+where the $O(1)$ term depends on the ranges, $n$, $\beta$, $C$ and $\sigma$.
+\end{corollary}
+\begin{proof}[Sketch]
+By \eqref{eq:times} the mean-phase times have sensitivity $1/v$ to the position, at most
+$n\tphi/\gamma$ to $\gamma$, and at most of order $M/v^2$ to $v$. Quantize each parameter so that
+the total induced timing error is at most $\sqrt{\beta D_A}$ for every event. This takes $\ln M+O(1)$
+nats for $v$, the same for a position with range of order $M$, and $O(1)$ for $\gamma$. Given the
+parameters, the mean-phase error has zero mean and the parameter-induced error is deterministic,
+so the two are orthogonal and the distortion is at most $(1+\beta)D_A$.
+\end{proof}
+The lossless cost of the same events is $M$ times \eqref{eq:HY}, so the ratio of the two grows at
+least as $M/\ln M$. Above $\sqrt{D_A}$ the description that
+remains is $O(\ln M)$. Below it a cost $R_1(D)>0$ per pixel remains.
+
+\section{Scope}
+\begin{remark}[The phase is a property of the pixel]\label{rem:persist}
+Under (A1) the lattice $a_i+C\mathbb Z$ never changes. After a rising pass with $V=nC$ the
+reference sits at $a_i+(n-1)C$, so a second rising edge meets the same phase $a_i$. A falling edge
+first returns through the last level crossed, which does not fire, and yields $n-1$ events, as does every
+later pass in either direction. Assumption (A3) therefore describes a first
+pass with phases set by earlier, unmodeled activity. With repeated passes and nothing else, the
+phase is paid once per pixel, and the rate per event in the intermediate regime of
+Theorem~\ref{thm:rd} falls in proportion to the number of events that share the phase. The
+persistence relies on the reset $r_i\leftarrow r_i+pC$. A pixel whose reset stores the instantaneous
+signal, or whose ON and OFF thresholds differ, redraws the phase.
+\end{remark}
+\begin{remark}[Departures from (A2) and (A3)]\label{rem:relax}
+(i) \emph{Firing rule.} For any continuous signal, a lattice level fires when crossed unless it was
+the last level crossed, with the initial reference counted as a crossed level. A reversal whose two adjacent legs both exceed $C$ skips exactly one level.
+If $r_i(0)\in(0,C)$, the first level is skipped and the pixel emits $n-1$ events.
+(ii) \emph{Non-integer contrast.} If $V/C=n+f$ with $0<f<1$, the count is $n+1$ when $a_i\le fC$ and
+$n$ otherwise. Reproducing the count exactly costs the binary entropy of $f$ per pixel, which does
+not decay with $M$. Equation \eqref{eq:rdzero} and Corollary~\ref{cor:path} then hold only for a
+distortion measure that tolerates one unmatched event per pixel.
+(iii) \emph{Smooth monotone edge.} The event times are $t_{i,k}=(i+g^{-1}(a_i+(k-1)C))/v$. The
+zero-rate distortion becomes $\sigma^2+\tfrac1{nv^2}\sum_k\operatorname{Var}\,g^{-1}(a_i+(k-1)C)$,
+reached by regenerating at the mean times. For an edge that joins two flat levels the first and
+last events have the largest terms, because $g'$ vanishes there. The phase then moves $T_i$ along a
+curve and the decomposition \eqref{eq:XW} no longer applies.
+(iv) \emph{Order.} When $\sigma\gtrsim\tphi$ the recorded order can differ from the level order.
+The entropy of the unordered set is lower by at most $\ln n!$.
+\end{remark}
+\begin{remark}[Relation to sampling theory]
+Pixel $i$ sees the delayed signal $s_0(t-i/v)$, as one channel of the generalized sampling
+expansion does \cite{papoulis}. The $M$ lattices give $Mn$ distinct levels with typical spacing of
+order $C/M$, the amplitude counterpart of multi-channel time encoding \cite{adam}. The profile has
+few parameters, so this resolution is not needed to regenerate events at tolerance $\sqrt{D_A}$.
+\end{remark}
+\begin{remark}[Not covered]
+Noise events add their own cost: about $1-\ln(\lambda\delta)$ nats per event for a Poisson stream
+of rate $\lambda$ per pixel with $\lambda\delta\ll1$, plus $\ln 2$ for a random polarity, or nothing
+if the decoder may drop them. Under (A1) a noise event leaves the lattice intact and changes the count of the next edge
+by one. Threshold mismatch, refractory time, finite pixel bandwidth, a jitter that depends on the
+slope, an unknown profile learned from the events, acceleration, and two-dimensional geometry are
+outside this note. For a straight edge in two dimensions only the velocity component normal to
+the edge enters.
+\end{remark}
+
+\section{Numerical check}
+\texttt{check\_translation\_edge.py} tests the statements on synthetic data. (N1) A time-stepping
+simulation of (A1) reproduces \eqref{eq:times} for a ramp, and the level-crossing times of
+Remark~\ref{rem:relax}(iii) with counts 3 or 4 for a smooth edge with $V/C=3.2$, to within the time
+step. The firing rule of Remark~\ref{rem:relax}(i) agrees with (A1) on $20{,}000$ random zigzag
+signals. (N2) A nearest-neighbor estimate of $h(T_i)$ from $2\times10^5$ samples agrees with
+\eqref{eq:hT} to within $0.035$ nat at five pairs $(n,\sigma/\tphi)$, with $n$ from 2 to 5 and
+$\sigma/\tphi$ from $0.05$ to $1.5$. (N3) For $n=3$, $\sigma=0.1$\,ms and $\tphi=5$\,ms, scalar
+entropy-coded uniform quantizers give the operating points below, in bits per event. The bounds
+are those of Theorem~\ref{thm:rd} for $R_1$, which needs joint coding over pixels, so a scalar
+coder may exceed the upper bound. The tabulated points lie $0.25$ to $0.37$ bit per described component above
+the lower bound, close to the $0.255$ bit loss of uniform scalar quantization at fine resolution.
+\begin{center}
+\begin{tabular}{lrrrr}
+\toprule
+coder & $\sqrt D$ (ms) & measured rate & lower bound on $R_1/n$ & upper bound on $R_1/n$\\
+\midrule
+mean-phase regeneration & 1.447 & 0.000 & 0.000 & 0.000\\
+phase only & 0.337 & 0.760 & 0.640 & 0.715\\
+phase only & 0.117 & 1.388 & 1.297 & 1.373\\
+all components & 0.029 & 3.559 & 3.266 & 3.266\\
+all components & 0.003 & 6.842 & 6.588 & 6.588\\
+\bottomrule
+\end{tabular}
+\end{center}
+Independent reviews of this note also confirmed \eqref{eq:hT} by direct integration of the density
+and \eqref{eq:rdlow} to \eqref{eq:rdzero} by Blahut-Arimoto computations of $R_1$, one of them on
+$T_i$ directly for $n=2$ without the split \eqref{eq:XW}.
+
+\section{Predictions for recorded data}
+The theorems suggest these under the added conditions named. None is proved.
+(P1) For in-box events coded by a model that knows the motion, the code length against clock
+resolution $\delta$ leaves the slope of $3.32$ bits per decade near $\delta\sim\sigma$, falls gradually, and
+is flat beyond a few $\tphi$. For background events the slope stays $3.32$ while
+$\lambda\delta\ll1$. This transfers Theorem~\ref{thm:rd} from mean-squared error to clock
+resolution and assumes one event spacing per object and few noise events inside the box. A spread of spacings smears the transition.
+(P2) A regenerating decoder reaches a root-mean-square timing error near
+$\sqrt{\sigma^2+\tphi^2/12}$ at no cost per pixel on a first pass, for a ramp-like edge. Model error
+in the profile and the motion is expected to add to it.
+(P3) At a tolerance above $\sqrt{D_A}$, bits per event of a regenerating coder fall with the path
+length at least as fast as $(2\ln M+c)/(nM)$, where the constant $c$ can exceed $2\ln M$ at
+practical path lengths, until one of the following sets a floor: unmatched events from non-integer
+contrast, new content, occlusion, or non-rigid motion.
+
+\begin{thebibliography}{9}
+\bibitem{cover} T. M. Cover and J. A. Thomas, \emph{Elements of Information Theory}, 2nd ed.,
+Wiley, 2006. (Textbook facts only. Metadata not re-verified.)
+\bibitem{papoulis} A. Papoulis, ``Generalized sampling expansion,'' \emph{IEEE Trans. Circuits
+Syst.}, vol.~24, no.~11, pp.~652--654, 1977.
+\bibitem{adam} K. Adam, A. Scholefield, and M. Vetterli, ``Sampling and reconstruction of
+bandlimited signals with multi-channel time encoding,'' \emph{IEEE Trans. Signal Process.},
+vol.~68, pp.~1105--1119, 2020.
+\end{thebibliography}
+\end{document}
