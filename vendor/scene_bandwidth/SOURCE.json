@@ -1,0 +1,12 @@
+{
+ "source_repository": "szh1456/scene-bandwidth",
+ "source_commit": "dc026129cd17a08fdf6275edf55d7333996f1f36",
+ "copied": "2026-10-08",
+ "rule": "verbatim copies; never edited here; tests/test_vendor_pinned.py checks the hashes",
+ "sha256": {
+  "sim/__init__.py": "42487e7346f3ae809db14cc280bf4a694d9bcde986f050ff15e14caf3e587032",
+  "sim/workload.py": "fc408fb09f196d5e3337b3125bd248dffcf956bf9ca8d9966ab3093244c8372d",
+  "sim/representations.py": "e2ff102ec695038b053bc90ba6105fcb878e383fcc4c0d7a731d7c9c89815fb1",
+  "sim/etram.py": "cb6577e161b66808f00925d82ec92ab3d4c23b39a6864399f8a559bd7039a1c6"
+ }
+}

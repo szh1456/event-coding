@@ -1,0 +1,5 @@
+events 30000  slots spanned 27
+round trip exact: True
+bitstream bits   : 521800  (17.3933 bpe)
+ideal (reference): 521802.8  (17.3934 bpe)  excess of bitstream -0.001%
+ideal (numba)    : 521802.8  (17.3934 bpe)  rel. diff to reference 1.29e-10

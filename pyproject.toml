@@ -1,0 +1,10 @@
+[project]
+name = "event-coding"
+version = "0.0.0"
+description = "Information coding of event-camera streams"
+requires-python = ">=3.10"
+dependencies = ["numpy>=1.26", "scipy>=1.11", "h5py", "zstandard>=0.25", "numba"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

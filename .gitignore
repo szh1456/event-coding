@@ -1,0 +1,15 @@
+# Raw data never enters version control.
+data/
+*.h5
+*.raw
+
+# Caches and scratch
+.cache/
+__pycache__/
+*.pyc
+.pytest_cache/
+logs/
+.DS_Store
+
+# Per-instant result files stay on the compute host; directives commit aggregates only.
+results/**/instants_*.npz
