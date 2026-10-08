@@ -122,6 +122,44 @@ def to_npz(rows, path):
     tmp.rename(path)
 
 
+AREA_EDGES = (0.0, 1_000.0, 3_000.0, 10_000.0, 30_000.0, math.inf)
+# mean cost of one instant (six settings, seconds on one cnt core) per box-area bin, from the cost probe
+AREA_COST_S = (0.52, 1.41, 3.92, 14.7, 66.2)
+
+
+def instant_cost(area: float) -> float:
+    for k in range(5):
+        if AREA_EDGES[k] <= area < AREA_EDGES[k + 1]:
+            return AREA_COST_S[k]
+    return AREA_COST_S[-1]
+
+
+class _Slice:
+    """Events of one contiguous time range. Every window evaluate_instant reads for a track lies in its life."""
+
+    def __init__(self, ev, t_lo, t_hi):
+        a, b = np.searchsorted(ev.t_us, (t_lo, t_hi + 1))
+        self.t_us, self.x, self.y, self.p = (np.ascontiguousarray(v[a:b]) for v in (ev.t_us, ev.x, ev.y, ev.p))
+        self.n_full = int(len(ev.t_us))
+
+    def __len__(self):
+        return int(len(self.t_us))
+
+
+def _read_lock(outdir, slots=3):
+    """Hold one of ``slots`` file locks while reading a recording, so few full reads overlap in memory."""
+    import fcntl
+    while True:
+        for k in range(slots):
+            f = open(Path(outdir) / f".read_lock_{k}", "w")
+            try:
+                fcntl.flock(f, fcntl.LOCK_EX | fcntl.LOCK_NB)
+                return f
+            except OSError:
+                f.close()
+        time.sleep(2)
+
+
 def task(args):
     rid, shard, track_ids, outdir, mode, per_rec = args
     out = Path(outdir) / f"instants_{rid}_{shard:03d}.npz"
@@ -130,7 +168,13 @@ def task(args):
     t0 = time.time()
     boxes = annotations.load_boxes(mp.annotation_path(rid))
     trs = annotations.tracks(boxes)
+    lock = _read_lock(outdir) if mode == "run" else None
     ev = baseline.read_events(mp.event_path(rid))
+    n_events = int(len(ev))
+    if mode == "run":
+        sel = [tr for tr in trs if tr.track_id in set(track_ids)]
+        ev = _Slice(ev, min(tr.t_first for tr in sel), max(tr.t_last for tr in sel))
+        lock.close()
     t_read = time.time() - t0
     instants_of = None
     if mode == "cost":
@@ -146,59 +190,130 @@ def task(args):
     else:
         np.savez_compressed(out, empty=np.zeros(0))
     meta = {"rid": rid, "shard": shard, "n_rows": len(rows), "read_s": t_read, "wall_s": time.time() - t0,
-            "n_events": int(len(ev))}
+            "n_events": n_events, "n_events_held": int(len(ev)), "track_ids": sorted(int(k) for k in track_ids)}
     (Path(outdir) / f"task_{rid}_{shard:03d}.json").write_text(json.dumps(meta) + "\n")
     return rid, shard, f"{len(rows)} rows {meta['wall_s']:.0f}s", meta["wall_s"]
 
 
-def plan(ids, mode, per_rec, n_shards_of):
+def plan_run(ids, shard_s):
+    """Shards of time-contiguous tracks (ordered by first frame) of about ``shard_s`` estimated seconds each."""
     tasks = []
     for rid in ids:
-        trs = annotations.tracks(annotations.load_boxes(mp.annotation_path(rid)))
-        long_ = [tr for tr in trs if tr.t_last - tr.t_first >= 1_000_000]
-        if mode == "cost":
-            tasks.append((rid, 0, [], None, mode, per_rec, 0.0))
-            continue
-        # cost of a track ~ instants x area; split the recording into shards of similar cost (LPT within it)
-        cost = {tr.track_id: len(motion.evaluation_instants(tr)) * (50.0 + float(np.median(tr.w * tr.h)))
-                for tr in long_}
-        n = max(1, n_shards_of(rid, sum(cost.values())))
-        bins = [[0.0, []] for _ in range(n)]
-        for k in sorted(cost, key=lambda k: -cost[k]):
-            b = min(bins, key=lambda b: b[0])
-            b[0] += cost[k]; b[1].append(k)
-        for s, (c, ks) in enumerate(bins):
-            if ks:
-                tasks.append((rid, s, ks, None, mode, per_rec, c))
+        trs = sorted((tr for tr in annotations.tracks(annotations.load_boxes(mp.annotation_path(rid)))
+                      if len(motion.evaluation_instants(tr))), key=lambda tr: (tr.t_first, tr.track_id))
+        cur, c, s = [], 0.0, 0
+        for tr in trs:
+            ct = sum(instant_cost(float(np.prod(tr.box(float(t))[2:]))) for t in motion.evaluation_instants(tr))
+            if cur and c + ct > shard_s:
+                tasks.append([rid, s, cur, c]); s += 1; cur, c = [], 0.0
+            cur.append(tr.track_id); c += ct
+        if cur:
+            tasks.append([rid, s, cur, c])
+    tasks.sort(key=lambda t: -t[3])          # longest first
     return tasks
+
+
+def _target_workers(outdir, max_workers, physical=28):
+    f = Path(outdir) / "WORKERS"
+    if f.exists():
+        try:
+            return int(f.read_text().strip())
+        except ValueError:
+            pass
+    n_sbc = 0
+    for d in Path("/proc").iterdir():
+        if d.name.isdigit():
+            try:
+                if b"sbc_sealed.py" in (d / "cmdline").read_bytes():
+                    n_sbc += 1
+            except OSError:
+                pass
+    if n_sbc:                                # the companion job: use only the physical cores it leaves idle
+        return max(0, min(max_workers, physical - max(0, n_sbc - 1)))
+    return max_workers
+
+
+def _mem_available_gb():
+    for line in Path("/proc/meminfo").read_text().splitlines():
+        if line.startswith("MemAvailable:"):
+            return int(line.split()[1]) / 1e6
+    return 0.0
+
+
+def schedule(out, max_workers, min_free_gb=40.0):
+    """Dynamic pool: one subprocess per shard; width follows _target_workers; resumable by output file."""
+    import subprocess
+    tasks = json.loads((out / "plan.json").read_text())["tasks"]
+    pending = [t for t in tasks if not (out / f"instants_{t[0]}_{t[1]:03d}.npz").exists()]
+    running, fails, t0, done = {}, {}, time.time(), len(tasks) - len(pending)
+    log = lambda m: print(f"{time.strftime('%H:%M:%S')} {m}", flush=True)
+    log(f"{len(pending)} of {len(tasks)} shards pending")
+    while pending or running:
+        for pr, t in list(running.items()):
+            rc = pr.poll()
+            if rc is None:
+                continue
+            del running[pr]
+            if rc == 0 and (out / f"instants_{t[0]}_{t[1]:03d}.npz").exists():
+                done += 1
+                log(f"[{done}/{len(tasks)}] {t[0]}#{t[1]} ok, running {len(running)}, t={time.time() - t0:.0f}s")
+            else:
+                k = f"{t[0]}#{t[1]}"
+                fails[k] = fails.get(k, 0) + 1
+                log(f"FAIL {k} rc={rc} (attempt {fails[k]})")
+                if fails[k] < 2:
+                    pending.append(t)
+        target = _target_workers(out, max_workers)
+        while pending and len(running) < target and _mem_available_gb() > min_free_gb:
+            t = pending.pop(0)
+            pr = subprocess.Popen([sys.executable, __file__, "one", str(out), t[0], str(t[1])],
+                                  stdout=open(out / "logs" / f"{t[0]}_{t[1]:03d}.log", "w"), stderr=subprocess.STDOUT)
+            running[pr] = t
+            time.sleep(3)
+        time.sleep(15)
+    log(f"DONE failed={sorted(k for k, v in fails.items() if v >= 2)}")
 
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("mode", choices=("cost", "run"))
+    ap.add_argument("mode", choices=("cost", "run", "one"))
     ap.add_argument("outdir")
+    ap.add_argument("rid", nargs="?")
+    ap.add_argument("shard", nargs="?", type=int)
     ap.add_argument("--workers", type=int, default=24)
     ap.add_argument("--per-rec", type=int, default=12)
-    ap.add_argument("--ids", default="", help="comma-separated subset (cost mode)")
-    ap.add_argument("--cost-per-shard", type=float, default=0.0, help="run mode: target track cost per shard")
+    ap.add_argument("--ids", default="", help="comma-separated subset")
+    ap.add_argument("--shard-s", type=float, default=1800.0, help="run mode: estimated seconds per shard")
     a = ap.parse_args()
     out = Path(a.outdir)
-    if out.exists() and any(out.iterdir()) and not (out / "RESUME").exists():
-        sys.exit(f"{out} exists and is not empty; refusing to append (touch RESUME to resume)")
-    out.mkdir(parents=True, exist_ok=True)
+    if a.mode == "one":
+        t = next(t for t in json.loads((out / "plan.json").read_text())["tasks"] if t[0] == a.rid and t[1] == a.shard)
+        print(task((t[0], t[1], t[2], str(out), "run", 0))[2], flush=True)
+        return
     ids, _ = mp.load_population()
     if a.ids:
         ids = [i for i in ids if i in set(a.ids.split(","))]
-    shards = (lambda rid, c: int(math.ceil(c / a.cost_per_shard))) if a.cost_per_shard > 0 else (lambda rid, c: 1)
-    tasks = plan(ids, a.mode, a.per_rec, shards)
-    tasks.sort(key=lambda t: -t[6])
-    (out / "plan.json").write_text(json.dumps({"commit": (mp.REPO / "COMMIT").read_text().strip(), "mode": a.mode,
-                                               "n_tasks": len(tasks), "workers": a.workers,
-                                               "tasks": [[t[0], t[1], len(t[2]), t[6]] for t in tasks]}) + "\n")
+    if a.mode == "run":
+        if (out / "plan.json").exists():
+            if not (out / "RESUME").exists():
+                sys.exit(f"{out} holds a run; touch {out}/RESUME to resume it")
+        else:
+            if out.exists() and any(out.iterdir()):
+                sys.exit(f"{out} exists and is not empty; refusing to append")
+            (out / "logs").mkdir(parents=True, exist_ok=True)
+            tasks = plan_run(ids, a.shard_s)
+            (out / "plan.json").write_text(json.dumps({
+                "commit": (mp.REPO / "COMMIT").read_text().strip(), "shard_s": a.shard_s, "n_tasks": len(tasks),
+                "est_cpu_h": sum(t[3] for t in tasks) / 3600, "tasks": tasks}) + "\n")
+        schedule(out, a.workers)
+        return
+    if out.exists() and any(out.iterdir()):
+        sys.exit(f"{out} exists and is not empty; refusing to append")
+    out.mkdir(parents=True, exist_ok=True)
+    tasks = [(rid, 0, [], str(out), "cost", a.per_rec) for rid in ids]
     t0 = time.time()
     with mpr.get_context("spawn").Pool(a.workers, maxtasksperchild=1) as pool:
-        for k, (rid, s, msg, _) in enumerate(pool.imap_unordered(
-                task, [(t[0], t[1], t[2], str(out), t[4], t[5]) for t in tasks]), 1):
+        for k, (rid, s, msg, _) in enumerate(pool.imap_unordered(task, tasks), 1):
             print(f"[{k}/{len(tasks)}] {rid}#{s} {msg} t={time.time() - t0:.0f}s", flush=True)
     print("DONE", flush=True)
 
