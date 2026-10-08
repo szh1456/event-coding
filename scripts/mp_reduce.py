@@ -45,24 +45,18 @@ OVERLAPS = ("isolated", "overlapping", "all")
 
 
 def load_rows(rundir: Path) -> tuple[dict, list[dict]]:
-    cols, files = {}, []
+    parts, files = [], []
     for f in sorted(rundir.glob("instants_*.npz")):
-        z = np.load(f)
-        h = hashlib.sha256(f.read_bytes()).hexdigest()
-        files.append({"path": str(f), "sha256": h, "n_rows": int(len(z["setting"])) if "setting" in z else 0})
-        if "setting" not in z:
-            continue
-        n = len(z["setting"])
-        for k in set(cols) | set(z.files):
-            if k in z.files:
-                v = z[k]
-            else:
-                v = np.full(n, "" if k in ("recording_id", "lighting", "group", "skip") else np.nan)
-            if k not in cols:
-                prev = sum(len(c) for c in cols.get("setting", [])) if cols else 0
-                cols[k] = [np.full(prev, "" if v.dtype.kind == "U" else np.nan)] if prev else []
-            cols[k].append(v)
-    return {k: np.concatenate(v) for k, v in cols.items()}, files
+        z = dict(np.load(f))
+        files.append({"path": str(f), "sha256": hashlib.sha256(f.read_bytes()).hexdigest(),
+                      "n_rows": int(len(z["setting"])) if "setting" in z else 0})
+        if "setting" in z:
+            parts.append(z)
+    keys = sorted({k for z in parts for k in z})
+    kinds = {k: next(z[k].dtype.kind for z in parts if k in z) for k in keys}
+    cols = {k: np.concatenate([z[k] if k in z else np.full(len(z["setting"]), "" if kinds[k] == "U" else np.nan)
+                               for z in parts]) for k in keys}
+    return cols, files
 
 
 def derived(c: dict) -> dict:
