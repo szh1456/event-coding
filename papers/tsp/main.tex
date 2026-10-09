@@ -35,13 +35,13 @@ fall with the length of the path. Under a mean-squared timing tolerance, we give
 rate-distortion function of a pixel's events exactly below the jitter variance and within $0.255$
 bit per pixel above it. The rate vanishes once the tolerance passes a threshold set by the jitter
 and by the event spacing of the pixel, the contrast threshold divided by the rate at which its
-intensity changes. Beyond the threshold a description of the motion suffices, and its length grows
-at most logarithmically with the path. These results lead to a codec that transmits the events of
-one window as a template and one affine map for each later window, and lets the receiver regenerate
-the events. On traffic recordings the measurements agree with each prediction: knowledge of the
-motion saves little losslessly, the fidelity of regenerated events at a fixed tolerance rises with
-object speed, and regeneration reaches a given fidelity with a fraction of the events that random
-thinning needs.
+intensity changes. Beyond the threshold the events of a known edge follow from its motion alone,
+and the description of the motion grows at most logarithmically with the path. These results lead
+to a codec that transmits the events of one window as a template and one affine map for each later
+window, and lets the receiver regenerate the events. On traffic recordings, a motion-compensated
+template shortens the lossless code only slightly, the fidelity of regenerated events at a fixed
+tolerance rises with object speed, and regeneration reaches a given fidelity with a fraction of the
+events that random thinning needs.
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -85,8 +85,9 @@ This paper models that mechanism and derives what a code can and cannot save.
 a pixel are determined by the edge, the flow and a single threshold phase, up to timing jitter
 (Lemmas~\ref{lem:lattice} and~\ref{lem:times}). The phase is a property of the pixel and is
 independent across pixels. A lossless code given the edge and the flow therefore still pays for one
-phase per pixel and for the jitter of each of its other events, and its rate per event does not
-decrease with the number $M$ of pixels on the path (Theorem~\ref{thm:lossless}). The independent
+phase per pixel and for the jitter of each of its other events. This conditional rate is
+irreducible: per event it does not decrease with the number $M$ of pixels on the path
+(Theorem~\ref{thm:lossless}). The independent
 phases play the role of the shifts in multi-channel time encoding: they make the pixels
 complementary samplers, and for the same reason they cannot be predicted.
 
@@ -95,13 +96,15 @@ function of the events of a pixel is known exactly below the jitter variance and
 above it, and it is zero from a threshold on (Theorem~\ref{thm:pixel}). The threshold grows with
 the event spacing of the pixel, the contrast threshold divided by the rate of change of its
 intensity, so slowly crossed pixels need a larger tolerance. Along a path the zero-rate threshold
-is the average of the pixel thresholds (Theorem~\ref{thm:path}). Beyond it the receiver needs only
-the motion, which a description of $O(\ln M)$ nats conveys (Proposition~\ref{prop:motion}).
+is the average of the pixel thresholds (Theorem~\ref{thm:path}). Beyond it a receiver that holds
+the edge needs only the motion, which a description of $O(\ln M)$ nats conveys
+(Proposition~\ref{prop:motion}).
 
 \emph{3) Regeneration.} The zero-rate decoder of Theorem~\ref{thm:pixel} is constructive: it
 regenerates the events from the edge and the flow. Guided by it, we build a codec that transmits
-the events of one window as a template and one affine map for each later window, and we measure it
-on traffic recordings \cite{verma2024etram}. \todo{one sentence on the second dataset
+the events of one window as a template and one affine map for each later window. We quantify what
+moving events costs against regenerating them from the edge (Proposition~\ref{prop:moved}), and we
+measure the codec in total bits on traffic recordings \cite{verma2024etram}. \todo{one sentence on the second dataset
 \cite{gehrig2021dsec} once it has been measured.}
 
 Section~\ref{sec:model} states the model. Sections~\ref{sec:lossless} and~\ref{sec:tolerance}
@@ -207,6 +210,18 @@ by the entropy power inequality \cite[Ch.~17]{cover2006elements} and by the Gaus
 entropy at a given variance \cite[Ch.~8]{cover2006elements}, and $\eta(a,\sigma)-\ln a\to0$ as
 $\sigma/a\to0$.
 
+\subsection{Two Levels of Generality}\label{sec:levels}
+The results have two levels. The first is the mechanism and needs only the send-on-delta rule (A1):
+the events of a pixel lie on a level lattice that is fixed by its phase, the phase persists
+whatever passes, and knowledge of the scene and of its motion cannot remove it
+(Lemma~\ref{lem:lattice}). At this level, if the noise-free event times of a pixel are any function
+of its phase, the rate-distortion function \eqref{eq:rdlow} holds below the jitter variance with
+the entropy of the actual event times, and the smallest distortion at zero rate is
+$\tfrac1n\operatorname{tr}\operatorname{Cov}(T_i)$, attained by the mean times. The second level is
+the ramp edge in uniform single passage, (A2) and (A2$'$), an instance in which the mechanism can
+be computed in closed form: the entropy \eqref{eq:hT}, the gap of $0.255$ bit and the zero-rate
+threshold \eqref{eq:defs} belong to it.
+
 \section{Structure and Lossless Limit}\label{sec:lossless}
 \begin{lemma}\label{lem:lattice}
 Under (A1), for any continuous $\ell_i$, every event of pixel $i$ occurs at a time $t$ with
@@ -247,8 +262,11 @@ When $\sigma\ll\tau_i$ and $\delta\ll\sigma$, \eqref{eq:HY} gives the cost per e
 One event of each pixel pays for the phase and the other $n-1$ pay for jitter. The code length of
 the path is the sum of \eqref{eq:HY} over $\mathcal P$. It grows in proportion to $M$, and neither
 term of \eqref{eq:perevent} falls as the path gets longer: a decoder that knows the edge and its
-motion exactly still pays \eqref{eq:perevent} for every event. The redundancy that the delay
-structure suggests is therefore not available to a lossless code.
+motion exactly still pays \eqref{eq:perevent} for every event. What the pixels of a path share,
+the edge and its motion, a code can describe once. What is private to each pixel, its phase and its
+jitter, it must describe for each pixel, and \eqref{eq:HY} is that irreducible conditional rate.
+The theorem does not state how much more a code pays that does not know the motion.
+Section~\ref{sec:experiments} measures that difference on recordings.
 
 \begin{remark}[Accuracy of the uniform passage]\label{rem:passage}
 For an affine flow \eqref{eq:flow}, $\dot\nu_t=-\Lambda^{\!\top}\nu_t$ and
@@ -372,15 +390,9 @@ finite exponents, and hence $B=O(\ln M)$, for an affine flow whose normal speed 
 zero on the path and whose duration is polynomial in $M$. The lossless cost of the same events is
 the sum of \eqref{eq:HY}, of order $M$, so the ratio of the two grows at least as $M/\ln M$. Above
 $\bar D_A$ the description that remains is $O(\ln M)$. Below it, a rate proportional to $M$
-remains.
+remains. The bound \eqref{eq:B} counts the motion only. It assumes that the receiver holds the
+edge, and a codec also pays for the template and for the regions (Section~\ref{sec:codec}).
 
-\begin{remark}[Beyond the uniform passage]\label{rem:general}
-Two statements of Theorem~\ref{thm:pixel} do not need (A2$'$). If the noise-free event times of a
-pixel are any function of its phase, then \eqref{eq:rdlow} holds for $D\le\sigma^2$ with the
-entropy of the actual $T_i$, by the same proof, and the smallest distortion at zero rate is
-$\tfrac1n\operatorname{tr}\operatorname{Cov}(T_i)$, attained by the mean times. Only the closed
-forms \eqref{eq:hT}, \eqref{eq:U} and \eqref{eq:defs} rest on the uniform passage.
-\end{remark}
 \begin{remark}[Event count under a change of scale]\label{rem:count}
 An edge segment emits $n$ events for every pixel that it passes, so its event rate is $n$ times the
 area that it sweeps per unit time, that is $n$ times its length times its mean normal speed. Under
@@ -416,7 +428,9 @@ the following $K-1$ windows it transmits one affine map. The receiver moves ever
 $(x,p,t)$ to the pixel nearest to the image of $x$ under the map and to the time $t+mT_0$, where
 $m$ counts the windows since the key window, and it keeps the polarity. The moved events are its
 reconstruction of window $m$. Under an affine flow, the map from one instant to an instant $mT_0$
-later is the same for all instants of a window, so one map per window is exact for the positions.
+later is the same for all instants of a window, so one map per window is exact for the positions
+of the edges. It does not change the number of events, which a change of scale does
+(Remark~\ref{rem:count}).
 
 An affine map is described by six integers: a displacement in pixels, and four shape parameters
 that give the displacement of the edges of the bounding rectangle of the key events, two for a
@@ -424,14 +438,29 @@ stretch along each axis and two for shear and rotation. With all shape parameter
 translation.
 
 The sender chooses the map of each window to maximize the fidelity \eqref{eq:fid} of the moved key
-events against the true events of that window, on the voxel grid at which the result is reported.
-The search is coarse to fine, starts from the displacement predicted by the velocity of the region,
-and never returns a map that is worse than the translation.
+events against the true events of that window on one fixed working grid. Results on other grids
+use the same maps. The search is coarse to fine, starts from the displacement predicted by the
+velocity of the region, and never returns a map that is worse than the translation.
 
-The moved key events carry the phases and the jitter of the key pixels, which are independent of
-those of the pixels they are moved to. Against the true events their timing error has the variance
-$2D_{A,i}$ even when the map is exact. The codec is therefore not the decoder \eqref{eq:regen}: it
-trades a factor of two in the timing error for not needing the edge.
+\subsection{Moved Events Against Regenerated Events}
+The codec differs from the decoder \eqref{eq:regen} in three ways. It moves the phases of the key
+pixels where \eqref{eq:regen} outputs the mean over the phase, it moves the jitter of the key
+events, and it moves a fixed number of events. The first two have a price that the model gives
+exactly.
+\begin{proposition}[Moved events]\label{prop:moved}
+Let the same edge pass pixel $j$ in the key window and a different pixel $i$ later, under (A1) to
+(A4) and (A2$'$), and let the map be exact, so that the $k$th event of pixel $j$ is moved to pixel
+$i$ at the time $\tilde T_{i,k}=T_{j,k}+t_i-t_j$. Then
+\begin{equation}\label{eq:moved}
+  \frac1n\,\E\|T_i-\tilde T_i\|^2=D_{A,i}+D_{A,j}+\frac{4n^2-1}{12}\,(\tau_i-\tau_j)^2 .
+\end{equation}
+\end{proposition}
+With equal event spacings the error is $2D_A$, twice that of \eqref{eq:regen}: the codec trades a
+factor of two in the timing error for not needing the edge. Unequal spacings, as under a change of
+scale, add the last term, which grows with the square of the number of events per pixel. If the
+moved events fall on their own pixel, as for an object that is nearly at rest, the phases coincide
+and only the jitter term $2\sigma^2$ remains. The third difference, the number of events, is not a
+timing error. It is measured in Section~\ref{sec:experiments}.
 
 \subsection{Receiver Representation and Fidelity}
 The theory uses the timing error \eqref{eq:dist}, which presupposes that regenerated and true
@@ -450,12 +479,15 @@ over the group, the key window included, we report
   G=\frac{F/(2-F)}{\chi},
 \end{equation}
 the factor by which it lowers the number of events sent at equal fidelity against thinning. The
-factor counts events. The bits of the maps are accounted for separately.
+factor counts events and serves as an explanation. The main results are in total bits, which
+include the key events, the maps and the description of the regions.
 
-The bin length plays the role of the tolerance. For blocks of one pixel, Lemma~\ref{lem:times}
-gives the fidelity of the regenerated events \eqref{eq:regen} of a long train directly: a bin
-holds at most one event of each train when $\Delta_t\le\tau_i$, the offset between the two trains
-is uniform, and in expectation over the phase
+The fidelity \eqref{eq:fid} and the timing error \eqref{eq:dist} are different distortion
+measures, and the bin length plays the role of the tolerance. One case connects them. For blocks of
+one pixel, a train that is long against the event spacing, and a jitter that is small against the
+bin, Lemma~\ref{lem:times} gives the fidelity of the regenerated events \eqref{eq:regen} directly:
+a bin holds at most one event of each train when $\Delta_t\le\tau_i$, the offset between the two
+trains is uniform, and in expectation over the phase
 \begin{equation}\label{eq:binfid}
   F=\frac{\Delta_t}{\tau_i}\qquad\text{for }\Delta_t\le\tau_i,
 \end{equation}
@@ -463,44 +495,52 @@ with $F=1$ at $\Delta_t=\tau_i$. The voxel counts of a pixel are thus reproduced
 is at least as long as its event spacing, the same scaling as the threshold of
 Theorem~\ref{thm:pixel}, for which $\sqrt{D_{A,i}}=\tau_i/\sqrt{12}$ when $\sigma\ll\tau_i$. In
 larger blocks the independent phases of the pixels average, and the fidelity is higher at a given
-bin length.
+bin length. Equation \eqref{eq:binfid} does not cover errors in position, a change in the number of
+events, or moved events.
 
 \todo{Regions. In the measurements so far a region is an annotated object. The paper needs regions
 that the sender finds without annotation.}
 
 \section{Experiments}\label{sec:experiments}
-\todo{This section is an outline. Each item names the measurement that fills it. Numbers appear
-only here, not in the abstract or the introduction.}
+\todo{This section is an outline. It is organized by four questions, one figure each. The protocol
+below is fixed before the simulations are run. Numbers appear only in this section.}
 
-\subsection{Data and Baseline}
-\todo{The 112 development recordings of \cite{verma2024etram}; the transport baseline; the share
-of events inside moving objects. Source: directives 001 and 003.}
+\subsection{Protocol}
+\todo{(i) Two kinds of experiment. Controlled: synthetic pixels under the model, with the timing
+error \eqref{eq:dist}, to test the theory. Recorded: the voxel fidelity \eqref{eq:fid} and total
+bits, to test whether the mechanism survives in real streams. A trend on recorded data is reported
+as a trend and not as a test of a theorem, because \eqref{eq:tau} depends on the image gradient,
+the threshold and the direction of motion as well as on speed.
+(ii) One fixed working grid for fitting the maps. Other grids are evaluated with the same maps.
+(iii) Baselines: thinning, whose fidelity is $2\chi/(1+\chi)$ by construction; repeating the key
+events without motion; the translation alone; and coding all events after quantizing them to the
+receiver grid.
+(iv) Regions: annotated objects as the ideal case, and one automatic scheme, with the bits that
+describe the regions counted.
+(v) Main axis: total bits against fidelity. The share of events and \eqref{eq:gain} explain the
+result.}
 
-\subsection{What Knowledge of the Motion Saves Losslessly}
-\todo{Code length of the events of an object given only its box, given a static template, and
-given a motion-compensated template. Tests Theorem~\ref{thm:lossless}. Source: directives 001 and
-002, Stage B.}
+\subsection{Figure 1: Why the Same Edge Gives Different Events}
+\todo{One ramp, pixels with different phases, their events, and the mean-time regeneration
+\eqref{eq:regen}. A schematic from the model.}
 
-\subsection{Fidelity Against Tolerance and Speed}
-\todo{Fidelity of regenerated windows on the voxel grids, by block size and bin length, and by
-object speed. Tests \eqref{eq:binfid} and the threshold of Theorem~\ref{thm:pixel} through
-\eqref{eq:tau}: at a fixed bin length the fidelity of the first regenerated window rises with
-speed, and slow objects gain from a longer bin. An empirical event-rate model that is linear in
-speed is reported in \cite{khan2019bandwidth}. Source: directives 002 to 005.}
+\subsection{Figure 2: The Three Regimes}
+\todo{Controlled. The bounds of Theorem~\ref{thm:pixel} with $\sigma^2$ and $D_{A,i}$ marked,
+against an independent numerical rate-distortion computation and the operating points of a simple
+coder. The formula alone would be a display, not a test.}
 
-\subsection{Fidelity Against the Share of Events Sent}
-\todo{Fidelity and \eqref{eq:gain} for groups of $K$ windows against thinning and against
-repeating the key events; the same in bits with the transport baseline. Source: directives 003 and
-004.}
+\subsection{Figure 3: Total Bits Against Fidelity}
+\todo{Recorded \cite{verma2024etram}. The codec for groups of $K$ windows against the baselines of
+the protocol, in total bits. The lossless code length with and without a motion-compensated
+template belongs here as the high-fidelity end. The second dataset \cite{gehrig2021dsec} and one
+downstream task enter this figure or one table. Sources so far: directives 001 to 004.}
 
-\subsection{Motion Model and Aging of the Key Events}
-\todo{Translation, stretch and the full affine map, by lighting and speed. The fidelity of a
-regenerated window falls with the distance covered since the key window, not for slow objects, and
-the affine map removes about half of the fall for fast ones. The event count against the growth of
-the object tests Remark~\ref{rem:count}. Source: directives 004 and 005.}
-
-\subsection{A Second Dataset and a Downstream Task}
-\todo{Camera motion \cite{gehrig2021dsec}: not yet measured.}
+\subsection{Figure 4: Where Regeneration Fails}
+\todo{Recorded and controlled. Fidelity against bin length and event spacing; the aging of the key
+events with the distance covered, for the translation and the affine map; the event count against
+the growth of the object (Remark~\ref{rem:count}); and \eqref{eq:moved} on controlled data. An
+empirical event-rate model that is linear in speed is reported in \cite{khan2019bandwidth}.
+Sources so far: directives 002 to 005.}
 
 \section{Conclusion}
 \todo{To be written when Section~\ref{sec:experiments} is complete.}
@@ -637,6 +677,14 @@ $T_{i,k}-\bar t_{i,k}(\theta)=A_i-\tau_i/2+\varepsilon_{i,k}$ has mean zero give
 variance $D_{A,i}$, and $e_{i,k}$ is a function of $\theta$. Hence
 $\E\,(T_{i,k}-\hat T_{i,k})^2=D_{A,i}+\E\,e_{i,k}^2\le D_{A,i}+\xi\sigma^2/4$, and the average over
 the path is at most $\bar D_A+\xi\sigma^2/4\le(1+\xi)\bar D_A$.\hfill$\blacksquare$
+
+\section{Proof of Proposition~\ref{prop:moved}}
+By \eqref{eq:times} and (A4),
+$T_{i,k}-\tilde T_{i,k}=(A_i-A_j)+(k-1)(\tau_i-\tau_j)+\varepsilon_{i,k}-\varepsilon_{j,k}$.
+The phases and the jitter of the two pixels are independent, so this difference has the mean
+$(k-\tfrac12)(\tau_i-\tau_j)$ and the variance $\tau_i^2/12+\tau_j^2/12+2\sigma^2=D_{A,i}+D_{A,j}$.
+Its mean square is the variance plus the squared mean, and
+$\tfrac1n\sum_{k=1}^n(k-\tfrac12)^2=(4n^2-1)/12$.\hfill$\blacksquare$
 
 \IfFileExists{IEEEtran.bst}{\bibliographystyle{IEEEtran}}{\bibliographystyle{unsrt}}
 \bibliography{refs}
