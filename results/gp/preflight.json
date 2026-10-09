@@ -1,0 +1,137 @@
+{
+ "directive": "003",
+ "P1": {
+  "host": "cnt-js01",
+  "python": "3.10.12",
+  "numpy": "1.26.4",
+  "scipy": "1.15.3",
+  "h5py": "3.16.0",
+  "zstandard": "0.25.0",
+  "numba": "0.60.0",
+  "blas_threads": {
+   "OMP_NUM_THREADS": "1",
+   "OPENBLAS_NUM_THREADS": "1",
+   "MKL_NUM_THREADS": "1",
+   "NUMEXPR_NUM_THREADS": "1"
+  },
+  "commit": "12032a15748958a9303a067011c2982d7d938a3c",
+  "compared_with": "results/rg/preflight.json#/P1",
+  "differences": {},
+  "pass": true
+ },
+ "P2": {
+  "directive_001_per_instant_files": {
+   "n_expected": 700,
+   "n_found": 700,
+   "n_sha256_mismatch": 0,
+   "missing": [],
+   "mismatch": [],
+   "pass": true,
+   "reference": "results/mp/provenance.json#/per_instant_files"
+  },
+  "directive_002_stage_R_per_row_files": {
+   "n_expected": 700,
+   "n_found": 700,
+   "n_sha256_mismatch": 0,
+   "missing": [],
+   "mismatch": [],
+   "pass": true,
+   "reference": "results/rg/provenance.json#/per_row_files/R"
+  },
+  "pass": true
+ },
+ "P3": {
+  "command": "python3 -m pytest -q -p no:anyio",
+  "host": "cnt-js01",
+  "commit": "12032a15748958a9303a067011c2982d7d938a3c",
+  "result": "36 passed in 23.01s",
+  "skipped": 0,
+  "gates": "tests/test_motion_gate.py (7), tests/test_regen_gate.py (8), tests/test_gop_gate.py (7), unedited",
+  "pass": true,
+  "first_run": "commit 9aae53d, same command: 36 passed in 22.91s"
+ },
+ "cost": {
+  "n_probe_instants": 50,
+  "n_probe_rows": 500,
+  "n_instants_stage": 65626,
+  "bins": [
+   {
+    "area_px2": [
+     0,
+     1000
+    ],
+    "n_probe_instants": 1,
+    "mean_s_per_instant": 0.13668281584978104,
+    "max_s": 0.13668281584978104,
+    "n_instants_stage": 1280,
+    "cpu_h": 0.04859833452436659
+   },
+   {
+    "area_px2": [
+     1000,
+     3000
+    ],
+    "n_probe_instants": 13,
+    "mean_s_per_instant": 0.279713606605163,
+    "max_s": 0.6212486401200294,
+    "n_instants_stage": 13839,
+    "cpu_h": 1.0752657227246807
+   },
+   {
+    "area_px2": [
+     3000,
+     10000
+    ],
+    "n_probe_instants": 21,
+    "mean_s_per_instant": 0.49007496521586463,
+    "max_s": 1.6159866228699684,
+    "n_instants_stage": 24394,
+    "cpu_h": 3.3208024170766115
+   },
+   {
+    "area_px2": [
+     10000,
+     30000
+    ],
+    "n_probe_instants": 10,
+    "mean_s_per_instant": 2.0929426684975625,
+    "max_s": 6.874490067362785,
+    "n_instants_stage": 16336,
+    "cpu_h": 9.497308731271161
+   },
+   {
+    "area_px2": [
+     30000,
+     100000
+    ],
+    "n_probe_instants": 5,
+    "mean_s_per_instant": 11.709043683111668,
+    "max_s": 33.5737149938941,
+    "n_instants_stage": 8433,
+    "cpu_h": 27.42843482768908
+   },
+   {
+    "area_px2": [
+     100000,
+     null
+    ],
+    "n_probe_instants": 0,
+    "mean_s_per_instant": 11.709043683111668,
+    "max_s": null,
+    "n_instants_stage": 1344,
+    "cpu_h": 4.37137630836169
+   }
+  ],
+  "compute_cpu_h": 45.74178634164759,
+  "read_cpu_h": 4.6892495397726695,
+  "total_cpu_h": 50.43103588142026,
+  "probe_aligned_n_eval": {
+   "median": 83.0,
+   "max": 208.0
+  },
+  "limit_cpu_h": 120,
+  "within_limit": true,
+  "probe": "50 instants evenly spaced over the Stage C instants in the order of directive 001's shards, ten targets each",
+  "note": "no probe instant has a box over 100,000 px2; that bin (1,344 instants) is priced at the 30,000-100,000 bin mean. At ten times that mean the total would be about 90 CPU-hours, still under 120"
+ }
+}
