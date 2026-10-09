@@ -1,0 +1,3959 @@
+{
+ "directive": "004",
+ "decision_rule": {
+  "step_1_motion_model": {
+   "ratio_K11": {
+    "day": 1.1558109005150368,
+    "night": 1.0819921555265355
+   },
+   "threshold": 1.1,
+   "selected": "translation (aligned)"
+  },
+  "step_2_codec": {
+   "gamma_of_selected_model": {
+    "day": {
+     "K2": 1.435365970544408,
+     "K4": 2.2373558387621353,
+     "K8": 3.4459223078654517,
+     "K11": 4.164321406853269
+    },
+    "night": {
+     "K2": 1.4657544174726165,
+     "K4": 2.3112315758071285,
+     "K8": 3.688255805753806,
+     "K11": 4.466937017662463
+    }
+   },
+   "outcome": "GO"
+  }
+ },
+ "acceptance": {
+  "3_rows_scored_or_skipped_as_003": {
+   "n_rows_003": 656260,
+   "n_rows": 656260,
+   "n_unique": 656260,
+   "missing": 0,
+   "extra": 0,
+   "n_skip_reason_differs_from_003": 0,
+   "n_scored": 650527,
+   "skips": {
+    "future_too_small": 4443,
+    "source_too_small": 1290
+   },
+   "pass": true
+  },
+  "4_translation_equals_003_aligned": {
+   "n_scored": 650527,
+   "columns_compared": 15,
+   "mismatches": {},
+   "pass": true
+  },
+  "5_affine_not_below_translation": {
+   "n_scored": 650527,
+   "n_affine_below_translation_s2_k3": 0,
+   "pass": true
+  },
+  "6_affine_f1_range_and_monotone": {
+   "f1_outside_0_1": 0,
+   "monotonicity_violations": 0,
+   "pass": true
+  }
+ },
+ "aggregation": {
+  "unit": "recording",
+  "min_instants": 20,
+  "n_boot": 2000,
+  "seed": 20261011,
+  "ratios_and_differences": "formed per instant (per row for F1), then aggregated",
+  "H": "vehicles, isolated, speed_label in [20, 300) px/s, setting (100, 0)",
+  "growth": "label box area at t_e + 300 ms over that at t_e: growing > 1.10, shrinking < 0.90, steady otherwise",
+  "headline_cell": "s2_k3",
+  "frame_cell": "s2_k1"
+ },
+ "tables": {
+  "1_headline_H": {
+   "headline": {
+    "day": {
+     "K2": {
+      "fidelity_affine": {
+       "median": 0.8363899364570956,
+       "ci95": [
+        0.8269515736164967,
+        0.8449771634324932
+       ],
+       "n_recordings": 57,
+       "n_instants": 9495
+      },
+      "gamma_affine": {
+       "median": 1.4562123765230748,
+       "ci95": [
+        1.4382239725979784,
+        1.4777528287040465
+       ],
+       "n_recordings": 57,
+       "n_instants": 9495
+      },
+      "fidelity_aligned": {
+       "median": 0.8315610859728507,
+       "ci95": [
+        0.8213353445275076,
+        0.837600549186388
+       ],
+       "n_recordings": 57,
+       "n_instants": 9495
+      },
+      "gamma_aligned": {
+       "median": 1.435365970544408,
+       "ci95": [
+        1.4231424673130064,
+        1.4466524233704923
+       ],
+       "n_recordings": 57,
+       "n_instants": 9495
+      },
+      "ratio_affine_over_aligned": {
+       "median": 1.0000642742588284,
+       "ci95": [
+        1.0,
+        1.0012443382523029
+       ],
+       "n_recordings": 57,
+       "n_instants": 9495
+      }
+     },
+     "K4": {
+      "fidelity_affine": {
+       "median": 0.7447776760486973,
+       "ci95": [
+        0.7280440266900139,
+        0.7487648567505042
+       ],
+       "n_recordings": 57,
+       "n_instants": 9488
+      },
+      "gamma_affine": {
+       "median": 2.3971250786884633,
+       "ci95": [
+        2.345410298861464,
+        2.424865276936011
+       ],
+       "n_recordings": 57,
+       "n_instants": 9488
+      },
+      "fidelity_aligned": {
+       "median": 0.710408737382095,
+       "ci95": [
+        0.6939727612136509,
+        0.7215387752327873
+       ],
+       "n_recordings": 57,
+       "n_instants": 9488
+      },
+      "gamma_aligned": {
+       "median": 2.2373558387621353,
+       "ci95": [
+        2.1966531806076635,
+        2.26751876667405
+       ],
+       "n_recordings": 57,
+       "n_instants": 9488
+      },
+      "ratio_affine_over_aligned": {
+       "median": 1.0267524482916948,
+       "ci95": [
+        1.0189644992373748,
+        1.0340850003745492
+       ],
+       "n_recordings": 57,
+       "n_instants": 9488
+      }
+     },
+     "K8": {
+      "fidelity_affine": {
+       "median": 0.6652459703677711,
+       "ci95": [
+        0.6447586740901884,
+        0.6757156036503267
+       ],
+       "n_recordings": 57,
+       "n_instants": 9470
+      },
+      "gamma_affine": {
+       "median": 3.9472109938104536,
+       "ci95": [
+        3.9094222549660236,
+        4.090850546055755
+       ],
+       "n_recordings": 57,
+       "n_instants": 9470
+      },
+      "fidelity_aligned": {
+       "median": 0.5918578892566719,
+       "ci95": [
+        0.5792796256510162,
+        0.6032219550781315
+       ],
+       "n_recordings": 57,
+       "n_instants": 9470
+      },
+      "gamma_aligned": {
+       "median": 3.4459223078654517,
+       "ci95": [
+        3.367989352866773,
+        3.5090845835496856
+       ],
+       "n_recordings": 57,
+       "n_instants": 9470
+      },
+      "ratio_affine_over_aligned": {
+       "median": 1.0959427001214246,
+       "ci95": [
+        1.0741515299571893,
+        1.1182203213647315
+       ],
+       "n_recordings": 57,
+       "n_instants": 9470
+      }
+     },
+     "K11": {
+      "fidelity_affine": {
+       "median": 0.6264655502063448,
+       "ci95": [
+        0.6000563711794927,
+        0.638637211146487
+       ],
+       "n_recordings": 57,
+       "n_instants": 9455
+      },
+      "gamma_affine": {
+       "median": 5.012238740106613,
+       "ci95": [
+        4.849526841740013,
+        5.167665125942473
+       ],
+       "n_recordings": 57,
+       "n_instants": 9455
+      },
+      "fidelity_aligned": {
+       "median": 0.5401825387809396,
+       "ci95": [
+        0.5291317042375779,
+        0.5523584949222249
+       ],
+       "n_recordings": 57,
+       "n_instants": 9455
+      },
+      "gamma_aligned": {
+       "median": 4.164321406853269,
+       "ci95": [
+        4.031091486266519,
+        4.254904659885628
+       ],
+       "n_recordings": 57,
+       "n_instants": 9455
+      },
+      "ratio_affine_over_aligned": {
+       "median": 1.1558109005150368,
+       "ci95": [
+        1.1265568399398358,
+        1.1734740237423995
+       ],
+       "n_recordings": 57,
+       "n_instants": 9455
+      }
+     }
+    },
+    "night": {
+     "K2": {
+      "fidelity_affine": {
+       "median": 0.8435392003932027,
+       "ci95": [
+        0.8359070874754689,
+        0.8514143234304359
+       ],
+       "n_recordings": 47,
+       "n_instants": 12252
+      },
+      "gamma_affine": {
+       "median": 1.483786237610667,
+       "ci95": [
+        1.454874082336664,
+        1.493591936944506
+       ],
+       "n_recordings": 47,
+       "n_instants": 12252
+      },
+      "fidelity_aligned": {
+       "median": 0.8389686289436102,
+       "ci95": [
+        0.8329457247274155,
+        0.8462668890147629
+       ],
+       "n_recordings": 47,
+       "n_instants": 12252
+      },
+      "gamma_aligned": {
+       "median": 1.4657544174726165,
+       "ci95": [
+        1.4329765648597266,
+        1.4796839158336068
+       ],
+       "n_recordings": 47,
+       "n_instants": 12252
+      },
+      "ratio_affine_over_aligned": {
+       "median": 1.0018869916679922,
+       "ci95": [
+        1.001186656631913,
+        1.0024598901608102
+       ],
+       "n_recordings": 47,
+       "n_instants": 12252
+      }
+     },
+     "K4": {
+      "fidelity_affine": {
+       "median": 0.7518301079944916,
+       "ci95": [
+        0.7387715725158109,
+        0.7577257760518759
+       ],
+       "n_recordings": 47,
+       "n_instants": 12251
+      },
+      "gamma_affine": {
+       "median": 2.414622220898518,
+       "ci95": [
+        2.3459898301257875,
+        2.4651832652323034
+       ],
+       "n_recordings": 47,
+       "n_instants": 12251
+      },
+      "fidelity_aligned": {
+       "median": 0.7303922829451932,
+       "ci95": [
+        0.7211606808726849,
+        0.7358136454182499
+       ],
+       "n_recordings": 47,
+       "n_instants": 12251
+      },
+      "gamma_aligned": {
+       "median": 2.3112315758071285,
+       "ci95": [
+        2.2678024417069906,
+        2.354373386022994
+       ],
+       "n_recordings": 47,
+       "n_instants": 12251
+      },
+      "ratio_affine_over_aligned": {
+       "median": 1.0192939316596756,
+       "ci95": [
+        1.0173167768024631,
+        1.0202680476649348
+       ],
+       "n_recordings": 47,
+       "n_instants": 12251
+      }
+     },
+     "K8": {
+      "fidelity_affine": {
+       "median": 0.6749570298021128,
+       "ci95": [
+        0.650260277052384,
+        0.6824287597297498
+       ],
+       "n_recordings": 47,
+       "n_instants": 12246
+      },
+      "gamma_affine": {
+       "median": 3.9889938618049854,
+       "ci95": [
+        3.903423423544018,
+        4.08127057959074
+       ],
+       "n_recordings": 47,
+       "n_instants": 12246
+      },
+      "fidelity_aligned": {
+       "median": 0.6304303552214597,
+       "ci95": [
+        0.6214720523779803,
+        0.6365036146511583
+       ],
+       "n_recordings": 47,
+       "n_instants": 12246
+      },
+      "gamma_aligned": {
+       "median": 3.688255805753806,
+       "ci95": [
+        3.574925267505315,
+        3.732298244405402
+       ],
+       "n_recordings": 47,
+       "n_instants": 12246
+      },
+      "ratio_affine_over_aligned": {
+       "median": 1.0548265996898165,
+       "ci95": [
+        1.0485013343996754,
+        1.0621946391235864
+       ],
+       "n_recordings": 47,
+       "n_instants": 12246
+      }
+     },
+     "K11": {
+      "fidelity_affine": {
+       "median": 0.6386261227018182,
+       "ci95": [
+        0.6192046309941582,
+        0.6461243978873001
+       ],
+       "n_recordings": 47,
+       "n_instants": 12243
+      },
+      "gamma_affine": {
+       "median": 4.982687567361073,
+       "ci95": [
+        4.909398764005551,
+        5.0960511276845395
+       ],
+       "n_recordings": 47,
+       "n_instants": 12243
+      },
+      "fidelity_aligned": {
+       "median": 0.582520558667968,
+       "ci95": [
+        0.5743031784953698,
+        0.5880509815569402
+       ],
+       "n_recordings": 47,
+       "n_instants": 12243
+      },
+      "gamma_aligned": {
+       "median": 4.466937017662463,
+       "ci95": [
+        4.311545878346421,
+        4.598820672178354
+       ],
+       "n_recordings": 47,
+       "n_instants": 12243
+      },
+      "ratio_affine_over_aligned": {
+       "median": 1.0819921555265355,
+       "ci95": [
+        1.0684521235984032,
+        1.0931859116371485
+       ],
+       "n_recordings": 47,
+       "n_instants": 12243
+      }
+     }
+    }
+   },
+   "frame": {
+    "day": {
+     "K2": {
+      "fidelity_affine": {
+       "median": 0.8887371402344143,
+       "ci95": [
+        0.8862234927613271,
+        0.8938057904361839
+       ],
+       "n_recordings": 57,
+       "n_instants": 9495
+      },
+      "gamma_affine": {
+       "median": 1.6121433968811083,
+       "ci95": [
+        1.600815433788609,
+        1.6385778222060843
+       ],
+       "n_recordings": 57,
+       "n_instants": 9495
+      },
+      "fidelity_aligned": {
+       "median": 0.8873107845145267,
+       "ci95": [
+        0.8817786689185956,
+        0.8911504577946242
+       ],
+       "n_recordings": 57,
+       "n_instants": 9495
+      },
+      "gamma_aligned": {
+       "median": 1.6059945870056587,
+       "ci95": [
+        1.5942981992862393,
+        1.6191430193351224
+       ],
+       "n_recordings": 57,
+       "n_instants": 9495
+      },
+      "ratio_affine_over_aligned": {
+       "median": 1.0,
+       "ci95": [
+        1.0,
+        1.0
+       ],
+       "n_recordings": 57,
+       "n_instants": 9495
+      }
+     },
+     "K4": {
+      "fidelity_affine": {
+       "median": 0.8204560821193682,
+       "ci95": [
+        0.8088940448569218,
+        0.8276916483244401
+       ],
+       "n_recordings": 57,
+       "n_instants": 9488
+      },
+      "gamma_affine": {
+       "median": 2.7946661401235824,
+       "ci95": [
+        2.7758069899770432,
+        2.848446881798383
+       ],
+       "n_recordings": 57,
+       "n_instants": 9488
+      },
+      "fidelity_aligned": {
+       "median": 0.8020709608649307,
+       "ci95": [
+        0.7836574221655509,
+        0.8104363509663668
+       ],
+       "n_recordings": 57,
+       "n_instants": 9488
+      },
+      "gamma_aligned": {
+       "median": 2.700556952649689,
+       "ci95": [
+        2.647755934248769,
+        2.745511968149211
+       ],
+       "n_recordings": 57,
+       "n_instants": 9488
+      },
+      "ratio_affine_over_aligned": {
+       "median": 1.0175979843884928,
+       "ci95": [
+        1.0108945381784349,
+        1.0215194013632072
+       ],
+       "n_recordings": 57,
+       "n_instants": 9488
+      }
+     },
+     "K8": {
+      "fidelity_affine": {
+       "median": 0.7561844330243328,
+       "ci95": [
+        0.7423996179691251,
+        0.768175241047689
+       ],
+       "n_recordings": 57,
+       "n_instants": 9470
+      },
+      "gamma_affine": {
+       "median": 4.875460701749666,
+       "ci95": [
+        4.751829649258663,
+        4.986651090609814
+       ],
+       "n_recordings": 57,
+       "n_instants": 9470
+      },
+      "fidelity_aligned": {
+       "median": 0.703483562813534,
+       "ci95": [
+        0.6903943937845167,
+        0.7160292442367064
+       ],
+       "n_recordings": 57,
+       "n_instants": 9470
+      },
+      "gamma_aligned": {
+       "median": 4.450498419401515,
+       "ci95": [
+        4.277314097873889,
+        4.5578009956128485
+       ],
+       "n_recordings": 57,
+       "n_instants": 9470
+      },
+      "ratio_affine_over_aligned": {
+       "median": 1.0785474083514222,
+       "ci95": [
+        1.0577695004438523,
+        1.08565854368682
+       ],
+       "n_recordings": 57,
+       "n_instants": 9470
+      }
+     },
+     "K11": {
+      "fidelity_affine": {
+       "median": 0.7252861130155583,
+       "ci95": [
+        0.7119513790075899,
+        0.7345769171403087
+       ],
+       "n_recordings": 57,
+       "n_instants": 9455
+      },
+      "gamma_affine": {
+       "median": 6.358195080011387,
+       "ci95": [
+        5.955137947479896,
+        6.413107969281384
+       ],
+       "n_recordings": 57,
+       "n_instants": 9455
+      },
+      "fidelity_aligned": {
+       "median": 0.6572937260242049,
+       "ci95": [
+        0.6421559816487546,
+        0.6701093778016854
+       ],
+       "n_recordings": 57,
+       "n_instants": 9455
+      },
+      "gamma_aligned": {
+       "median": 5.485368436445396,
+       "ci95": [
+        5.309194071421199,
+        5.654709696283373
+       ],
+       "n_recordings": 57,
+       "n_instants": 9455
+      },
+      "ratio_affine_over_aligned": {
+       "median": 1.1170107487255134,
+       "ci95": [
+        1.1007740268648725,
+        1.1344960977434453
+       ],
+       "n_recordings": 57,
+       "n_instants": 9455
+      }
+     }
+    },
+    "night": {
+     "K2": {
+      "fidelity_affine": {
+       "median": 0.8939691385388301,
+       "ci95": [
+        0.8879780705907369,
+        0.8983905409594015
+       ],
+       "n_recordings": 47,
+       "n_instants": 12252
+      },
+      "gamma_affine": {
+       "median": 1.6344033111478116,
+       "ci95": [
+        1.607580878802511,
+        1.6540995415088389
+       ],
+       "n_recordings": 47,
+       "n_instants": 12252
+      },
+      "fidelity_aligned": {
+       "median": 0.8902240440226852,
+       "ci95": [
+        0.886571910599159,
+        0.8948706968126481
+       ],
+       "n_recordings": 47,
+       "n_instants": 12252
+      },
+      "gamma_aligned": {
+       "median": 1.6180416635260644,
+       "ci95": [
+        1.596586349135785,
+        1.638325657733005
+       ],
+       "n_recordings": 47,
+       "n_instants": 12252
+      },
+      "ratio_affine_over_aligned": {
+       "median": 1.0,
+       "ci95": [
+        1.0,
+        1.0
+       ],
+       "n_recordings": 47,
+       "n_instants": 12252
+      }
+     },
+     "K4": {
+      "fidelity_affine": {
+       "median": 0.82158997125033,
+       "ci95": [
+        0.8083395990110702,
+        0.8275417395260881
+       ],
+       "n_recordings": 47,
+       "n_instants": 12251
+      },
+      "gamma_affine": {
+       "median": 2.7949857283485646,
+       "ci95": [
+        2.7438400412159325,
+        2.8533454395552345
+       ],
+       "n_recordings": 47,
+       "n_instants": 12251
+      },
+      "fidelity_aligned": {
+       "median": 0.8056799243099019,
+       "ci95": [
+        0.7958869199312512,
+        0.8126421292637422
+       ],
+       "n_recordings": 47,
+       "n_instants": 12251
+      },
+      "gamma_aligned": {
+       "median": 2.730909634085994,
+       "ci95": [
+        2.670094372937078,
+        2.7417941291909345
+       ],
+       "n_recordings": 47,
+       "n_instants": 12251
+      },
+      "ratio_affine_over_aligned": {
+       "median": 1.015238838944349,
+       "ci95": [
+        1.0121870590952609,
+        1.0171382710148946
+       ],
+       "n_recordings": 47,
+       "n_instants": 12251
+      }
+     },
+     "K8": {
+      "fidelity_affine": {
+       "median": 0.7488954704866666,
+       "ci95": [
+        0.7356144099832528,
+        0.7594093903932286
+       ],
+       "n_recordings": 47,
+       "n_instants": 12246
+      },
+      "gamma_affine": {
+       "median": 4.784372528244419,
+       "ci95": [
+        4.689758443057429,
+        4.822526480968341
+       ],
+       "n_recordings": 47,
+       "n_instants": 12246
+      },
+      "fidelity_aligned": {
+       "median": 0.7145835674946611,
+       "ci95": [
+        0.7068460175413179,
+        0.718320865958773
+       ],
+       "n_recordings": 47,
+       "n_instants": 12246
+      },
+      "gamma_aligned": {
+       "median": 4.439422075022789,
+       "ci95": [
+        4.299381456889951,
+        4.525443017256868
+       ],
+       "n_recordings": 47,
+       "n_instants": 12246
+      },
+      "ratio_affine_over_aligned": {
+       "median": 1.0479536261576312,
+       "ci95": [
+        1.0406478514799997,
+        1.0561489138006077
+       ],
+       "n_recordings": 47,
+       "n_instants": 12246
+      }
+     },
+     "K11": {
+      "fidelity_affine": {
+       "median": 0.7125606565018275,
+       "ci95": [
+        0.6978440353589871,
+        0.7246497212306106
+       ],
+       "n_recordings": 47,
+       "n_instants": 12243
+      },
+      "gamma_affine": {
+       "median": 6.025661992005343,
+       "ci95": [
+        5.910186802362443,
+        6.143523755847107
+       ],
+       "n_recordings": 47,
+       "n_instants": 12243
+      },
+      "fidelity_aligned": {
+       "median": 0.6664653595122104,
+       "ci95": [
+        0.6599918086051197,
+        0.6697046196853651
+       ],
+       "n_recordings": 47,
+       "n_instants": 12243
+      },
+      "gamma_aligned": {
+       "median": 5.443090880877211,
+       "ci95": [
+        5.387261242807851,
+        5.621546466362949
+       ],
+       "n_recordings": 47,
+       "n_instants": 12243
+      },
+      "ratio_affine_over_aligned": {
+       "median": 1.0713368335775102,
+       "ci95": [
+        1.0604058374795158,
+        1.0826655640073293
+       ],
+       "n_recordings": 47,
+       "n_instants": 12243
+      }
+     }
+    }
+   }
+  },
+  "2_targets_H": {
+   "m1": {
+    "day": {
+     "F1_affine_s2_k3": {
+      "median": 0.6768316882385323,
+      "ci95": [
+       0.6566768096908928,
+       0.690725829809419
+      ],
+      "n_recordings": 57,
+      "n_instants": 9495
+     },
+     "F1_affine_s2_k1": {
+      "median": 0.7777949436571973,
+      "ci95": [
+       0.7714182969100569,
+       0.787695930532048
+      ],
+      "n_recordings": 57,
+      "n_instants": 9495
+     },
+     "F1_aligned_s2_k3": {
+      "median": 0.6629820300078398,
+      "ci95": [
+       0.6407657824388238,
+       0.6737880385560169
+      ],
+      "n_recordings": 57,
+      "n_instants": 9495
+     },
+     "F1_aligned_s2_k1": {
+      "median": 0.7738760243128183,
+      "ci95": [
+       0.7597063025232498,
+       0.784462087893803
+      ],
+      "n_recordings": 57,
+      "n_instants": 9495
+     },
+     "F1_diff_s2_k3": {
+      "median": 6.149116064568805e-05,
+      "ci95": [
+       0.0,
+       0.0010942154677531235
+      ],
+      "n_recordings": 57,
+      "n_instants": 9495
+     },
+     "F1_diff_s2_k1": {
+      "median": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "n_recordings": 57,
+      "n_instants": 9495
+     },
+     "share_shape_nonzero": {
+      "median": 0.5,
+      "ci95": [
+       0.41975308641975306,
+       0.5208333333333334
+      ],
+      "n_recordings": 57,
+      "n_instants": 9495
+     },
+     "stretch_pct_median_over_recordings": {
+      "median": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "n_recordings": 57,
+      "n_instants": 9495
+     },
+     "stretch_pct_pooled_quantiles": {
+      "0.1": -0.7299270072992701,
+      "0.5": 0.0,
+      "0.9": 0.6756756756756757
+     },
+     "share_shape_nonzero_pooled": 0.42639966449989514
+    },
+    "night": {
+     "F1_affine_s2_k3": {
+      "median": 0.6871189515667705,
+      "ci95": [
+       0.6707122789028239,
+       0.703980945899966
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "F1_affine_s2_k1": {
+      "median": 0.7899182561307901,
+      "ci95": [
+       0.7749296564171778,
+       0.7973579272344318
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "F1_aligned_s2_k3": {
+      "median": 0.6805920689194168,
+      "ci95": [
+       0.6622126779607095,
+       0.6906838153597522
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "F1_aligned_s2_k1": {
+      "median": 0.7812398880788778,
+      "ci95": [
+       0.7719094082893205,
+       0.7906192412652995
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "F1_diff_s2_k3": {
+      "median": 0.0017414965986395359,
+      "ci95": [
+       0.001167116492814868,
+       0.002219927023914353
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "F1_diff_s2_k1": {
+      "median": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "share_shape_nonzero": {
+      "median": 0.5772532188841202,
+      "ci95": [
+       0.5543478260869565,
+       0.6151960784313726
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "stretch_pct_median_over_recordings": {
+      "median": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "stretch_pct_pooled_quantiles": {
+      "0.1": -1.3793103448275863,
+      "0.5": 0.0,
+      "0.9": 1.0204081632653061
+     },
+     "share_shape_nonzero_pooled": 0.5777596741344195
+    }
+   },
+   "m2": {
+    "day": {
+     "F1_affine_s2_k3": {
+      "median": 0.6562193927522038,
+      "ci95": [
+       0.6416404525540871,
+       0.6684401383380574
+      ],
+      "n_recordings": 57,
+      "n_instants": 9495
+     },
+     "F1_affine_s2_k1": {
+      "median": 0.7633673715526252,
+      "ci95": [
+       0.7418681913003168,
+       0.7711029487694833
+      ],
+      "n_recordings": 57,
+      "n_instants": 9495
+     },
+     "F1_aligned_s2_k3": {
+      "median": 0.6182207006141347,
+      "ci95": [
+       0.5989727380482023,
+       0.6276857708464101
+      ],
+      "n_recordings": 57,
+      "n_instants": 9495
+     },
+     "F1_aligned_s2_k1": {
+      "median": 0.7394050926335534,
+      "ci95": [
+       0.7155921353452218,
+       0.7482151789368378
+      ],
+      "n_recordings": 57,
+      "n_instants": 9495
+     },
+     "F1_diff_s2_k3": {
+      "median": 0.011136057476425654,
+      "ci95": [
+       0.0073279594963693295,
+       0.02121249220032012
+      ],
+      "n_recordings": 57,
+      "n_instants": 9495
+     },
+     "F1_diff_s2_k1": {
+      "median": 0.00784856964272429,
+      "ci95": [
+       0.003917545005130085,
+       0.011060350166278599
+      ],
+      "n_recordings": 57,
+      "n_instants": 9495
+     },
+     "share_shape_nonzero": {
+      "median": 0.6956521739130435,
+      "ci95": [
+       0.6666666666666666,
+       0.765625
+      ],
+      "n_recordings": 57,
+      "n_instants": 9495
+     },
+     "stretch_pct_median_over_recordings": {
+      "median": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "n_recordings": 57,
+      "n_instants": 9495
+     },
+     "stretch_pct_pooled_quantiles": {
+      "0.1": -1.7511374596085527,
+      "0.5": 0.0,
+      "0.9": 1.7241379310344827
+     },
+     "share_shape_nonzero_pooled": 0.6482491088278465
+    },
+    "night": {
+     "F1_affine_s2_k3": {
+      "median": 0.6674353711689689,
+      "ci95": [
+       0.6498051860808813,
+       0.6780315362337319
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "F1_affine_s2_k1": {
+      "median": 0.7612440074129889,
+      "ci95": [
+       0.7429393492577714,
+       0.7697636511817441
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "F1_aligned_s2_k3": {
+      "median": 0.6405649414498972,
+      "ci95": [
+       0.628436980855752,
+       0.6492715237552734
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "F1_aligned_s2_k1": {
+      "median": 0.7434052342401647,
+      "ci95": [
+       0.7208921609017777,
+       0.7511785815369907
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "F1_diff_s2_k3": {
+      "median": 0.01035375323554788,
+      "ci95": [
+       0.009150700600514705,
+       0.011545293685635283
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "F1_diff_s2_k1": {
+      "median": 0.008017891613570693,
+      "ci95": [
+       0.0067833221654756085,
+       0.009072617340758482
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "share_shape_nonzero": {
+      "median": 0.7640625,
+      "ci95": [
+       0.7446808510638298,
+       0.7823408624229979
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "stretch_pct_median_over_recordings": {
+      "median": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "stretch_pct_pooled_quantiles": {
+      "0.1": -2.670872614087524,
+      "0.5": 0.0,
+      "0.9": 2.0408163265306123
+     },
+     "share_shape_nonzero_pooled": 0.7556822810590631
+    }
+   },
+   "m3": {
+    "day": {
+     "F1_affine_s2_k3": {
+      "median": 0.636608784473953,
+      "ci95": [
+       0.6130081745359105,
+       0.6448360238451053
+      ],
+      "n_recordings": 57,
+      "n_instants": 9488
+     },
+     "F1_affine_s2_k1": {
+      "median": 0.7384615384615385,
+      "ci95": [
+       0.7199586066682192,
+       0.751752162695988
+      ],
+      "n_recordings": 57,
+      "n_instants": 9488
+     },
+     "F1_aligned_s2_k3": {
+      "median": 0.5614102353435212,
+      "ci95": [
+       0.5413788034690578,
+       0.5805853658536585
+      ],
+      "n_recordings": 57,
+      "n_instants": 9488
+     },
+     "F1_aligned_s2_k1": {
+      "median": 0.6928226307123384,
+      "ci95": [
+       0.6795081967213115,
+       0.7113830301078732
+      ],
+      "n_recordings": 57,
+      "n_instants": 9488
+     },
+     "F1_diff_s2_k3": {
+      "median": 0.029684039829200398,
+      "ci95": [
+       0.022097774983579094,
+       0.04194465557526106
+      ],
+      "n_recordings": 57,
+      "n_instants": 9488
+     },
+     "F1_diff_s2_k1": {
+      "median": 0.02205128205128204,
+      "ci95": [
+       0.014428712396341525,
+       0.02913952511475726
+      ],
+      "n_recordings": 57,
+      "n_instants": 9488
+     },
+     "share_shape_nonzero": {
+      "median": 0.8086253369272237,
+      "ci95": [
+       0.7775,
+       0.8478260869565217
+      ],
+      "n_recordings": 57,
+      "n_instants": 9488
+     },
+     "stretch_pct_median_over_recordings": {
+      "median": 0.0,
+      "ci95": [
+       -0.267325897520747,
+       0.0
+      ],
+      "n_recordings": 57,
+      "n_instants": 9488
+     },
+     "stretch_pct_pooled_quantiles": {
+      "0.1": -2.7027027027027026,
+      "0.5": 0.0,
+      "0.9": 2.8066443007937156
+     },
+     "share_shape_nonzero_pooled": 0.7687545902843353
+    },
+    "night": {
+     "F1_affine_s2_k3": {
+      "median": 0.6497831052814609,
+      "ci95": [
+       0.6207135915590726,
+       0.6520875275882496
+      ],
+      "n_recordings": 47,
+      "n_instants": 12251
+     },
+     "F1_affine_s2_k1": {
+      "median": 0.7331262939958593,
+      "ci95": [
+       0.7140271841669554,
+       0.748765338710432
+      ],
+      "n_recordings": 47,
+      "n_instants": 12251
+     },
+     "F1_aligned_s2_k3": {
+      "median": 0.6012223913027843,
+      "ci95": [
+       0.5921070599481087,
+       0.6125462642933821
+      ],
+      "n_recordings": 47,
+      "n_instants": 12251
+     },
+     "F1_aligned_s2_k1": {
+      "median": 0.7029151654110711,
+      "ci95": [
+       0.6856282919488337,
+       0.713710464749653
+      ],
+      "n_recordings": 47,
+      "n_instants": 12251
+     },
+     "F1_diff_s2_k3": {
+      "median": 0.020202906527267805,
+      "ci95": [
+       0.016713091922005652,
+       0.021360160207604173
+      ],
+      "n_recordings": 47,
+      "n_instants": 12251
+     },
+     "F1_diff_s2_k1": {
+      "median": 0.016287257674003408,
+      "ci95": [
+       0.013922092532695829,
+       0.019089430660261697
+      ],
+      "n_recordings": 47,
+      "n_instants": 12251
+     },
+     "share_shape_nonzero": {
+      "median": 0.853515625,
+      "ci95": [
+       0.8353221957040573,
+       0.8687258687258688
+      ],
+      "n_recordings": 47,
+      "n_instants": 12251
+     },
+     "stretch_pct_median_over_recordings": {
+      "median": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "n_recordings": 47,
+      "n_instants": 12251
+     },
+     "stretch_pct_pooled_quantiles": {
+      "0.1": -3.7643029020207717,
+      "0.5": 0.0,
+      "0.9": 2.997741980924918
+     },
+     "share_shape_nonzero_pooled": 0.8446309271631091
+    }
+   },
+   "m4": {
+    "day": {
+     "F1_affine_s2_k3": {
+      "median": 0.6168073366273816,
+      "ci95": [
+       0.5888443959066456,
+       0.6198286537440926
+      ],
+      "n_recordings": 57,
+      "n_instants": 9486
+     },
+     "F1_affine_s2_k1": {
+      "median": 0.7168289765932001,
+      "ci95": [
+       0.7070723575383779,
+       0.7327904864117436
+      ],
+      "n_recordings": 57,
+      "n_instants": 9486
+     },
+     "F1_aligned_s2_k3": {
+      "median": 0.5283382196176017,
+      "ci95": [
+       0.5117454653704523,
+       0.5385408072763946
+      ],
+      "n_recordings": 57,
+      "n_instants": 9486
+     },
+     "F1_aligned_s2_k1": {
+      "median": 0.6546580813432228,
+      "ci95": [
+       0.6418887781457309,
+       0.6780902723130767
+      ],
+      "n_recordings": 57,
+      "n_instants": 9486
+     },
+     "F1_diff_s2_k3": {
+      "median": 0.04633573603518104,
+      "ci95": [
+       0.035351123616140484,
+       0.06370636180001404
+      ],
+      "n_recordings": 57,
+      "n_instants": 9486
+     },
+     "F1_diff_s2_k1": {
+      "median": 0.03835874859963423,
+      "ci95": [
+       0.027334435744946317,
+       0.04293075261249238
+      ],
+      "n_recordings": 57,
+      "n_instants": 9486
+     },
+     "share_shape_nonzero": {
+      "median": 0.8852459016393442,
+      "ci95": [
+       0.8354898336414048,
+       0.9072164948453608
+      ],
+      "n_recordings": 57,
+      "n_instants": 9486
+     },
+     "stretch_pct_median_over_recordings": {
+      "median": 0.0,
+      "ci95": [
+       -0.48359070611106136,
+       0.0
+      ],
+      "n_recordings": 57,
+      "n_instants": 9486
+     },
+     "stretch_pct_pooled_quantiles": {
+      "0.1": -3.539686071789254,
+      "0.5": 0.0,
+      "0.9": 3.867660155908493
+     },
+     "share_shape_nonzero_pooled": 0.840696820232973
+    },
+    "night": {
+     "F1_affine_s2_k3": {
+      "median": 0.6220341544506574,
+      "ci95": [
+       0.597090281786478,
+       0.6309889936210735
+      ],
+      "n_recordings": 47,
+      "n_instants": 12250
+     },
+     "F1_affine_s2_k1": {
+      "median": 0.707925400442975,
+      "ci95": [
+       0.6902942300343905,
+       0.7237728585178056
+      ],
+      "n_recordings": 47,
+      "n_instants": 12250
+     },
+     "F1_aligned_s2_k3": {
+      "median": 0.5677856083086054,
+      "ci95": [
+       0.5585885486018641,
+       0.5771871517892344
+      ],
+      "n_recordings": 47,
+      "n_instants": 12250
+     },
+     "F1_aligned_s2_k1": {
+      "median": 0.6644180754226268,
+      "ci95": [
+       0.6579024676850764,
+       0.6740958243416941
+      ],
+      "n_recordings": 47,
+      "n_instants": 12250
+     },
+     "F1_diff_s2_k3": {
+      "median": 0.027320326427115404,
+      "ci95": [
+       0.0245338958749442,
+       0.03174953208666109
+      ],
+      "n_recordings": 47,
+      "n_instants": 12250
+     },
+     "F1_diff_s2_k1": {
+      "median": 0.025187729400276138,
+      "ci95": [
+       0.02219651423182356,
+       0.02861685214626397
+      ],
+      "n_recordings": 47,
+      "n_instants": 12250
+     },
+     "share_shape_nonzero": {
+      "median": 0.9098712446351931,
+      "ci95": [
+       0.8878504672897196,
+       0.9219712525667351
+      ],
+      "n_recordings": 47,
+      "n_instants": 12250
+     },
+     "stretch_pct_median_over_recordings": {
+      "median": 0.0,
+      "ci95": [
+       -0.5514705882352942,
+       0.0
+      ],
+      "n_recordings": 47,
+      "n_instants": 12250
+     },
+     "stretch_pct_pooled_quantiles": {
+      "0.1": -4.9289712847122535,
+      "0.5": 0.0,
+      "0.9": 3.9118870341493515
+     },
+     "share_shape_nonzero_pooled": 0.9005948015970016
+    }
+   },
+   "m5": {
+    "day": {
+     "F1_affine_s2_k3": {
+      "median": 0.5958431297570039,
+      "ci95": [
+       0.5735172981878089,
+       0.6090169992609017
+      ],
+      "n_recordings": 57,
+      "n_instants": 9481
+     },
+     "F1_affine_s2_k1": {
+      "median": 0.7037356458382831,
+      "ci95": [
+       0.6950076613334284,
+       0.7157202523771439
+      ],
+      "n_recordings": 57,
+      "n_instants": 9481
+     },
+     "F1_aligned_s2_k3": {
+      "median": 0.4948809954084338,
+      "ci95": [
+       0.4896855903153788,
+       0.5034065102195306
+      ],
+      "n_recordings": 57,
+      "n_instants": 9481
+     },
+     "F1_aligned_s2_k1": {
+      "median": 0.6248523372897564,
+      "ci95": [
+       0.6188115420351801,
+       0.6404297315803509
+      ],
+      "n_recordings": 57,
+      "n_instants": 9481
+     },
+     "F1_diff_s2_k3": {
+      "median": 0.06283190782606238,
+      "ci95": [
+       0.0475856730242378,
+       0.07740788956781641
+      ],
+      "n_recordings": 57,
+      "n_instants": 9481
+     },
+     "F1_diff_s2_k1": {
+      "median": 0.0553820190047184,
+      "ci95": [
+       0.039709289732104525,
+       0.058770343580470175
+      ],
+      "n_recordings": 57,
+      "n_instants": 9481
+     },
+     "share_shape_nonzero": {
+      "median": 0.9143897996357013,
+      "ci95": [
+       0.9029649595687331,
+       0.9302325581395349
+      ],
+      "n_recordings": 57,
+      "n_instants": 9481
+     },
+     "stretch_pct_median_over_recordings": {
+      "median": -0.4405286343612335,
+      "ci95": [
+       -0.8004610655737705,
+       0.0
+      ],
+      "n_recordings": 57,
+      "n_instants": 9481
+     },
+     "stretch_pct_pooled_quantiles": {
+      "0.1": -4.413887204366282,
+      "0.5": 0.0,
+      "0.9": 4.8966303966304
+     },
+     "share_shape_nonzero_pooled": 0.8858672826543469
+    },
+    "night": {
+     "F1_affine_s2_k3": {
+      "median": 0.6035936603240475,
+      "ci95": [
+       0.5769186567678765,
+       0.6197460796276274
+      ],
+      "n_recordings": 47,
+      "n_instants": 12249
+     },
+     "F1_affine_s2_k1": {
+      "median": 0.6844100395036112,
+      "ci95": [
+       0.6714107174978234,
+       0.7124347321601238
+      ],
+      "n_recordings": 47,
+      "n_instants": 12249
+     },
+     "F1_aligned_s2_k3": {
+      "median": 0.5455799852367393,
+      "ci95": [
+       0.538859468542867,
+       0.5530630825228355
+      ],
+      "n_recordings": 47,
+      "n_instants": 12249
+     },
+     "F1_aligned_s2_k1": {
+      "median": 0.6410860132004481,
+      "ci95": [
+       0.6312752974284872,
+       0.6480644108872389
+      ],
+      "n_recordings": 47,
+      "n_instants": 12249
+     },
+     "F1_diff_s2_k3": {
+      "median": 0.03700696999274217,
+      "ci95": [
+       0.02927493870300346,
+       0.040021270513804
+      ],
+      "n_recordings": 47,
+      "n_instants": 12249
+     },
+     "F1_diff_s2_k1": {
+      "median": 0.03293434106986237,
+      "ci95": [
+       0.026187961985216446,
+       0.03856238218097263
+      ],
+      "n_recordings": 47,
+      "n_instants": 12249
+     },
+     "share_shape_nonzero": {
+      "median": 0.9315789473684211,
+      "ci95": [
+       0.924892703862661,
+       0.9411764705882353
+      ],
+      "n_recordings": 47,
+      "n_instants": 12249
+     },
+     "stretch_pct_median_over_recordings": {
+      "median": -0.24989848287081115,
+      "ci95": [
+       -0.7248531331901039,
+       0.0
+      ],
+      "n_recordings": 47,
+      "n_instants": 12249
+     },
+     "stretch_pct_pooled_quantiles": {
+      "0.1": -5.91471801330782,
+      "0.5": -0.21116626849750483,
+      "0.9": 4.679230420382564
+     },
+     "share_shape_nonzero_pooled": 0.9254400260756193
+    }
+   },
+   "m6": {
+    "day": {
+     "F1_affine_s2_k3": {
+      "median": 0.5703367072918818,
+      "ci95": [
+       0.560823481063948,
+       0.588932649083025
+      ],
+      "n_recordings": 57,
+      "n_instants": 9483
+     },
+     "F1_affine_s2_k1": {
+      "median": 0.685704467007157,
+      "ci95": [
+       0.6672703725370186,
+       0.6996238418340093
+      ],
+      "n_recordings": 57,
+      "n_instants": 9483
+     },
+     "F1_aligned_s2_k3": {
+      "median": 0.46655851926707975,
+      "ci95": [
+       0.4465929167237448,
+       0.4757946759519263
+      ],
+      "n_recordings": 57,
+      "n_instants": 9483
+     },
+     "F1_aligned_s2_k1": {
+      "median": 0.5986088379705401,
+      "ci95": [
+       0.5863529112677064,
+       0.610084182543199
+      ],
+      "n_recordings": 57,
+      "n_instants": 9483
+     },
+     "F1_diff_s2_k3": {
+      "median": 0.0672476305205475,
+      "ci95": [
+       0.0583500422868618,
+       0.08763716232908045
+      ],
+      "n_recordings": 57,
+      "n_instants": 9483
+     },
+     "F1_diff_s2_k1": {
+      "median": 0.06455090111131923,
+      "ci95": [
+       0.05363759194347795,
+       0.0736139055451504
+      ],
+      "n_recordings": 57,
+      "n_instants": 9483
+     },
+     "share_shape_nonzero": {
+      "median": 0.9302325581395349,
+      "ci95": [
+       0.9053627760252366,
+       0.9444444444444444
+      ],
+      "n_recordings": 57,
+      "n_instants": 9483
+     },
+     "stretch_pct_median_over_recordings": {
+      "median": -0.5981834411049257,
+      "ci95": [
+       -1.1282530777621942,
+       0.0
+      ],
+      "n_recordings": 57,
+      "n_instants": 9483
+     },
+     "stretch_pct_pooled_quantiles": {
+      "0.1": -5.217778324515013,
+      "0.5": 0.0,
+      "0.9": 6.069840164862789
+     },
+     "share_shape_nonzero_pooled": 0.9134998950241444
+    },
+    "night": {
+     "F1_affine_s2_k3": {
+      "median": 0.5875927284584658,
+      "ci95": [
+       0.5652522820744308,
+       0.5957312233113585
+      ],
+      "n_recordings": 47,
+      "n_instants": 12248
+     },
+     "F1_affine_s2_k1": {
+      "median": 0.6722737632820777,
+      "ci95": [
+       0.6549175433859467,
+       0.6851437913081622
+      ],
+      "n_recordings": 47,
+      "n_instants": 12248
+     },
+     "F1_aligned_s2_k3": {
+      "median": 0.5201628034523569,
+      "ci95": [
+       0.5106040741227493,
+       0.5278838897240674
+      ],
+      "n_recordings": 47,
+      "n_instants": 12248
+     },
+     "F1_aligned_s2_k1": {
+      "median": 0.6102831367529182,
+      "ci95": [
+       0.6028342575477511,
+       0.6159953142082628
+      ],
+      "n_recordings": 47,
+      "n_instants": 12248
+     },
+     "F1_diff_s2_k3": {
+      "median": 0.04279369708481884,
+      "ci95": [
+       0.033653479645139484,
+       0.04666022934665376
+      ],
+      "n_recordings": 47,
+      "n_instants": 12248
+     },
+     "F1_diff_s2_k1": {
+      "median": 0.03989956947554851,
+      "ci95": [
+       0.03364374437203055,
+       0.044776541747965415
+      ],
+      "n_recordings": 47,
+      "n_instants": 12248
+     },
+     "share_shape_nonzero": {
+      "median": 0.9515625,
+      "ci95": [
+       0.9349112426035503,
+       0.9583333333333334
+      ],
+      "n_recordings": 47,
+      "n_instants": 12248
+     },
+     "stretch_pct_median_over_recordings": {
+      "median": -0.4694835680751174,
+      "ci95": [
+       -0.9708737864077669,
+       0.0
+      ],
+      "n_recordings": 47,
+      "n_instants": 12248
+     },
+     "stretch_pct_pooled_quantiles": {
+      "0.1": -6.927449657963194,
+      "0.5": -0.53475935828877,
+      "0.9": 5.603603603603603
+     },
+     "share_shape_nonzero_pooled": 0.9458071876782659
+    }
+   },
+   "m7": {
+    "day": {
+     "F1_affine_s2_k3": {
+      "median": 0.5598722772495388,
+      "ci95": [
+       0.5393034840138953,
+       0.5734610226869232
+      ],
+      "n_recordings": 57,
+      "n_instants": 9483
+     },
+     "F1_affine_s2_k1": {
+      "median": 0.6668267025768435,
+      "ci95": [
+       0.6610547532123898,
+       0.6830375415592744
+      ],
+      "n_recordings": 57,
+      "n_instants": 9483
+     },
+     "F1_aligned_s2_k3": {
+      "median": 0.4396924705076727,
+      "ci95": [
+       0.43272088337030096,
+       0.45101423638625854
+      ],
+      "n_recordings": 57,
+      "n_instants": 9483
+     },
+     "F1_aligned_s2_k1": {
+      "median": 0.5685814771395076,
+      "ci95": [
+       0.5628627789666552,
+       0.5812708848379472
+      ],
+      "n_recordings": 57,
+      "n_instants": 9483
+     },
+     "F1_diff_s2_k3": {
+      "median": 0.07854833619499768,
+      "ci95": [
+       0.06462882096069866,
+       0.09137706983723959
+      ],
+      "n_recordings": 57,
+      "n_instants": 9483
+     },
+     "F1_diff_s2_k1": {
+      "median": 0.07139629462268404,
+      "ci95": [
+       0.05915942475751593,
+       0.08202091873899973
+      ],
+      "n_recordings": 57,
+      "n_instants": 9483
+     },
+     "share_shape_nonzero": {
+      "median": 0.9586776859504132,
+      "ci95": [
+       0.9393939393939394,
+       0.9705882352941176
+      ],
+      "n_recordings": 57,
+      "n_instants": 9483
+     },
+     "stretch_pct_median_over_recordings": {
+      "median": -0.7633587786259541,
+      "ci95": [
+       -1.3370891721820666,
+       0.0
+      ],
+      "n_recordings": 57,
+      "n_instants": 9483
+     },
+     "stretch_pct_pooled_quantiles": {
+      "0.1": -5.996226405719765,
+      "0.5": 0.0,
+      "0.9": 6.97599846390169
+     },
+     "share_shape_nonzero_pooled": 0.9365945832458534
+    },
+    "night": {
+     "F1_affine_s2_k3": {
+      "median": 0.5697599755389084,
+      "ci95": [
+       0.5532362676258442,
+       0.5877061469265368
+      ],
+      "n_recordings": 47,
+      "n_instants": 12248
+     },
+     "F1_affine_s2_k1": {
+      "median": 0.653473310478744,
+      "ci95": [
+       0.6359156147328376,
+       0.6748788975903979
+      ],
+      "n_recordings": 47,
+      "n_instants": 12248
+     },
+     "F1_aligned_s2_k3": {
+      "median": 0.4958465590599041,
+      "ci95": [
+       0.48512532481909176,
+       0.5056968272702969
+      ],
+      "n_recordings": 47,
+      "n_instants": 12248
+     },
+     "F1_aligned_s2_k1": {
+      "median": 0.5856941861065832,
+      "ci95": [
+       0.5793537696189461,
+       0.592804750261963
+      ],
+      "n_recordings": 47,
+      "n_instants": 12248
+     },
+     "F1_diff_s2_k3": {
+      "median": 0.045739316978162914,
+      "ci95": [
+       0.037858402315555595,
+       0.05098074874048175
+      ],
+      "n_recordings": 47,
+      "n_instants": 12248
+     },
+     "F1_diff_s2_k1": {
+      "median": 0.0469952583168588,
+      "ci95": [
+       0.03696861608044166,
+       0.05183371355624783
+      ],
+      "n_recordings": 47,
+      "n_instants": 12248
+     },
+     "share_shape_nonzero": {
+      "median": 0.9538714991762768,
+      "ci95": [
+       0.9439252336448598,
+       0.9583333333333334
+      ],
+      "n_recordings": 47,
+      "n_instants": 12248
+     },
+     "stretch_pct_median_over_recordings": {
+      "median": -0.3271519787063828,
+      "ci95": [
+       -1.098901098901099,
+       0.0
+      ],
+      "n_recordings": 47,
+      "n_instants": 12248
+     },
+     "stretch_pct_pooled_quantiles": {
+      "0.1": -7.936507936507936,
+      "0.5": -0.6621360433942266,
+      "0.9": 6.563442038914771
+     },
+     "share_shape_nonzero_pooled": 0.9520006519436068
+    }
+   },
+   "m8": {
+    "day": {
+     "F1_affine_s2_k3": {
+      "median": 0.5398201462120722,
+      "ci95": [
+       0.5226797563857831,
+       0.5589192896401873
+      ],
+      "n_recordings": 57,
+      "n_instants": 9476
+     },
+     "F1_affine_s2_k1": {
+      "median": 0.6536950725581585,
+      "ci95": [
+       0.639754173939717,
+       0.6669929182737143
+      ],
+      "n_recordings": 57,
+      "n_instants": 9476
+     },
+     "F1_aligned_s2_k3": {
+      "median": 0.4175769862462998,
+      "ci95": [
+       0.411771415535531,
+       0.4310003347124063
+      ],
+      "n_recordings": 57,
+      "n_instants": 9476
+     },
+     "F1_aligned_s2_k1": {
+      "median": 0.5431229996396701,
+      "ci95": [
+       0.5359054918644837,
+       0.5570191945803538
+      ],
+      "n_recordings": 57,
+      "n_instants": 9476
+     },
+     "F1_diff_s2_k3": {
+      "median": 0.08513438919426153,
+      "ci95": [
+       0.07437123392965955,
+       0.10120847588566384
+      ],
+      "n_recordings": 57,
+      "n_instants": 9476
+     },
+     "F1_diff_s2_k1": {
+      "median": 0.0834049051615548,
+      "ci95": [
+       0.06923895992804935,
+       0.09143798561109509
+      ],
+      "n_recordings": 57,
+      "n_instants": 9476
+     },
+     "share_shape_nonzero": {
+      "median": 0.9621451104100947,
+      "ci95": [
+       0.9453551912568307,
+       0.9736842105263158
+      ],
+      "n_recordings": 57,
+      "n_instants": 9476
+     },
+     "stretch_pct_median_over_recordings": {
+      "median": -0.8674270159595384,
+      "ci95": [
+       -1.1870580672809086,
+       0.0
+      ],
+      "n_recordings": 57,
+      "n_instants": 9476
+     },
+     "stretch_pct_pooled_quantiles": {
+      "0.1": -6.632876834944503,
+      "0.5": 0.0,
+      "0.9": 7.9936369059455155
+     },
+     "share_shape_nonzero_pooled": 0.9457926252757642
+    },
+    "night": {
+     "F1_affine_s2_k3": {
+      "median": 0.5553343288534927,
+      "ci95": [
+       0.5317513819603613,
+       0.5709653018525862
+      ],
+      "n_recordings": 47,
+      "n_instants": 12245
+     },
+     "F1_affine_s2_k1": {
+      "median": 0.6391643278552345,
+      "ci95": [
+       0.6264008007873562,
+       0.658888788152995
+      ],
+      "n_recordings": 47,
+      "n_instants": 12245
+     },
+     "F1_aligned_s2_k3": {
+      "median": 0.4788598523336407,
+      "ci95": [
+       0.4670943216916132,
+       0.4856076190502454
+      ],
+      "n_recordings": 47,
+      "n_instants": 12245
+     },
+     "F1_aligned_s2_k1": {
+      "median": 0.5636237017503188,
+      "ci95": [
+       0.5569693768890087,
+       0.5709691388730382
+      ],
+      "n_recordings": 47,
+      "n_instants": 12245
+     },
+     "F1_diff_s2_k3": {
+      "median": 0.050432769794627186,
+      "ci95": [
+       0.03961116288583691,
+       0.05869712592358786
+      ],
+      "n_recordings": 47,
+      "n_instants": 12245
+     },
+     "F1_diff_s2_k1": {
+      "median": 0.05384167401888157,
+      "ci95": [
+       0.03748535665430633,
+       0.05870087988297159
+      ],
+      "n_recordings": 47,
+      "n_instants": 12245
+     },
+     "share_shape_nonzero": {
+      "median": 0.959375,
+      "ci95": [
+       0.9497716894977168,
+       0.968
+      ],
+      "n_recordings": 47,
+      "n_instants": 12245
+     },
+     "stretch_pct_median_over_recordings": {
+      "median": -0.6756756756756757,
+      "ci95": [
+       -1.2540457090516923,
+       -0.23094688221709006
+      ],
+      "n_recordings": 47,
+      "n_instants": 12245
+     },
+     "stretch_pct_pooled_quantiles": {
+      "0.1": -8.948907042926871,
+      "0.5": -0.9009009009009009,
+      "0.9": 7.342243186582812
+     },
+     "share_shape_nonzero_pooled": 0.9587544832083469
+    }
+   },
+   "m9": {
+    "day": {
+     "F1_affine_s2_k3": {
+      "median": 0.5296576658004746,
+      "ci95": [
+       0.5152820743211453,
+       0.5414430530709601
+      ],
+      "n_recordings": 57,
+      "n_instants": 9482
+     },
+     "F1_affine_s2_k1": {
+      "median": 0.6373043096489116,
+      "ci95": [
+       0.6208028085295357,
+       0.6551020465176841
+      ],
+      "n_recordings": 57,
+      "n_instants": 9482
+     },
+     "F1_aligned_s2_k3": {
+      "median": 0.39738033323702204,
+      "ci95": [
+       0.3903330178967166,
+       0.41190362310175777
+      ],
+      "n_recordings": 57,
+      "n_instants": 9482
+     },
+     "F1_aligned_s2_k1": {
+      "median": 0.5249391249705444,
+      "ci95": [
+       0.5180071979145388,
+       0.5377506042940424
+      ],
+      "n_recordings": 57,
+      "n_instants": 9482
+     },
+     "F1_diff_s2_k3": {
+      "median": 0.09398664176523219,
+      "ci95": [
+       0.08035821231808304,
+       0.10294017477278145
+      ],
+      "n_recordings": 57,
+      "n_instants": 9482
+     },
+     "F1_diff_s2_k1": {
+      "median": 0.0880661641732915,
+      "ci95": [
+       0.074383020179334,
+       0.09528807505662867
+      ],
+      "n_recordings": 57,
+      "n_instants": 9482
+     },
+     "share_shape_nonzero": {
+      "median": 0.9708333333333333,
+      "ci95": [
+       0.9537275064267352,
+       0.9779179810725552
+      ],
+      "n_recordings": 57,
+      "n_instants": 9482
+     },
+     "stretch_pct_median_over_recordings": {
+      "median": -0.9761904761904763,
+      "ci95": [
+       -1.300751879699248,
+       0.0
+      ],
+      "n_recordings": 57,
+      "n_instants": 9482
+     },
+     "stretch_pct_pooled_quantiles": {
+      "0.1": -7.193891106578133,
+      "0.5": 0.0,
+      "0.9": 8.920098639825056
+     },
+     "share_shape_nonzero_pooled": 0.9594750656167979
+    },
+    "night": {
+     "F1_affine_s2_k3": {
+      "median": 0.5432017786137284,
+      "ci95": [
+       0.5184970066532981,
+       0.5521891025641026
+      ],
+      "n_recordings": 47,
+      "n_instants": 12246
+     },
+     "F1_affine_s2_k1": {
+      "median": 0.6212492336375239,
+      "ci95": [
+       0.6144119706214546,
+       0.6378034549704448
+      ],
+      "n_recordings": 47,
+      "n_instants": 12246
+     },
+     "F1_aligned_s2_k3": {
+      "median": 0.459562811439079,
+      "ci95": [
+       0.4491381018426788,
+       0.46803615447822516
+      ],
+      "n_recordings": 47,
+      "n_instants": 12246
+     },
+     "F1_aligned_s2_k1": {
+      "median": 0.5409645909645909,
+      "ci95": [
+       0.5362637362637362,
+       0.5552976482116609
+      ],
+      "n_recordings": 47,
+      "n_instants": 12246
+     },
+     "F1_diff_s2_k3": {
+      "median": 0.050820943828773724,
+      "ci95": [
+       0.039914571981057134,
+       0.06079385811875079
+      ],
+      "n_recordings": 47,
+      "n_instants": 12246
+     },
+     "F1_diff_s2_k1": {
+      "median": 0.05401025810025986,
+      "ci95": [
+       0.03771945843537289,
+       0.06254014541449784
+      ],
+      "n_recordings": 47,
+      "n_instants": 12246
+     },
+     "share_shape_nonzero": {
+      "median": 0.9650924024640657,
+      "ci95": [
+       0.954337899543379,
+       0.967741935483871
+      ],
+      "n_recordings": 47,
+      "n_instants": 12246
+     },
+     "stretch_pct_median_over_recordings": {
+      "median": -0.6085337915234814,
+      "ci95": [
+       -1.3215859030837005,
+       0.0
+      ],
+      "n_recordings": 47,
+      "n_instants": 12246
+     },
+     "stretch_pct_pooled_quantiles": {
+      "0.1": -9.660161339318865,
+      "0.5": -0.9174311926605505,
+      "0.9": 8.347436365850688
+     },
+     "share_shape_nonzero_pooled": 0.9618550819137665
+    }
+   },
+   "m10": {
+    "day": {
+     "F1_affine_s2_k3": {
+      "median": 0.5113449565365653,
+      "ci95": [
+       0.4978447585576187,
+       0.5310595790848418
+      ],
+      "n_recordings": 57,
+      "n_instants": 9477
+     },
+     "F1_affine_s2_k1": {
+      "median": 0.6231223673844497,
+      "ci95": [
+       0.6035867643344279,
+       0.6404447829578896
+      ],
+      "n_recordings": 57,
+      "n_instants": 9477
+     },
+     "F1_aligned_s2_k3": {
+      "median": 0.38607093550770394,
+      "ci95": [
+       0.37716671444637123,
+       0.3955950712019479
+      ],
+      "n_recordings": 57,
+      "n_instants": 9477
+     },
+     "F1_aligned_s2_k1": {
+      "median": 0.5056668423827095,
+      "ci95": [
+       0.4971879250810924,
+       0.521164234459405
+      ],
+      "n_recordings": 57,
+      "n_instants": 9477
+     },
+     "F1_diff_s2_k3": {
+      "median": 0.09674409468153017,
+      "ci95": [
+       0.08310182523401238,
+       0.10907968607624696
+      ],
+      "n_recordings": 57,
+      "n_instants": 9477
+     },
+     "F1_diff_s2_k1": {
+      "median": 0.09000227066808936,
+      "ci95": [
+       0.08548759862111589,
+       0.10612087804903769
+      ],
+      "n_recordings": 57,
+      "n_instants": 9477
+     },
+     "share_shape_nonzero": {
+      "median": 0.9666666666666667,
+      "ci95": [
+       0.9574468085106383,
+       0.9751243781094527
+      ],
+      "n_recordings": 57,
+      "n_instants": 9477
+     },
+     "stretch_pct_median_over_recordings": {
+      "median": -0.9606278186565392,
+      "ci95": [
+       -1.4866215895986912,
+       0.0
+      ],
+      "n_recordings": 57,
+      "n_instants": 9477
+     },
+     "stretch_pct_pooled_quantiles": {
+      "0.1": -7.658509025768223,
+      "0.5": 0.0,
+      "0.9": 9.754098819316214
+     },
+     "share_shape_nonzero_pooled": 0.9611344537815126
+    },
+    "night": {
+     "F1_affine_s2_k3": {
+      "median": 0.530375555441179,
+      "ci95": [
+       0.5072163165792363,
+       0.5475704262106725
+      ],
+      "n_recordings": 47,
+      "n_instants": 12246
+     },
+     "F1_affine_s2_k1": {
+      "median": 0.6063090754361786,
+      "ci95": [
+       0.6002293268582221,
+       0.6307186692408584
+      ],
+      "n_recordings": 47,
+      "n_instants": 12246
+     },
+     "F1_aligned_s2_k3": {
+      "median": 0.4453420853319869,
+      "ci95": [
+       0.4363313990973565,
+       0.45298013245033114
+      ],
+      "n_recordings": 47,
+      "n_instants": 12246
+     },
+     "F1_aligned_s2_k1": {
+      "median": 0.5229656231295704,
+      "ci95": [
+       0.5192740122068744,
+       0.5343054489639294
+      ],
+      "n_recordings": 47,
+      "n_instants": 12246
+     },
+     "F1_diff_s2_k3": {
+      "median": 0.05892949047864127,
+      "ci95": [
+       0.04048089861187071,
+       0.06677529292807301
+      ],
+      "n_recordings": 47,
+      "n_instants": 12246
+     },
+     "F1_diff_s2_k1": {
+      "median": 0.05875192013445141,
+      "ci95": [
+       0.03830021657188931,
+       0.0692382722516347
+      ],
+      "n_recordings": 47,
+      "n_instants": 12246
+     },
+     "share_shape_nonzero": {
+      "median": 0.9643605870020965,
+      "ci95": [
+       0.9613152804642167,
+       0.9732142857142857
+      ],
+      "n_recordings": 47,
+      "n_instants": 12246
+     },
+     "stretch_pct_median_over_recordings": {
+      "median": -0.6944444444444444,
+      "ci95": [
+       -1.2962023470419948,
+       -0.4629629629629629
+      ],
+      "n_recordings": 47,
+      "n_instants": 12246
+     },
+     "stretch_pct_pooled_quantiles": {
+      "0.1": -10.60113629493603,
+      "0.5": -0.9615384615384616,
+      "0.9": 9.471840709250788
+     },
+     "share_shape_nonzero_pooled": 0.967152987203521
+    }
+   }
+  },
+  "3_growth_H": {
+   "growing": {
+    "day": {
+     "gamma_affine_K4": {
+      "median": 2.6415470185940473,
+      "ci95": [
+       2.575988264320296,
+       2.708293243079339
+      ],
+      "n_recordings": 22,
+      "n_instants": 2350
+     },
+     "gamma_aligned_K4": {
+      "median": 2.4808406192020893,
+      "ci95": [
+       2.419441129007457,
+       2.524178652743482
+      ],
+      "n_recordings": 22,
+      "n_instants": 2350
+     },
+     "ratio_K4": {
+      "median": 1.0334919448321451,
+      "ci95": [
+       1.0230320181697674,
+       1.0546241991906382
+      ],
+      "n_recordings": 22,
+      "n_instants": 2350
+     },
+     "gamma_affine_K11": {
+      "median": 6.343945556438131,
+      "ci95": [
+       6.175826972215015,
+       6.596157708759206
+      ],
+      "n_recordings": 22,
+      "n_instants": 2346
+     },
+     "gamma_aligned_K11": {
+      "median": 5.095626890887125,
+      "ci95": [
+       4.973002856830172,
+       5.22643230662904
+      ],
+      "n_recordings": 22,
+      "n_instants": 2346
+     },
+     "ratio_K11": {
+      "median": 1.1753532514445986,
+      "ci95": [
+       1.1532765070798026,
+       1.223908136715457
+      ],
+      "n_recordings": 22,
+      "n_instants": 2346
+     },
+     "n_instants_pooled": 2617
+    },
+    "night": {
+     "gamma_affine_K4": {
+      "median": 2.685987183109705,
+      "ci95": [
+       2.591310529226849,
+       2.7240865723922845
+      ],
+      "n_recordings": 30,
+      "n_instants": 2609
+     },
+     "gamma_aligned_K4": {
+      "median": 2.529212018112487,
+      "ci95": [
+       2.4933085403547723,
+       2.567271985324067
+      ],
+      "n_recordings": 30,
+      "n_instants": 2609
+     },
+     "ratio_K4": {
+      "median": 1.0254523470549965,
+      "ci95": [
+       1.012566236928114,
+       1.0325213475793675
+      ],
+      "n_recordings": 30,
+      "n_instants": 2609
+     },
+     "gamma_affine_K11": {
+      "median": 6.272817447771492,
+      "ci95": [
+       5.882795172770376,
+       6.527730392717967
+      ],
+      "n_recordings": 30,
+      "n_instants": 2609
+     },
+     "gamma_aligned_K11": {
+      "median": 5.463927202326223,
+      "ci95": [
+       5.388075563092967,
+       5.630930514998708
+      ],
+      "n_recordings": 30,
+      "n_instants": 2609
+     },
+     "ratio_K11": {
+      "median": 1.077353891966522,
+      "ci95": [
+       1.0521079521368502,
+       1.1027226371371057
+      ],
+      "n_recordings": 30,
+      "n_instants": 2609
+     },
+     "n_instants_pooled": 2786
+    }
+   },
+   "steady": {
+    "day": {
+     "gamma_affine_K4": {
+      "median": 2.264201392087737,
+      "ci95": [
+       2.100940672133116,
+       2.3077032209527144
+      ],
+      "n_recordings": 52,
+      "n_instants": 4396
+     },
+     "gamma_aligned_K4": {
+      "median": 2.153081746854168,
+      "ci95": [
+       2.03675624887449,
+       2.21554880061742
+      ],
+      "n_recordings": 52,
+      "n_instants": 4396
+     },
+     "ratio_K4": {
+      "median": 1.0141587595535477,
+      "ci95": [
+       1.0082261845954341,
+       1.0202440667470958
+      ],
+      "n_recordings": 52,
+      "n_instants": 4396
+     },
+     "gamma_affine_K11": {
+      "median": 4.7799604219053045,
+      "ci95": [
+       4.604202039323695,
+       5.003852092799045
+      ],
+      "n_recordings": 52,
+      "n_instants": 4375
+     },
+     "gamma_aligned_K11": {
+      "median": 4.165867625975377,
+      "ci95": [
+       4.023182960157397,
+       4.230098912536469
+      ],
+      "n_recordings": 52,
+      "n_instants": 4375
+     },
+     "ratio_K11": {
+      "median": 1.1034753785195508,
+      "ci95": [
+       1.0766590567247203,
+       1.1282715408417203
+      ],
+      "n_recordings": 52,
+      "n_instants": 4375
+     },
+     "n_instants_pooled": 4488
+    },
+    "night": {
+     "gamma_affine_K4": {
+      "median": 2.284778751482108,
+      "ci95": [
+       2.2182055450863714,
+       2.3183215160848407
+      ],
+      "n_recordings": 44,
+      "n_instants": 5706
+     },
+     "gamma_aligned_K4": {
+      "median": 2.227066883820693,
+      "ci95": [
+       2.1714266169396668,
+       2.2512090181333124
+      ],
+      "n_recordings": 44,
+      "n_instants": 5706
+     },
+     "ratio_K4": {
+      "median": 1.0118513830683686,
+      "ci95": [
+       1.0099599165133815,
+       1.0160982563807224
+      ],
+      "n_recordings": 44,
+      "n_instants": 5706
+     },
+     "gamma_affine_K11": {
+      "median": 4.798749945843545,
+      "ci95": [
+       4.737732112829017,
+       4.906244972001247
+      ],
+      "n_recordings": 44,
+      "n_instants": 5702
+     },
+     "gamma_aligned_K11": {
+      "median": 4.342724103589147,
+      "ci95": [
+       4.258253392107112,
+       4.458126480527195
+      ],
+      "n_recordings": 44,
+      "n_instants": 5702
+     },
+     "ratio_K11": {
+      "median": 1.0695499129107546,
+      "ci95": [
+       1.0549506133703457,
+       1.076996579971198
+      ],
+      "n_recordings": 44,
+      "n_instants": 5702
+     },
+     "n_instants_pooled": 5758
+    }
+   },
+   "shrinking": {
+    "day": {
+     "gamma_affine_K4": {
+      "median": 2.434907274715889,
+      "ci95": [
+       2.405299550121311,
+       2.487828730925308
+      ],
+      "n_recordings": 22,
+      "n_instants": 2039
+     },
+     "gamma_aligned_K4": {
+      "median": 2.2114703699224343,
+      "ci95": [
+       2.181940520295301,
+       2.269626913533694
+      ],
+      "n_recordings": 22,
+      "n_instants": 2039
+     },
+     "ratio_K4": {
+      "median": 1.0628167225299725,
+      "ci95": [
+       1.0507322826404077,
+       1.0728209185230662
+      ],
+      "n_recordings": 22,
+      "n_instants": 2039
+     },
+     "gamma_affine_K11": {
+      "median": 4.831128768340161,
+      "ci95": [
+       4.747130688680686,
+       5.044972546153178
+      ],
+      "n_recordings": 22,
+      "n_instants": 2032
+     },
+     "gamma_aligned_K11": {
+      "median": 3.8947060704496574,
+      "ci95": [
+       3.7309146525254153,
+       3.9761463745691485
+      ],
+      "n_recordings": 22,
+      "n_instants": 2032
+     },
+     "ratio_K11": {
+      "median": 1.2355712541016453,
+      "ci95": [
+       1.20284564298565,
+       1.2612160464332973
+      ],
+      "n_recordings": 22,
+      "n_instants": 2032
+     },
+     "n_instants_pooled": 2441
+    },
+    "night": {
+     "gamma_affine_K4": {
+      "median": 2.401711869036337,
+      "ci95": [
+       2.3606577765389063,
+       2.460320313941249
+      ],
+      "n_recordings": 35,
+      "n_instants": 3576
+     },
+     "gamma_aligned_K4": {
+      "median": 2.279264738889032,
+      "ci95": [
+       2.238892921175759,
+       2.3119155281847847
+      ],
+      "n_recordings": 35,
+      "n_instants": 3576
+     },
+     "ratio_K4": {
+      "median": 1.026571308506404,
+      "ci95": [
+       1.0237134269419432,
+       1.0300107149751279
+      ],
+      "n_recordings": 35,
+      "n_instants": 3576
+     },
+     "gamma_affine_K11": {
+      "median": 4.817755699032741,
+      "ci95": [
+       4.691218727302144,
+       4.913634973890753
+      ],
+      "n_recordings": 35,
+      "n_instants": 3572
+     },
+     "gamma_aligned_K11": {
+      "median": 4.134331551489566,
+      "ci95": [
+       4.080022793242083,
+       4.435908209187357
+      ],
+      "n_recordings": 35,
+      "n_instants": 3572
+     },
+     "ratio_K11": {
+      "median": 1.0732071864545072,
+      "ci95": [
+       1.0655102543204342,
+       1.0933113176317524
+      ],
+      "n_recordings": 35,
+      "n_instants": 3572
+     },
+     "n_instants_pooled": 3731
+    }
+   }
+  },
+  "4_speed_class_isolated": {
+   "vehicles|0-20": {
+    "day": {
+     "ratio_K4": {
+      "median": 1.00820305173543,
+      "ci95": [
+       1.0060775465164564,
+       1.0129378420840438
+      ],
+      "n_recordings": 19,
+      "n_instants": 1772
+     },
+     "gamma_affine_K4": {
+      "median": 1.533517265838101,
+      "ci95": [
+       1.4487501777480976,
+       1.5960906322444135
+      ],
+      "n_recordings": 19,
+      "n_instants": 1772
+     },
+     "ratio_K11": {
+      "median": 1.034677370857861,
+      "ci95": [
+       1.0273321236119841,
+       1.0485515526988731
+      ],
+      "n_recordings": 18,
+      "n_instants": 1616
+     },
+     "gamma_affine_K11": {
+      "median": 3.2797437105457212,
+      "ci95": [
+       3.10836484174313,
+       3.579024950509467
+      ],
+      "n_recordings": 18,
+      "n_instants": 1616
+     }
+    },
+    "night": {
+     "ratio_K4": {
+      "median": 1.0042295879058964,
+      "ci95": [
+       1.0024114117061904,
+       1.0060707264819948
+      ],
+      "n_recordings": 33,
+      "n_instants": 2736
+     },
+     "gamma_affine_K4": {
+      "median": 1.882029898964365,
+      "ci95": [
+       1.607373212442872,
+       2.0936168200079033
+      ],
+      "n_recordings": 33,
+      "n_instants": 2736
+     },
+     "ratio_K11": {
+      "median": 1.0156474031196037,
+      "ci95": [
+       1.0120376361767456,
+       1.0224505058894189
+      ],
+      "n_recordings": 33,
+      "n_instants": 2684
+     },
+     "gamma_affine_K11": {
+      "median": 4.209225098196272,
+      "ci95": [
+       3.5309247752708375,
+       4.734034870662075
+      ],
+      "n_recordings": 33,
+      "n_instants": 2684
+     }
+    }
+   },
+   "vehicles|20-100": {
+    "day": {
+     "ratio_K4": {
+      "median": 1.0048566164942228,
+      "ci95": [
+       1.0027722638692502,
+       1.0063981403954827
+      ],
+      "n_recordings": 38,
+      "n_instants": 4552
+     },
+     "gamma_affine_K4": {
+      "median": 2.223800221329256,
+      "ci95": [
+       2.045901929114648,
+       2.2679101941447706
+      ],
+      "n_recordings": 38,
+      "n_instants": 4552
+     },
+     "ratio_K11": {
+      "median": 1.0661487361747501,
+      "ci95": [
+       1.0472765104137098,
+       1.0752453100320847
+      ],
+      "n_recordings": 38,
+      "n_instants": 4538
+     },
+     "gamma_affine_K11": {
+      "median": 4.6949573610193855,
+      "ci95": [
+       4.366019002387369,
+       5.028391710514386
+      ],
+      "n_recordings": 38,
+      "n_instants": 4538
+     }
+    },
+    "night": {
+     "ratio_K4": {
+      "median": 1.0069741453724146,
+      "ci95": [
+       1.0056026028889113,
+       1.0077108210994263
+      ],
+      "n_recordings": 43,
+      "n_instants": 6750
+     },
+     "gamma_affine_K4": {
+      "median": 2.308822796593108,
+      "ci95": [
+       2.2401701370166296,
+       2.373450720550731
+      ],
+      "n_recordings": 43,
+      "n_instants": 6750
+     },
+     "ratio_K11": {
+      "median": 1.0458740006089757,
+      "ci95": [
+       1.039387819627108,
+       1.0542163280252355
+      ],
+      "n_recordings": 43,
+      "n_instants": 6744
+     },
+     "gamma_affine_K11": {
+      "median": 4.935214742910418,
+      "ci95": [
+       4.764067629399187,
+       5.096960122201909
+      ],
+      "n_recordings": 43,
+      "n_instants": 6744
+     }
+    }
+   },
+   "vehicles|100-300": {
+    "day": {
+     "ratio_K4": {
+      "median": 1.0569610639321878,
+      "ci95": [
+       1.0504573027151922,
+       1.0642424636800092
+      ],
+      "n_recordings": 54,
+      "n_instants": 4726
+     },
+     "gamma_affine_K4": {
+      "median": 2.4544672508896914,
+      "ci95": [
+       2.397631116279042,
+       2.5305962023940505
+      ],
+      "n_recordings": 54,
+      "n_instants": 4726
+     },
+     "ratio_K11": {
+      "median": 1.227913753233321,
+      "ci95": [
+       1.205080753151029,
+       1.2488487386813918
+      ],
+      "n_recordings": 54,
+      "n_instants": 4709
+     },
+     "gamma_affine_K11": {
+      "median": 5.209640588607337,
+      "ci95": [
+       5.089410707743653,
+       5.279845115624392
+      ],
+      "n_recordings": 54,
+      "n_instants": 4709
+     }
+    },
+    "night": {
+     "ratio_K4": {
+      "median": 1.0419719111013133,
+      "ci95": [
+       1.0372398833228806,
+       1.0602841081269334
+      ],
+      "n_recordings": 45,
+      "n_instants": 5430
+     },
+     "gamma_affine_K4": {
+      "median": 2.4775857852235545,
+      "ci95": [
+       2.4023468540989135,
+       2.5537017454593003
+      ],
+      "n_recordings": 45,
+      "n_instants": 5430
+     },
+     "ratio_K11": {
+      "median": 1.1403226149993777,
+      "ci95": [
+       1.116585584728573,
+       1.1773317149534952
+      ],
+      "n_recordings": 45,
+      "n_instants": 5428
+     },
+     "gamma_affine_K11": {
+      "median": 5.109836781606225,
+      "ci95": [
+       5.004452625249227,
+       5.215242947906346
+      ],
+      "n_recordings": 45,
+      "n_instants": 5428
+     }
+    }
+   },
+   "vehicles|300-inf": {
+    "day": {
+     "ratio_K4": {
+      "median": 1.1496964103457814,
+      "ci95": [
+       1.1444144968553784,
+       1.1644170326734387
+      ],
+      "n_recordings": 41,
+      "n_instants": 2297
+     },
+     "gamma_affine_K4": {
+      "median": 2.706984739730985,
+      "ci95": [
+       2.6588261926237715,
+       2.755354252172755
+      ],
+      "n_recordings": 41,
+      "n_instants": 2297
+     },
+     "ratio_K11": {
+      "median": 1.391753993519667,
+      "ci95": [
+       1.3678986139027072,
+       1.4005311640348284
+      ],
+      "n_recordings": 41,
+      "n_instants": 2289
+     },
+     "gamma_affine_K11": {
+      "median": 5.639614745817908,
+      "ci95": [
+       5.446487971601716,
+       5.693357551753108
+      ],
+      "n_recordings": 41,
+      "n_instants": 2289
+     }
+    },
+    "night": {
+     "ratio_K4": {
+      "median": 1.0951383361522047,
+      "ci95": [
+       1.0830981978866898,
+       1.0979196044140047
+      ],
+      "n_recordings": 22,
+      "n_instants": 1288
+     },
+     "gamma_affine_K4": {
+      "median": 2.481806261291451,
+      "ci95": [
+       2.426569957506226,
+       2.5330634498154954
+      ],
+      "n_recordings": 22,
+      "n_instants": 1288
+     },
+     "ratio_K11": {
+      "median": 1.1760233150562605,
+      "ci95": [
+       1.1634038597455576,
+       1.190920955211796
+      ],
+      "n_recordings": 22,
+      "n_instants": 1288
+     },
+     "gamma_affine_K11": {
+      "median": 4.999423341898634,
+      "ci95": [
+       4.853514779942581,
+       5.057268634286188
+      ],
+      "n_recordings": 22,
+      "n_instants": 1288
+     }
+    }
+   },
+   "other|0-20": {
+    "day": {
+     "ratio_K4": {
+      "median": 1.0340329690293346,
+      "ci95": [
+       1.0314454239649373,
+       1.0409434058263427
+      ],
+      "n_recordings": 26,
+      "n_instants": 1526
+     },
+     "gamma_affine_K4": {
+      "median": 1.2310754707599445,
+      "ci95": [
+       1.1909596482422873,
+       1.2572214555257624
+      ],
+      "n_recordings": 26,
+      "n_instants": 1526
+     },
+     "ratio_K11": {
+      "median": 1.1153154107158043,
+      "ci95": [
+       1.1036423505420663,
+       1.120806852814333
+      ],
+      "n_recordings": 23,
+      "n_instants": 1265
+     },
+     "gamma_affine_K11": {
+      "median": 2.034799614516224,
+      "ci95": [
+       1.9321126745378734,
+       2.1002542494742937
+      ],
+      "n_recordings": 23,
+      "n_instants": 1265
+     }
+    },
+    "night": {
+     "ratio_K4": {
+      "median": 1.0251651053960473,
+      "ci95": [
+       1.0210878927119604,
+       1.0300512453716926
+      ],
+      "n_recordings": 21,
+      "n_instants": 1242
+     },
+     "gamma_affine_K4": {
+      "median": 1.3521787568084216,
+      "ci95": [
+       1.2548185231539424,
+       1.4194285714285715
+      ],
+      "n_recordings": 21,
+      "n_instants": 1242
+     },
+     "ratio_K11": {
+      "median": 1.076643182709387,
+      "ci95": [
+       1.0501409215141142,
+       1.0894097343140516
+      ],
+      "n_recordings": 18,
+      "n_instants": 1087
+     },
+     "gamma_affine_K11": {
+      "median": 2.341340069114402,
+      "ci95": [
+       1.9488916281565043,
+       3.3193438217863633
+      ],
+      "n_recordings": 18,
+      "n_instants": 1087
+     }
+    }
+   },
+   "other|20-100": {
+    "day": {
+     "ratio_K4": {
+      "median": 1.0316670021184764,
+      "ci95": [
+       1.0288902606909909,
+       1.0349252645223497
+      ],
+      "n_recordings": 54,
+      "n_instants": 5756
+     },
+     "gamma_affine_K4": {
+      "median": 1.5751340940378684,
+      "ci95": [
+       1.522383669481435,
+       1.6124889758094845
+      ],
+      "n_recordings": 54,
+      "n_instants": 5756
+     },
+     "ratio_K11": {
+      "median": 1.0772467703772541,
+      "ci95": [
+       1.0717728605152792,
+       1.0892143167341648
+      ],
+      "n_recordings": 54,
+      "n_instants": 5652
+     },
+     "gamma_affine_K11": {
+      "median": 2.66309784647863,
+      "ci95": [
+       2.5448781893415195,
+       2.7477185730471483
+      ],
+      "n_recordings": 54,
+      "n_instants": 5652
+     }
+    },
+    "night": {
+     "ratio_K4": {
+      "median": 1.0290530691363684,
+      "ci95": [
+       1.025485563866933,
+       1.0307856065861967
+      ],
+      "n_recordings": 40,
+      "n_instants": 5044
+     },
+     "gamma_affine_K4": {
+      "median": 1.5186416558756195,
+      "ci95": [
+       1.482230102582462,
+       1.5655122633993255
+      ],
+      "n_recordings": 40,
+      "n_instants": 5044
+     },
+     "ratio_K11": {
+      "median": 1.0781270390254702,
+      "ci95": [
+       1.0696641026248996,
+       1.0815704493844598
+      ],
+      "n_recordings": 40,
+      "n_instants": 4981
+     },
+     "gamma_affine_K11": {
+      "median": 2.6209293438694186,
+      "ci95": [
+       2.5214677862704975,
+       2.7010371323553493
+      ],
+      "n_recordings": 40,
+      "n_instants": 4981
+     }
+    }
+   },
+   "other|100-300": {
+    "day": {
+     "ratio_K4": {
+      "median": 1.0162989790189867,
+      "ci95": [
+       1.0082861746160958,
+       1.0204695288067414
+      ],
+      "n_recordings": 12,
+      "n_instants": 357
+     },
+     "gamma_affine_K4": {
+      "median": 1.8852102292923774,
+      "ci95": [
+       1.7108874157804936,
+       2.2536487649654973
+      ],
+      "n_recordings": 12,
+      "n_instants": 357
+     },
+     "ratio_K11": {
+      "median": 1.077452108159072,
+      "ci95": [
+       1.0485923535933968,
+       1.1057215246324112
+      ],
+      "n_recordings": 12,
+      "n_instants": 355
+     },
+     "gamma_affine_K11": {
+      "median": 3.5646578965652687,
+      "ci95": [
+       3.221759573534634,
+       4.727294117814227
+      ],
+      "n_recordings": 12,
+      "n_instants": 355
+     }
+    },
+    "night": {
+     "ratio_K4": {
+      "median": 1.0143190326141727,
+      "ci95": [
+       1.0090306854078759,
+       1.0210034017534317
+      ],
+      "n_recordings": 12,
+      "n_instants": 460
+     },
+     "gamma_affine_K4": {
+      "median": 2.015437560108409,
+      "ci95": [
+       1.8274767649410357,
+       2.343544802630008
+      ],
+      "n_recordings": 12,
+      "n_instants": 460
+     },
+     "ratio_K11": {
+      "median": 1.0533894400123707,
+      "ci95": [
+       1.0399024622483748,
+       1.0799589886493797
+      ],
+      "n_recordings": 12,
+      "n_instants": 460
+     },
+     "gamma_affine_K11": {
+      "median": 3.70318478464172,
+      "ci95": [
+       3.417579423053217,
+       4.99997915064987
+      ],
+      "n_recordings": 12,
+      "n_instants": 460
+     }
+    }
+   },
+   "other|300-inf": {
+    "day": {
+     "ratio_K4": {
+      "median": null,
+      "ci95": [
+       null,
+       null
+      ],
+      "n_recordings": 0,
+      "n_instants": 0
+     },
+     "gamma_affine_K4": {
+      "median": null,
+      "ci95": [
+       null,
+       null
+      ],
+      "n_recordings": 0,
+      "n_instants": 0
+     },
+     "ratio_K11": {
+      "median": null,
+      "ci95": [
+       null,
+       null
+      ],
+      "n_recordings": 0,
+      "n_instants": 0
+     },
+     "gamma_affine_K11": {
+      "median": null,
+      "ci95": [
+       null,
+       null
+      ],
+      "n_recordings": 0,
+      "n_instants": 0
+     }
+    },
+    "night": {
+     "ratio_K4": {
+      "median": null,
+      "ci95": [
+       null,
+       null
+      ],
+      "n_recordings": 0,
+      "n_instants": 0
+     },
+     "gamma_affine_K4": {
+      "median": null,
+      "ci95": [
+       null,
+       null
+      ],
+      "n_recordings": 0,
+      "n_instants": 0
+     },
+     "ratio_K11": {
+      "median": null,
+      "ci95": [
+       null,
+       null
+      ],
+      "n_recordings": 0,
+      "n_instants": 0
+     },
+     "gamma_affine_K11": {
+      "median": null,
+      "ci95": [
+       null,
+       null
+      ],
+      "n_recordings": 0,
+      "n_instants": 0
+     }
+    }
+   }
+  },
+  "5_shape_parameters_H": {
+   "m4": {
+    "day": {
+     "n_rows": 9529,
+     "ia": {
+      "0.1": -4.0,
+      "0.5": 0.0,
+      "0.9": 3.0
+     },
+     "id": {
+      "0.1": -2.0,
+      "0.5": 0.0,
+      "0.9": 2.0
+     },
+     "ib": {
+      "0.1": -1.0,
+      "0.5": 0.0,
+      "0.9": 1.0
+     },
+     "ic": {
+      "0.1": -1.0,
+      "0.5": 0.0,
+      "0.9": 1.0
+     }
+    },
+    "night": {
+     "n_rows": 12273,
+     "ia": {
+      "0.1": -4.0,
+      "0.5": 0.0,
+      "0.9": 3.0
+     },
+     "id": {
+      "0.1": -3.0,
+      "0.5": 0.0,
+      "0.9": 2.0
+     },
+     "ib": {
+      "0.1": -2.0,
+      "0.5": 0.0,
+      "0.9": 2.0
+     },
+     "ic": {
+      "0.1": -1.0,
+      "0.5": 0.0,
+      "0.9": 1.0
+     }
+    },
+    "pooled": {
+     "n_rows": 21802,
+     "ia": {
+      "0.1": -4.0,
+      "0.5": 0.0,
+      "0.9": 3.0
+     },
+     "id": {
+      "0.1": -2.0,
+      "0.5": 0.0,
+      "0.9": 2.0
+     },
+     "ib": {
+      "0.1": -2.0,
+      "0.5": 0.0,
+      "0.9": 2.0
+     },
+     "ic": {
+      "0.1": -1.0,
+      "0.5": 0.0,
+      "0.9": 1.0
+     }
+    }
+   },
+   "m10": {
+    "day": {
+     "n_rows": 9520,
+     "ia": {
+      "0.1": -7.0,
+      "0.5": 0.0,
+      "0.9": 8.0
+     },
+     "id": {
+      "0.1": -4.0,
+      "0.5": 0.0,
+      "0.9": 5.0
+     },
+     "ib": {
+      "0.1": -2.0,
+      "0.5": 0.0,
+      "0.9": 3.0
+     },
+     "ic": {
+      "0.1": -2.0,
+      "0.5": 0.0,
+      "0.9": 1.0
+     }
+    },
+    "night": {
+     "n_rows": 12269,
+     "ia": {
+      "0.1": -8.0,
+      "0.5": 0.0,
+      "0.9": 7.0
+     },
+     "id": {
+      "0.1": -6.0,
+      "0.5": -1.0,
+      "0.9": 5.0
+     },
+     "ib": {
+      "0.1": -4.0,
+      "0.5": 0.0,
+      "0.9": 4.0
+     },
+     "ic": {
+      "0.1": -1.0,
+      "0.5": 0.0,
+      "0.9": 1.0
+     }
+    },
+    "pooled": {
+     "n_rows": 21789,
+     "ia": {
+      "0.1": -7.0,
+      "0.5": 0.0,
+      "0.9": 7.0
+     },
+     "id": {
+      "0.1": -5.0,
+      "0.5": 0.0,
+      "0.9": 5.0
+     },
+     "ib": {
+      "0.1": -3.0,
+      "0.5": 0.0,
+      "0.9": 3.0
+     },
+     "ic": {
+      "0.1": -2.0,
+      "0.5": 0.0,
+      "0.9": 1.0
+     }
+    }
+   }
+  },
+  "6_bits_H": {
+   "day": {
+    "K2": {
+     "b_affine": {
+      "median": 13.316008316008316,
+      "ci95": [
+       13.175450762829403,
+       13.408616379944126
+      ],
+      "n_recordings": 57,
+      "n_instants": 9495
+     },
+     "b_aligned": {
+      "median": 13.314226314226314,
+      "ci95": [
+       13.163519485737243,
+       13.401870627996542
+      ],
+      "n_recordings": 57,
+      "n_instants": 9495
+     },
+     "fidelity_affine": {
+      "median": 0.8363899364570956,
+      "ci95": [
+       0.8269515736164967,
+       0.8449771634324932
+      ],
+      "n_recordings": 57,
+      "n_instants": 9495
+     },
+     "fidelity_aligned": {
+      "median": 0.8315610859728507,
+      "ci95": [
+       0.8213353445275076,
+       0.837600549186388
+      ],
+      "n_recordings": 57,
+      "n_instants": 9495
+     }
+    },
+    "K4": {
+     "b_affine": {
+      "median": 6.66066718386346,
+      "ci95": [
+       6.604246818317074,
+       6.701027123439326
+      ],
+      "n_recordings": 57,
+      "n_instants": 9488
+     },
+     "b_aligned": {
+      "median": 6.653937373170216,
+      "ci95": [
+       6.5978332971734535,
+       6.69590201119008
+      ],
+      "n_recordings": 57,
+      "n_instants": 9488
+     },
+     "fidelity_affine": {
+      "median": 0.7447776760486973,
+      "ci95": [
+       0.7280440266900139,
+       0.7487648567505042
+      ],
+      "n_recordings": 57,
+      "n_instants": 9488
+     },
+     "fidelity_aligned": {
+      "median": 0.710408737382095,
+      "ci95": [
+       0.6939727612136509,
+       0.7215387752327873
+      ],
+      "n_recordings": 57,
+      "n_instants": 9488
+     }
+    },
+    "K8": {
+     "b_affine": {
+      "median": 3.346401312991347,
+      "ci95": [
+       3.302521977895198,
+       3.397305432827792
+      ],
+      "n_recordings": 57,
+      "n_instants": 9470
+     },
+     "b_aligned": {
+      "median": 3.3450604020567605,
+      "ci95": [
+       3.2949119260176007,
+       3.3859058586684196
+      ],
+      "n_recordings": 57,
+      "n_instants": 9470
+     },
+     "fidelity_affine": {
+      "median": 0.6652459703677711,
+      "ci95": [
+       0.6447586740901884,
+       0.6757156036503267
+      ],
+      "n_recordings": 57,
+      "n_instants": 9470
+     },
+     "fidelity_aligned": {
+      "median": 0.5918578892566719,
+      "ci95": [
+       0.5792796256510162,
+       0.6032219550781315
+      ],
+      "n_recordings": 57,
+      "n_instants": 9470
+     }
+    },
+    "K11": {
+     "b_affine": {
+      "median": 2.458091964521789,
+      "ci95": [
+       2.4112161179769447,
+       2.50209184783923
+      ],
+      "n_recordings": 57,
+      "n_instants": 9455
+     },
+     "b_aligned": {
+      "median": 2.4437356279207774,
+      "ci95": [
+       2.400902207185436,
+       2.4902931367386345
+      ],
+      "n_recordings": 57,
+      "n_instants": 9455
+     },
+     "fidelity_affine": {
+      "median": 0.6264655502063448,
+      "ci95": [
+       0.6000563711794927,
+       0.638637211146487
+      ],
+      "n_recordings": 57,
+      "n_instants": 9455
+     },
+     "fidelity_aligned": {
+      "median": 0.5401825387809396,
+      "ci95": [
+       0.5291317042375779,
+       0.5523584949222249
+      ],
+      "n_recordings": 57,
+      "n_instants": 9455
+     }
+    }
+   },
+   "night": {
+    "K2": {
+     "b_affine": {
+      "median": 13.026296431004718,
+      "ci95": [
+       12.986287430370352,
+       13.079653384795852
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "b_aligned": {
+      "median": 13.02367577826842,
+      "ci95": [
+       12.980348240230267,
+       13.077837060581981
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "fidelity_affine": {
+      "median": 0.8435392003932027,
+      "ci95": [
+       0.8359070874754689,
+       0.8514143234304359
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "fidelity_aligned": {
+      "median": 0.8389686289436102,
+      "ci95": [
+       0.8329457247274155,
+       0.8462668890147629
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     }
+    },
+    "K4": {
+     "b_affine": {
+      "median": 6.5068115993849895,
+      "ci95": [
+       6.4667663716380215,
+       6.5509151843258575
+      ],
+      "n_recordings": 47,
+      "n_instants": 12251
+     },
+     "b_aligned": {
+      "median": 6.4982,
+      "ci95": [
+       6.4614613360070186,
+       6.5457286422640095
+      ],
+      "n_recordings": 47,
+      "n_instants": 12251
+     },
+     "fidelity_affine": {
+      "median": 0.7518301079944916,
+      "ci95": [
+       0.7387715725158109,
+       0.7577257760518759
+      ],
+      "n_recordings": 47,
+      "n_instants": 12251
+     },
+     "fidelity_aligned": {
+      "median": 0.7303922829451932,
+      "ci95": [
+       0.7211606808726849,
+       0.7358136454182499
+      ],
+      "n_recordings": 47,
+      "n_instants": 12251
+     }
+    },
+    "K8": {
+     "b_affine": {
+      "median": 3.257318890986783,
+      "ci95": [
+       3.194875922942586,
+       3.2957844098937437
+      ],
+      "n_recordings": 47,
+      "n_instants": 12246
+     },
+     "b_aligned": {
+      "median": 3.2539799264632814,
+      "ci95": [
+       3.1887402392609587,
+       3.2898476787406166
+      ],
+      "n_recordings": 47,
+      "n_instants": 12246
+     },
+     "fidelity_affine": {
+      "median": 0.6749570298021128,
+      "ci95": [
+       0.650260277052384,
+       0.6824287597297498
+      ],
+      "n_recordings": 47,
+      "n_instants": 12246
+     },
+     "fidelity_aligned": {
+      "median": 0.6304303552214597,
+      "ci95": [
+       0.6214720523779803,
+       0.6365036146511583
+      ],
+      "n_recordings": 47,
+      "n_instants": 12246
+     }
+    },
+    "K11": {
+     "b_affine": {
+      "median": 2.3685085936056183,
+      "ci95": [
+       2.3338542593948026,
+       2.4103384585336283
+      ],
+      "n_recordings": 47,
+      "n_instants": 12243
+     },
+     "b_aligned": {
+      "median": 2.3591433849996966,
+      "ci95": [
+       2.325964382695626,
+       2.4065616366971954
+      ],
+      "n_recordings": 47,
+      "n_instants": 12243
+     },
+     "fidelity_affine": {
+      "median": 0.6386261227018182,
+      "ci95": [
+       0.6192046309941582,
+       0.6461243978873001
+      ],
+      "n_recordings": 47,
+      "n_instants": 12243
+     },
+     "fidelity_aligned": {
+      "median": 0.582520558667968,
+      "ci95": [
+       0.5743031784953698,
+       0.5880509815569402
+      ],
+      "n_recordings": 47,
+      "n_instants": 12243
+     }
+    }
+   }
+  },
+  "7_skips_and_search": {
+   "skips_by_reason_and_target": {
+    "1": {
+     "scored": 65497,
+     "source_too_small": 129
+    },
+    "2": {
+     "scored": 65310,
+     "future_too_small": 187,
+     "source_too_small": 129
+    },
+    "3": {
+     "scored": 65190,
+     "future_too_small": 307,
+     "source_too_small": 129
+    },
+    "4": {
+     "scored": 65093,
+     "future_too_small": 404,
+     "source_too_small": 129
+    },
+    "5": {
+     "scored": 65049,
+     "future_too_small": 448,
+     "source_too_small": 129
+    },
+    "6": {
+     "scored": 64973,
+     "future_too_small": 524,
+     "source_too_small": 129
+    },
+    "7": {
+     "scored": 64909,
+     "future_too_small": 588,
+     "source_too_small": 129
+    },
+    "8": {
+     "scored": 64864,
+     "future_too_small": 633,
+     "source_too_small": 129
+    },
+    "9": {
+     "scored": 64844,
+     "future_too_small": 653,
+     "source_too_small": 129
+    },
+    "10": {
+     "scored": 64798,
+     "future_too_small": 699,
+     "source_too_small": 129
+    }
+   },
+   "affine_n_eval": {
+    "pooled_quantiles": {
+     "0": 116.0,
+     "0.05": 116.0,
+     "0.25": 201.0,
+     "0.5": 230.0,
+     "0.75": 230.0,
+     "0.95": 286.0,
+     "1": 286.0
+    },
+    "mean": 216.90033004010596
+   },
+   "q_prev_given_rows": 583655
+  }
+ }
+}
