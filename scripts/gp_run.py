@@ -153,9 +153,14 @@ def task(rid, shard, outdir, only=None, tag=None, stage_s=None):
 
 
 # ----------------------------------------------------------------------------- scheduling
+def _out_name(key):
+    rid, s = key.split("|")
+    return f"rows_{rid}_{int(s):03d}.npz"
+
+
 def schedule(out, max_workers, min_free_gb=40.0):
     tasks = json.loads((out / "plan.json").read_text())["tasks"]
-    pending = [t for t in tasks if not (out / f"rows_{t[0].replace('|', '_')}.npz").exists()]
+    pending = [t for t in tasks if not (out / _out_name(t[0])).exists()]
     running, fails, t0, done = {}, {}, time.time(), len(tasks) - len(pending)
     log = lambda m: print(f"{time.strftime('%H:%M:%S')} {m}", flush=True)
     log(f"{len(pending)} of {len(tasks)} tasks pending")
@@ -165,7 +170,7 @@ def schedule(out, max_workers, min_free_gb=40.0):
             if rc is None:
                 continue
             del running[pr]
-            if rc == 0 and (out / f"rows_{t[0].replace('|', '_')}.npz").exists():
+            if rc == 0 and (out / _out_name(t[0])).exists():
                 done += 1
                 log(f"[{done}/{len(tasks)}] {t[0]} ok, running {len(running)}, t={time.time() - t0:.0f}s")
             else:
@@ -176,7 +181,7 @@ def schedule(out, max_workers, min_free_gb=40.0):
         target = M._target_workers(out, max_workers)
         while pending and len(running) < target and M._mem_available_gb() > min_free_gb:
             t = pending.pop(0)
-            log_f = open(out / "logs" / f"{t[0].replace('|', '_')}.log", "w")
+            log_f = open(out / "logs" / f"{_out_name(t[0])[5:-4]}.log", "w")
             running[subprocess.Popen([sys.executable, __file__, "one", str(out), t[0]], stdout=log_f,
                                      stderr=subprocess.STDOUT)] = t
             time.sleep(2)
