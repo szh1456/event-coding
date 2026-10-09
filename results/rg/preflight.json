@@ -1,0 +1,203 @@
+{
+ "directive": "002",
+ "P1": {
+  "host": "cnt-js01",
+  "python": "3.10.12",
+  "numpy": "1.26.4",
+  "scipy": "1.15.3",
+  "h5py": "3.16.0",
+  "zstandard": "0.25.0",
+  "numba": "0.60.0",
+  "blas_threads": {
+   "OMP_NUM_THREADS": "1",
+   "OPENBLAS_NUM_THREADS": "1",
+   "MKL_NUM_THREADS": "1",
+   "NUMEXPR_NUM_THREADS": "1"
+  },
+  "commit": "41c2b9fe69460eaec1b3999c7a34e4e4c2f0c8ce",
+  "compared_with": "results/mp/preflight.json#/P1",
+  "differences": {},
+  "pass": true
+ },
+ "P2": {
+  "n_expected": 700,
+  "n_found": 700,
+  "n_sha256_mismatch": 0,
+  "missing": [],
+  "mismatch": [],
+  "reference": "results/mp/provenance.json#/per_instant_files",
+  "pass": true
+ },
+ "P3": {
+  "command": "python3 -m pytest -q -p no:anyio",
+  "host": "cnt-js01",
+  "commit": "41c2b9fe69460eaec1b3999c7a34e4e4c2f0c8ce",
+  "result": "29 passed in 18.16s",
+  "skipped": 0,
+  "gates": "tests/test_motion_gate.py (7 tests) and tests/test_regen_gate.py (8 tests), unedited",
+  "pass": true,
+  "first_run": "commit adc4c85, same command: 29 passed in 18.54s"
+ },
+ "cost": {
+  "R": {
+   "n_probe_rows": 50,
+   "n_rows": 261637,
+   "bins": [
+    {
+     "area_px2": [
+      0,
+      1000
+     ],
+     "n_probe_rows": 1,
+     "mean_s_per_row": 0.0051619261503219604,
+     "max_s": 0.0051619261503219604,
+     "n_rows_stage": 5088,
+     "cpu_h": 0.007295522292455037
+    },
+    {
+     "area_px2": [
+      1000,
+      3000
+     ],
+     "n_probe_rows": 14,
+     "mean_s_per_row": 0.008978524378367833,
+     "max_s": 0.01799541711807251,
+     "n_rows_stage": 54965,
+     "cpu_h": 0.13708460901582997
+    },
+    {
+     "area_px2": [
+      3000,
+      10000
+     ],
+     "n_probe_rows": 18,
+     "mean_s_per_row": 0.015469681057665084,
+     "max_s": 0.04807886481285095,
+     "n_rows_stage": 97242,
+     "cpu_h": 0.41786186816929666
+    },
+    {
+     "area_px2": [
+      10000,
+      30000
+     ],
+     "n_probe_rows": 12,
+     "mean_s_per_row": 0.05617483829458555,
+     "max_s": 0.13939077407121658,
+     "n_rows_stage": 65267,
+     "cpu_h": 1.0184342141590876
+    },
+    {
+     "area_px2": [
+      30000,
+      100000
+     ],
+     "n_probe_rows": 5,
+     "mean_s_per_row": 0.16421065479516983,
+     "max_s": 0.31421711295843124,
+     "n_rows_stage": 33694,
+     "cpu_h": 1.5369205007412368
+    },
+    {
+     "area_px2": [
+      100000,
+      null
+     ],
+     "n_probe_rows": 0,
+     "mean_s_per_row": 0.16421065479516983,
+     "max_s": null,
+     "n_rows_stage": 5381,
+     "cpu_h": 0.24544931484800245
+    }
+   ],
+   "compute_cpu_h": 3.363046029225908,
+   "read_cpu_h": 4.6892495397726695,
+   "total_cpu_h": 8.052295568998577
+  },
+  "B": {
+   "n_probe_rows": 50,
+   "n_rows": 2229,
+   "bins": [
+    {
+     "area_px2": [
+      0,
+      1000
+     ],
+     "n_probe_rows": 0,
+     "mean_s_per_row": 21.055101544492775,
+     "max_s": null,
+     "n_rows_stage": 3,
+     "cpu_h": 0.01754591795374398
+    },
+    {
+     "area_px2": [
+      1000,
+      3000
+     ],
+     "n_probe_rows": 6,
+     "mean_s_per_row": 2.1076297288139663,
+     "max_s": 2.6923646554350853,
+     "n_rows_stage": 181,
+     "cpu_h": 0.10596693914314664
+    },
+    {
+     "area_px2": [
+      3000,
+      10000
+     ],
+     "n_probe_rows": 12,
+     "mean_s_per_row": 4.417469327027599,
+     "max_s": 6.20824608951807,
+     "n_rows_stage": 687,
+     "cpu_h": 0.8430003965744335
+    },
+    {
+     "area_px2": [
+      10000,
+      30000
+     ],
+     "n_probe_rows": 23,
+     "mean_s_per_row": 11.559623647643173,
+     "max_s": 19.599188767373562,
+     "n_rows_stage": 931,
+     "cpu_h": 2.989447115543276
+    },
+    {
+     "area_px2": [
+      30000,
+      100000
+     ],
+     "n_probe_rows": 9,
+     "mean_s_per_row": 21.055101544492775,
+     "max_s": 33.32467995584011,
+     "n_rows_stage": 376,
+     "cpu_h": 2.199088383535912
+    },
+    {
+     "area_px2": [
+      100000,
+      null
+     ],
+     "n_probe_rows": 0,
+     "mean_s_per_row": 21.055101544492775,
+     "max_s": null,
+     "n_rows_stage": 51,
+     "cpu_h": 0.29828060521364763
+    }
+   ],
+   "compute_cpu_h": 6.45332935796416,
+   "read_cpu_h": 2.9028797048330306,
+   "total_cpu_h": 9.356209062797191,
+   "probe_b6_over_b4_time": 3.74758893907086
+  },
+  "total_cpu_h": 17.40850463179577,
+  "limit_cpu_h": 80,
+  "within_limit": true,
+  "probe": "50 rows of each stage, evenly spaced over the stage's rows; Stage R rows in the order of directive 001's shards, Stage B rows in the order of the subsample"
+ },
+ "stage_B_subsample": {
+  "n_H_rows": 21821,
+  "n_subsample": 2229,
+  "rule": "scored rows of 001 in stratum H at (100, 0), sorted by recording, track_id, t_e; positions 0, 10, 20, ... per recording"
+ }
+}
