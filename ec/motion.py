@@ -197,29 +197,32 @@ def predictive_cost(tx, ty, tp, fx, fy, fp, ft_us, support, window_us, warp, spe
         for j, g in enumerate(gs):
             zs[j] += (float(g[0][liy, lix].sum(dtype=np.float64)) + float(g[1][liy, lix].sum(dtype=np.float64))) * dt
     best = None
+    per_b = {}                                      # code length before the selection penalty, and eps, per bandwidth
     for b, g, z in zip(bandwidths, gs, zs):
+        per_b[f"bits_b_{b:g}"], per_b[f"eps_b_{b:g}"] = float("nan"), float("nan")
         if z <= 0:
             continue
         a = g[fpi, fiy, fix].astype(np.float64) / z
         eps = _fit_eps(a, uni)
         bits = float(-np.mean(np.log2(((1.0 - eps) * a + eps * uni) * DELTA_S)))
+        per_b[f"bits_b_{b:g}"], per_b[f"eps_b_{b:g}"] = bits, eps
         if best is None or bits < best["bits"]:
             best = {"bits": bits, "eps": eps, "b_px": float(b)}
     if best is None:
         return {"bits": ref_bits, "gain_bits": 0.0, "eps": 1.0, "b_px": float("nan"),
-                "tau_eq_us": float("nan"), "ref_bits": ref_bits}
+                "tau_eq_us": float("nan"), "ref_bits": ref_bits, **per_b}
     penalty = (math.log2(len(bandwidths)) + 0.5 * math.log2(n)) / n
     bits = best["bits"] + penalty
     order_bits = math.lgamma(n + 1) / math.log(2) / n      # events of a window form a set, not a list
     return {"bits": bits, "gain_bits": ref_bits - bits, "eps": best["eps"], "b_px": best["b_px"],
             "tau_eq_us": best["b_px"] / speed * 1e6 if speed > 0 else float("nan"), "ref_bits": ref_bits,
-            "set_bits": bits - order_bits, "ref_set_bits": ref_bits - order_bits}
+            "set_bits": bits - order_bits, "ref_set_bits": ref_bits - order_bits, **per_b}
 
 
 # ----------------------------------------------------------------------------- one instant
 def evaluate_instant(t_us, x, y, p, track: Track, t_e_us: int, T1_us: int, D_us: int, T2_us: int,
                      width: int, height: int, margin_px: float = 2.0,
-                     models=("static", "label", "cmax")) -> dict:
+                     models=("static", "label", "cmax"), bandwidths=BANDWIDTHS_PX) -> dict:
     """All quantities of one evaluation instant. ``t_us`` must be nondecreasing.
 
     Returns ``{"skipped": reason, ...}`` when the instant cannot be scored, so that
@@ -269,7 +272,7 @@ def evaluate_instant(t_us, x, y, p, track: Track, t_e_us: int, T1_us: int, D_us:
         else:
             raise ValueError(model)
         txw, tyw = warp(tx, ty, tt)
-        res = predictive_cost(txw, tyw, tp, fx, fy, fp, ft, support, window, warp, speed)
+        res = predictive_cost(txw, tyw, tp, fx, fy, fp, ft, support, window, warp, speed, bandwidths=bandwidths)
         n_sites = len(np.unique(_site_keys(txw, tyw, tp, 1.0)))
         res["redundancy"] = float(len(tt) / max(1, n_sites))
         for k, val in res.items():

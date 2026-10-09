@@ -11,7 +11,6 @@ anything else uses them.
 """
 from __future__ import annotations
 
-import glob
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -21,12 +20,13 @@ FRAME_US = 1_000_000 / 30.0
 
 
 def find_annotation(ann_dir, recording_id: str):
-    """``train_day_0001_td`` -> the unique ``train_day_0001_bbox.npy`` below ``ann_dir``."""
+    """``train_day_0001_td`` -> ``ann_dir/train_day_0001_bbox.npy``. ``ann_dir`` is the directory that holds the
+    file (the train subdirectory of ``docs/DATA.md``); nothing is searched or listed."""
     stem = recording_id[:-3] if recording_id.endswith("_td") else recording_id
-    hits = sorted(glob.glob(str(Path(ann_dir) / "**" / f"{stem}_bbox.npy"), recursive=True))
-    if len(hits) != 1:
-        raise FileNotFoundError(f"{recording_id}: expected one {stem}_bbox.npy, found {len(hits)}")
-    return hits[0]
+    path = Path(ann_dir) / f"{stem}_bbox.npy"
+    if not path.is_file():
+        raise FileNotFoundError(f"{recording_id}: {path} not found")
+    return str(path)
 
 
 def load_boxes(path) -> np.ndarray:

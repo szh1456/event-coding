@@ -1,4 +1,5 @@
 import numpy as np
+import pytest
 
 from ec import annotations as A, synth
 
@@ -25,4 +26,6 @@ def test_in_box_mask_selects_object_events_and_few_noise_events():
 def test_find_annotation_maps_the_recording_id(tmp_path):
     d = tmp_path / "train" ; d.mkdir()
     np.save(d / "train_day_0001_bbox.npy", np.zeros(0, dtype=synth.BOX_DTYPE))
-    assert A.find_annotation(tmp_path, "train_day_0001_td").endswith("train_day_0001_bbox.npy")
+    assert A.find_annotation(d, "train_day_0001_td").endswith("train_day_0001_bbox.npy")
+    with pytest.raises(FileNotFoundError):        # no search below the given directory
+        A.find_annotation(tmp_path, "train_day_0001_td")
