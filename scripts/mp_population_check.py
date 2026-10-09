@@ -1,7 +1,7 @@
 """Directive 001, Section 4: resolve the population's file names before any event file is opened.
 
 Runs on the execution host. Stats constructed paths only; opens, lists and hashes nothing.
-Usage: python3 scripts/mp_population_check.py OUT.json
+Usage: python3 scripts/mp_population_check.py OUT.json [DIRECTIVE]  (default 001; also used by directive 002)
 """
 import datetime
 import json
@@ -13,14 +13,14 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from ec import mp  # noqa: E402
 
 
-def main(out):
+def main(out, directive="001"):
     ids, d = mp.load_population()
     rows = mp.resolve(ids)
     names = [r["event_file"] for r in rows] + [r["annotation_file"] for r in rows]
     outside = [n for n in names if n.startswith(mp.FORBIDDEN_PREFIXES)
                or not any(n.startswith(i[:-3] if i.endswith("_td") else i) for i in ids)]
     res = {
-        "directive": "001",
+        "directive": directive,
         "host": socket.gethostname(),
         "utc": datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="seconds"),
         "commit": (Path(__file__).resolve().parent.parent / "COMMIT").read_text().strip()
@@ -47,4 +47,4 @@ def main(out):
 
 
 if __name__ == "__main__":
-    sys.exit(main(sys.argv[1]))
+    sys.exit(main(*sys.argv[1:3]))
