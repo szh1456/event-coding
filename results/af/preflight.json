@@ -1,0 +1,131 @@
+{
+ "directive": "004",
+ "P0": {
+  "report": "docs/directives/reports/003.md",
+  "exists": true,
+  "status": "DONE",
+  "pass": true
+ },
+ "P1": {
+  "host": "cnt-js01",
+  "python": "3.10.12",
+  "numpy": "1.26.4",
+  "scipy": "1.15.3",
+  "h5py": "3.16.0",
+  "zstandard": "0.25.0",
+  "numba": "0.60.0",
+  "blas_threads": {
+   "OMP_NUM_THREADS": "1",
+   "OPENBLAS_NUM_THREADS": "1",
+   "MKL_NUM_THREADS": "1",
+   "NUMEXPR_NUM_THREADS": "1"
+  },
+  "commit": "aedd132221c7073737c18cfa6e15b1858a85fd92",
+  "compared_with": "results/gp/preflight.json#/P1",
+  "differences": {},
+  "pass": true
+ },
+ "P2": {
+  "n_expected": 700,
+  "n_found": 700,
+  "n_sha256_mismatch": 0,
+  "missing": [],
+  "mismatch": [],
+  "pass": true,
+  "reference": "results/gp/provenance.json#/per_row_files"
+ },
+ "P3": {
+  "command": "python3 -m pytest -q -p no:anyio",
+  "host": "cnt-js01",
+  "commit": "aedd132221c7073737c18cfa6e15b1858a85fd92",
+  "result": "43 passed in 33.14s",
+  "skipped": 0,
+  "gates": "test_motion_gate.py (7), test_regen_gate.py (8), test_gop_gate.py (7), test_affine_gate.py (7), unedited",
+  "pass": true,
+  "first_run": "commit a024634, same command: 43 passed in 33.59s"
+ },
+ "cost": {
+  "n_probe_instants": 50,
+  "n_probe_rows": 500,
+  "n_instants_stage": 65626,
+  "bins": [
+   {
+    "area_px2": [
+     0,
+     1000
+    ],
+    "n_probe_instants": 1,
+    "mean_s_per_instant": 0.29183826595544815,
+    "max_s": 0.29183826595544815,
+    "n_instants_stage": 1280,
+    "cpu_h": 0.10376471678415934
+   },
+   {
+    "area_px2": [
+     1000,
+     3000
+    ],
+    "n_probe_instants": 13,
+    "mean_s_per_instant": 0.42858362942934036,
+    "max_s": 0.615739032626152,
+    "n_instants_stage": 13839,
+    "cpu_h": 1.6475469021312892
+   },
+   {
+    "area_px2": [
+     3000,
+     10000
+    ],
+    "n_probe_instants": 21,
+    "mean_s_per_instant": 0.6410238419969877,
+    "max_s": 1.7362798228859901,
+    "n_instants_stage": 24394,
+    "cpu_h": 4.343648778242922
+   },
+   {
+    "area_px2": [
+     10000,
+     30000
+    ],
+    "n_probe_instants": 10,
+    "mean_s_per_instant": 2.1970254369080067,
+    "max_s": 6.031693175435066,
+    "n_instants_stage": 16336,
+    "cpu_h": 9.969613204813665
+   },
+   {
+    "area_px2": [
+     30000,
+     100000
+    ],
+    "n_probe_instants": 5,
+    "mean_s_per_instant": 14.031979589164257,
+    "max_s": 39.33029440790415,
+    "n_instants_stage": 8433,
+    "cpu_h": 32.869912187617274
+   },
+   {
+    "area_px2": [
+     100000,
+     null
+    ],
+    "n_probe_instants": 0,
+    "mean_s_per_instant": 14.031979589164257,
+    "max_s": null,
+    "n_instants_stage": 1344,
+    "cpu_h": 5.238605713287988
+   }
+  ],
+  "compute_cpu_h": 54.1730915028773,
+  "read_cpu_h": 4.6892495397726695,
+  "total_cpu_h": 58.862341042649966,
+  "probe_affine_n_eval": {
+   "median": 230.0,
+   "max": 286.0
+  },
+  "limit_cpu_h": 150,
+  "within_limit": true,
+  "probe": "50 instants evenly spaced over the Stage C instants of directive 003, in shard order, ten targets each, fitted m = 1 to 10",
+  "note": "no probe instant has a box over 100,000 px2; that bin (1,344 instants) is priced at the 30,000-100,000 bin mean. Directive 003 ran at 1.24 times its projection; at ten times the bin mean for the unsampled bin the total would be about 106 CPU-hours, under 150"
+ }
+}
