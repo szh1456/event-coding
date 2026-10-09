@@ -1,0 +1,189 @@
+{
+ "P1": {
+  "scale_and_rotation": {
+   "pixels": 1217,
+   "max_dev_over_bound_first_order_regime": 0.9534964592710695,
+   "pixels_in_first_order_regime": 1217,
+   "max_dev_s": 5.090781579375481e-05,
+   "median_tau_s": 0.005337447763768401,
+   "max_rate_rel_err": 4.079353929105846e-10,
+   "max_constancy_rel_err": 1.3384592385862295e-10,
+   "brute_pixels": 6,
+   "brute_counts_all_n": true,
+   "brute_max_dev_over_dt": 0.995486287436867
+  },
+  "fast_scale": {
+   "pixels": 866,
+   "max_dev_over_bound_first_order_regime": 1.0059817583290032,
+   "pixels_in_first_order_regime": 766,
+   "max_dev_s": 0.00034275163955249655,
+   "median_tau_s": 0.00865800865800866,
+   "max_rate_rel_err": 2.378238212424384e-10,
+   "max_constancy_rel_err": 4.32056735240792e-11,
+   "brute_pixels": 6,
+   "brute_counts_all_n": true,
+   "brute_max_dev_over_dt": 0.9681399402827753
+  },
+  "oblique_edge": {
+   "pixels": 1047,
+   "max_dev_over_bound_first_order_regime": 0.7976684664955255,
+   "pixels_in_first_order_regime": 1037,
+   "max_dev_s": 0.0034312501972386666,
+   "median_tau_s": 0.005523305406258244,
+   "max_rate_rel_err": 6.875972215160929e-10,
+   "max_constancy_rel_err": 3.10289326905656e-10,
+   "brute_pixels": 6,
+   "brute_counts_all_n": true,
+   "brute_max_dev_over_dt": 0.9826943240419819
+  }
+ },
+ "P2": {
+  "passages_a": 3255,
+  "passages_b": 10813,
+  "ratio": 3.3219662058371737,
+  "scale_factor_squared": 3.3201169227365472,
+  "area_a": 3254.9898038568567,
+  "area_b": 10806.94673112006
+ },
+ "P3": {
+  "min_slack_of_sinh_inequality": -8.883163201793145e-17,
+  "rows": [
+   {
+    "n": 1,
+    "tau": 1.0,
+    "sigma": 0.1,
+    "D_over_DA": 0.5535714285714286,
+    "lower": 0.22321428571428573,
+    "U": 0.2956822431250015,
+    "lower_le_U": true
+   },
+   {
+    "n": 1,
+    "tau": 1.0,
+    "sigma": 0.1,
+    "D_over_DA": 0.9107142857142857,
+    "lower": 0.04464285714285714,
+    "U": 0.04676302900541177,
+    "lower_le_U": true
+   },
+   {
+    "n": 1,
+    "tau": 1.0,
+    "sigma": 0.1,
+    "D_over_DA": 0.9910714285714284,
+    "lower": 0.004464285714285818,
+    "U": 0.004484334991380268,
+    "lower_le_U": true
+   },
+   {
+    "n": 1,
+    "tau": 1.0,
+    "sigma": 0.1,
+    "D_over_DA": 0.9991071428571426,
+    "lower": 0.000446428571428671,
+    "U": 0.0004466279886075713,
+    "lower_le_U": true
+   },
+   {
+    "n": 3,
+    "tau": 2.0,
+    "sigma": 0.5,
+    "D_over_DA": 0.7142857142857143,
+    "lower": 0.19999999999999996,
+    "U": 0.25541281188299536,
+    "lower_le_U": true
+   },
+   {
+    "n": 3,
+    "tau": 2.0,
+    "sigma": 0.5,
+    "D_over_DA": 0.9428571428571428,
+    "lower": 0.039999999999999994,
+    "U": 0.041690804469525604,
+    "lower_le_U": true
+   },
+   {
+    "n": 3,
+    "tau": 2.0,
+    "sigma": 0.5,
+    "D_over_DA": 0.9942857142857141,
+    "lower": 0.004000000000000092,
+    "U": 0.004016085848632347,
+    "lower_le_U": true
+   },
+   {
+    "n": 3,
+    "tau": 2.0,
+    "sigma": 0.5,
+    "D_over_DA": 0.9994285714285714,
+    "lower": 0.00039999999999995595,
+    "U": 0.00040016008538455787,
+    "lower_le_U": true
+   },
+   {
+    "n": 4,
+    "tau": 1.0,
+    "sigma": 0.1,
+    "D_over_DA": 0.5535714285714286,
+    "lower": 0.24271844660194175,
+    "U": 0.332218537338757,
+    "lower_le_U": true
+   },
+   {
+    "n": 4,
+    "tau": 1.0,
+    "sigma": 0.1,
+    "D_over_DA": 0.9107142857142857,
+    "lower": 0.04854368932038834,
+    "U": 0.05106474753818997,
+    "lower_le_U": true
+   },
+   {
+    "n": 4,
+    "tau": 1.0,
+    "sigma": 0.1,
+    "D_over_DA": 0.9910714285714284,
+    "lower": 0.004854368932038947,
+    "U": 0.004878087472682547,
+    "lower_le_U": true
+   },
+   {
+    "n": 4,
+    "tau": 1.0,
+    "sigma": 0.1,
+    "D_over_DA": 0.9991071428571426,
+    "lower": 0.00048543689320399173,
+    "U": 0.00048567269481616227,
+    "lower_le_U": true
+   }
+  ],
+  "all_lower_le_U": true
+ },
+ "P4": [
+  {
+   "delta_over_tau": 0.1,
+   "fidelity": 0.10035325,
+   "sd": 0.30018912615955545
+  },
+  {
+   "delta_over_tau": 0.25,
+   "fidelity": 0.25065525,
+   "sd": 0.4332540010172295
+  },
+  {
+   "delta_over_tau": 0.5,
+   "fidelity": 0.50031475,
+   "sd": 0.49988339608596466
+  },
+  {
+   "delta_over_tau": 0.75,
+   "fidelity": 0.7496055,
+   "sd": 0.1445611959335907
+  },
+  {
+   "delta_over_tau": 1.0,
+   "fidelity": 0.9987225000000001,
+   "sd": 0.0034110839552845967
+  }
+ ]
+}

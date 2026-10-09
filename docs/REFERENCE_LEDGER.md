@@ -13,7 +13,7 @@ of the companion project.
 | claim supported | a bandlimited signal can be recovered from the outputs of M linear systems, each sampled at 1/M of the Nyquist rate; delayed copies and derivatives are special cases |
 | source | A. Papoulis, "Generalized sampling expansion," IEEE Transactions on Circuits and Systems, vol. 24, no. 11, pp. 652-654, 1977, DOI 10.1109/TCS.1977.1084284 |
 | source type | primary (journal article) |
-| used in | `README.md`, directive 001 Section 1 (motivation only), `docs/theory/translation_edge.tex` (remark on the relation to sampling theory, analogy only) |
+| used in | `README.md`, directive 001 Section 1 (motivation only), `docs/theory/translation_edge.tex` (remark on the relation to sampling theory, analogy only), `papers/tsp/main.tex` (introduction, as a recalled analogy) |
 | version / conditions | bibliographic record confirmed in Crossref on 2026-10-08; the article itself was not re-read |
 | status | `PARTIAL`: citation verified, content stated from general knowledge |
 | does not support | any statement about non-uniform, signal-dependent (level-crossing) sampling, about noise, or about bits |
@@ -73,7 +73,7 @@ of the companion project.
 | claim supported | if single-channel time encoding can sample and perfectly reconstruct a 2Ω-bandlimited signal, M-channel time encoding with shifted integrators can do so for a signal with M times the bandwidth, without knowledge of the shifts (noiseless case) |
 | source | K. Adam, A. Scholefield, M. Vetterli, "Sampling and reconstruction of bandlimited signals with multi-channel time encoding," IEEE Transactions on Signal Processing, vol. 68, pp. 1105-1119, 2020, DOI 10.1109/TSP.2020.2967182, arXiv:1907.05673 |
 | source type | primary (journal article) |
-| used in | `docs/theory/translation_edge.tex`, remark on the relation to sampling theory (analogy only: M pixels with different threshold phases against M integrate-and-fire channels with shifted integrators) |
+| used in | `docs/theory/translation_edge.tex`, remark on the relation to sampling theory (analogy only: M pixels with different threshold phases against M integrate-and-fire channels with shifted integrators); `papers/tsp/main.tex`, introduction (the shifts make the channels complementary) |
 | version / conditions | title, authors and abstract read on the arXiv record on 2026-10-09; journal volume, pages and DOI from a metadata check on 2026-10-08, not re-read today |
 | status | `PARTIAL`: abstract read, body not read |
 | does not support | any statement about send-on-delta (level-crossing) pixels, about noise or jitter, or about bits; the note's "typical spacing of order C/M" is the note's own statement |
@@ -82,13 +82,13 @@ of the companion project.
 
 | field | value |
 |---|---|
-| claim supported | textbook facts used in the proofs: the entropy of a uniformly quantized variable is its differential entropy plus ln(1/δ) per dimension as δ → 0; the Gaussian maximizes differential entropy at a given variance; the entropy power inequality; the Shannon lower bound; a source of variance s² needs at most (1/2) ln(s²/d) nats at squared error d; a rate-distortion function vanishes from the distortion of the best constant output on |
-| source | T. M. Cover, J. A. Thomas, "Elements of Information Theory," 2nd ed., Wiley, 2006 |
+| claim supported | textbook facts used in the proofs: the entropy of a uniformly quantized variable against its differential entropy; the Gaussian maximizes differential entropy at a given variance; the entropy power inequality; the Shannon lower bound; a normal input maximizes the mutual information across an additive normal noise channel at a given input variance |
+| source | T. M. Cover, J. A. Thomas, "Elements of Information Theory," 2nd ed., John Wiley & Sons, 2006, ISBN 978-0-471-24195-9 |
 | source type | secondary (textbook), used for standard results only |
-| used in | `docs/theory/translation_edge.tex`, Theorems 1 and 2 |
-| version / conditions | edition, publisher and year stated from general knowledge; the publisher record could not be opened on 2026-10-09; chapter numbers (8 and 10) not checked against the book |
-| status | `UNRESOLVED`: bibliographic metadata and chapter numbers not verified. The mathematical statements were re-derived or checked numerically in `docs/theory/check_translation_edge.py` and by two independent checks |
-| does not support | anything specific to event sensors |
+| used in | `docs/theory/translation_edge.tex`, `papers/tsp/main.tex` (Sections II to IV and Appendices B and C) |
+| version / conditions | title, authors, edition, publisher, publication date (September 2006) and ISBN read on the publisher's page (https://www.wiley-vch.de/de/fachgebiete/computer-und-informatik/elements-of-information-theory-978-0-471-24195-9) on 2026-10-09. Its table of contents confirms Chapter 8 (Differential Entropy), Chapter 10 (Rate Distortion Theory) and Chapter 17 (Inequalities in Information Theory). Theorem and problem numbers inside the chapters were not checked against the book |
+| status | `PARTIAL`: bibliographic metadata and chapter titles verified, the book itself not opened. The mathematical statements were re-derived or checked numerically (`docs/theory/check_translation_edge.py`, `papers/tsp/checks/check_affine_passage.py`) and by independent reviews |
+| does not support | anything specific to event sensors; a chapter number for the Gaussian channel, which the manuscript therefore cites without one |
 
 ### `kozachenko1987entropy`
 
