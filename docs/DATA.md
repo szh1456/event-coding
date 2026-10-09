@@ -32,10 +32,12 @@ companion project. The excerpt is not used again.
 | events, 112 train recordings, HDF5 `/events/{x,y,p,t}`, `t` in microseconds | `cnt` | `~/prjs/sbu_full_staging/data` | companion directive report 004 |
 | events, same | `cnt` | `~/prjs/adaptive_comm_comp_event/data/etram/h5` | companion `archive/SCENE_BANDWIDTH_SB1.md` |
 | eight-class annotations, `*_bbox.npy` | `cnt` | `~/prjs/sbc_run/etram_annotations/` | companion `docs/REFERENCE_LEDGER_SBC.md`, entry `etram_eight_class_annotations` |
+| the same, train files only | `cnt` | `~/prjs/sbc_run/etram_annotations/train/eight_class_annotations_train/` | directive report 001, Section 4, item 1 |
 
-The annotation directory also holds the val files, and the test archive was
-downloaded there once to count boxes. Read only the files whose stem matches a
-recording in `config/population.yaml`.
+The annotation root also holds the val files (`val/`), the test files
+(`test_count/`, downloaded there once to count boxes) and `zips/`. Build each
+annotation path from the train subdirectory above and a recording identifier of
+`config/population.yaml`. Do not list any directory under the annotation root.
 
 Both data directories are read-only for this project. Do not copy the corpus. If
 a derived cache is needed, write it under `~/prjs/event_coding/cache/` on the
