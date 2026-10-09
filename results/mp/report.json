@@ -1,0 +1,4502 @@
+{
+ "directive": "001",
+ "decision_rule": {
+  "Delta_day": 2.0364960053496493,
+  "Delta_night": 1.6269293550941732,
+  "outcome": "INTERMEDIATE"
+ },
+ "acceptance": {
+  "3_scored_plus_skipped_equals_generated": {
+   "pass": true,
+   "n_generated_instants": 73784,
+   "n_rows": 442704,
+   "n_scored_rows": 390423,
+   "duplicates": 0,
+   "mismatches": []
+  },
+  "4_ref_bits_and_eps": {
+   "pass": true,
+   "by_model": {
+    "static": {
+     "max_abs_ref_bits_error": 7.105427357601002e-15,
+     "n_ref_bits_violations": 0,
+     "eps_min": 0.001,
+     "eps_max": 1.0,
+     "n_eps_violations": 0
+    },
+    "label": {
+     "max_abs_ref_bits_error": 7.105427357601002e-15,
+     "n_ref_bits_violations": 0,
+     "eps_min": 0.001,
+     "eps_max": 1.0,
+     "n_eps_violations": 0
+    },
+    "cmax": {
+     "max_abs_ref_bits_error": 7.105427357601002e-15,
+     "n_ref_bits_violations": 0,
+     "eps_min": 0.001,
+     "eps_max": 1.0,
+     "n_eps_violations": 0
+    }
+   }
+  },
+  "5_static_gain_falls_with_lead": {
+   "day": {
+    "static_gain_100_0": 0.48168669640253725,
+    "static_gain_100_300": 0.010656656379875784,
+    "below": true
+   },
+   "night": {
+    "static_gain_100_0": 1.1708488142221256,
+    "static_gain_100_300": -0.00016725619420299154,
+    "below": true
+   },
+   "pooled": {
+    "static_gain_100_0": 0.7223108056235841,
+    "static_gain_100_300": 0.00496831513129159,
+    "below": true
+   },
+   "pass": true
+  }
+ },
+ "aggregation": {
+  "unit": "recording",
+  "min_instants": 20,
+  "n_boot": 2000,
+  "seed": 20261008,
+  "Delta": "per instant gain(cmax) - gain(static), then the median over the recording's instants",
+  "shares": [
+   "cmax_bmin",
+   "label_bmin",
+   "ratio_in_0.8_1.25",
+   "static_bmin"
+  ],
+  "H": "vehicles, isolated, speed_label in [20, 300) px/s, setting (100, 0)"
+ },
+ "tables": {
+  "1_headline_H_100_0": {
+   "day": {
+    "Delta": {
+     "median": 2.0364960053496493,
+     "ci95": [
+      1.8845180589183386,
+      2.296019720778691
+     ],
+     "n_recordings": 57,
+     "n_instants": 9503
+    },
+    "static_gain_bits": {
+     "median": 0.48168669640253725,
+     "ci95": [
+      0.429882981781585,
+      0.5788378390680435
+     ],
+     "n_recordings": 57,
+     "n_instants": 9503
+    },
+    "label_gain_bits": {
+     "median": 2.518332064603772,
+     "ci95": [
+      2.344693249093396,
+      2.799565013521862
+     ],
+     "n_recordings": 57,
+     "n_instants": 9503
+    },
+    "cmax_gain_bits": {
+     "median": 2.8570953509803,
+     "ci95": [
+      2.6583111147469918,
+      2.95185756862176
+     ],
+     "n_recordings": 57,
+     "n_instants": 9503
+    },
+    "static_eps": {
+     "median": 0.3810089041754344,
+     "ci95": [
+      0.29771647000775026,
+      0.440183013491773
+     ],
+     "n_recordings": 57,
+     "n_instants": 9503
+    },
+    "label_eps": {
+     "median": 0.017667343261448663,
+     "ci95": [
+      0.014789224459179642,
+      0.019874762010116905
+     ],
+     "n_recordings": 57,
+     "n_instants": 9503
+    },
+    "cmax_eps": {
+     "median": 0.019937012727745042,
+     "ci95": [
+      0.017129353126072878,
+      0.024253595119319002
+     ],
+     "n_recordings": 57,
+     "n_instants": 9503
+    },
+    "static_set_bits": {
+     "median": 17.96604479866782,
+     "ci95": [
+      17.408387771953436,
+      18.143895391133782
+     ],
+     "n_recordings": 57,
+     "n_instants": 9503
+    },
+    "label_set_bits": {
+     "median": 15.966860685107306,
+     "ci95": [
+      15.880232427863508,
+      16.135427409259854
+     ],
+     "n_recordings": 57,
+     "n_instants": 9503
+    },
+    "cmax_set_bits": {
+     "median": 15.637601321226622,
+     "ci95": [
+      15.500675025440453,
+      15.81132802891427
+     ],
+     "n_recordings": 57,
+     "n_instants": 9503
+    },
+    "ref_set_bits": {
+     "median": 18.27317921969353,
+     "ci95": [
+      18.184305867076795,
+      18.588170938696603
+     ],
+     "n_recordings": 57,
+     "n_instants": 9503
+    },
+    "cmax_b_px": {
+     "median": 0.5,
+     "ci95": [
+      0.5,
+      1.0
+     ],
+     "n_recordings": 57,
+     "n_instants": 9503
+    },
+    "cmax_bmin": {
+     "median": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ],
+     "n_recordings": 57,
+     "n_instants": 9503
+    },
+    "cmax_tau_eq_us": {
+     "median": 4509.155275833979,
+     "ci95": [
+      4013.6192197767327,
+      5298.456102521648
+     ],
+     "n_recordings": 57,
+     "n_instants": 9503
+    },
+    "cmax_redundancy": {
+     "median": 5.136505731156651,
+     "ci95": [
+      4.70404645436092,
+      5.440630797773655
+     ],
+     "n_recordings": 57,
+     "n_instants": 9503
+    },
+    "static_redundancy": {
+     "median": 2.9077440121177696,
+     "ci95": [
+      2.7591123073111397,
+      3.113196064509585
+     ],
+     "n_recordings": 57,
+     "n_instants": 9503
+    },
+    "path_px_label": {
+     "median": 14.296240853580356,
+     "ci95": [
+      10.548931077957123,
+      15.928431071115174
+     ],
+     "n_recordings": 57,
+     "n_instants": 9503
+    }
+   },
+   "night": {
+    "Delta": {
+     "median": 1.6269293550941732,
+     "ci95": [
+      1.4887805172435586,
+      1.7567229409703624
+     ],
+     "n_recordings": 47,
+     "n_instants": 12252
+    },
+    "static_gain_bits": {
+     "median": 1.1708488142221256,
+     "ci95": [
+      1.014256364897495,
+      1.3146332059287218
+     ],
+     "n_recordings": 47,
+     "n_instants": 12252
+    },
+    "label_gain_bits": {
+     "median": 2.8980493471249638,
+     "ci95": [
+      2.741755098463466,
+      2.9932725275294256
+     ],
+     "n_recordings": 47,
+     "n_instants": 12252
+    },
+    "cmax_gain_bits": {
+     "median": 3.007315605763832,
+     "ci95": [
+      2.8578475014452316,
+      3.13126895522414
+     ],
+     "n_recordings": 47,
+     "n_instants": 12252
+    },
+    "static_eps": {
+     "median": 0.18810095491454393,
+     "ci95": [
+      0.14435727550704103,
+      0.23324752117736958
+     ],
+     "n_recordings": 47,
+     "n_instants": 12252
+    },
+    "label_eps": {
+     "median": 0.024416908511848877,
+     "ci95": [
+      0.022967030534483013,
+      0.026146144480876397
+     ],
+     "n_recordings": 47,
+     "n_instants": 12252
+    },
+    "cmax_eps": {
+     "median": 0.025085321068438006,
+     "ci95": [
+      0.023853025822408877,
+      0.02586781361737074
+     ],
+     "n_recordings": 47,
+     "n_instants": 12252
+    },
+    "static_set_bits": {
+     "median": 17.189605146770738,
+     "ci95": [
+      16.955284429089268,
+      17.25786213575629
+     ],
+     "n_recordings": 47,
+     "n_instants": 12252
+    },
+    "label_set_bits": {
+     "median": 15.571069729078626,
+     "ci95": [
+      15.468213012874681,
+      15.661868197640556
+     ],
+     "n_recordings": 47,
+     "n_instants": 12252
+    },
+    "cmax_set_bits": {
+     "median": 15.301991243107025,
+     "ci95": [
+      15.16720064131596,
+      15.41698442204242
+     ],
+     "n_recordings": 47,
+     "n_instants": 12252
+    },
+    "ref_set_bits": {
+     "median": 18.251559196224022,
+     "ci95": [
+      18.060238037662412,
+      18.387500576777594
+     ],
+     "n_recordings": 47,
+     "n_instants": 12252
+    },
+    "cmax_b_px": {
+     "median": 1.0,
+     "ci95": [
+      1.0,
+      1.0
+     ],
+     "n_recordings": 47,
+     "n_instants": 12252
+    },
+    "cmax_bmin": {
+     "median": 0.0,
+     "ci95": [
+      0.0,
+      0.0015625
+     ],
+     "n_recordings": 47,
+     "n_instants": 12252
+    },
+    "cmax_tau_eq_us": {
+     "median": 6968.798440830737,
+     "ci95": [
+      6125.844048891233,
+      7622.79321307966
+     ],
+     "n_recordings": 47,
+     "n_instants": 12252
+    },
+    "cmax_redundancy": {
+     "median": 5.368838233934776,
+     "ci95": [
+      5.007073113849152,
+      5.726359437982612
+     ],
+     "n_recordings": 47,
+     "n_instants": 12252
+    },
+    "static_redundancy": {
+     "median": 3.756934221775268,
+     "ci95": [
+      3.5224949197666375,
+      3.991371340523883
+     ],
+     "n_recordings": 47,
+     "n_instants": 12252
+    },
+    "path_px_label": {
+     "median": 9.801624290306771,
+     "ci95": [
+      8.167668377077621,
+      11.378659798219044
+     ],
+     "n_recordings": 47,
+     "n_instants": 12252
+    }
+   }
+  },
+  "2_lead_H_T1_100": {
+   "100,0": {
+    "day": {
+     "Delta": {
+      "median": 2.0364960053496493,
+      "ci95": [
+       1.8845180589183386,
+       2.296019720778691
+      ],
+      "n_recordings": 57,
+      "n_instants": 9503
+     },
+     "cmax_gain_bits": {
+      "median": 2.8570953509803,
+      "ci95": [
+       2.6583111147469918,
+       2.95185756862176
+      ],
+      "n_recordings": 57,
+      "n_instants": 9503
+     },
+     "cmax_eps": {
+      "median": 0.019937012727745042,
+      "ci95": [
+       0.017129353126072878,
+       0.024253595119319002
+      ],
+      "n_recordings": 57,
+      "n_instants": 9503
+     },
+     "cmax_set_bits": {
+      "median": 15.637601321226622,
+      "ci95": [
+       15.500675025440453,
+       15.81132802891427
+      ],
+      "n_recordings": 57,
+      "n_instants": 9503
+     },
+     "cmax_b_px": {
+      "median": 0.5,
+      "ci95": [
+       0.5,
+       1.0
+      ],
+      "n_recordings": 57,
+      "n_instants": 9503
+     },
+     "cmax_bmin": {
+      "median": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "n_recordings": 57,
+      "n_instants": 9503
+     },
+     "cmax_tau_eq_us": {
+      "median": 4509.155275833979,
+      "ci95": [
+       4013.6192197767327,
+       5298.456102521648
+      ],
+      "n_recordings": 57,
+      "n_instants": 9503
+     },
+     "cmax_redundancy": {
+      "median": 5.136505731156651,
+      "ci95": [
+       4.70404645436092,
+       5.440630797773655
+      ],
+      "n_recordings": 57,
+      "n_instants": 9503
+     },
+     "static_gain_bits": {
+      "median": 0.48168669640253725,
+      "ci95": [
+       0.429882981781585,
+       0.5788378390680435
+      ],
+      "n_recordings": 57,
+      "n_instants": 9503
+     },
+     "static_eps": {
+      "median": 0.3810089041754344,
+      "ci95": [
+       0.29771647000775026,
+       0.440183013491773
+      ],
+      "n_recordings": 57,
+      "n_instants": 9503
+     },
+     "static_set_bits": {
+      "median": 17.96604479866782,
+      "ci95": [
+       17.408387771953436,
+       18.143895391133782
+      ],
+      "n_recordings": 57,
+      "n_instants": 9503
+     },
+     "static_b_px": {
+      "median": 1.0,
+      "ci95": [
+       1.0,
+       1.0
+      ],
+      "n_recordings": 57,
+      "n_instants": 9503
+     },
+     "static_bmin": {
+      "median": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "n_recordings": 57,
+      "n_instants": 9503
+     },
+     "static_tau_eq_us": {
+      "median": null,
+      "ci95": [
+       null,
+       null
+      ],
+      "n_recordings": 0,
+      "n_instants": 0
+     },
+     "static_redundancy": {
+      "median": 2.9077440121177696,
+      "ci95": [
+       2.7591123073111397,
+       3.113196064509585
+      ],
+      "n_recordings": 57,
+      "n_instants": 9503
+     },
+     "ref_set_bits": {
+      "median": 18.27317921969353,
+      "ci95": [
+       18.184305867076795,
+       18.588170938696603
+      ],
+      "n_recordings": 57,
+      "n_instants": 9503
+     },
+     "path_px_label": {
+      "median": 14.296240853580356,
+      "ci95": [
+       10.548931077957123,
+       15.928431071115174
+      ],
+      "n_recordings": 57,
+      "n_instants": 9503
+     }
+    },
+    "night": {
+     "Delta": {
+      "median": 1.6269293550941732,
+      "ci95": [
+       1.4887805172435586,
+       1.7567229409703624
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "cmax_gain_bits": {
+      "median": 3.007315605763832,
+      "ci95": [
+       2.8578475014452316,
+       3.13126895522414
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "cmax_eps": {
+      "median": 0.025085321068438006,
+      "ci95": [
+       0.023853025822408877,
+       0.02586781361737074
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "cmax_set_bits": {
+      "median": 15.301991243107025,
+      "ci95": [
+       15.16720064131596,
+       15.41698442204242
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "cmax_b_px": {
+      "median": 1.0,
+      "ci95": [
+       1.0,
+       1.0
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "cmax_bmin": {
+      "median": 0.0,
+      "ci95": [
+       0.0,
+       0.0015625
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "cmax_tau_eq_us": {
+      "median": 6968.798440830737,
+      "ci95": [
+       6125.844048891233,
+       7622.79321307966
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "cmax_redundancy": {
+      "median": 5.368838233934776,
+      "ci95": [
+       5.007073113849152,
+       5.726359437982612
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "static_gain_bits": {
+      "median": 1.1708488142221256,
+      "ci95": [
+       1.014256364897495,
+       1.3146332059287218
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "static_eps": {
+      "median": 0.18810095491454393,
+      "ci95": [
+       0.14435727550704103,
+       0.23324752117736958
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "static_set_bits": {
+      "median": 17.189605146770738,
+      "ci95": [
+       16.955284429089268,
+       17.25786213575629
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "static_b_px": {
+      "median": 1.0,
+      "ci95": [
+       1.0,
+       1.0
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "static_bmin": {
+      "median": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "static_tau_eq_us": {
+      "median": null,
+      "ci95": [
+       null,
+       null
+      ],
+      "n_recordings": 0,
+      "n_instants": 0
+     },
+     "static_redundancy": {
+      "median": 3.756934221775268,
+      "ci95": [
+       3.5224949197666375,
+       3.991371340523883
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "ref_set_bits": {
+      "median": 18.251559196224022,
+      "ci95": [
+       18.060238037662412,
+       18.387500576777594
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "path_px_label": {
+      "median": 9.801624290306771,
+      "ci95": [
+       8.167668377077621,
+       11.378659798219044
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     }
+    }
+   },
+   "100,33": {
+    "day": {
+     "Delta": {
+      "median": 2.29652808110799,
+      "ci95": [
+       2.166237287528201,
+       2.43219045346909
+      ],
+      "n_recordings": 57,
+      "n_instants": 9516
+     },
+     "cmax_gain_bits": {
+      "median": 2.5727226179792417,
+      "ci95": [
+       2.41231701006809,
+       2.6670319101857842
+      ],
+      "n_recordings": 57,
+      "n_instants": 9516
+     },
+     "cmax_eps": {
+      "median": 0.030497212379055616,
+      "ci95": [
+       0.023045350102284548,
+       0.03974284040870298
+      ],
+      "n_recordings": 57,
+      "n_instants": 9516
+     },
+     "cmax_set_bits": {
+      "median": 15.897161040232973,
+      "ci95": [
+       15.851550859756191,
+       16.094041698277678
+      ],
+      "n_recordings": 57,
+      "n_instants": 9516
+     },
+     "cmax_b_px": {
+      "median": 1.0,
+      "ci95": [
+       1.0,
+       1.0
+      ],
+      "n_recordings": 57,
+      "n_instants": 9516
+     },
+     "cmax_bmin": {
+      "median": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "n_recordings": 57,
+      "n_instants": 9516
+     },
+     "cmax_tau_eq_us": {
+      "median": 5513.892820402635,
+      "ci95": [
+       4897.37646296979,
+       6412.63061684645
+      ],
+      "n_recordings": 57,
+      "n_instants": 9516
+     },
+     "cmax_redundancy": {
+      "median": 5.136505731156651,
+      "ci95": [
+       4.636907214851119,
+       5.486714975845411
+      ],
+      "n_recordings": 57,
+      "n_instants": 9516
+     },
+     "static_gain_bits": {
+      "median": 0.10861044557336363,
+      "ci95": [
+       0.09731726589517464,
+       0.13431861613017482
+      ],
+      "n_recordings": 57,
+      "n_instants": 9516
+     },
+     "static_eps": {
+      "median": 0.7284016456992024,
+      "ci95": [
+       0.6950908365430077,
+       0.7593892148450834
+      ],
+      "n_recordings": 57,
+      "n_instants": 9516
+     },
+     "static_set_bits": {
+      "median": 18.173031447159318,
+      "ci95": [
+       17.947167068711476,
+       18.46630310227396
+      ],
+      "n_recordings": 57,
+      "n_instants": 9516
+     },
+     "static_b_px": {
+      "median": 1.0,
+      "ci95": [
+       1.0,
+       1.0
+      ],
+      "n_recordings": 57,
+      "n_instants": 9516
+     },
+     "static_bmin": {
+      "median": 0.0625,
+      "ci95": [
+       0.05,
+       0.09273182957393483
+      ],
+      "n_recordings": 57,
+      "n_instants": 9516
+     },
+     "static_tau_eq_us": {
+      "median": null,
+      "ci95": [
+       null,
+       null
+      ],
+      "n_recordings": 0,
+      "n_instants": 0
+     },
+     "static_redundancy": {
+      "median": 2.9077440121177696,
+      "ci95": [
+       2.742456136804907,
+       3.114388321207728
+      ],
+      "n_recordings": 57,
+      "n_instants": 9516
+     },
+     "ref_set_bits": {
+      "median": 18.284519838995607,
+      "ci95": [
+       18.162138657017532,
+       18.57891659677332
+      ],
+      "n_recordings": 57,
+      "n_instants": 9516
+     },
+     "path_px_label": {
+      "median": 14.296240853580356,
+      "ci95": [
+       10.516304962350018,
+       16.329167205376923
+      ],
+      "n_recordings": 57,
+      "n_instants": 9516
+     }
+    },
+    "night": {
+     "Delta": {
+      "median": 2.0955559948585822,
+      "ci95": [
+       1.9783222796482,
+       2.3051231197765603
+      ],
+      "n_recordings": 47,
+      "n_instants": 12241
+     },
+     "cmax_gain_bits": {
+      "median": 2.717581259856807,
+      "ci95": [
+       2.545253361685063,
+       2.830611478029592
+      ],
+      "n_recordings": 47,
+      "n_instants": 12241
+     },
+     "cmax_eps": {
+      "median": 0.03864851579517281,
+      "ci95": [
+       0.03496565844944734,
+       0.04356213996058522
+      ],
+      "n_recordings": 47,
+      "n_instants": 12241
+     },
+     "cmax_set_bits": {
+      "median": 15.573604680561628,
+      "ci95": [
+       15.510798462106331,
+       15.697761816153108
+      ],
+      "n_recordings": 47,
+      "n_instants": 12241
+     },
+     "cmax_b_px": {
+      "median": 1.0,
+      "ci95": [
+       1.0,
+       1.0
+      ],
+      "n_recordings": 47,
+      "n_instants": 12241
+     },
+     "cmax_bmin": {
+      "median": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "n_recordings": 47,
+      "n_instants": 12241
+     },
+     "cmax_tau_eq_us": {
+      "median": 8361.899146743777,
+      "ci95": [
+       6979.528911228819,
+       9046.41884649798
+      ],
+      "n_recordings": 47,
+      "n_instants": 12241
+     },
+     "cmax_redundancy": {
+      "median": 5.346521268925739,
+      "ci95": [
+       5.016188896785912,
+       5.724561568039014
+      ],
+      "n_recordings": 47,
+      "n_instants": 12241
+     },
+     "static_gain_bits": {
+      "median": 0.34892200457342426,
+      "ci95": [
+       0.3005605025129334,
+       0.4276307279959627
+      ],
+      "n_recordings": 47,
+      "n_instants": 12241
+     },
+     "static_eps": {
+      "median": 0.5716569488970763,
+      "ci95": [
+       0.5310753094160691,
+       0.6372947747060116
+      ],
+      "n_recordings": 47,
+      "n_instants": 12241
+     },
+     "static_set_bits": {
+      "median": 17.87019080779495,
+      "ci95": [
+       17.591301140954855,
+       18.08819634758524
+      ],
+      "n_recordings": 47,
+      "n_instants": 12241
+     },
+     "static_b_px": {
+      "median": 1.0,
+      "ci95": [
+       1.0,
+       1.0
+      ],
+      "n_recordings": 47,
+      "n_instants": 12241
+     },
+     "static_bmin": {
+      "median": 0.024096385542168676,
+      "ci95": [
+       0.019313304721030045,
+       0.03618421052631579
+      ],
+      "n_recordings": 47,
+      "n_instants": 12241
+     },
+     "static_tau_eq_us": {
+      "median": null,
+      "ci95": [
+       null,
+       null
+      ],
+      "n_recordings": 0,
+      "n_instants": 0
+     },
+     "static_redundancy": {
+      "median": 3.75927734375,
+      "ci95": [
+       3.5091882506149616,
+       3.9866318878382785
+      ],
+      "n_recordings": 47,
+      "n_instants": 12241
+     },
+     "ref_set_bits": {
+      "median": 18.23422788983961,
+      "ci95": [
+       18.052211522800512,
+       18.383084267350963
+      ],
+      "n_recordings": 47,
+      "n_instants": 12241
+     },
+     "path_px_label": {
+      "median": 9.80137352282187,
+      "ci95": [
+       8.19037949015112,
+       11.410160783947397
+      ],
+      "n_recordings": 47,
+      "n_instants": 12241
+     }
+    }
+   },
+   "100,100": {
+    "day": {
+     "Delta": {
+      "median": 1.905087967917833,
+      "ci95": [
+       1.7415883507239158,
+       2.0131377337355794
+      ],
+      "n_recordings": 57,
+      "n_instants": 9503
+     },
+     "cmax_gain_bits": {
+      "median": 1.9719310480337668,
+      "ci95": [
+       1.8046923379351316,
+       2.0708311710613625
+      ],
+      "n_recordings": 57,
+      "n_instants": 9503
+     },
+     "cmax_eps": {
+      "median": 0.09354033470080511,
+      "ci95": [
+       0.07378413110683121,
+       0.11644238303039926
+      ],
+      "n_recordings": 57,
+      "n_instants": 9503
+     },
+     "cmax_set_bits": {
+      "median": 16.482747713842265,
+      "ci95": [
+       16.369119168806986,
+       16.610993695975473
+      ],
+      "n_recordings": 57,
+      "n_instants": 9503
+     },
+     "cmax_b_px": {
+      "median": 1.0,
+      "ci95": [
+       1.0,
+       1.0
+      ],
+      "n_recordings": 57,
+      "n_instants": 9503
+     },
+     "cmax_bmin": {
+      "median": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "n_recordings": 57,
+      "n_instants": 9503
+     },
+     "cmax_tau_eq_us": {
+      "median": 6460.046096529362,
+      "ci95": [
+       5373.121234199478,
+       8113.405922228123
+      ],
+      "n_recordings": 57,
+      "n_instants": 9503
+     },
+     "cmax_redundancy": {
+      "median": 5.136505731156651,
+      "ci95": [
+       4.5500863557858375,
+       5.57912687585266
+      ],
+      "n_recordings": 57,
+      "n_instants": 9503
+     },
+     "static_gain_bits": {
+      "median": 0.02925102573908056,
+      "ci95": [
+       0.022795945161291797,
+       0.034029925589539545
+      ],
+      "n_recordings": 57,
+      "n_instants": 9503
+     },
+     "static_eps": {
+      "median": 0.8875474985109786,
+      "ci95": [
+       0.8696495004748327,
+       0.9001833681423204
+      ],
+      "n_recordings": 57,
+      "n_instants": 9503
+     },
+     "static_set_bits": {
+      "median": 18.246912817306168,
+      "ci95": [
+       18.05048368021115,
+       18.582036968499757
+      ],
+      "n_recordings": 57,
+      "n_instants": 9503
+     },
+     "static_b_px": {
+      "median": 1.0,
+      "ci95": [
+       1.0,
+       1.0
+      ],
+      "n_recordings": 57,
+      "n_instants": 9503
+     },
+     "static_bmin": {
+      "median": 0.18037974683544303,
+      "ci95": [
+       0.1424802110817942,
+       0.2463768115942029
+      ],
+      "n_recordings": 57,
+      "n_instants": 9503
+     },
+     "static_tau_eq_us": {
+      "median": null,
+      "ci95": [
+       null,
+       null
+      ],
+      "n_recordings": 0,
+      "n_instants": 0
+     },
+     "static_redundancy": {
+      "median": 2.9077440121177696,
+      "ci95": [
+       2.7424047352757834,
+       3.123696412127921
+      ],
+      "n_recordings": 57,
+      "n_instants": 9503
+     },
+     "ref_set_bits": {
+      "median": 18.285365233807163,
+      "ci95": [
+       18.156372047795937,
+       18.592450069970845
+      ],
+      "n_recordings": 57,
+      "n_instants": 9503
+     },
+     "path_px_label": {
+      "median": 14.290817977859387,
+      "ci95": [
+       10.568103169990865,
+       16.364246744874535
+      ],
+      "n_recordings": 57,
+      "n_instants": 9503
+     }
+    },
+    "night": {
+     "Delta": {
+      "median": 2.016522950634183,
+      "ci95": [
+       1.9000189226551925,
+       2.2086869776881244
+      ],
+      "n_recordings": 47,
+      "n_instants": 12220
+     },
+     "cmax_gain_bits": {
+      "median": 2.268462858379607,
+      "ci95": [
+       2.0976679705472954,
+       2.3672404117967023
+      ],
+      "n_recordings": 47,
+      "n_instants": 12220
+     },
+     "cmax_eps": {
+      "median": 0.091574997009178,
+      "ci95": [
+       0.08119524811258919,
+       0.09982327679333747
+      ],
+      "n_recordings": 47,
+      "n_instants": 12220
+     },
+     "cmax_set_bits": {
+      "median": 16.138868038857794,
+      "ci95": [
+       16.07547903454406,
+       16.177541330506386
+      ],
+      "n_recordings": 47,
+      "n_instants": 12220
+     },
+     "cmax_b_px": {
+      "median": 1.0,
+      "ci95": [
+       1.0,
+       1.0
+      ],
+      "n_recordings": 47,
+      "n_instants": 12220
+     },
+     "cmax_bmin": {
+      "median": 0.0,
+      "ci95": [
+       0.0,
+       0.0024390243902439024
+      ],
+      "n_recordings": 47,
+      "n_instants": 12220
+     },
+     "cmax_tau_eq_us": {
+      "median": 9070.181773765513,
+      "ci95": [
+       7550.7032972528805,
+       10519.541420776093
+      ],
+      "n_recordings": 47,
+      "n_instants": 12220
+     },
+     "cmax_redundancy": {
+      "median": 5.3401325854156045,
+      "ci95": [
+       5.025380167059327,
+       5.680477528089888
+      ],
+      "n_recordings": 47,
+      "n_instants": 12220
+     },
+     "static_gain_bits": {
+      "median": 0.053943855128849805,
+      "ci95": [
+       0.042858884236685046,
+       0.07698680839096816
+      ],
+      "n_recordings": 47,
+      "n_instants": 12220
+     },
+     "static_eps": {
+      "median": 0.8561066611812617,
+      "ci95": [
+       0.8422004146824962,
+       0.8768097409527552
+      ],
+      "n_recordings": 47,
+      "n_instants": 12220
+     },
+     "static_set_bits": {
+      "median": 18.08909572441072,
+      "ci95": [
+       17.89596380072144,
+       18.253046875435896
+      ],
+      "n_recordings": 47,
+      "n_instants": 12220
+     },
+     "static_b_px": {
+      "median": 1.0,
+      "ci95": [
+       1.0,
+       1.0
+      ],
+      "n_recordings": 47,
+      "n_instants": 12220
+     },
+     "static_bmin": {
+      "median": 0.12788906009244994,
+      "ci95": [
+       0.09803921568627451,
+       0.1592356687898089
+      ],
+      "n_recordings": 47,
+      "n_instants": 12220
+     },
+     "static_tau_eq_us": {
+      "median": null,
+      "ci95": [
+       null,
+       null
+      ],
+      "n_recordings": 0,
+      "n_instants": 0
+     },
+     "static_redundancy": {
+      "median": 3.75927734375,
+      "ci95": [
+       3.5224949197666375,
+       4.005538693572653
+      ],
+      "n_recordings": 47,
+      "n_instants": 12220
+     },
+     "ref_set_bits": {
+      "median": 18.26932153578302,
+      "ci95": [
+       18.01954130119827,
+       18.40040648997513
+      ],
+      "n_recordings": 47,
+      "n_instants": 12220
+     },
+     "path_px_label": {
+      "median": 9.801624290306771,
+      "ci95": [
+       8.301878111222187,
+       11.410160783947397
+      ],
+      "n_recordings": 47,
+      "n_instants": 12220
+     }
+    }
+   },
+   "100,300": {
+    "day": {
+     "Delta": {
+      "median": 0.5696696196884794,
+      "ci95": [
+       0.4580843220938462,
+       0.6966033265651497
+      ],
+      "n_recordings": 57,
+      "n_instants": 9437
+     },
+     "cmax_gain_bits": {
+      "median": 0.6295811084945484,
+      "ci95": [
+       0.48714152722078197,
+       0.7401633478072718
+      ],
+      "n_recordings": 57,
+      "n_instants": 9437
+     },
+     "cmax_eps": {
+      "median": 0.4762719423606786,
+      "ci95": [
+       0.43746167976598876,
+       0.5387092361050987
+      ],
+      "n_recordings": 57,
+      "n_instants": 9437
+     },
+     "cmax_set_bits": {
+      "median": 17.6375802770779,
+      "ci95": [
+       17.36901336612218,
+       17.741162337875895
+      ],
+      "n_recordings": 57,
+      "n_instants": 9437
+     },
+     "cmax_b_px": {
+      "median": 1.0,
+      "ci95": [
+       1.0,
+       1.0
+      ],
+      "n_recordings": 57,
+      "n_instants": 9437
+     },
+     "cmax_bmin": {
+      "median": 0.0,
+      "ci95": [
+       0.0,
+       0.005076142131979695
+      ],
+      "n_recordings": 57,
+      "n_instants": 9437
+     },
+     "cmax_tau_eq_us": {
+      "median": 6659.114419944901,
+      "ci95": [
+       5375.966202798825,
+       8823.813267352176
+      ],
+      "n_recordings": 57,
+      "n_instants": 9437
+     },
+     "cmax_redundancy": {
+      "median": 5.136505731156651,
+      "ci95": [
+       4.523194008214545,
+       5.614891496605736
+      ],
+      "n_recordings": 57,
+      "n_instants": 9437
+     },
+     "static_gain_bits": {
+      "median": 0.010656656379875784,
+      "ci95": [
+       0.007006622086639825,
+       0.015175525149299318
+      ],
+      "n_recordings": 57,
+      "n_instants": 9437
+     },
+     "static_eps": {
+      "median": 0.941500787429182,
+      "ci95": [
+       0.9282916230861061,
+       0.9525158252057178
+      ],
+      "n_recordings": 57,
+      "n_instants": 9437
+     },
+     "static_set_bits": {
+      "median": 18.242295842977192,
+      "ci95": [
+       18.082099237908075,
+       18.5444339476324
+      ],
+      "n_recordings": 57,
+      "n_instants": 9437
+     },
+     "static_b_px": {
+      "median": 1.0,
+      "ci95": [
+       1.0,
+       1.0
+      ],
+      "n_recordings": 57,
+      "n_instants": 9437
+     },
+     "static_bmin": {
+      "median": 0.2384937238493724,
+      "ci95": [
+       0.19023136246786632,
+       0.2976190476190476
+      ],
+      "n_recordings": 57,
+      "n_instants": 9437
+     },
+     "static_tau_eq_us": {
+      "median": null,
+      "ci95": [
+       null,
+       null
+      ],
+      "n_recordings": 0,
+      "n_instants": 0
+     },
+     "static_redundancy": {
+      "median": 2.913324836247564,
+      "ci95": [
+       2.666215641360539,
+       3.125265739983647
+      ],
+      "n_recordings": 57,
+      "n_instants": 9437
+     },
+     "ref_set_bits": {
+      "median": 18.267941234630833,
+      "ci95": [
+       18.140123706125635,
+       18.5989321364369
+      ],
+      "n_recordings": 57,
+      "n_instants": 9437
+     },
+     "path_px_label": {
+      "median": 14.264133072952664,
+      "ci95": [
+       10.568567927754804,
+       16.364251217790848
+      ],
+      "n_recordings": 57,
+      "n_instants": 9437
+     }
+    },
+    "night": {
+     "Delta": {
+      "median": 0.916634079370084,
+      "ci95": [
+       0.7902879544499903,
+       1.008094820844338
+      ],
+      "n_recordings": 47,
+      "n_instants": 12030
+     },
+     "cmax_gain_bits": {
+      "median": 1.011383276143194,
+      "ci95": [
+       0.8432813176533713,
+       1.0681752588603146
+      ],
+      "n_recordings": 47,
+      "n_instants": 12030
+     },
+     "cmax_eps": {
+      "median": 0.39031302011547164,
+      "ci95": [
+       0.3772217613153657,
+       0.40707817405016067
+      ],
+      "n_recordings": 47,
+      "n_instants": 12030
+     },
+     "cmax_set_bits": {
+      "median": 17.20132064332636,
+      "ci95": [
+       17.137483461944008,
+       17.247215179652684
+      ],
+      "n_recordings": 47,
+      "n_instants": 12030
+     },
+     "cmax_b_px": {
+      "median": 1.0,
+      "ci95": [
+       1.0,
+       1.0
+      ],
+      "n_recordings": 47,
+      "n_instants": 12030
+     },
+     "cmax_bmin": {
+      "median": 0.0196078431372549,
+      "ci95": [
+       0.009900990099009901,
+       0.028081123244929798
+      ],
+      "n_recordings": 47,
+      "n_instants": 12030
+     },
+     "cmax_tau_eq_us": {
+      "median": 9024.724383000485,
+      "ci95": [
+       7492.517067403003,
+       11175.57962433833
+      ],
+      "n_recordings": 47,
+      "n_instants": 12030
+     },
+     "cmax_redundancy": {
+      "median": 5.338586680223691,
+      "ci95": [
+       5.059558823529412,
+       5.664539007092198
+      ],
+      "n_recordings": 47,
+      "n_instants": 12030
+     },
+     "static_gain_bits": {
+      "median": -0.00016725619420299154,
+      "ci95": [
+       -0.0002397866184544739,
+       0.0017172524475892459
+      ],
+      "n_recordings": 47,
+      "n_instants": 12030
+     },
+     "static_eps": {
+      "median": 0.9905996167271097,
+      "ci95": [
+       0.9771181528641927,
+       0.9961426466119806
+      ],
+      "n_recordings": 47,
+      "n_instants": 12030
+     },
+     "static_set_bits": {
+      "median": 18.152860022749824,
+      "ci95": [
+       18.004005627050606,
+       18.369225228602048
+      ],
+      "n_recordings": 47,
+      "n_instants": 12030
+     },
+     "static_b_px": {
+      "median": 1.0,
+      "ci95": [
+       1.0,
+       1.0
+      ],
+      "n_recordings": 47,
+      "n_instants": 12030
+     },
+     "static_bmin": {
+      "median": 0.375,
+      "ci95": [
+       0.3472222222222222,
+       0.4
+      ],
+      "n_recordings": 47,
+      "n_instants": 12030
+     },
+     "static_tau_eq_us": {
+      "median": null,
+      "ci95": [
+       null,
+       null
+      ],
+      "n_recordings": 0,
+      "n_instants": 0
+     },
+     "static_redundancy": {
+      "median": 3.7837263649883153,
+      "ci95": [
+       3.5091882506149616,
+       4.001156515034696
+      ],
+      "n_recordings": 47,
+      "n_instants": 12030
+     },
+     "ref_set_bits": {
+      "median": 18.225267703568385,
+      "ci95": [
+       18.032920307346004,
+       18.383102573974746
+      ],
+      "n_recordings": 47,
+      "n_instants": 12030
+     },
+     "path_px_label": {
+      "median": 9.809533693689428,
+      "ci95": [
+       8.308501606262507,
+       11.389884956635147
+      ],
+      "n_recordings": 47,
+      "n_instants": 12030
+     }
+    }
+   }
+  },
+  "3_template_length_H_D0": {
+   "50,0": {
+    "day": {
+     "Delta": {
+      "median": 1.848863669102725,
+      "ci95": [
+       1.7171555045074953,
+       2.1382943358366777
+      ],
+      "n_recordings": 57,
+      "n_instants": 9471
+     },
+     "cmax_gain_bits": {
+      "median": 2.910570981156086,
+      "ci95": [
+       2.6661217551988727,
+       2.9783224721138897
+      ],
+      "n_recordings": 57,
+      "n_instants": 9471
+     },
+     "cmax_eps": {
+      "median": 0.024343701476175716,
+      "ci95": [
+       0.021596767924935534,
+       0.027284652899217065
+      ],
+      "n_recordings": 57,
+      "n_instants": 9471
+     },
+     "cmax_set_bits": {
+      "median": 15.61322219146808,
+      "ci95": [
+       15.446395174023746,
+       15.784704493765718
+      ],
+      "n_recordings": 57,
+      "n_instants": 9471
+     },
+     "cmax_b_px": {
+      "median": 1.0,
+      "ci95": [
+       1.0,
+       1.0
+      ],
+      "n_recordings": 57,
+      "n_instants": 9471
+     },
+     "cmax_bmin": {
+      "median": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "n_recordings": 57,
+      "n_instants": 9471
+     },
+     "cmax_tau_eq_us": {
+      "median": 4754.951365656296,
+      "ci95": [
+       4091.958517583043,
+       6536.501614689887
+      ],
+      "n_recordings": 57,
+      "n_instants": 9471
+     },
+     "cmax_redundancy": {
+      "median": 3.2852278216848805,
+      "ci95": [
+       3.0118415679869335,
+       3.528712198436969
+      ],
+      "n_recordings": 57,
+      "n_instants": 9471
+     },
+     "static_gain_bits": {
+      "median": 0.688398087059749,
+      "ci95": [
+       0.5715246297473797,
+       0.8216083801196206
+      ],
+      "n_recordings": 57,
+      "n_instants": 9471
+     },
+     "static_eps": {
+      "median": 0.3511032308603158,
+      "ci95": [
+       0.2368497853235831,
+       0.3973551465322734
+      ],
+      "n_recordings": 57,
+      "n_instants": 9471
+     },
+     "static_set_bits": {
+      "median": 17.793954748264785,
+      "ci95": [
+       17.228795064224762,
+       17.9134788302777
+      ],
+      "n_recordings": 57,
+      "n_instants": 9471
+     },
+     "static_b_px": {
+      "median": 1.0,
+      "ci95": [
+       1.0,
+       1.0
+      ],
+      "n_recordings": 57,
+      "n_instants": 9471
+     },
+     "static_bmin": {
+      "median": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "n_recordings": 57,
+      "n_instants": 9471
+     },
+     "static_tau_eq_us": {
+      "median": null,
+      "ci95": [
+       null,
+       null
+      ],
+      "n_recordings": 0,
+      "n_instants": 0
+     },
+     "static_redundancy": {
+      "median": 2.26482163760061,
+      "ci95": [
+       2.1165476646957733,
+       2.321285800202608
+      ],
+      "n_recordings": 57,
+      "n_instants": 9471
+     },
+     "ref_set_bits": {
+      "median": 18.27317921969353,
+      "ci95": [
+       18.184203704380227,
+       18.588170938696603
+      ],
+      "n_recordings": 57,
+      "n_instants": 9471
+     },
+     "path_px_label": {
+      "median": 7.11077690121745,
+      "ci95": [
+       5.270216488119161,
+       7.964208481451086
+      ],
+      "n_recordings": 57,
+      "n_instants": 9471
+     }
+    },
+    "night": {
+     "Delta": {
+      "median": 1.3263245911788815,
+      "ci95": [
+       1.1431748891278897,
+       1.5732283150025381
+      ],
+      "n_recordings": 47,
+      "n_instants": 12214
+     },
+     "cmax_gain_bits": {
+      "median": 3.079011515398374,
+      "ci95": [
+       2.9730189980528507,
+       3.1397851016374645
+      ],
+      "n_recordings": 47,
+      "n_instants": 12214
+     },
+     "cmax_eps": {
+      "median": 0.027744908873239226,
+      "ci95": [
+       0.026197625489179862,
+       0.029078282410385486
+      ],
+      "n_recordings": 47,
+      "n_instants": 12214
+     },
+     "cmax_set_bits": {
+      "median": 15.278478135538187,
+      "ci95": [
+       15.117978357799995,
+       15.32997491009241
+      ],
+      "n_recordings": 47,
+      "n_instants": 12214
+     },
+     "cmax_b_px": {
+      "median": 1.0,
+      "ci95": [
+       1.0,
+       1.0
+      ],
+      "n_recordings": 47,
+      "n_instants": 12214
+     },
+     "cmax_bmin": {
+      "median": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "n_recordings": 47,
+      "n_instants": 12214
+     },
+     "cmax_tau_eq_us": {
+      "median": 7844.740932228754,
+      "ci95": [
+       6762.998361325409,
+       8688.006210275573
+      ],
+      "n_recordings": 47,
+      "n_instants": 12214
+     },
+     "cmax_redundancy": {
+      "median": 3.5945228447673605,
+      "ci95": [
+       3.4887377623789066,
+       3.7375409095959657
+      ],
+      "n_recordings": 47,
+      "n_instants": 12214
+     },
+     "static_gain_bits": {
+      "median": 1.554745180256683,
+      "ci95": [
+       1.3560503315656742,
+       1.6883248918491471
+      ],
+      "n_recordings": 47,
+      "n_instants": 12214
+     },
+     "static_eps": {
+      "median": 0.14814970627285187,
+      "ci95": [
+       0.12062947351918724,
+       0.19866952713198086
+      ],
+      "n_recordings": 47,
+      "n_instants": 12214
+     },
+     "static_set_bits": {
+      "median": 16.83816660404042,
+      "ci95": [
+       16.621230698315166,
+       16.977058259970768
+      ],
+      "n_recordings": 47,
+      "n_instants": 12214
+     },
+     "static_b_px": {
+      "median": 1.0,
+      "ci95": [
+       1.0,
+       1.0
+      ],
+      "n_recordings": 47,
+      "n_instants": 12214
+     },
+     "static_bmin": {
+      "median": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "n_recordings": 47,
+      "n_instants": 12214
+     },
+     "static_tau_eq_us": {
+      "median": null,
+      "ci95": [
+       null,
+       null
+      ],
+      "n_recordings": 0,
+      "n_instants": 0
+     },
+     "static_redundancy": {
+      "median": 2.832990149702265,
+      "ci95": [
+       2.6819270989886848,
+       2.9280923584387026
+      ],
+      "n_recordings": 47,
+      "n_instants": 12214
+     },
+     "ref_set_bits": {
+      "median": 18.247055076160656,
+      "ci95": [
+       18.050695180186953,
+       18.385980963968205
+      ],
+      "n_recordings": 47,
+      "n_instants": 12214
+     },
+     "path_px_label": {
+      "median": 4.9007714316916795,
+      "ci95": [
+       4.213672261955324,
+       5.6952340261856005
+      ],
+      "n_recordings": 47,
+      "n_instants": 12214
+     }
+    },
+    "pooled": {
+     "Delta": {
+      "median": 1.6143853219819997,
+      "ci95": [
+       1.4347210904916512,
+       1.764168038702564
+      ],
+      "n_recordings": 104,
+      "n_instants": 21685
+     },
+     "cmax_gain_bits": {
+      "median": 2.974264513170752,
+      "ci95": [
+       2.888384846240557,
+       3.026068825561568
+      ],
+      "n_recordings": 104,
+      "n_instants": 21685
+     },
+     "cmax_eps": {
+      "median": 0.026143322431430388,
+      "ci95": [
+       0.025211459024227674,
+       0.02798953992541229
+      ],
+      "n_recordings": 104,
+      "n_instants": 21685
+     },
+     "cmax_set_bits": {
+      "median": 15.417623195438967,
+      "ci95": [
+       15.316747048055422,
+       15.490857916065314
+      ],
+      "n_recordings": 104,
+      "n_instants": 21685
+     },
+     "cmax_b_px": {
+      "median": 1.0,
+      "ci95": [
+       1.0,
+       1.0
+      ],
+      "n_recordings": 104,
+      "n_instants": 21685
+     },
+     "cmax_bmin": {
+      "median": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "n_recordings": 104,
+      "n_instants": 21685
+     },
+     "cmax_tau_eq_us": {
+      "median": 6585.989689549957,
+      "ci95": [
+       5480.644399310821,
+       7026.132758112403
+      ],
+      "n_recordings": 104,
+      "n_instants": 21685
+     },
+     "cmax_redundancy": {
+      "median": 3.489834065507768,
+      "ci95": [
+       3.313294820535644,
+       3.5995508982035926
+      ],
+      "n_recordings": 104,
+      "n_instants": 21685
+     },
+     "static_gain_bits": {
+      "median": 1.0515732972594174,
+      "ci95": [
+       0.9560526365999369,
+       1.2258220903326258
+      ],
+      "n_recordings": 104,
+      "n_instants": 21685
+     },
+     "static_eps": {
+      "median": 0.20608403859189056,
+      "ci95": [
+       0.15075272842462473,
+       0.2433377835980554
+      ],
+      "n_recordings": 104,
+      "n_instants": 21685
+     },
+     "static_set_bits": {
+      "median": 17.141390677792096,
+      "ci95": [
+       16.979486512974276,
+       17.287906184384497
+      ],
+      "n_recordings": 104,
+      "n_instants": 21685
+     },
+     "static_b_px": {
+      "median": 1.0,
+      "ci95": [
+       1.0,
+       1.0
+      ],
+      "n_recordings": 104,
+      "n_instants": 21685
+     },
+     "static_bmin": {
+      "median": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "n_recordings": 104,
+      "n_instants": 21685
+     },
+     "static_tau_eq_us": {
+      "median": null,
+      "ci95": [
+       null,
+       null
+      ],
+      "n_recordings": 0,
+      "n_instants": 0
+     },
+     "static_redundancy": {
+      "median": 2.481297613834139,
+      "ci95": [
+       2.3847548382332464,
+       2.602030424523358
+      ],
+      "n_recordings": 104,
+      "n_instants": 21685
+     },
+     "ref_set_bits": {
+      "median": 18.25665404419012,
+      "ci95": [
+       18.175856716424295,
+       18.38784541976875
+      ],
+      "n_recordings": 104,
+      "n_instants": 21685
+     },
+     "path_px_label": {
+      "median": 5.530159800014902,
+      "ci95": [
+       4.722238282053777,
+       6.334542944939277
+      ],
+      "n_recordings": 104,
+      "n_instants": 21685
+     }
+    }
+   },
+   "100,0": {
+    "day": {
+     "Delta": {
+      "median": 2.0364960053496493,
+      "ci95": [
+       1.8845180589183386,
+       2.296019720778691
+      ],
+      "n_recordings": 57,
+      "n_instants": 9503
+     },
+     "cmax_gain_bits": {
+      "median": 2.8570953509803,
+      "ci95": [
+       2.6583111147469918,
+       2.95185756862176
+      ],
+      "n_recordings": 57,
+      "n_instants": 9503
+     },
+     "cmax_eps": {
+      "median": 0.019937012727745042,
+      "ci95": [
+       0.017129353126072878,
+       0.024253595119319002
+      ],
+      "n_recordings": 57,
+      "n_instants": 9503
+     },
+     "cmax_set_bits": {
+      "median": 15.637601321226622,
+      "ci95": [
+       15.500675025440453,
+       15.81132802891427
+      ],
+      "n_recordings": 57,
+      "n_instants": 9503
+     },
+     "cmax_b_px": {
+      "median": 0.5,
+      "ci95": [
+       0.5,
+       1.0
+      ],
+      "n_recordings": 57,
+      "n_instants": 9503
+     },
+     "cmax_bmin": {
+      "median": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "n_recordings": 57,
+      "n_instants": 9503
+     },
+     "cmax_tau_eq_us": {
+      "median": 4509.155275833979,
+      "ci95": [
+       4013.6192197767327,
+       5298.456102521648
+      ],
+      "n_recordings": 57,
+      "n_instants": 9503
+     },
+     "cmax_redundancy": {
+      "median": 5.136505731156651,
+      "ci95": [
+       4.70404645436092,
+       5.440630797773655
+      ],
+      "n_recordings": 57,
+      "n_instants": 9503
+     },
+     "static_gain_bits": {
+      "median": 0.48168669640253725,
+      "ci95": [
+       0.429882981781585,
+       0.5788378390680435
+      ],
+      "n_recordings": 57,
+      "n_instants": 9503
+     },
+     "static_eps": {
+      "median": 0.3810089041754344,
+      "ci95": [
+       0.29771647000775026,
+       0.440183013491773
+      ],
+      "n_recordings": 57,
+      "n_instants": 9503
+     },
+     "static_set_bits": {
+      "median": 17.96604479866782,
+      "ci95": [
+       17.408387771953436,
+       18.143895391133782
+      ],
+      "n_recordings": 57,
+      "n_instants": 9503
+     },
+     "static_b_px": {
+      "median": 1.0,
+      "ci95": [
+       1.0,
+       1.0
+      ],
+      "n_recordings": 57,
+      "n_instants": 9503
+     },
+     "static_bmin": {
+      "median": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "n_recordings": 57,
+      "n_instants": 9503
+     },
+     "static_tau_eq_us": {
+      "median": null,
+      "ci95": [
+       null,
+       null
+      ],
+      "n_recordings": 0,
+      "n_instants": 0
+     },
+     "static_redundancy": {
+      "median": 2.9077440121177696,
+      "ci95": [
+       2.7591123073111397,
+       3.113196064509585
+      ],
+      "n_recordings": 57,
+      "n_instants": 9503
+     },
+     "ref_set_bits": {
+      "median": 18.27317921969353,
+      "ci95": [
+       18.184305867076795,
+       18.588170938696603
+      ],
+      "n_recordings": 57,
+      "n_instants": 9503
+     },
+     "path_px_label": {
+      "median": 14.296240853580356,
+      "ci95": [
+       10.548931077957123,
+       15.928431071115174
+      ],
+      "n_recordings": 57,
+      "n_instants": 9503
+     }
+    },
+    "night": {
+     "Delta": {
+      "median": 1.6269293550941732,
+      "ci95": [
+       1.4887805172435586,
+       1.7567229409703624
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "cmax_gain_bits": {
+      "median": 3.007315605763832,
+      "ci95": [
+       2.8578475014452316,
+       3.13126895522414
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "cmax_eps": {
+      "median": 0.025085321068438006,
+      "ci95": [
+       0.023853025822408877,
+       0.02586781361737074
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "cmax_set_bits": {
+      "median": 15.301991243107025,
+      "ci95": [
+       15.16720064131596,
+       15.41698442204242
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "cmax_b_px": {
+      "median": 1.0,
+      "ci95": [
+       1.0,
+       1.0
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "cmax_bmin": {
+      "median": 0.0,
+      "ci95": [
+       0.0,
+       0.0015625
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "cmax_tau_eq_us": {
+      "median": 6968.798440830737,
+      "ci95": [
+       6125.844048891233,
+       7622.79321307966
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "cmax_redundancy": {
+      "median": 5.368838233934776,
+      "ci95": [
+       5.007073113849152,
+       5.726359437982612
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "static_gain_bits": {
+      "median": 1.1708488142221256,
+      "ci95": [
+       1.014256364897495,
+       1.3146332059287218
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "static_eps": {
+      "median": 0.18810095491454393,
+      "ci95": [
+       0.14435727550704103,
+       0.23324752117736958
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "static_set_bits": {
+      "median": 17.189605146770738,
+      "ci95": [
+       16.955284429089268,
+       17.25786213575629
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "static_b_px": {
+      "median": 1.0,
+      "ci95": [
+       1.0,
+       1.0
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "static_bmin": {
+      "median": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "static_tau_eq_us": {
+      "median": null,
+      "ci95": [
+       null,
+       null
+      ],
+      "n_recordings": 0,
+      "n_instants": 0
+     },
+     "static_redundancy": {
+      "median": 3.756934221775268,
+      "ci95": [
+       3.5224949197666375,
+       3.991371340523883
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "ref_set_bits": {
+      "median": 18.251559196224022,
+      "ci95": [
+       18.060238037662412,
+       18.387500576777594
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "path_px_label": {
+      "median": 9.801624290306771,
+      "ci95": [
+       8.167668377077621,
+       11.378659798219044
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     }
+    },
+    "pooled": {
+     "Delta": {
+      "median": 1.8682784910771346,
+      "ci95": [
+       1.67519680076904,
+       1.9894909388378048
+      ],
+      "n_recordings": 104,
+      "n_instants": 21755
+     },
+     "cmax_gain_bits": {
+      "median": 2.924045426012725,
+      "ci95": [
+       2.8305966709292694,
+       2.990936793381941
+      ],
+      "n_recordings": 104,
+      "n_instants": 21755
+     },
+     "cmax_eps": {
+      "median": 0.02367554964654632,
+      "ci95": [
+       0.021663563057710868,
+       0.02513292307416378
+      ],
+      "n_recordings": 104,
+      "n_instants": 21755
+     },
+     "cmax_set_bits": {
+      "median": 15.472347958406072,
+      "ci95": [
+       15.41732142790715,
+       15.546628349713465
+      ],
+      "n_recordings": 104,
+      "n_instants": 21755
+     },
+     "cmax_b_px": {
+      "median": 1.0,
+      "ci95": [
+       0.5,
+       1.0
+      ],
+      "n_recordings": 104,
+      "n_instants": 21755
+     },
+     "cmax_bmin": {
+      "median": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "n_recordings": 104,
+      "n_instants": 21755
+     },
+     "cmax_tau_eq_us": {
+      "median": 5905.009832744756,
+      "ci95": [
+       5044.91632537851,
+       6550.105142133136
+      ],
+      "n_recordings": 104,
+      "n_instants": 21755
+     },
+     "cmax_redundancy": {
+      "median": 5.2266218057413045,
+      "ci95": [
+       5.017657621707901,
+       5.479190771411156
+      ],
+      "n_recordings": 104,
+      "n_instants": 21755
+     },
+     "static_gain_bits": {
+      "median": 0.7223108056235841,
+      "ci95": [
+       0.657507004440399,
+       0.8915073160154993
+      ],
+      "n_recordings": 104,
+      "n_instants": 21755
+     },
+     "static_eps": {
+      "median": 0.24485948009094952,
+      "ci95": [
+       0.19878438656250885,
+       0.30016672559198493
+      ],
+      "n_recordings": 104,
+      "n_instants": 21755
+     },
+     "static_set_bits": {
+      "median": 17.365684712557147,
+      "ci95": [
+       17.252758136287596,
+       17.582107504722234
+      ],
+      "n_recordings": 104,
+      "n_instants": 21755
+     },
+     "static_b_px": {
+      "median": 1.0,
+      "ci95": [
+       1.0,
+       1.0
+      ],
+      "n_recordings": 104,
+      "n_instants": 21755
+     },
+     "static_bmin": {
+      "median": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "n_recordings": 104,
+      "n_instants": 21755
+     },
+     "static_tau_eq_us": {
+      "median": null,
+      "ci95": [
+       null,
+       null
+      ],
+      "n_recordings": 0,
+      "n_instants": 0
+     },
+     "static_redundancy": {
+      "median": 3.312143914979616,
+      "ci95": [
+       3.123144566718673,
+       3.4133461436534063
+      ],
+      "n_recordings": 104,
+      "n_instants": 21755
+     },
+     "ref_set_bits": {
+      "median": 18.25665404419012,
+      "ci95": [
+       18.177515817729557,
+       18.388333785539256
+      ],
+      "n_recordings": 104,
+      "n_instants": 21755
+     },
+     "path_px_label": {
+      "median": 11.0607348055163,
+      "ci95": [
+       9.447011126676333,
+       12.497944055404446
+      ],
+      "n_recordings": 104,
+      "n_instants": 21755
+     }
+    }
+   },
+   "200,0": {
+    "day": {
+     "Delta": {
+      "median": 2.104551340820098,
+      "ci95": [
+       1.9385576760112677,
+       2.2834850443793204
+      ],
+      "n_recordings": 57,
+      "n_instants": 9570
+     },
+     "cmax_gain_bits": {
+      "median": 2.655594687618313,
+      "ci95": [
+       2.501149516573193,
+       2.712640037657099
+      ],
+      "n_recordings": 57,
+      "n_instants": 9570
+     },
+     "cmax_eps": {
+      "median": 0.01543940641307139,
+      "ci95": [
+       0.013543125745621786,
+       0.019311286760309125
+      ],
+      "n_recordings": 57,
+      "n_instants": 9570
+     },
+     "cmax_set_bits": {
+      "median": 15.827965348074217,
+      "ci95": [
+       15.77001546636706,
+       15.905285757563421
+      ],
+      "n_recordings": 57,
+      "n_instants": 9570
+     },
+     "cmax_b_px": {
+      "median": 1.0,
+      "ci95": [
+       0.75,
+       1.0
+      ],
+      "n_recordings": 57,
+      "n_instants": 9570
+     },
+     "cmax_bmin": {
+      "median": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "n_recordings": 57,
+      "n_instants": 9570
+     },
+     "cmax_tau_eq_us": {
+      "median": 4674.9520374140975,
+      "ci95": [
+       4317.7586449917435,
+       5389.510379059237
+      ],
+      "n_recordings": 57,
+      "n_instants": 9570
+     },
+     "cmax_redundancy": {
+      "median": 7.857836057997805,
+      "ci95": [
+       7.089892082706969,
+       8.352328668580032
+      ],
+      "n_recordings": 57,
+      "n_instants": 9570
+     },
+     "static_gain_bits": {
+      "median": 0.33874946031128417,
+      "ci95": [
+       0.2807902587237834,
+       0.37103777328403
+      ],
+      "n_recordings": 57,
+      "n_instants": 9570
+     },
+     "static_eps": {
+      "median": 0.41438445183850525,
+      "ci95": [
+       0.345784713365572,
+       0.4362182100268553
+      ],
+      "n_recordings": 57,
+      "n_instants": 9570
+     },
+     "static_set_bits": {
+      "median": 18.02597828625255,
+      "ci95": [
+       17.67589764365068,
+       18.288383566226084
+      ],
+      "n_recordings": 57,
+      "n_instants": 9570
+     },
+     "static_b_px": {
+      "median": 1.0,
+      "ci95": [
+       1.0,
+       1.0
+      ],
+      "n_recordings": 57,
+      "n_instants": 9570
+     },
+     "static_bmin": {
+      "median": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "n_recordings": 57,
+      "n_instants": 9570
+     },
+     "static_tau_eq_us": {
+      "median": null,
+      "ci95": [
+       null,
+       null
+      ],
+      "n_recordings": 0,
+      "n_instants": 0
+     },
+     "static_redundancy": {
+      "median": 3.886610106971597,
+      "ci95": [
+       3.514111592398582,
+       4.205077982379672
+      ],
+      "n_recordings": 57,
+      "n_instants": 9570
+     },
+     "ref_set_bits": {
+      "median": 18.268985083729852,
+      "ci95": [
+       18.1671545188241,
+       18.50766339717599
+      ],
+      "n_recordings": 57,
+      "n_instants": 9570
+     },
+     "path_px_label": {
+      "median": 28.47282929902403,
+      "ci95": [
+       20.966210994668554,
+       32.732441295403234
+      ],
+      "n_recordings": 57,
+      "n_instants": 9570
+     }
+    },
+    "night": {
+     "Delta": {
+      "median": 1.859031777173616,
+      "ci95": [
+       1.7322205423249712,
+       1.9901748260075482
+      ],
+      "n_recordings": 47,
+      "n_instants": 12338
+     },
+     "cmax_gain_bits": {
+      "median": 2.8146324896939596,
+      "ci95": [
+       2.682434559418784,
+       2.9374406402679547
+      ],
+      "n_recordings": 47,
+      "n_instants": 12338
+     },
+     "cmax_eps": {
+      "median": 0.023089141316702932,
+      "ci95": [
+       0.021694801170614307,
+       0.02553366770150727
+      ],
+      "n_recordings": 47,
+      "n_instants": 12338
+     },
+     "cmax_set_bits": {
+      "median": 15.483381694752334,
+      "ci95": [
+       15.3956943828613,
+       15.583583512057698
+      ],
+      "n_recordings": 47,
+      "n_instants": 12338
+     },
+     "cmax_b_px": {
+      "median": 1.0,
+      "ci95": [
+       1.0,
+       1.0
+      ],
+      "n_recordings": 47,
+      "n_instants": 12338
+     },
+     "cmax_bmin": {
+      "median": 0.003663003663003663,
+      "ci95": [
+       0.0,
+       0.005917159763313609
+      ],
+      "n_recordings": 47,
+      "n_instants": 12338
+     },
+     "cmax_tau_eq_us": {
+      "median": 6693.253217537691,
+      "ci95": [
+       5807.693951990613,
+       7455.464825499221
+      ],
+      "n_recordings": 47,
+      "n_instants": 12338
+     },
+     "cmax_redundancy": {
+      "median": 8.02503937007874,
+      "ci95": [
+       7.650858524133784,
+       8.737837186897881
+      ],
+      "n_recordings": 47,
+      "n_instants": 12338
+     },
+     "static_gain_bits": {
+      "median": 0.7880301381776462,
+      "ci95": [
+       0.6873192819244665,
+       0.847537095775639
+      ],
+      "n_recordings": 47,
+      "n_instants": 12338
+     },
+     "static_eps": {
+      "median": 0.2620877348559746,
+      "ci95": [
+       0.2125145847785843,
+       0.30889801284242246
+      ],
+      "n_recordings": 47,
+      "n_instants": 12338
+     },
+     "static_set_bits": {
+      "median": 17.496238785483065,
+      "ci95": [
+       17.303689863713437,
+       17.643782965321122
+      ],
+      "n_recordings": 47,
+      "n_instants": 12338
+     },
+     "static_b_px": {
+      "median": 1.0,
+      "ci95": [
+       1.0,
+       1.0
+      ],
+      "n_recordings": 47,
+      "n_instants": 12338
+     },
+     "static_bmin": {
+      "median": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "n_recordings": 47,
+      "n_instants": 12338
+     },
+     "static_tau_eq_us": {
+      "median": null,
+      "ci95": [
+       null,
+       null
+      ],
+      "n_recordings": 0,
+      "n_instants": 0
+     },
+     "static_redundancy": {
+      "median": 5.055085590589307,
+      "ci95": [
+       4.697563414086119,
+       5.293144539464461
+      ],
+      "n_recordings": 47,
+      "n_instants": 12338
+     },
+     "ref_set_bits": {
+      "median": 18.237019595702908,
+      "ci95": [
+       18.065832824711585,
+       18.385980963968205
+      ],
+      "n_recordings": 47,
+      "n_instants": 12338
+     },
+     "path_px_label": {
+      "median": 19.60321891790461,
+      "ci95": [
+       16.77554950658839,
+       22.823312162066596
+      ],
+      "n_recordings": 47,
+      "n_instants": 12338
+     }
+    },
+    "pooled": {
+     "Delta": {
+      "median": 1.9965888981447248,
+      "ci95": [
+       1.8495000528978416,
+       2.09876522298482
+      ],
+      "n_recordings": 104,
+      "n_instants": 21908
+     },
+     "cmax_gain_bits": {
+      "median": 2.70529825152952,
+      "ci95": [
+       2.6374689493163253,
+       2.763545957546673
+      ],
+      "n_recordings": 104,
+      "n_instants": 21908
+     },
+     "cmax_eps": {
+      "median": 0.021109181045289242,
+      "ci95": [
+       0.01909809765062772,
+       0.022976101862480478
+      ],
+      "n_recordings": 104,
+      "n_instants": 21908
+     },
+     "cmax_set_bits": {
+      "median": 15.702556318103646,
+      "ci95": [
+       15.603284297316634,
+       15.777666317996989
+      ],
+      "n_recordings": 104,
+      "n_instants": 21908
+     },
+     "cmax_b_px": {
+      "median": 1.0,
+      "ci95": [
+       1.0,
+       1.0
+      ],
+      "n_recordings": 104,
+      "n_instants": 21908
+     },
+     "cmax_bmin": {
+      "median": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "n_recordings": 104,
+      "n_instants": 21908
+     },
+     "cmax_tau_eq_us": {
+      "median": 5781.5052223069615,
+      "ci95": [
+       5095.767866592366,
+       6606.165338382346
+      ],
+      "n_recordings": 104,
+      "n_instants": 21908
+     },
+     "cmax_redundancy": {
+      "median": 7.990573574389226,
+      "ci95": [
+       7.581172913708014,
+       8.336308217299361
+      ],
+      "n_recordings": 104,
+      "n_instants": 21908
+     },
+     "static_gain_bits": {
+      "median": 0.4664557787314738,
+      "ci95": [
+       0.38806644383712197,
+       0.5878712158083615
+      ],
+      "n_recordings": 104,
+      "n_instants": 21908
+     },
+     "static_eps": {
+      "median": 0.3244710966461059,
+      "ci95": [
+       0.2735810322924894,
+       0.37978976356796806
+      ],
+      "n_recordings": 104,
+      "n_instants": 21908
+     },
+     "static_set_bits": {
+      "median": 17.6598403044859,
+      "ci95": [
+       17.52642073446615,
+       17.883245644377546
+      ],
+      "n_recordings": 104,
+      "n_instants": 21908
+     },
+     "static_b_px": {
+      "median": 1.0,
+      "ci95": [
+       1.0,
+       1.0
+      ],
+      "n_recordings": 104,
+      "n_instants": 21908
+     },
+     "static_bmin": {
+      "median": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "n_recordings": 104,
+      "n_instants": 21908
+     },
+     "static_tau_eq_us": {
+      "median": null,
+      "ci95": [
+       null,
+       null
+      ],
+      "n_recordings": 0,
+      "n_instants": 0
+     },
+     "static_redundancy": {
+      "median": 4.453992903471526,
+      "ci95": [
+       4.171959921392754,
+       4.701947291458644
+      ],
+      "n_recordings": 104,
+      "n_instants": 21908
+     },
+     "ref_set_bits": {
+      "median": 18.251606071466426,
+      "ci95": [
+       18.164960346548046,
+       18.379496867882658
+      ],
+      "n_recordings": 104,
+      "n_instants": 21908
+     },
+     "path_px_label": {
+      "median": 21.983807149216588,
+      "ci95": [
+       19.04873507258549,
+       25.152889766136802
+      ],
+      "n_recordings": 104,
+      "n_instants": 21908
+     }
+    }
+   }
+  },
+  "4_speed_class_isolated_100_0": {
+   "vehicles|0-20": {
+    "day": {
+     "Delta": {
+      "median": 0.07060267327051051,
+      "ci95": [
+       0.014125570146845234,
+       0.2759302228086131
+      ],
+      "n_recordings": 20,
+      "n_instants": 1894
+     },
+     "cmax_gain_bits": {
+      "median": 2.223767859418592,
+      "ci95": [
+       2.0006603779817,
+       2.9341226155819964
+      ],
+      "n_recordings": 20,
+      "n_instants": 1894
+     },
+     "cmax_eps": {
+      "median": 0.029479274144651773,
+      "ci95": [
+       0.02018420355743549,
+       0.03911334004722047
+      ],
+      "n_recordings": 20,
+      "n_instants": 1894
+     }
+    },
+    "night": {
+     "Delta": {
+      "median": 0.010266138687935467,
+      "ci95": [
+       0.001973260435509161,
+       0.14198970292357949
+      ],
+      "n_recordings": 33,
+      "n_instants": 2765
+     },
+     "cmax_gain_bits": {
+      "median": 3.169124785700358,
+      "ci95": [
+       2.5879774612101905,
+       3.8134122356906577
+      ],
+      "n_recordings": 33,
+      "n_instants": 2765
+     },
+     "cmax_eps": {
+      "median": 0.03621475048321417,
+      "ci95": [
+       0.03125632324923007,
+       0.047559965136881335
+      ],
+      "n_recordings": 33,
+      "n_instants": 2765
+     }
+    }
+   },
+   "vehicles|20-100": {
+    "day": {
+     "Delta": {
+      "median": 1.4060302907011692,
+      "ci95": [
+       1.269852989653991,
+       1.5404633792570284
+      ],
+      "n_recordings": 38,
+      "n_instants": 4561
+     },
+     "cmax_gain_bits": {
+      "median": 2.650716244720906,
+      "ci95": [
+       2.388093110305256,
+       2.910609193400296
+      ],
+      "n_recordings": 38,
+      "n_instants": 4561
+     },
+     "cmax_eps": {
+      "median": 0.02310993944297441,
+      "ci95": [
+       0.0193420896213211,
+       0.027560550537354844
+      ],
+      "n_recordings": 38,
+      "n_instants": 4561
+     }
+    },
+    "night": {
+     "Delta": {
+      "median": 1.0996940566497297,
+      "ci95": [
+       1.039133633337869,
+       1.13152296095455
+      ],
+      "n_recordings": 43,
+      "n_instants": 6751
+     },
+     "cmax_gain_bits": {
+      "median": 3.06245766848323,
+      "ci95": [
+       2.837501871317329,
+       3.276571833277856
+      ],
+      "n_recordings": 43,
+      "n_instants": 6751
+     },
+     "cmax_eps": {
+      "median": 0.02520856676080375,
+      "ci95": [
+       0.022883032360336265,
+       0.02641122129901495
+      ],
+      "n_recordings": 43,
+      "n_instants": 6751
+     }
+    }
+   },
+   "vehicles|100-300": {
+    "day": {
+     "Delta": {
+      "median": 2.3666046806415766,
+      "ci95": [
+       2.2456562406163245,
+       2.5160415022074476
+      ],
+      "n_recordings": 54,
+      "n_instants": 4732
+     },
+     "cmax_gain_bits": {
+      "median": 2.8303354014285924,
+      "ci95": [
+       2.7226229356989666,
+       2.915593936431417
+      ],
+      "n_recordings": 54,
+      "n_instants": 4732
+     },
+     "cmax_eps": {
+      "median": 0.016197638700595762,
+      "ci95": [
+       0.013674751640590425,
+       0.025852949351915677
+      ],
+      "n_recordings": 54,
+      "n_instants": 4732
+     }
+    },
+    "night": {
+     "Delta": {
+      "median": 2.1993508716688766,
+      "ci95": [
+       2.0984979294911543,
+       2.2808376356059945
+      ],
+      "n_recordings": 45,
+      "n_instants": 5430
+     },
+     "cmax_gain_bits": {
+      "median": 2.9525276196407013,
+      "ci95": [
+       2.883726022218486,
+       3.044406213780398
+      ],
+      "n_recordings": 45,
+      "n_instants": 5430
+     },
+     "cmax_eps": {
+      "median": 0.02450929830929218,
+      "ci95": [
+       0.022697665085200186,
+       0.025873169479228415
+      ],
+      "n_recordings": 45,
+      "n_instants": 5430
+     }
+    }
+   },
+   "vehicles|300-inf": {
+    "day": {
+     "Delta": {
+      "median": 2.419315341772709,
+      "ci95": [
+       2.2550814652508784,
+       2.506849505795831
+      ],
+      "n_recordings": 41,
+      "n_instants": 2304
+     },
+     "cmax_gain_bits": {
+      "median": 2.6896176418510205,
+      "ci95": [
+       2.5057790549887073,
+       2.7640767696647064
+      ],
+      "n_recordings": 41,
+      "n_instants": 2304
+     },
+     "cmax_eps": {
+      "median": 0.019402513248100137,
+      "ci95": [
+       0.010453834442758358,
+       0.03728396641465323
+      ],
+      "n_recordings": 41,
+      "n_instants": 2304
+     }
+    },
+    "night": {
+     "Delta": {
+      "median": 2.5618462867264533,
+      "ci95": [
+       2.510931163712236,
+       2.645743363208283
+      ],
+      "n_recordings": 22,
+      "n_instants": 1288
+     },
+     "cmax_gain_bits": {
+      "median": 2.947070143308398,
+      "ci95": [
+       2.8199842186204185,
+       3.088461557287393
+      ],
+      "n_recordings": 22,
+      "n_instants": 1288
+     },
+     "cmax_eps": {
+      "median": 0.03999571029700745,
+      "ci95": [
+       0.03828273726478701,
+       0.04674224092633011
+      ],
+      "n_recordings": 22,
+      "n_instants": 1288
+     }
+    }
+   },
+   "other|0-20": {
+    "day": {
+     "Delta": {
+      "median": 0.22753880501445778,
+      "ci95": [
+       0.18746213524333655,
+       0.2972468747323411
+      ],
+      "n_recordings": 27,
+      "n_instants": 1650
+     },
+     "cmax_gain_bits": {
+      "median": 2.3969527624400904,
+      "ci95": [
+       1.7637511996866735,
+       2.497150056487275
+      ],
+      "n_recordings": 27,
+      "n_instants": 1650
+     },
+     "cmax_eps": {
+      "median": 0.06349041330455817,
+      "ci95": [
+       0.045972862328234276,
+       0.08056159662511024
+      ],
+      "n_recordings": 27,
+      "n_instants": 1650
+     }
+    },
+    "night": {
+     "Delta": {
+      "median": 0.061193361912504685,
+      "ci95": [
+       0.04860205376829363,
+       0.16659290699950802
+      ],
+      "n_recordings": 21,
+      "n_instants": 1271
+     },
+     "cmax_gain_bits": {
+      "median": 2.4519978489687997,
+      "ci95": [
+       2.1042320900755485,
+       2.755779081048626
+      ],
+      "n_recordings": 21,
+      "n_instants": 1271
+     },
+     "cmax_eps": {
+      "median": 0.06128712505036985,
+      "ci95": [
+       0.04780508908972393,
+       0.0775970269948342
+      ],
+      "n_recordings": 21,
+      "n_instants": 1271
+     }
+    }
+   },
+   "other|20-100": {
+    "day": {
+     "Delta": {
+      "median": 1.1643776952328322,
+      "ci95": [
+       1.082167269509288,
+       1.2946090718373888
+      ],
+      "n_recordings": 54,
+      "n_instants": 5788
+     },
+     "cmax_gain_bits": {
+      "median": 2.5666219911571586,
+      "ci95": [
+       2.266604386387817,
+       2.6863139137930876
+      ],
+      "n_recordings": 54,
+      "n_instants": 5788
+     },
+     "cmax_eps": {
+      "median": 0.03126228447196129,
+      "ci95": [
+       0.026252961583189925,
+       0.040067398638115745
+      ],
+      "n_recordings": 54,
+      "n_instants": 5788
+     }
+    },
+    "night": {
+     "Delta": {
+      "median": 1.053304319385303,
+      "ci95": [
+       0.9498818471048107,
+       1.2511332166028497
+      ],
+      "n_recordings": 40,
+      "n_instants": 5064
+     },
+     "cmax_gain_bits": {
+      "median": 2.5799084398982384,
+      "ci95": [
+       2.3822201572260644,
+       2.7771722821042992
+      ],
+      "n_recordings": 40,
+      "n_instants": 5064
+     },
+     "cmax_eps": {
+      "median": 0.05328192480880001,
+      "ci95": [
+       0.04494644263883473,
+       0.06172479639898805
+      ],
+      "n_recordings": 40,
+      "n_instants": 5064
+     }
+    }
+   },
+   "other|100-300": {
+    "day": {
+     "Delta": {
+      "median": 2.2976650166469232,
+      "ci95": [
+       1.9533508810937352,
+       2.445907468687585
+      ],
+      "n_recordings": 12,
+      "n_instants": 358
+     },
+     "cmax_gain_bits": {
+      "median": 2.5347413410089574,
+      "ci95": [
+       2.355410389178801,
+       2.8426165356440167
+      ],
+      "n_recordings": 12,
+      "n_instants": 358
+     },
+     "cmax_eps": {
+      "median": 0.03651535244100822,
+      "ci95": [
+       0.020891643484568213,
+       0.06068669971643222
+      ],
+      "n_recordings": 12,
+      "n_instants": 358
+     }
+    },
+    "night": {
+     "Delta": {
+      "median": 2.471396966361965,
+      "ci95": [
+       2.2045176750411475,
+       2.736281988271763
+      ],
+      "n_recordings": 12,
+      "n_instants": 460
+     },
+     "cmax_gain_bits": {
+      "median": 2.687385452187929,
+      "ci95": [
+       2.4023106358504602,
+       3.148951792170057
+      ],
+      "n_recordings": 12,
+      "n_instants": 460
+     },
+     "cmax_eps": {
+      "median": 0.05245687536068036,
+      "ci95": [
+       0.03370507130553923,
+       0.059152762175282356
+      ],
+      "n_recordings": 12,
+      "n_instants": 460
+     }
+    }
+   },
+   "other|300-inf": {
+    "day": {
+     "Delta": {
+      "median": null,
+      "ci95": [
+       null,
+       null
+      ],
+      "n_recordings": 0,
+      "n_instants": 0
+     },
+     "cmax_gain_bits": {
+      "median": null,
+      "ci95": [
+       null,
+       null
+      ],
+      "n_recordings": 0,
+      "n_instants": 0
+     },
+     "cmax_eps": {
+      "median": null,
+      "ci95": [
+       null,
+       null
+      ],
+      "n_recordings": 0,
+      "n_instants": 0
+     }
+    },
+    "night": {
+     "Delta": {
+      "median": null,
+      "ci95": [
+       null,
+       null
+      ],
+      "n_recordings": 0,
+      "n_instants": 0
+     },
+     "cmax_gain_bits": {
+      "median": null,
+      "ci95": [
+       null,
+       null
+      ],
+      "n_recordings": 0,
+      "n_instants": 0
+     },
+     "cmax_eps": {
+      "median": null,
+      "ci95": [
+       null,
+       null
+      ],
+      "n_recordings": 0,
+      "n_instants": 0
+     }
+    }
+   }
+  },
+  "5_overlap_100_0": {
+   "H_isolated": {
+    "day": {
+     "Delta": {
+      "median": 2.0364960053496493,
+      "ci95": [
+       1.8845180589183386,
+       2.296019720778691
+      ],
+      "n_recordings": 57,
+      "n_instants": 9503
+     },
+     "static_gain_bits": {
+      "median": 0.48168669640253725,
+      "ci95": [
+       0.429882981781585,
+       0.5788378390680435
+      ],
+      "n_recordings": 57,
+      "n_instants": 9503
+     },
+     "label_gain_bits": {
+      "median": 2.518332064603772,
+      "ci95": [
+       2.344693249093396,
+       2.799565013521862
+      ],
+      "n_recordings": 57,
+      "n_instants": 9503
+     },
+     "cmax_gain_bits": {
+      "median": 2.8570953509803,
+      "ci95": [
+       2.6583111147469918,
+       2.95185756862176
+      ],
+      "n_recordings": 57,
+      "n_instants": 9503
+     },
+     "static_eps": {
+      "median": 0.3810089041754344,
+      "ci95": [
+       0.29771647000775026,
+       0.440183013491773
+      ],
+      "n_recordings": 57,
+      "n_instants": 9503
+     },
+     "label_eps": {
+      "median": 0.017667343261448663,
+      "ci95": [
+       0.014789224459179642,
+       0.019874762010116905
+      ],
+      "n_recordings": 57,
+      "n_instants": 9503
+     },
+     "cmax_eps": {
+      "median": 0.019937012727745042,
+      "ci95": [
+       0.017129353126072878,
+       0.024253595119319002
+      ],
+      "n_recordings": 57,
+      "n_instants": 9503
+     },
+     "static_set_bits": {
+      "median": 17.96604479866782,
+      "ci95": [
+       17.408387771953436,
+       18.143895391133782
+      ],
+      "n_recordings": 57,
+      "n_instants": 9503
+     },
+     "label_set_bits": {
+      "median": 15.966860685107306,
+      "ci95": [
+       15.880232427863508,
+       16.135427409259854
+      ],
+      "n_recordings": 57,
+      "n_instants": 9503
+     },
+     "cmax_set_bits": {
+      "median": 15.637601321226622,
+      "ci95": [
+       15.500675025440453,
+       15.81132802891427
+      ],
+      "n_recordings": 57,
+      "n_instants": 9503
+     },
+     "ref_set_bits": {
+      "median": 18.27317921969353,
+      "ci95": [
+       18.184305867076795,
+       18.588170938696603
+      ],
+      "n_recordings": 57,
+      "n_instants": 9503
+     },
+     "cmax_b_px": {
+      "median": 0.5,
+      "ci95": [
+       0.5,
+       1.0
+      ],
+      "n_recordings": 57,
+      "n_instants": 9503
+     },
+     "cmax_bmin": {
+      "median": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "n_recordings": 57,
+      "n_instants": 9503
+     },
+     "cmax_tau_eq_us": {
+      "median": 4509.155275833979,
+      "ci95": [
+       4013.6192197767327,
+       5298.456102521648
+      ],
+      "n_recordings": 57,
+      "n_instants": 9503
+     },
+     "cmax_redundancy": {
+      "median": 5.136505731156651,
+      "ci95": [
+       4.70404645436092,
+       5.440630797773655
+      ],
+      "n_recordings": 57,
+      "n_instants": 9503
+     },
+     "static_redundancy": {
+      "median": 2.9077440121177696,
+      "ci95": [
+       2.7591123073111397,
+       3.113196064509585
+      ],
+      "n_recordings": 57,
+      "n_instants": 9503
+     },
+     "path_px_label": {
+      "median": 14.296240853580356,
+      "ci95": [
+       10.548931077957123,
+       15.928431071115174
+      ],
+      "n_recordings": 57,
+      "n_instants": 9503
+     }
+    },
+    "night": {
+     "Delta": {
+      "median": 1.6269293550941732,
+      "ci95": [
+       1.4887805172435586,
+       1.7567229409703624
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "static_gain_bits": {
+      "median": 1.1708488142221256,
+      "ci95": [
+       1.014256364897495,
+       1.3146332059287218
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "label_gain_bits": {
+      "median": 2.8980493471249638,
+      "ci95": [
+       2.741755098463466,
+       2.9932725275294256
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "cmax_gain_bits": {
+      "median": 3.007315605763832,
+      "ci95": [
+       2.8578475014452316,
+       3.13126895522414
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "static_eps": {
+      "median": 0.18810095491454393,
+      "ci95": [
+       0.14435727550704103,
+       0.23324752117736958
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "label_eps": {
+      "median": 0.024416908511848877,
+      "ci95": [
+       0.022967030534483013,
+       0.026146144480876397
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "cmax_eps": {
+      "median": 0.025085321068438006,
+      "ci95": [
+       0.023853025822408877,
+       0.02586781361737074
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "static_set_bits": {
+      "median": 17.189605146770738,
+      "ci95": [
+       16.955284429089268,
+       17.25786213575629
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "label_set_bits": {
+      "median": 15.571069729078626,
+      "ci95": [
+       15.468213012874681,
+       15.661868197640556
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "cmax_set_bits": {
+      "median": 15.301991243107025,
+      "ci95": [
+       15.16720064131596,
+       15.41698442204242
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "ref_set_bits": {
+      "median": 18.251559196224022,
+      "ci95": [
+       18.060238037662412,
+       18.387500576777594
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "cmax_b_px": {
+      "median": 1.0,
+      "ci95": [
+       1.0,
+       1.0
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "cmax_bmin": {
+      "median": 0.0,
+      "ci95": [
+       0.0,
+       0.0015625
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "cmax_tau_eq_us": {
+      "median": 6968.798440830737,
+      "ci95": [
+       6125.844048891233,
+       7622.79321307966
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "cmax_redundancy": {
+      "median": 5.368838233934776,
+      "ci95": [
+       5.007073113849152,
+       5.726359437982612
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "static_redundancy": {
+      "median": 3.756934221775268,
+      "ci95": [
+       3.5224949197666375,
+       3.991371340523883
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "path_px_label": {
+      "median": 9.801624290306771,
+      "ci95": [
+       8.167668377077621,
+       11.378659798219044
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     }
+    }
+   },
+   "H_overlapping": {
+    "day": {
+     "Delta": {
+      "median": 1.668537639946468,
+      "ci95": [
+       1.2776259146348696,
+       1.889749779950404
+      ],
+      "n_recordings": 30,
+      "n_instants": 2800
+     },
+     "static_gain_bits": {
+      "median": 0.5150963186787436,
+      "ci95": [
+       0.35769084849037025,
+       0.6967819835584557
+      ],
+      "n_recordings": 30,
+      "n_instants": 2800
+     },
+     "label_gain_bits": {
+      "median": 2.073583569029176,
+      "ci95": [
+       1.9623472201945429,
+       2.139797003066098
+      ],
+      "n_recordings": 30,
+      "n_instants": 2800
+     },
+     "cmax_gain_bits": {
+      "median": 2.2381123381671815,
+      "ci95": [
+       2.0705736680566416,
+       2.383610047639454
+      ],
+      "n_recordings": 30,
+      "n_instants": 2800
+     },
+     "static_eps": {
+      "median": 0.354861622825428,
+      "ci95": [
+       0.2373578447889333,
+       0.4300983127692803
+      ],
+      "n_recordings": 30,
+      "n_instants": 2800
+     },
+     "label_eps": {
+      "median": 0.046091180361796616,
+      "ci95": [
+       0.03890822589089879,
+       0.06566775136111308
+      ],
+      "n_recordings": 30,
+      "n_instants": 2800
+     },
+     "cmax_eps": {
+      "median": 0.05031021003823201,
+      "ci95": [
+       0.04429851433601856,
+       0.05938577307871612
+      ],
+      "n_recordings": 30,
+      "n_instants": 2800
+     },
+     "static_set_bits": {
+      "median": 17.367699694688497,
+      "ci95": [
+       17.230045331047524,
+       17.833230912086954
+      ],
+      "n_recordings": 30,
+      "n_instants": 2800
+     },
+     "label_set_bits": {
+      "median": 16.326460866392313,
+      "ci95": [
+       16.0531739487778,
+       16.486862005628716
+      ],
+      "n_recordings": 30,
+      "n_instants": 2800
+     },
+     "cmax_set_bits": {
+      "median": 16.11737799269026,
+      "ci95": [
+       15.84543474044673,
+       16.375494306648168
+      ],
+      "n_recordings": 30,
+      "n_instants": 2800
+     },
+     "ref_set_bits": {
+      "median": 18.25585347848545,
+      "ci95": [
+       17.99333562755143,
+       18.425183961890227
+      ],
+      "n_recordings": 30,
+      "n_instants": 2800
+     },
+     "cmax_b_px": {
+      "median": 1.0,
+      "ci95": [
+       0.5,
+       1.0
+      ],
+      "n_recordings": 30,
+      "n_instants": 2800
+     },
+     "cmax_bmin": {
+      "median": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "n_recordings": 30,
+      "n_instants": 2800
+     },
+     "cmax_tau_eq_us": {
+      "median": 6676.98914684026,
+      "ci95": [
+       4155.28268708833,
+       7987.418076851442
+      ],
+      "n_recordings": 30,
+      "n_instants": 2800
+     },
+     "cmax_redundancy": {
+      "median": 4.3617081468030126,
+      "ci95": [
+       3.7801257583542394,
+       5.283237343277047
+      ],
+      "n_recordings": 30,
+      "n_instants": 2800
+     },
+     "static_redundancy": {
+      "median": 2.9590389562622725,
+      "ci95": [
+       2.8175717953799237,
+       3.18325691133038
+      ],
+      "n_recordings": 30,
+      "n_instants": 2800
+     },
+     "path_px_label": {
+      "median": 9.237291645591334,
+      "ci95": [
+       7.6284039565647985,
+       13.67332525912963
+      ],
+      "n_recordings": 30,
+      "n_instants": 2800
+     }
+    },
+    "night": {
+     "Delta": {
+      "median": 1.3985053471510671,
+      "ci95": [
+       1.2234277590235823,
+       1.6179084639265184
+      ],
+      "n_recordings": 37,
+      "n_instants": 2861
+     },
+     "static_gain_bits": {
+      "median": 0.8902516535257234,
+      "ci95": [
+       0.8036910803810855,
+       1.1276825817540903
+      ],
+      "n_recordings": 37,
+      "n_instants": 2861
+     },
+     "label_gain_bits": {
+      "median": 2.452477724866064,
+      "ci95": [
+       2.2848667951632535,
+       2.5899701736787044
+      ],
+      "n_recordings": 37,
+      "n_instants": 2861
+     },
+     "cmax_gain_bits": {
+      "median": 2.6771890448122058,
+      "ci95": [
+       2.5528861405213483,
+       2.765514764443644
+      ],
+      "n_recordings": 37,
+      "n_instants": 2861
+     },
+     "static_eps": {
+      "median": 0.28460163397907645,
+      "ci95": [
+       0.1721490635396749,
+       0.3474554725873106
+      ],
+      "n_recordings": 37,
+      "n_instants": 2861
+     },
+     "label_eps": {
+      "median": 0.05117857175176299,
+      "ci95": [
+       0.044521236073977254,
+       0.06710153096619997
+      ],
+      "n_recordings": 37,
+      "n_instants": 2861
+     },
+     "cmax_eps": {
+      "median": 0.05556067247176017,
+      "ci95": [
+       0.04399597836997984,
+       0.06497318719387907
+      ],
+      "n_recordings": 37,
+      "n_instants": 2861
+     },
+     "static_set_bits": {
+      "median": 17.225270152440487,
+      "ci95": [
+       17.02091325851829,
+       17.38837790544629
+      ],
+      "n_recordings": 37,
+      "n_instants": 2861
+     },
+     "label_set_bits": {
+      "median": 15.939253355220877,
+      "ci95": [
+       15.653850492512923,
+       16.00059920637279
+      ],
+      "n_recordings": 37,
+      "n_instants": 2861
+     },
+     "cmax_set_bits": {
+      "median": 15.740860044485098,
+      "ci95": [
+       15.57421536897503,
+       15.846574032484849
+      ],
+      "n_recordings": 37,
+      "n_instants": 2861
+     },
+     "ref_set_bits": {
+      "median": 18.207628825726104,
+      "ci95": [
+       18.068326648016757,
+       18.407184226604787
+      ],
+      "n_recordings": 37,
+      "n_instants": 2861
+     },
+     "cmax_b_px": {
+      "median": 1.0,
+      "ci95": [
+       1.0,
+       1.0
+      ],
+      "n_recordings": 37,
+      "n_instants": 2861
+     },
+     "cmax_bmin": {
+      "median": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "n_recordings": 37,
+      "n_instants": 2861
+     },
+     "cmax_tau_eq_us": {
+      "median": 6457.635440547604,
+      "ci95": [
+       5544.231510307546,
+       10904.99485283038
+      ],
+      "n_recordings": 37,
+      "n_instants": 2861
+     },
+     "cmax_redundancy": {
+      "median": 4.876079016036757,
+      "ci95": [
+       4.57127829677126,
+       5.3560700876095115
+      ],
+      "n_recordings": 37,
+      "n_instants": 2861
+     },
+     "static_redundancy": {
+      "median": 3.6677871004760356,
+      "ci95": [
+       3.493827160493827,
+       3.9186757445294442
+      ],
+      "n_recordings": 37,
+      "n_instants": 2861
+     },
+     "path_px_label": {
+      "median": 10.010647774856533,
+      "ci95": [
+       7.310272647613237,
+       14.052686335112924
+      ],
+      "n_recordings": 37,
+      "n_instants": 2861
+     }
+    }
+   }
+  },
+  "6_velocity_H_100_0": {
+   "day": {
+    "n_instants": 9546,
+    "speed_ratio_quantiles": {
+     "0.05": 0.7429784314434529,
+     "0.25": 0.9578211816715408,
+     "0.5": 1.0779806748280456,
+     "0.75": 1.2680157616908116,
+     "0.95": 1.762169062740048
+    },
+    "angle_deg_quantiles": {
+     "0.05": 0.15430087720408756,
+     "0.25": 1.4371823195710454,
+     "0.5": 3.711635515853092,
+     "0.75": 8.339962786694608,
+     "0.95": 21.63109600986663
+    },
+    "pooled_share_ratio_in_0.8_1.25": 0.6558768070395977,
+    "pooled_share_angle_under_15deg": 0.8923109155667295,
+    "per_recording_share_ratio_in_0.8_1.25": {
+     "median": 0.6923076923076923,
+     "ci95": [
+      0.6041666666666666,
+      0.7368421052631579
+     ],
+     "n_recordings": 57,
+     "n_instants": 9503
+    },
+    "per_recording_median_speed_ratio": {
+     "median": 1.080896924028221,
+     "ci95": [
+      1.0736537180827057,
+      1.0890512172243803
+     ],
+     "n_recordings": 57,
+     "n_instants": 9503
+    },
+    "per_recording_median_angle_deg": {
+     "median": 3.3000426554168594,
+     "ci95": [
+      2.7895941638151602,
+      3.551012784068705
+     ],
+     "n_recordings": 57,
+     "n_instants": 9503
+    }
+   },
+   "night": {
+    "n_instants": 12275,
+    "speed_ratio_quantiles": {
+     "0.05": 0.6321910132500678,
+     "0.25": 0.8972771826234291,
+     "0.5": 1.0572867375794197,
+     "0.75": 1.2569557779049263,
+     "0.95": 1.7587835074756386
+    },
+    "angle_deg_quantiles": {
+     "0.05": 0.16362925715666438,
+     "0.25": 1.5860384127485445,
+     "0.5": 4.173294615078578,
+     "0.75": 8.782727808020939,
+     "0.95": 22.68792620564178
+    },
+    "pooled_share_ratio_in_0.8_1.25": 0.595112016293279,
+    "pooled_share_angle_under_15deg": 0.8813034623217922,
+    "per_recording_share_ratio_in_0.8_1.25": {
+     "median": 0.6006944444444444,
+     "ci95": [
+      0.5567282321899736,
+      0.6330472103004292
+     ],
+     "n_recordings": 47,
+     "n_instants": 12252
+    },
+    "per_recording_median_speed_ratio": {
+     "median": 1.0712774857777485,
+     "ci95": [
+      1.0447628669543123,
+      1.0939381022890688
+     ],
+     "n_recordings": 47,
+     "n_instants": 12252
+    },
+    "per_recording_median_angle_deg": {
+     "median": 4.020358331558458,
+     "ci95": [
+      3.6613364184897716,
+      4.562007853730037
+     ],
+     "n_recordings": 47,
+     "n_instants": 12252
+    }
+   }
+  },
+  "7_skips": {
+   "definition": "share = in-box events (inside the track's interpolated box dilated by margin_px) of the future windows of scored instants, over the same for all generated instants",
+   "by_setting": {
+    "100,0": {
+     "day|vehicles": {
+      "generated": 20769,
+      "counts": {
+       "scored": 19011,
+       "future_too_small": 127,
+       "template_too_small": 1631
+      },
+      "inbox_future_events_total": 516435163,
+      "share_inbox_events_in_scored_instants": 0.9999468703876773
+     },
+     "day|other": {
+      "generated": 13380,
+      "counts": {
+       "scored": 10831,
+       "future_too_small": 63,
+       "template_too_small": 2486
+      },
+      "inbox_future_events_total": 16553298,
+      "share_inbox_events_in_scored_instants": 0.9964479585880711
+     },
+     "night|vehicles": {
+      "generated": 22112,
+      "counts": {
+       "scored": 21824,
+       "future_too_small": 28,
+       "template_too_small": 260
+      },
+      "inbox_future_events_total": 393616125,
+      "share_inbox_events_in_scored_instants": 0.9999730295602092
+     },
+     "night|other": {
+      "generated": 17523,
+      "counts": {
+       "scored": 13960,
+       "future_too_small": 67,
+       "template_too_small": 3496
+      },
+      "inbox_future_events_total": 19110169,
+      "share_inbox_events_in_scored_instants": 0.9941889053937722
+     }
+    },
+    "100,33": {
+     "day|vehicles": {
+      "generated": 20769,
+      "counts": {
+       "scored": 19024,
+       "future_too_small": 114,
+       "template_too_small": 1631
+      },
+      "inbox_future_events_total": 518805705,
+      "share_inbox_events_in_scored_instants": 0.999943402704101
+     },
+     "day|other": {
+      "generated": 13380,
+      "counts": {
+       "scored": 10773,
+       "future_too_small": 121,
+       "template_too_small": 2486
+      },
+      "inbox_future_events_total": 16541960,
+      "share_inbox_events_in_scored_instants": 0.9960698127670482
+     },
+     "night|vehicles": {
+      "generated": 22112,
+      "counts": {
+       "scored": 21831,
+       "future_too_small": 21,
+       "template_too_small": 260
+      },
+      "inbox_future_events_total": 393470765,
+      "share_inbox_events_in_scored_instants": 0.9999643632990115
+     },
+     "night|other": {
+      "generated": 17523,
+      "counts": {
+       "scored": 13936,
+       "future_too_small": 91,
+       "template_too_small": 3496
+      },
+      "inbox_future_events_total": 19143035,
+      "share_inbox_events_in_scored_instants": 0.9937750205231302
+     }
+    },
+    "100,100": {
+     "day|vehicles": {
+      "generated": 20769,
+      "counts": {
+       "scored": 18976,
+       "future_too_small": 162,
+       "template_too_small": 1631
+      },
+      "inbox_future_events_total": 520666576,
+      "share_inbox_events_in_scored_instants": 0.9999209551718948
+     },
+     "day|other": {
+      "generated": 13380,
+      "counts": {
+       "scored": 10715,
+       "future_too_small": 179,
+       "template_too_small": 2486
+      },
+      "inbox_future_events_total": 16550278,
+      "share_inbox_events_in_scored_instants": 0.9952959098330554
+     },
+     "night|vehicles": {
+      "generated": 22112,
+      "counts": {
+       "scored": 21816,
+       "future_too_small": 36,
+       "template_too_small": 260
+      },
+      "inbox_future_events_total": 392856509,
+      "share_inbox_events_in_scored_instants": 0.9999465453682989
+     },
+     "night|other": {
+      "generated": 17523,
+      "counts": {
+       "scored": 13854,
+       "future_too_small": 173,
+       "template_too_small": 3496
+      },
+      "inbox_future_events_total": 19115769,
+      "share_inbox_events_in_scored_instants": 0.9933000864364913
+     }
+    },
+    "100,300": {
+     "day|vehicles": {
+      "generated": 20769,
+      "counts": {
+       "scored": 18947,
+       "future_too_small": 191,
+       "template_too_small": 1631
+      },
+      "inbox_future_events_total": 513913460,
+      "share_inbox_events_in_scored_instants": 0.9998804740393451
+     },
+     "day|other": {
+      "generated": 13380,
+      "counts": {
+       "scored": 10576,
+       "future_too_small": 318,
+       "template_too_small": 2486
+      },
+      "inbox_future_events_total": 16616755,
+      "share_inbox_events_in_scored_instants": 0.9936284190264585
+     },
+     "night|vehicles": {
+      "generated": 22112,
+      "counts": {
+       "scored": 21800,
+       "future_too_small": 52,
+       "template_too_small": 260
+      },
+      "inbox_future_events_total": 387054079,
+      "share_inbox_events_in_scored_instants": 0.9999369183756878
+     },
+     "night|other": {
+      "generated": 17523,
+      "counts": {
+       "scored": 13763,
+       "future_too_small": 264,
+       "template_too_small": 3496
+      },
+      "inbox_future_events_total": 19195215,
+      "share_inbox_events_in_scored_instants": 0.9916265590148378
+     }
+    },
+    "50,0": {
+     "day|vehicles": {
+      "generated": 20769,
+      "counts": {
+       "scored": 18552,
+       "future_too_small": 55,
+       "template_too_small": 2162
+      },
+      "inbox_future_events_total": 516435163,
+      "share_inbox_events_in_scored_instants": 0.9985412476648109
+     },
+     "day|other": {
+      "generated": 13380,
+      "counts": {
+       "scored": 9635,
+       "future_too_small": 3,
+       "template_too_small": 3742
+      },
+      "inbox_future_events_total": 16553298,
+      "share_inbox_events_in_scored_instants": 0.9887008619067934
+     },
+     "night|vehicles": {
+      "generated": 22112,
+      "counts": {
+       "scored": 21637,
+       "future_too_small": 2,
+       "template_too_small": 473
+      },
+      "inbox_future_events_total": 393616125,
+      "share_inbox_events_in_scored_instants": 0.9999113349332424
+     },
+     "night|other": {
+      "generated": 17523,
+      "counts": {
+       "scored": 12134,
+       "future_too_small": 5,
+       "template_too_small": 5384
+      },
+      "inbox_future_events_total": 19110169,
+      "share_inbox_events_in_scored_instants": 0.9845688439489991
+     }
+    },
+    "200,0": {
+     "day|vehicles": {
+      "generated": 20769,
+      "counts": {
+       "scored": 19134,
+       "future_too_small": 276,
+       "template_too_small": 1359
+      },
+      "inbox_future_events_total": 516435163,
+      "share_inbox_events_in_scored_instants": 0.999965982176934
+     },
+     "day|other": {
+      "generated": 13380,
+      "counts": {
+       "scored": 11189,
+       "future_too_small": 465,
+       "template_too_small": 1726
+      },
+      "inbox_future_events_total": 16553298,
+      "share_inbox_events_in_scored_instants": 0.9979801004005365
+     },
+     "night|vehicles": {
+      "generated": 22112,
+      "counts": {
+       "scored": 21867,
+       "future_too_small": 88,
+       "template_too_small": 157
+      },
+      "inbox_future_events_total": 393616125,
+      "share_inbox_events_in_scored_instants": 0.9999875538635516
+     },
+     "night|other": {
+      "generated": 17523,
+      "counts": {
+       "scored": 14638,
+       "future_too_small": 757,
+       "template_too_small": 2128
+      },
+      "inbox_future_events_total": 19110169,
+      "share_inbox_events_in_scored_instants": 0.9967889870571003
+     }
+    }
+   }
+  }
+ }
+}
