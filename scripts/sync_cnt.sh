@@ -5,7 +5,7 @@ set -euo pipefail
 cd "$(git rev-parse --show-toplevel)"
 stamp=$(git rev-parse HEAD)
 git diff --quiet HEAD -- ec scripts tests config vendor pyproject.toml || stamp="${stamp}-dirty"
-if ssh -o BatchMode=yes cnt "ps -u \"\$(whoami)\" -o args= | grep -Eq '[s]cripts/(mp|rg|gp)_'"; then
+if ssh -o BatchMode=yes cnt "ps -u \"\$(whoami)\" -o args= | grep -Eq '[s]cripts/(mp|rg|gp|af)_'"; then
     echo "mp workers are running on cnt; refusing to sync" >&2; exit 1
 fi
 rsync -a --delete --exclude .git --exclude results --exclude docs --exclude archive --exclude '__pycache__' \
