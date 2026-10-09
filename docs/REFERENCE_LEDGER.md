@@ -113,3 +113,39 @@ of the companion project.
 | version / conditions | none |
 | status | `UNRESOLVED`: no primary source read. The value follows from the entropy of a uniform quantizer index, ln(1/Δ) plus the differential entropy, at distortion Δ²/12 |
 | does not support | any claim at coarse resolution, where the measured excess in N3 is larger |
+
+### `blahut1972computation`
+
+| field | value |
+|---|---|
+| claim supported | the rate-distortion function of a discrete source can be computed, at a given slope, by an alternating iteration on the output distribution |
+| source | R. E. Blahut, "Computation of channel capacity and rate-distortion functions," IEEE Transactions on Information Theory, vol. 18, no. 4, pp. 460-473, July 1972 |
+| source type | primary (journal article) |
+| used in | `ec/regimes.py`, function `blahut_arimoto` (directive 006, check R1) |
+| version / conditions | title, author, journal and month read on the IEEE Information Theory Society page of the paper (https://itsoc.org/node/36671) on 2026-10-10; volume, issue and pages read on the author's dblp record (https://dblp1.uni-trier.de/pid/89/3073.html) on the same day. No DOI was confirmed, so none is given. The article was not read |
+| status | `PARTIAL`: citation verified, content stated from general knowledge. The iteration in the code was written from that knowledge and is checked against a Gaussian source in `tests/test_regimes_gate.py` |
+| does not support | a convergence rate, a stopping rule, or any statement about a continuous source: the code discretizes the source and repeats the computation on a second grid |
+
+### `rate_distortion_dual_lower_bound`
+
+| field | value |
+|---|---|
+| claim supported | for a discrete source `p`, a distortion `d`, a slope `beta` > 0 and any output distribution `q`, with `Z(x) = sum_y q(y) exp(-beta d(x, y))` and `c(y) = sum_x p(x) exp(-beta d(x, y)) / Z(x)`: `R(D) >= -beta D - sum_x p(x) ln Z(x) - ln max_y c(y)` for every `D` |
+| source | standard lower bound of rate-distortion theory, used as the lower end of the bracket of a Blahut-Arimoto iteration; no source was opened |
+| source type | not established |
+| used in | `ec/regimes.py`, function `blahut_arimoto` (`R_lower`) |
+| version / conditions | none |
+| status | `UNRESOLVED`: no primary source read, and no theorem number is given. The statement follows from the variational bound `R(D) >= -beta D + sum_x p(x) ln lambda(x)` for any `lambda >= 0` with `sum_x p(x) lambda(x) exp(-beta d(x, y)) <= 1` for all `y`, applied to `lambda(x) = 1 / (Z(x) max_y c(y))`; that variational bound is itself stated from general knowledge. An independent review of `ec/regimes.py` on 2026-10-10 found the bracket correct |
+| does not support | the rate-distortion function of the continuous source; the bound is for the discretized source with reproduction points on the same grid |
+
+### `plug_in_entropy_bias`
+
+| field | value |
+|---|---|
+| claim supported | the plug-in entropy estimate from `N` samples over `m` occupied cells is biased downward by about `(m - 1) / (2 N)` nats, and adding that term removes the bias to first order |
+| source | standard result, commonly attributed to G. A. Miller (1955) and known as the Miller-Madow correction; no source was opened |
+| source type | not established |
+| used in | `ec/regimes.py`, function `coder_simulated` (check R3) |
+| version / conditions | none |
+| status | `UNRESOLVED`: no primary source read, bibliographic data not confirmed. In check R3 the correction is at most 3.7e-3 nat (14,883 cells, 2,000,000 samples), below the tolerance of 5e-3 nat, and the corrected estimate is compared with a value computed from the density |
+| does not support | accuracy when many cells hold few samples |
