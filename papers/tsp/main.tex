@@ -39,7 +39,10 @@ and what remains is the motion, at a cost that grows at most logarithmically wit
 rate-distortion function is exact in the first regime and known within $0.255$ bit per pixel in the
 second. These results lead to a codec that transmits the events of one window as a template and one
 affine map for each later window, and we quantify what moving events loses against regenerating
-them. On traffic recordings, a motion-compensated template shortens the lossless code only
+them.
+% PROVISIONAL (verify against the final experiments before submission): the next sentence states
+% what directives 001 to 005 measured with annotated regions and without the bits of the regions.
+On traffic recordings, a motion-compensated template shortens the lossless code only
 slightly, the fidelity of regenerated events at a fixed tolerance rises with object speed, and
 regeneration reaches a given fidelity with a fraction of the events that random thinning needs.
 \end{abstract}
@@ -175,10 +178,11 @@ Inside the ramp, $\nabla L=\gamma\nu_t$ with $\nu_t=J_t^{-\top}\nu$ a normal of 
 image, and $\dot z_i=-\ip{\nu_t}{v(i,t)}$. By \eqref{eq:constancy}, the intensity of pixel $i$
 rises during the passage at the rate
 \begin{equation}\label{eq:rate}
-  \gamma r_i=\big|\ip{\nabla L}{v}\big|=\|\nabla L\|\,v_{\perp,i},
+  \gamma r_i=-\ip{\nabla L}{v}=\|\nabla L\|\,v_{\perp,i},
 \end{equation}
-with the field evaluated at pixel $i$ and $v_{\perp,i}$ the speed of the edge along its normal
-there. We call
+with the field evaluated at pixel $i$. Here $v_{\perp,i}=-\ip{\nabla L}{v}/\|\nabla L\|$ is the
+speed at which the edge advances over the pixel along its normal, counted positive when the
+intensity of the pixel rises, as it does in a passage with $r_i>0$. We call
 \begin{equation}\label{eq:tau}
   \tau_i=\frac{C}{\gamma r_i}=\frac{C}{\|\nabla L\|\,v_{\perp,i}}
 \end{equation}
@@ -235,7 +239,7 @@ where $A_i=a_i/(\gamma r_i)$. Under (A3), $A_i$ is uniform on $(0,\tau_i]$.
 \centering
 \includegraphics[width=\columnwidth]{figs/fig_mechanism.pdf}
 \caption{One ramp, two pixels with different threshold phases, and the regenerated events
-\eqref{eq:regen}.}
+\eqref{eq:regen}. Time is measured from the arrival of the edge at each pixel. Jitter is omitted.}
 \label{fig:mechanism}
 \end{figure}
 Given the template and the flow, the noise-free events of a pixel are thus a function of one
@@ -338,11 +342,13 @@ on, nothing is described. The decoder that attains \eqref{eq:rdzero} outputs the
 It \emph{regenerates} the events of the pixel from the edge and the flow. Each regenerated event is
 within $\tau_i/2$ of its noise-free time, and the count and the polarities are exact.
 
-The three regimes do not depend on the ramp. If the noise-free event times of a pixel are any
+Two of these statements extend beyond the ramp. If the noise-free event times of a pixel are any
 function of its phase, \eqref{eq:rdlow} holds below the jitter variance with the entropy of the
 actual event times, and the smallest distortion at zero rate is
-$\tfrac1n\operatorname{tr}\operatorname{Cov}(T_i)$, attained by the mean times. The ramp in
-uniform passage supplies the closed forms \eqref{eq:hT}, \eqref{eq:U} and \eqref{eq:defs}.
+$\tfrac1n\operatorname{tr}\operatorname{Cov}(T_i)$, attained by the mean times. The middle regime,
+in which one number per pixel is described to within $0.255$ bit, and the closed forms
+\eqref{eq:hT}, \eqref{eq:U} and \eqref{eq:defs} belong to the ramp in uniform passage, where the
+phase shifts all events of a pixel by a common time.
 
 The threshold $D_{A,i}$ grows with the square of the event spacing. By \eqref{eq:tau}, a pixel whose
 intensity changes slowly has a large spacing and needs a large tolerance before its events can be
@@ -535,10 +541,14 @@ lossless reconstruction. The second dataset \cite{gehrig2021dsec} and one downst
 one table. Sources so far: directives 001 to 004.}
 
 \subsection{Where Regeneration Stops Working}
-\todo{Fig.~4, recorded, two panels. Is the tolerance large enough: fidelity against bin length and
-object speed, with \eqref{eq:binfid} as the reference; an empirical event-rate model that is linear
-in speed is reported in \cite{khan2019bandwidth}. Is the template still valid: fidelity against the
-distance covered since the key window, for the translation and the affine map. The event count
+\todo{Fig.~4, recorded, two panels. Is the tolerance large enough: fidelity against bin length, by
+object speed. Equation \eqref{eq:binfid} is shown only on controlled data and as the ideal case of
+mean-time regeneration, not as a prediction for the codec, which moves events. Speed alone does not
+fix $\tau_i$, which also depends on the gradient, the threshold and the direction of motion; an
+empirical event-rate model that is linear in speed is reported in \cite{khan2019bandwidth}. Is the
+template still valid: fidelity against the distance covered since the key window, for the
+translation and the affine map. Legends separate the ideal regeneration \eqref{eq:regen}, available
+on controlled data only, from the codec and from the baselines. The event count
 against the growth of the object (Remark~\ref{rem:count}) and the controlled test of
 \eqref{eq:moved} go to an appendix. Sources so far: directives 002 to 005.}
 
