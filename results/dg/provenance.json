@@ -1,0 +1,9 @@
+{
+ "directive": "005",
+ "host": "cnt-js01",
+ "commit": "b5a6f55af8da070bae9e24bb9c3fde0978b143df",
+ "python": "3.10.12",
+ "numpy": "1.26.4",
+ "wall_s": 15.414112567901611,
+ "inputs": "the per-row files listed in population_check.json, read in place"
+}
