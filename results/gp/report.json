@@ -1,0 +1,5244 @@
+{
+ "directive": "003",
+ "decision_rule": {
+  "gamma_aligned_headline_H": {
+   "day": {
+    "K2": 1.435365970544408,
+    "K4": 2.2373558387621353,
+    "K8": 3.4459223078654517,
+    "K11": 4.164321406853269
+   },
+   "night": {
+    "K2": 1.4657544174726165,
+    "K4": 2.3112315758071285,
+    "K8": 3.688255805753806,
+    "K11": 4.466937017662463
+   }
+  },
+  "outcome": "GO"
+ },
+ "acceptance": {
+  "3_ten_rows_per_instant": {
+   "n_instants_expected": 65626,
+   "n_instants": 65626,
+   "n_rows": 656260,
+   "n_instants_with_ten_targets": 65626,
+   "missing_instants": 0,
+   "extra_instants": 0,
+   "unknown_skip_reasons": [],
+   "n_scored_rows": 650527,
+   "pass": true
+  },
+  "4_equal_to_002": {
+   "columns_compared": 64,
+   "by_target": {
+    "1": {
+     "lead_ms": 0,
+     "n_rows": 65626,
+     "n_with_002_row": 65626,
+     "n_without_002_row": 0,
+     "n_rows_mismatch": 0,
+     "mismatched_columns": {}
+    },
+    "2": {
+     "lead_ms": 33,
+     "n_rows": 65626,
+     "n_with_002_row": 65403,
+     "n_without_002_row": 223,
+     "n_rows_mismatch": 0,
+     "mismatched_columns": {}
+    },
+    "4": {
+     "lead_ms": 100,
+     "n_rows": 65626,
+     "n_with_002_row": 65190,
+     "n_without_002_row": 436,
+     "n_rows_mismatch": 0,
+     "mismatched_columns": {}
+    },
+    "10": {
+     "lead_ms": 300,
+     "n_rows": 65626,
+     "n_with_002_row": 64894,
+     "n_without_002_row": 732,
+     "n_rows_mismatch": 0,
+     "mismatched_columns": {}
+    }
+   },
+   "note": "rows are matched on (recording, track_id, t_e, setting); an instant that directive 001 did not score at the lead's setting has no row in directive 002 and is counted as without a 002 row. Model outputs are compared on scored rows; the skip reason on every matched row",
+   "pass": true
+  },
+  "5_aligned_not_below_start": {
+   "n_scored_rows": 650527,
+   "n_aligned_below_start_s2_k3": 0,
+   "n_rows_start_differs_from_cmax": 0,
+   "pass": true
+  },
+  "6_aligned_f1_range_and_monotone": {
+   "f1_outside_0_1": 0,
+   "monotonicity_violations": 0,
+   "pass": true
+  },
+  "7_groups": {
+   "n_groups": 258909,
+   "n_share_outside_0_1": 0,
+   "n_zero_pred_gamma_not_1": 0,
+   "zero_pred_group": "group_summary(n_key, n_pred = 0, n_true, f1 = 0)",
+   "pass": true
+  }
+ },
+ "aggregation": {
+  "unit": "recording",
+  "min_instants": 20,
+  "n_boot": 2000,
+  "seed": 20261010,
+  "group_quantities": "formed per instant with ec.gop.group_summary, then aggregated",
+  "H": "vehicles, isolated, speed_label in [20, 300) px/s, setting (100, 0)",
+  "headline_cell": "s2_k3",
+  "frame_cell": "s2_k1"
+ },
+ "tables": {
+  "1_headline_H": {
+   "headline": {
+    "day": {
+     "K2": {
+      "share": {
+       "median": 0.49839862799428536,
+       "ci95": [
+        0.4965145120275282,
+        0.5
+       ],
+       "n_recordings": 57,
+       "n_instants": 9495
+      },
+      "thin_fidelity_at_share": {
+       "median": 0.6652417026732241,
+       "ci95": [
+        0.6635612390584835,
+        0.6666666666666666
+       ],
+       "n_recordings": 57,
+       "n_instants": 9495
+      },
+      "aligned_fidelity": {
+       "median": 0.8315610859728507,
+       "ci95": [
+        0.8213353445275076,
+        0.837600549186388
+       ],
+       "n_recordings": 57,
+       "n_instants": 9495
+      },
+      "aligned_gamma": {
+       "median": 1.435365970544408,
+       "ci95": [
+        1.4231424673130064,
+        1.4466524233704923
+       ],
+       "n_recordings": 57,
+       "n_instants": 9495
+      },
+      "cmax_fidelity": {
+       "median": 0.8259755403146624,
+       "ci95": [
+        0.8135027595944038,
+        0.8329094266147663
+       ],
+       "n_recordings": 57,
+       "n_instants": 9495
+      },
+      "cmax_gamma": {
+       "median": 1.4198691432780728,
+       "ci95": [
+        1.4069134013240092,
+        1.4278048534635384
+       ],
+       "n_recordings": 57,
+       "n_instants": 9495
+      },
+      "static_fidelity": {
+       "median": 0.6151667111229662,
+       "ci95": [
+        0.6005681267955711,
+        0.6248788238565657
+       ],
+       "n_recordings": 57,
+       "n_instants": 9495
+      },
+      "static_gamma": {
+       "median": 0.8999827281029297,
+       "ci95": [
+        0.8573794246494855,
+        0.9178144328102319
+       ],
+       "n_recordings": 57,
+       "n_instants": 9495
+      }
+     },
+     "K4": {
+      "share": {
+       "median": 0.2481676693723165,
+       "ci95": [
+        0.24708382885048455,
+        0.2503398124235422
+       ],
+       "n_recordings": 57,
+       "n_instants": 9488
+      },
+      "thin_fidelity_at_share": {
+       "median": 0.3976511734605768,
+       "ci95": [
+        0.3962585724140729,
+        0.4004348416904471
+       ],
+       "n_recordings": 57,
+       "n_instants": 9488
+      },
+      "aligned_fidelity": {
+       "median": 0.710408737382095,
+       "ci95": [
+        0.6939727612136509,
+        0.7215387752327873
+       ],
+       "n_recordings": 57,
+       "n_instants": 9488
+      },
+      "aligned_gamma": {
+       "median": 2.2373558387621353,
+       "ci95": [
+        2.18165891657404,
+        2.26751876667405
+       ],
+       "n_recordings": 57,
+       "n_instants": 9488
+      },
+      "cmax_fidelity": {
+       "median": 0.6907209636328772,
+       "ci95": [
+        0.6743831455166452,
+        0.7030374236274193
+       ],
+       "n_recordings": 57,
+       "n_instants": 9488
+      },
+      "cmax_gamma": {
+       "median": 2.1717995251596265,
+       "ci95": [
+        2.110972630429522,
+        2.1948493009666903
+       ],
+       "n_recordings": 57,
+       "n_instants": 9488
+      },
+      "static_fidelity": {
+       "median": 0.37421624791375346,
+       "ci95": [
+        0.36088180533435027,
+        0.3985591756939969
+       ],
+       "n_recordings": 57,
+       "n_instants": 9488
+      },
+      "static_gamma": {
+       "median": 0.9230483601164325,
+       "ci95": [
+        0.8874911290363428,
+        1.0038498180864615
+       ],
+       "n_recordings": 57,
+       "n_instants": 9488
+      }
+     },
+     "K8": {
+      "share": {
+       "median": 0.12501160406099937,
+       "ci95": [
+        0.12238320297962113,
+        0.12603213829774773
+       ],
+       "n_recordings": 57,
+       "n_instants": 9470
+      },
+      "thin_fidelity_at_share": {
+       "median": 0.22224055931465947,
+       "ci95": [
+        0.21807739410721955,
+        0.22385176055147735
+       ],
+       "n_recordings": 57,
+       "n_instants": 9470
+      },
+      "aligned_fidelity": {
+       "median": 0.5918578892566719,
+       "ci95": [
+        0.5824061434995599,
+        0.6032219550781315
+       ],
+       "n_recordings": 57,
+       "n_instants": 9470
+      },
+      "aligned_gamma": {
+       "median": 3.4459223078654517,
+       "ci95": [
+        3.367989352866773,
+        3.5090845835496856
+       ],
+       "n_recordings": 57,
+       "n_instants": 9470
+      },
+      "cmax_fidelity": {
+       "median": 0.5450215461861085,
+       "ci95": [
+        0.53150701080778,
+        0.5620687620438407
+       ],
+       "n_recordings": 57,
+       "n_instants": 9470
+      },
+      "cmax_gamma": {
+       "median": 3.1427349857729716,
+       "ci95": [
+        3.02886867357382,
+        3.217458820014185
+       ],
+       "n_recordings": 57,
+       "n_instants": 9470
+      },
+      "static_fidelity": {
+       "median": 0.23560873714329125,
+       "ci95": [
+        0.22755744805449296,
+        0.25643095135951527
+       ],
+       "n_recordings": 57,
+       "n_instants": 9470
+      },
+      "static_gamma": {
+       "median": 1.0528997779847742,
+       "ci95": [
+        1.0346493553589964,
+        1.236888136374323
+       ],
+       "n_recordings": 57,
+       "n_instants": 9470
+      }
+     },
+     "K11": {
+      "share": {
+       "median": 0.09123003468172133,
+       "ci95": [
+        0.08939562102714156,
+        0.09309070304102496
+       ],
+       "n_recordings": 57,
+       "n_instants": 9455
+      },
+      "thin_fidelity_at_share": {
+       "median": 0.16720587187344116,
+       "ci95": [
+        0.16411966286931554,
+        0.17032566974001817
+       ],
+       "n_recordings": 57,
+       "n_instants": 9455
+      },
+      "aligned_fidelity": {
+       "median": 0.5401825387809396,
+       "ci95": [
+        0.5291317042375779,
+        0.5523584949222249
+       ],
+       "n_recordings": 57,
+       "n_instants": 9455
+      },
+      "aligned_gamma": {
+       "median": 4.164321406853269,
+       "ci95": [
+        4.031091486266519,
+        4.255205807413933
+       ],
+       "n_recordings": 57,
+       "n_instants": 9455
+      },
+      "cmax_fidelity": {
+       "median": 0.47907542222677935,
+       "ci95": [
+        0.46424598326008326,
+        0.48901818183734475
+       ],
+       "n_recordings": 57,
+       "n_instants": 9455
+      },
+      "cmax_gamma": {
+       "median": 3.593749701060427,
+       "ci95": [
+        3.512773506027253,
+        3.721115215460552
+       ],
+       "n_recordings": 57,
+       "n_instants": 9455
+      },
+      "static_fidelity": {
+       "median": 0.19550191386167892,
+       "ci95": [
+        0.19095853715183614,
+        0.21620810553008057
+       ],
+       "n_recordings": 57,
+       "n_instants": 9455
+      },
+      "static_gamma": {
+       "median": 1.1660705854824198,
+       "ci95": [
+        1.137438602582828,
+        1.403814291466514
+       ],
+       "n_recordings": 57,
+       "n_instants": 9455
+      }
+     }
+    },
+    "night": {
+     "K2": {
+      "share": {
+       "median": 0.49793996468510887,
+       "ci95": [
+        0.49679460978413503,
+        0.49873706904490167
+       ],
+       "n_recordings": 47,
+       "n_instants": 12252
+      },
+      "thin_fidelity_at_share": {
+       "median": 0.6648330058939096,
+       "ci95": [
+        0.6638113280858078,
+        0.6655431152379074
+       ],
+       "n_recordings": 47,
+       "n_instants": 12252
+      },
+      "aligned_fidelity": {
+       "median": 0.8389686289436102,
+       "ci95": [
+        0.8329457247274155,
+        0.8462668890147629
+       ],
+       "n_recordings": 47,
+       "n_instants": 12252
+      },
+      "aligned_gamma": {
+       "median": 1.4657544174726165,
+       "ci95": [
+        1.4329765648597266,
+        1.4796839158336068
+       ],
+       "n_recordings": 47,
+       "n_instants": 12252
+      },
+      "cmax_fidelity": {
+       "median": 0.8320348006752369,
+       "ci95": [
+        0.8262676641729011,
+        0.8394129979035639
+       ],
+       "n_recordings": 47,
+       "n_instants": 12252
+      },
+      "cmax_gamma": {
+       "median": 1.4385596173297697,
+       "ci95": [
+        1.4141706339790352,
+        1.4590607280386547
+       ],
+       "n_recordings": 47,
+       "n_instants": 12252
+      },
+      "static_fidelity": {
+       "median": 0.6696535666407959,
+       "ci95": [
+        0.6564438347402352,
+        0.6853281174495036
+       ],
+       "n_recordings": 47,
+       "n_instants": 12252
+      },
+      "static_gamma": {
+       "median": 1.0033366257398935,
+       "ci95": [
+        0.9770652455195573,
+        1.0459461845137892
+       ],
+       "n_recordings": 47,
+       "n_instants": 12252
+      }
+     },
+     "K4": {
+      "share": {
+       "median": 0.24920973420583004,
+       "ci95": [
+        0.2481152440148828,
+        0.2498798110913153
+       ],
+       "n_recordings": 47,
+       "n_instants": 12251
+      },
+      "thin_fidelity_at_share": {
+       "median": 0.39898781913050263,
+       "ci95": [
+        0.39758386928559014,
+        0.3998461434033984
+       ],
+       "n_recordings": 47,
+       "n_instants": 12251
+      },
+      "aligned_fidelity": {
+       "median": 0.7303922829451932,
+       "ci95": [
+        0.7211606808726849,
+        0.7358136454182499
+       ],
+       "n_recordings": 47,
+       "n_instants": 12251
+      },
+      "aligned_gamma": {
+       "median": 2.3112315758071285,
+       "ci95": [
+        2.2678024417069906,
+        2.353059142216704
+       ],
+       "n_recordings": 47,
+       "n_instants": 12251
+      },
+      "cmax_fidelity": {
+       "median": 0.7102637117741736,
+       "ci95": [
+        0.7041065307372393,
+        0.7135101361138994
+       ],
+       "n_recordings": 47,
+       "n_instants": 12251
+      },
+      "cmax_gamma": {
+       "median": 2.2258718758114164,
+       "ci95": [
+        2.2044539194458843,
+        2.250858662689683
+       ],
+       "n_recordings": 47,
+       "n_instants": 12251
+      },
+      "static_fidelity": {
+       "median": 0.41893583153396763,
+       "ci95": [
+        0.40603211835215675,
+        0.44561157796451917
+       ],
+       "n_recordings": 47,
+       "n_instants": 12251
+      },
+      "static_gamma": {
+       "median": 1.055533023924408,
+       "ci95": [
+        1.0220930900345666,
+        1.1375905982279209
+       ],
+       "n_recordings": 47,
+       "n_instants": 12251
+      }
+     },
+     "K8": {
+      "share": {
+       "median": 0.12448180123987374,
+       "ci95": [
+        0.12355927234574378,
+        0.12556353931327915
+       ],
+       "n_recordings": 47,
+       "n_instants": 12246
+      },
+      "thin_fidelity_at_share": {
+       "median": 0.22140296286274774,
+       "ci95": [
+        0.2199425973990305,
+        0.22311230700446474
+       ],
+       "n_recordings": 47,
+       "n_instants": 12246
+      },
+      "aligned_fidelity": {
+       "median": 0.6304303552214597,
+       "ci95": [
+        0.6214720523779803,
+        0.6365036146511583
+       ],
+       "n_recordings": 47,
+       "n_instants": 12246
+      },
+      "aligned_gamma": {
+       "median": 3.688255805753806,
+       "ci95": [
+        3.574925267505315,
+        3.732298244405402
+       ],
+       "n_recordings": 47,
+       "n_instants": 12246
+      },
+      "cmax_fidelity": {
+       "median": 0.5764232879450899,
+       "ci95": [
+        0.5661779983839317,
+        0.5812919332189109
+       ],
+       "n_recordings": 47,
+       "n_instants": 12246
+      },
+      "cmax_gamma": {
+       "median": 3.2699214331843245,
+       "ci95": [
+        3.1691507569523,
+        3.325066277115697
+       ],
+       "n_recordings": 47,
+       "n_instants": 12246
+      },
+      "static_fidelity": {
+       "median": 0.26332202788196646,
+       "ci95": [
+        0.2472249428664708,
+        0.2801248923341947
+       ],
+       "n_recordings": 47,
+       "n_instants": 12246
+      },
+      "static_gamma": {
+       "median": 1.2194640277044275,
+       "ci95": [
+        1.1335483417924517,
+        1.276858042838464
+       ],
+       "n_recordings": 47,
+       "n_instants": 12246
+      }
+     },
+     "K11": {
+      "share": {
+       "median": 0.09093925641804168,
+       "ci95": [
+        0.09015134201772429,
+        0.09173237948134298
+       ],
+       "n_recordings": 47,
+       "n_instants": 12243
+      },
+      "thin_fidelity_at_share": {
+       "median": 0.16671727360135638,
+       "ci95": [
+        0.16539234240791967,
+        0.16804920547455585
+       ],
+       "n_recordings": 47,
+       "n_instants": 12243
+      },
+      "aligned_fidelity": {
+       "median": 0.582520558667968,
+       "ci95": [
+        0.5743031784953698,
+        0.5894672004927626
+       ],
+       "n_recordings": 47,
+       "n_instants": 12243
+      },
+      "aligned_gamma": {
+       "median": 4.466937017662463,
+       "ci95": [
+        4.311545878346421,
+        4.598820672178354
+       ],
+       "n_recordings": 47,
+       "n_instants": 12243
+      },
+      "cmax_fidelity": {
+       "median": 0.5070446945557207,
+       "ci95": [
+        0.497502723583868,
+        0.5119352708231704
+       ],
+       "n_recordings": 47,
+       "n_instants": 12243
+      },
+      "cmax_gamma": {
+       "median": 3.723113640594222,
+       "ci95": [
+        3.6519819879748505,
+        3.841437216781942
+       ],
+       "n_recordings": 47,
+       "n_instants": 12243
+      },
+      "static_fidelity": {
+       "median": 0.21007303293371918,
+       "ci95": [
+        0.1988478136719831,
+        0.22659404037167574
+       ],
+       "n_recordings": 47,
+       "n_instants": 12243
+      },
+      "static_gamma": {
+       "median": 1.3127171584497246,
+       "ci95": [
+        1.2109758603778207,
+        1.3804831353511144
+       ],
+       "n_recordings": 47,
+       "n_instants": 12243
+      }
+     }
+    }
+   },
+   "frame": {
+    "day": {
+     "K2": {
+      "share": {
+       "median": 0.49839862799428536,
+       "ci95": [
+        0.4965145120275282,
+        0.5
+       ],
+       "n_recordings": 57,
+       "n_instants": 9495
+      },
+      "thin_fidelity_at_share": {
+       "median": 0.6652417026732241,
+       "ci95": [
+        0.6635612390584835,
+        0.6666666666666666
+       ],
+       "n_recordings": 57,
+       "n_instants": 9495
+      },
+      "aligned_fidelity": {
+       "median": 0.8873107845145267,
+       "ci95": [
+        0.8817786689185956,
+        0.8911504577946242
+       ],
+       "n_recordings": 57,
+       "n_instants": 9495
+      },
+      "aligned_gamma": {
+       "median": 1.6059945870056587,
+       "ci95": [
+        1.5942981992862393,
+        1.6191430193351224
+       ],
+       "n_recordings": 57,
+       "n_instants": 9495
+      },
+      "cmax_fidelity": {
+       "median": 0.8841578369973633,
+       "ci95": [
+        0.8795602308935659,
+        0.8865960055348692
+       ],
+       "n_recordings": 57,
+       "n_instants": 9495
+      },
+      "cmax_gamma": {
+       "median": 1.592008537024531,
+       "ci95": [
+        1.5757764947282644,
+        1.610800318059915
+       ],
+       "n_recordings": 57,
+       "n_instants": 9495
+      },
+      "static_fidelity": {
+       "median": 0.6916870637294896,
+       "ci95": [
+        0.6756075552515368,
+        0.6981732030908816
+       ],
+       "n_recordings": 57,
+       "n_instants": 9495
+      },
+      "static_gamma": {
+       "median": 1.0627493484517894,
+       "ci95": [
+        1.0209649131050096,
+        1.0862263194519604
+       ],
+       "n_recordings": 57,
+       "n_instants": 9495
+      }
+     },
+     "K4": {
+      "share": {
+       "median": 0.2481676693723165,
+       "ci95": [
+        0.24708382885048455,
+        0.2503398124235422
+       ],
+       "n_recordings": 57,
+       "n_instants": 9488
+      },
+      "thin_fidelity_at_share": {
+       "median": 0.3976511734605768,
+       "ci95": [
+        0.3962585724140729,
+        0.4004348416904471
+       ],
+       "n_recordings": 57,
+       "n_instants": 9488
+      },
+      "aligned_fidelity": {
+       "median": 0.8020709608649307,
+       "ci95": [
+        0.7866344605475041,
+        0.8104363509663668
+       ],
+       "n_recordings": 57,
+       "n_instants": 9488
+      },
+      "aligned_gamma": {
+       "median": 2.700556952649689,
+       "ci95": [
+        2.6422221779750017,
+        2.745511968149211
+       ],
+       "n_recordings": 57,
+       "n_instants": 9488
+      },
+      "cmax_fidelity": {
+       "median": 0.7845039934313652,
+       "ci95": [
+        0.7783167622480849,
+        0.7970004976225668
+       ],
+       "n_recordings": 57,
+       "n_instants": 9488
+      },
+      "cmax_gamma": {
+       "median": 2.6351149326624497,
+       "ci95": [
+        2.574776899881884,
+        2.6819723226457883
+       ],
+       "n_recordings": 57,
+       "n_instants": 9488
+      },
+      "static_fidelity": {
+       "median": 0.44584179569013266,
+       "ci95": [
+        0.43093244222562205,
+        0.47242057472811555
+       ],
+       "n_recordings": 57,
+       "n_instants": 9488
+      },
+      "static_gamma": {
+       "median": 1.1449507013405824,
+       "ci95": [
+        1.109335531268153,
+        1.2580125138312472
+       ],
+       "n_recordings": 57,
+       "n_instants": 9488
+      }
+     },
+     "K8": {
+      "share": {
+       "median": 0.12501160406099937,
+       "ci95": [
+        0.12238320297962113,
+        0.12603213829774773
+       ],
+       "n_recordings": 57,
+       "n_instants": 9470
+      },
+      "thin_fidelity_at_share": {
+       "median": 0.22224055931465947,
+       "ci95": [
+        0.21807739410721955,
+        0.22385176055147735
+       ],
+       "n_recordings": 57,
+       "n_instants": 9470
+      },
+      "aligned_fidelity": {
+       "median": 0.703483562813534,
+       "ci95": [
+        0.6922321540979479,
+        0.7160292442367064
+       ],
+       "n_recordings": 57,
+       "n_instants": 9470
+      },
+      "aligned_gamma": {
+       "median": 4.450498419401515,
+       "ci95": [
+        4.277314097873889,
+        4.5578009956128485
+       ],
+       "n_recordings": 57,
+       "n_instants": 9470
+      },
+      "cmax_fidelity": {
+       "median": 0.6679136483779815,
+       "ci95": [
+        0.6506783686692613,
+        0.6784255345123165
+       ],
+       "n_recordings": 57,
+       "n_instants": 9470
+      },
+      "cmax_gamma": {
+       "median": 4.138080141217837,
+       "ci95": [
+        3.94476333102092,
+        4.27822260446543
+       ],
+       "n_recordings": 57,
+       "n_instants": 9470
+      },
+      "static_fidelity": {
+       "median": 0.2940637978710309,
+       "ci95": [
+        0.28756533101045295,
+        0.32108259997798516
+       ],
+       "n_recordings": 57,
+       "n_instants": 9470
+      },
+      "static_gamma": {
+       "median": 1.3853175187474052,
+       "ci95": [
+        1.3361559383983912,
+        1.5981297294329713
+       ],
+       "n_recordings": 57,
+       "n_instants": 9470
+      }
+     },
+     "K11": {
+      "share": {
+       "median": 0.09123003468172133,
+       "ci95": [
+        0.08939562102714156,
+        0.09309070304102496
+       ],
+       "n_recordings": 57,
+       "n_instants": 9455
+      },
+      "thin_fidelity_at_share": {
+       "median": 0.16720587187344116,
+       "ci95": [
+        0.16411966286931554,
+        0.17032566974001817
+       ],
+       "n_recordings": 57,
+       "n_instants": 9455
+      },
+      "aligned_fidelity": {
+       "median": 0.6572937260242049,
+       "ci95": [
+        0.6396986467937348,
+        0.6701093778016854
+       ],
+       "n_recordings": 57,
+       "n_instants": 9455
+      },
+      "aligned_gamma": {
+       "median": 5.485368436445396,
+       "ci95": [
+        5.309194071421199,
+        5.652840460951049
+       ],
+       "n_recordings": 57,
+       "n_instants": 9455
+      },
+      "cmax_fidelity": {
+       "median": 0.5897021605751038,
+       "ci95": [
+        0.5833427934241019,
+        0.613987941175639
+       ],
+       "n_recordings": 57,
+       "n_instants": 9455
+      },
+      "cmax_gamma": {
+       "median": 4.834862279471146,
+       "ci95": [
+        4.630837988015456,
+        5.111135616046266
+       ],
+       "n_recordings": 57,
+       "n_instants": 9455
+      },
+      "static_fidelity": {
+       "median": 0.2508170418945225,
+       "ci95": [
+        0.24507681060888525,
+        0.2758132776100023
+       ],
+       "n_recordings": 57,
+       "n_instants": 9455
+      },
+      "static_gamma": {
+       "median": 1.597634681592109,
+       "ci95": [
+        1.510876752449657,
+        1.8030096756413367
+       ],
+       "n_recordings": 57,
+       "n_instants": 9455
+      }
+     }
+    },
+    "night": {
+     "K2": {
+      "share": {
+       "median": 0.49793996468510887,
+       "ci95": [
+        0.49679460978413503,
+        0.49873706904490167
+       ],
+       "n_recordings": 47,
+       "n_instants": 12252
+      },
+      "thin_fidelity_at_share": {
+       "median": 0.6648330058939096,
+       "ci95": [
+        0.6638113280858078,
+        0.6655431152379074
+       ],
+       "n_recordings": 47,
+       "n_instants": 12252
+      },
+      "aligned_fidelity": {
+       "median": 0.8902240440226852,
+       "ci95": [
+        0.886571910599159,
+        0.8948706968126481
+       ],
+       "n_recordings": 47,
+       "n_instants": 12252
+      },
+      "aligned_gamma": {
+       "median": 1.6180416635260644,
+       "ci95": [
+        1.596586349135785,
+        1.638325657733005
+       ],
+       "n_recordings": 47,
+       "n_instants": 12252
+      },
+      "cmax_fidelity": {
+       "median": 0.8861031674557936,
+       "ci95": [
+        0.8816613813906722,
+        0.8887533436769088
+       ],
+       "n_recordings": 47,
+       "n_instants": 12252
+      },
+      "cmax_gamma": {
+       "median": 1.6030970115266883,
+       "ci95": [
+        1.5804051385876605,
+        1.620085455667445
+       ],
+       "n_recordings": 47,
+       "n_instants": 12252
+      },
+      "static_fidelity": {
+       "median": 0.72395671871658,
+       "ci95": [
+        0.7141736606792689,
+        0.7423725850161728
+       ],
+       "n_recordings": 47,
+       "n_instants": 12252
+      },
+      "static_gamma": {
+       "median": 1.140730224610907,
+       "ci95": [
+        1.1157295674083603,
+        1.176719111808192
+       ],
+       "n_recordings": 47,
+       "n_instants": 12252
+      }
+     },
+     "K4": {
+      "share": {
+       "median": 0.24920973420583004,
+       "ci95": [
+        0.2481152440148828,
+        0.2498798110913153
+       ],
+       "n_recordings": 47,
+       "n_instants": 12251
+      },
+      "thin_fidelity_at_share": {
+       "median": 0.39898781913050263,
+       "ci95": [
+        0.39758386928559014,
+        0.3998461434033984
+       ],
+       "n_recordings": 47,
+       "n_instants": 12251
+      },
+      "aligned_fidelity": {
+       "median": 0.8056799243099019,
+       "ci95": [
+        0.7958869199312512,
+        0.8126421292637422
+       ],
+       "n_recordings": 47,
+       "n_instants": 12251
+      },
+      "aligned_gamma": {
+       "median": 2.730909634085994,
+       "ci95": [
+        2.6563533161307773,
+        2.7400735570363945
+       ],
+       "n_recordings": 47,
+       "n_instants": 12251
+      },
+      "cmax_fidelity": {
+       "median": 0.7896088090473963,
+       "ci95": [
+        0.7809574365408745,
+        0.7935215454154576
+       ],
+       "n_recordings": 47,
+       "n_instants": 12251
+      },
+      "cmax_gamma": {
+       "median": 2.6324160273927357,
+       "ci95": [
+        2.573518010746123,
+        2.6634258989898365
+       ],
+       "n_recordings": 47,
+       "n_instants": 12251
+      },
+      "static_fidelity": {
+       "median": 0.4760991368717936,
+       "ci95": [
+        0.4627468817985668,
+        0.5057568961914367
+       ],
+       "n_recordings": 47,
+       "n_instants": 12251
+      },
+      "static_gamma": {
+       "median": 1.2616145540428871,
+       "ci95": [
+        1.2136254999038063,
+        1.3406223840464901
+       ],
+       "n_recordings": 47,
+       "n_instants": 12251
+      }
+     },
+     "K8": {
+      "share": {
+       "median": 0.12448180123987374,
+       "ci95": [
+        0.12355927234574378,
+        0.12556353931327915
+       ],
+       "n_recordings": 47,
+       "n_instants": 12246
+      },
+      "thin_fidelity_at_share": {
+       "median": 0.22140296286274774,
+       "ci95": [
+        0.2199425973990305,
+        0.22311230700446474
+       ],
+       "n_recordings": 47,
+       "n_instants": 12246
+      },
+      "aligned_fidelity": {
+       "median": 0.7145835674946611,
+       "ci95": [
+        0.7068460175413179,
+        0.7187425124649631
+       ],
+       "n_recordings": 47,
+       "n_instants": 12246
+      },
+      "aligned_gamma": {
+       "median": 4.439422075022789,
+       "ci95": [
+        4.299381456889951,
+        4.531557711880114
+       ],
+       "n_recordings": 47,
+       "n_instants": 12246
+      },
+      "cmax_fidelity": {
+       "median": 0.6633211675151938,
+       "ci95": [
+        0.6591207680646791,
+        0.6702448531421705
+       ],
+       "n_recordings": 47,
+       "n_instants": 12246
+      },
+      "cmax_gamma": {
+       "median": 4.026689697740402,
+       "ci95": [
+        3.9803986543379293,
+        4.102617687295087
+       ],
+       "n_recordings": 47,
+       "n_instants": 12246
+      },
+      "static_fidelity": {
+       "median": 0.31023155681783726,
+       "ci95": [
+        0.29360233134942454,
+        0.3244885673836158
+       ],
+       "n_recordings": 47,
+       "n_instants": 12246
+      },
+      "static_gamma": {
+       "median": 1.468761347962331,
+       "ci95": [
+        1.3880109112017964,
+        1.5352077689030157
+       ],
+       "n_recordings": 47,
+       "n_instants": 12246
+      }
+     },
+     "K11": {
+      "share": {
+       "median": 0.09093925641804168,
+       "ci95": [
+        0.09015134201772429,
+        0.09173237948134298
+       ],
+       "n_recordings": 47,
+       "n_instants": 12243
+      },
+      "thin_fidelity_at_share": {
+       "median": 0.16671727360135638,
+       "ci95": [
+        0.16539234240791967,
+        0.16804920547455585
+       ],
+       "n_recordings": 47,
+       "n_instants": 12243
+      },
+      "aligned_fidelity": {
+       "median": 0.6664653595122104,
+       "ci95": [
+        0.6599918086051197,
+        0.6697046196853651
+       ],
+       "n_recordings": 47,
+       "n_instants": 12243
+      },
+      "aligned_gamma": {
+       "median": 5.443090880877211,
+       "ci95": [
+        5.387261242807851,
+        5.621546466362949
+       ],
+       "n_recordings": 47,
+       "n_instants": 12243
+      },
+      "cmax_fidelity": {
+       "median": 0.5904110545048503,
+       "ci95": [
+        0.5836237694080747,
+        0.5993924477261137
+       ],
+       "n_recordings": 47,
+       "n_instants": 12243
+      },
+      "cmax_gamma": {
+       "median": 4.685096257922836,
+       "ci95": [
+        4.61382842029526,
+        4.738647558058794
+       ],
+       "n_recordings": 47,
+       "n_instants": 12243
+      },
+      "static_fidelity": {
+       "median": 0.2537485582468281,
+       "ci95": [
+        0.2386079791107374,
+        0.2649100066617436
+       ],
+       "n_recordings": 47,
+       "n_instants": 12243
+      },
+      "static_gamma": {
+       "median": 1.5923766499345282,
+       "ci95": [
+        1.4957619976247418,
+        1.66597320717788
+       ],
+       "n_recordings": 47,
+       "n_instants": 12243
+      }
+     }
+    }
+   }
+  },
+  "2_targets_H": {
+   "m1": {
+    "day": {
+     "F1_aligned_s2_k3": {
+      "median": 0.6629820300078398,
+      "ci95": [
+       0.6407657824388238,
+       0.6737880385560169
+      ],
+      "n_recordings": 57,
+      "n_instants": 9495
+     },
+     "F1_aligned_s2_k1": {
+      "median": 0.7738760243128183,
+      "ci95": [
+       0.7597063025232498,
+       0.784462087893803
+      ],
+      "n_recordings": 57,
+      "n_instants": 9495
+     },
+     "F1_cmax_s2_k3": {
+      "median": 0.6541236607767831,
+      "ci95": [
+       0.6264399341744378,
+       0.6641953707838897
+      ],
+      "n_recordings": 57,
+      "n_instants": 9495
+     },
+     "F1_cmax_s2_k1": {
+      "median": 0.7682377578243782,
+      "ci95": [
+       0.7566881541803302,
+       0.7740805526012567
+      ],
+      "n_recordings": 57,
+      "n_instants": 9495
+     },
+     "F1_static_s2_k3": {
+      "median": 0.23464217859404687,
+      "ci95": [
+       0.2,
+       0.25150700176203283
+      ],
+      "n_recordings": 57,
+      "n_instants": 9495
+     },
+     "F1_static_s2_k1": {
+      "median": 0.3806179322787461,
+      "ci95": [
+       0.35157686324423704,
+       0.4012198881402211
+      ],
+      "n_recordings": 57,
+      "n_instants": 9495
+     },
+     "F1_uniform_s2_k3": {
+      "median": 0.11166488276988368,
+      "ci95": [
+       0.10463502393713286,
+       0.12760223674459342
+      ],
+      "n_recordings": 57,
+      "n_instants": 9495
+     },
+     "F1_uniform_s2_k1": {
+      "median": 0.18091743476441216,
+      "ci95": [
+       0.16553316699647885,
+       0.20209809902959455
+      ],
+      "n_recordings": 57,
+      "n_instants": 9495
+     },
+     "disp_distance_px": {
+      "median": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "n_recordings": 57,
+      "n_instants": 9495
+     },
+     "share_disp_differs": {
+      "median": 0.3950617283950617,
+      "ci95": [
+       0.328125,
+       0.4153846153846154
+      ],
+      "n_recordings": 57,
+      "n_instants": 9495
+     }
+    },
+    "night": {
+     "F1_aligned_s2_k3": {
+      "median": 0.6805920689194168,
+      "ci95": [
+       0.6622126779607095,
+       0.6906838153597522
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "F1_aligned_s2_k1": {
+      "median": 0.7812398880788778,
+      "ci95": [
+       0.7719094082893205,
+       0.7906192412652995
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "F1_cmax_s2_k3": {
+      "median": 0.6640259740259741,
+      "ci95": [
+       0.6524459955472651,
+       0.6803703062147545
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "F1_cmax_s2_k1": {
+      "median": 0.7736869105402312,
+      "ci95": [
+       0.7623400738669986,
+       0.7764159043135862
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "F1_static_s2_k3": {
+      "median": 0.337511693171188,
+      "ci95": [
+       0.3147724710959389,
+       0.373985379379884
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "F1_static_s2_k1": {
+      "median": 0.4475428526745393,
+      "ci95": [
+       0.42921270718232046,
+       0.48207216378237755
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "F1_uniform_s2_k3": {
+      "median": 0.1070733947095454,
+      "ci95": [
+       0.09640223559173935,
+       0.11789357256974314
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "F1_uniform_s2_k1": {
+      "median": 0.16424587503654658,
+      "ci95": [
+       0.15161466885604816,
+       0.17492600537649008
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "disp_distance_px": {
+      "median": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "share_disp_differs": {
+      "median": 0.38461538461538464,
+      "ci95": [
+       0.36,
+       0.40186915887850466
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     }
+    }
+   },
+   "m2": {
+    "day": {
+     "F1_aligned_s2_k3": {
+      "median": 0.6182207006141347,
+      "ci95": [
+       0.5989727380482023,
+       0.6276857708464101
+      ],
+      "n_recordings": 57,
+      "n_instants": 9495
+     },
+     "F1_aligned_s2_k1": {
+      "median": 0.7394050926335534,
+      "ci95": [
+       0.7155921353452218,
+       0.7482151789368378
+      ],
+      "n_recordings": 57,
+      "n_instants": 9495
+     },
+     "F1_cmax_s2_k3": {
+      "median": 0.5910461978091761,
+      "ci95": [
+       0.5664395229982965,
+       0.613270392172417
+      ],
+      "n_recordings": 57,
+      "n_instants": 9495
+     },
+     "F1_cmax_s2_k1": {
+      "median": 0.7194550872711792,
+      "ci95": [
+       0.7037530996682657,
+       0.7308016926824286
+      ],
+      "n_recordings": 57,
+      "n_instants": 9495
+     },
+     "F1_static_s2_k3": {
+      "median": 0.14236533009315513,
+      "ci95": [
+       0.13018209996125532,
+       0.18036677119106503
+      ],
+      "n_recordings": 57,
+      "n_instants": 9495
+     },
+     "F1_static_s2_k1": {
+      "median": 0.22622426947145058,
+      "ci95": [
+       0.20591689178218667,
+       0.2662865943016327
+      ],
+      "n_recordings": 57,
+      "n_instants": 9495
+     },
+     "F1_uniform_s2_k3": {
+      "median": 0.1105143196908136,
+      "ci95": [
+       0.1061427197786986,
+       0.12908182865923934
+      ],
+      "n_recordings": 57,
+      "n_instants": 9495
+     },
+     "F1_uniform_s2_k1": {
+      "median": 0.18150178369442269,
+      "ci95": [
+       0.1673277266610924,
+       0.2023765042636023
+      ],
+      "n_recordings": 57,
+      "n_instants": 9495
+     },
+     "disp_distance_px": {
+      "median": 1.0,
+      "ci95": [
+       0.0,
+       1.0
+      ],
+      "n_recordings": 57,
+      "n_instants": 9495
+     },
+     "share_disp_differs": {
+      "median": 0.5294117647058824,
+      "ci95": [
+       0.49382716049382713,
+       0.5675
+      ],
+      "n_recordings": 57,
+      "n_instants": 9495
+     }
+    },
+    "night": {
+     "F1_aligned_s2_k3": {
+      "median": 0.6405649414498972,
+      "ci95": [
+       0.628436980855752,
+       0.6497938616582685
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "F1_aligned_s2_k1": {
+      "median": 0.7434052342401647,
+      "ci95": [
+       0.7208921609017777,
+       0.7511578294245735
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "F1_cmax_s2_k3": {
+      "median": 0.6180798745230938,
+      "ci95": [
+       0.6067110036275696,
+       0.6233431327041106
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "F1_cmax_s2_k1": {
+      "median": 0.7231247839612859,
+      "ci95": [
+       0.7063253012048193,
+       0.731014337984186
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "F1_static_s2_k3": {
+      "median": 0.19079805371695252,
+      "ci95": [
+       0.1804640856773558,
+       0.23807026743576298
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "F1_static_s2_k1": {
+      "median": 0.2667711377901348,
+      "ci95": [
+       0.24682269082681163,
+       0.30439442658092175
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "F1_uniform_s2_k3": {
+      "median": 0.10549408575615046,
+      "ci95": [
+       0.09769630002855284,
+       0.11757082021847806
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "F1_uniform_s2_k1": {
+      "median": 0.165361794754766,
+      "ci95": [
+       0.1526219357254624,
+       0.174267151605583
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "disp_distance_px": {
+      "median": 1.0,
+      "ci95": [
+       1.0,
+       1.0
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "share_disp_differs": {
+      "median": 0.5384615384615384,
+      "ci95": [
+       0.5241935483870968,
+       0.5576923076923077
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     }
+    }
+   },
+   "m3": {
+    "day": {
+     "F1_aligned_s2_k3": {
+      "median": 0.5614102353435212,
+      "ci95": [
+       0.5482791879642284,
+       0.5805853658536585
+      ],
+      "n_recordings": 57,
+      "n_instants": 9488
+     },
+     "F1_aligned_s2_k1": {
+      "median": 0.6928226307123384,
+      "ci95": [
+       0.6795081967213115,
+       0.7113830301078732
+      ],
+      "n_recordings": 57,
+      "n_instants": 9488
+     },
+     "F1_cmax_s2_k3": {
+      "median": 0.522922922922923,
+      "ci95": [
+       0.5079028421064375,
+       0.5494416054436528
+      ],
+      "n_recordings": 57,
+      "n_instants": 9488
+     },
+     "F1_cmax_s2_k1": {
+      "median": 0.6672082185572115,
+      "ci95": [
+       0.6510207083121109,
+       0.6821704555665379
+      ],
+      "n_recordings": 57,
+      "n_instants": 9488
+     },
+     "F1_static_s2_k3": {
+      "median": 0.11392519052991473,
+      "ci95": [
+       0.10596940055179332,
+       0.14746468757016076
+      ],
+      "n_recordings": 57,
+      "n_instants": 9488
+     },
+     "F1_static_s2_k1": {
+      "median": 0.1801422175401633,
+      "ci95": [
+       0.16805752506682395,
+       0.21316303938198133
+      ],
+      "n_recordings": 57,
+      "n_instants": 9488
+     },
+     "F1_uniform_s2_k3": {
+      "median": 0.11173775356456583,
+      "ci95": [
+       0.10617765453552833,
+       0.13237260436785026
+      ],
+      "n_recordings": 57,
+      "n_instants": 9488
+     },
+     "F1_uniform_s2_k1": {
+      "median": 0.18062147392538358,
+      "ci95": [
+       0.16674150576261038,
+       0.20133262304805702
+      ],
+      "n_recordings": 57,
+      "n_instants": 9488
+     },
+     "disp_distance_px": {
+      "median": 1.0,
+      "ci95": [
+       1.0,
+       1.0
+      ],
+      "n_recordings": 57,
+      "n_instants": 9488
+     },
+     "share_disp_differs": {
+      "median": 0.75,
+      "ci95": [
+       0.7166666666666667,
+       0.775
+      ],
+      "n_recordings": 57,
+      "n_instants": 9488
+     }
+    },
+    "night": {
+     "F1_aligned_s2_k3": {
+      "median": 0.6012223913027843,
+      "ci95": [
+       0.5921070599481087,
+       0.6125462642933821
+      ],
+      "n_recordings": 47,
+      "n_instants": 12251
+     },
+     "F1_aligned_s2_k1": {
+      "median": 0.7029151654110711,
+      "ci95": [
+       0.6856282919488337,
+       0.713710464749653
+      ],
+      "n_recordings": 47,
+      "n_instants": 12251
+     },
+     "F1_cmax_s2_k3": {
+      "median": 0.566110589527659,
+      "ci95": [
+       0.5508504778875749,
+       0.5692062413852328
+      ],
+      "n_recordings": 47,
+      "n_instants": 12251
+     },
+     "F1_cmax_s2_k1": {
+      "median": 0.6648429358344499,
+      "ci95": [
+       0.6540023894862604,
+       0.6784291989982346
+      ],
+      "n_recordings": 47,
+      "n_instants": 12251
+     },
+     "F1_static_s2_k3": {
+      "median": 0.14757542796563675,
+      "ci95": [
+       0.12627325404086612,
+       0.16659078069376013
+      ],
+      "n_recordings": 47,
+      "n_instants": 12251
+     },
+     "F1_static_s2_k1": {
+      "median": 0.19942580103464153,
+      "ci95": [
+       0.17519315097097515,
+       0.22011258116862265
+      ],
+      "n_recordings": 47,
+      "n_instants": 12251
+     },
+     "F1_uniform_s2_k3": {
+      "median": 0.10636639769452708,
+      "ci95": [
+       0.09617278594822781,
+       0.11678174667839836
+      ],
+      "n_recordings": 47,
+      "n_instants": 12251
+     },
+     "F1_uniform_s2_k1": {
+      "median": 0.1645987725606414,
+      "ci95": [
+       0.15180860153802336,
+       0.17483677740922815
+      ],
+      "n_recordings": 47,
+      "n_instants": 12251
+     },
+     "disp_distance_px": {
+      "median": 1.0,
+      "ci95": [
+       1.0,
+       1.0
+      ],
+      "n_recordings": 47,
+      "n_instants": 12251
+     },
+     "share_disp_differs": {
+      "median": 0.736,
+      "ci95": [
+       0.719626168224299,
+       0.7578253706754531
+      ],
+      "n_recordings": 47,
+      "n_instants": 12251
+     }
+    }
+   },
+   "m4": {
+    "day": {
+     "F1_aligned_s2_k3": {
+      "median": 0.5283382196176017,
+      "ci95": [
+       0.5117454653704523,
+       0.5385408072763946
+      ],
+      "n_recordings": 57,
+      "n_instants": 9486
+     },
+     "F1_aligned_s2_k1": {
+      "median": 0.6546580813432228,
+      "ci95": [
+       0.6418199584715749,
+       0.6780777725771417
+      ],
+      "n_recordings": 57,
+      "n_instants": 9486
+     },
+     "F1_cmax_s2_k3": {
+      "median": 0.469041174915108,
+      "ci95": [
+       0.4572713643178411,
+       0.4869330270916378
+      ],
+      "n_recordings": 57,
+      "n_instants": 9486
+     },
+     "F1_cmax_s2_k1": {
+      "median": 0.611488930690204,
+      "ci95": [
+       0.5927696127555122,
+       0.6378773521050494
+      ],
+      "n_recordings": 57,
+      "n_instants": 9486
+     },
+     "F1_static_s2_k3": {
+      "median": 0.09752660760791562,
+      "ci95": [
+       0.09143822934568968,
+       0.12854299519804735
+      ],
+      "n_recordings": 57,
+      "n_instants": 9486
+     },
+     "F1_static_s2_k1": {
+      "median": 0.15151235867957683,
+      "ci95": [
+       0.14709092435563764,
+       0.18247678018575852
+      ],
+      "n_recordings": 57,
+      "n_instants": 9486
+     },
+     "F1_uniform_s2_k3": {
+      "median": 0.11272868122381101,
+      "ci95": [
+       0.10611824654319787,
+       0.1317866703274075
+      ],
+      "n_recordings": 57,
+      "n_instants": 9486
+     },
+     "F1_uniform_s2_k1": {
+      "median": 0.18598593388673287,
+      "ci95": [
+       0.17028012939637965,
+       0.19903482486884502
+      ],
+      "n_recordings": 57,
+      "n_instants": 9486
+     },
+     "disp_distance_px": {
+      "median": 1.4142135623730951,
+      "ci95": [
+       1.0,
+       1.4142135623730951
+      ],
+      "n_recordings": 57,
+      "n_instants": 9486
+     },
+     "share_disp_differs": {
+      "median": 0.852589641434263,
+      "ci95": [
+       0.8300970873786407,
+       0.868421052631579
+      ],
+      "n_recordings": 57,
+      "n_instants": 9486
+     }
+    },
+    "night": {
+     "F1_aligned_s2_k3": {
+      "median": 0.5677856083086054,
+      "ci95": [
+       0.5585885486018641,
+       0.5771871517892344
+      ],
+      "n_recordings": 47,
+      "n_instants": 12250
+     },
+     "F1_aligned_s2_k1": {
+      "median": 0.6644180754226268,
+      "ci95": [
+       0.6579024676850764,
+       0.6722236769508483
+      ],
+      "n_recordings": 47,
+      "n_instants": 12250
+     },
+     "F1_cmax_s2_k3": {
+      "median": 0.5060671861029505,
+      "ci95": [
+       0.49465663577893004,
+       0.5142857142857142
+      ],
+      "n_recordings": 47,
+      "n_instants": 12250
+     },
+     "F1_cmax_s2_k1": {
+      "median": 0.6088276455913748,
+      "ci95": [
+       0.6005541324690261,
+       0.6156382162225225
+      ],
+      "n_recordings": 47,
+      "n_instants": 12250
+     },
+     "F1_static_s2_k3": {
+      "median": 0.118245435571847,
+      "ci95": [
+       0.10127018002822623,
+       0.126743808802855
+      ],
+      "n_recordings": 47,
+      "n_instants": 12250
+     },
+     "F1_static_s2_k1": {
+      "median": 0.15815335121902538,
+      "ci95": [
+       0.14561457171969255,
+       0.1686447977342735
+      ],
+      "n_recordings": 47,
+      "n_instants": 12250
+     },
+     "F1_uniform_s2_k3": {
+      "median": 0.1081616125258706,
+      "ci95": [
+       0.09629473091011552,
+       0.11902945327348063
+      ],
+      "n_recordings": 47,
+      "n_instants": 12250
+     },
+     "F1_uniform_s2_k1": {
+      "median": 0.16425223689816787,
+      "ci95": [
+       0.15157949249093733,
+       0.17541921053259996
+      ],
+      "n_recordings": 47,
+      "n_instants": 12250
+     },
+     "disp_distance_px": {
+      "median": 1.2071067811865475,
+      "ci95": [
+       1.0,
+       1.4142135623730951
+      ],
+      "n_recordings": 47,
+      "n_instants": 12250
+     },
+     "share_disp_differs": {
+      "median": 0.8411214953271028,
+      "ci95": [
+       0.8186274509803921,
+       0.8529980657640233
+      ],
+      "n_recordings": 47,
+      "n_instants": 12250
+     }
+    }
+   },
+   "m5": {
+    "day": {
+     "F1_aligned_s2_k3": {
+      "median": 0.4948809954084338,
+      "ci95": [
+       0.48973691818444637,
+       0.5034065102195306
+      ],
+      "n_recordings": 57,
+      "n_instants": 9481
+     },
+     "F1_aligned_s2_k1": {
+      "median": 0.6248523372897564,
+      "ci95": [
+       0.6152866242038216,
+       0.6408964728929016
+      ],
+      "n_recordings": 57,
+      "n_instants": 9481
+     },
+     "F1_cmax_s2_k3": {
+      "median": 0.4301461695290093,
+      "ci95": [
+       0.4141787896703271,
+       0.43983323858252793
+      ],
+      "n_recordings": 57,
+      "n_instants": 9481
+     },
+     "F1_cmax_s2_k1": {
+      "median": 0.568720571624953,
+      "ci95": [
+       0.5479842764420879,
+       0.5912039933238769
+      ],
+      "n_recordings": 57,
+      "n_instants": 9481
+     },
+     "F1_static_s2_k3": {
+      "median": 0.08904775477945343,
+      "ci95": [
+       0.08446178900907403,
+       0.11337811008321717
+      ],
+      "n_recordings": 57,
+      "n_instants": 9481
+     },
+     "F1_static_s2_k1": {
+      "median": 0.14006660348903402,
+      "ci95": [
+       0.13156137004008064,
+       0.17065331023846414
+      ],
+      "n_recordings": 57,
+      "n_instants": 9481
+     },
+     "F1_uniform_s2_k3": {
+      "median": 0.1118550952015259,
+      "ci95": [
+       0.10662339686375077,
+       0.13108049935428326
+      ],
+      "n_recordings": 57,
+      "n_instants": 9481
+     },
+     "F1_uniform_s2_k1": {
+      "median": 0.18508686035646446,
+      "ci95": [
+       0.16983575274313364,
+       0.20051139310330268
+      ],
+      "n_recordings": 57,
+      "n_instants": 9481
+     },
+     "disp_distance_px": {
+      "median": 1.4142135623730951,
+      "ci95": [
+       1.4142135623730951,
+       1.4142135623730951
+      ],
+      "n_recordings": 57,
+      "n_instants": 9481
+     },
+     "share_disp_differs": {
+      "median": 0.9008264462809917,
+      "ci95": [
+       0.8888888888888888,
+       0.9083557951482479
+      ],
+      "n_recordings": 57,
+      "n_instants": 9481
+     }
+    },
+    "night": {
+     "F1_aligned_s2_k3": {
+      "median": 0.5455799852367393,
+      "ci95": [
+       0.5349893162393162,
+       0.5530630825228355
+      ],
+      "n_recordings": 47,
+      "n_instants": 12249
+     },
+     "F1_aligned_s2_k1": {
+      "median": 0.6410860132004481,
+      "ci95": [
+       0.6293747985270817,
+       0.6471791413095518
+      ],
+      "n_recordings": 47,
+      "n_instants": 12249
+     },
+     "F1_cmax_s2_k3": {
+      "median": 0.46357778158919954,
+      "ci95": [
+       0.454205149447265,
+       0.4713663537925591
+      ],
+      "n_recordings": 47,
+      "n_instants": 12249
+     },
+     "F1_cmax_s2_k1": {
+      "median": 0.5662597255910518,
+      "ci95": [
+       0.5584735619235373,
+       0.5711353570271146
+      ],
+      "n_recordings": 47,
+      "n_instants": 12249
+     },
+     "F1_static_s2_k3": {
+      "median": 0.09805210475001772,
+      "ci95": [
+       0.08820210556348243,
+       0.1074476930015491
+      ],
+      "n_recordings": 47,
+      "n_instants": 12249
+     },
+     "F1_static_s2_k1": {
+      "median": 0.13021019036882392,
+      "ci95": [
+       0.12284966786974207,
+       0.13906599095417144
+      ],
+      "n_recordings": 47,
+      "n_instants": 12249
+     },
+     "F1_uniform_s2_k3": {
+      "median": 0.10461928113044178,
+      "ci95": [
+       0.0965000263949744,
+       0.1163491684189158
+      ],
+      "n_recordings": 47,
+      "n_instants": 12249
+     },
+     "F1_uniform_s2_k1": {
+      "median": 0.15713177640531317,
+      "ci95": [
+       0.15093307813247658,
+       0.17597377270379388
+      ],
+      "n_recordings": 47,
+      "n_instants": 12249
+     },
+     "disp_distance_px": {
+      "median": 1.4142135623730951,
+      "ci95": [
+       1.4142135623730951,
+       1.4142135623730951
+      ],
+      "n_recordings": 47,
+      "n_instants": 12249
+     },
+     "share_disp_differs": {
+      "median": 0.8886198547215496,
+      "ci95": [
+       0.8725490196078431,
+       0.8970976253298153
+      ],
+      "n_recordings": 47,
+      "n_instants": 12249
+     }
+    }
+   },
+   "m6": {
+    "day": {
+     "F1_aligned_s2_k3": {
+      "median": 0.46655851926707975,
+      "ci95": [
+       0.4465929167237448,
+       0.4757946759519263
+      ],
+      "n_recordings": 57,
+      "n_instants": 9483
+     },
+     "F1_aligned_s2_k1": {
+      "median": 0.5986088379705401,
+      "ci95": [
+       0.5863529112677064,
+       0.6094744759448867
+      ],
+      "n_recordings": 57,
+      "n_instants": 9483
+     },
+     "F1_cmax_s2_k3": {
+      "median": 0.38791517381620993,
+      "ci95": [
+       0.3674981923355025,
+       0.3965260545905707
+      ],
+      "n_recordings": 57,
+      "n_instants": 9483
+     },
+     "F1_cmax_s2_k1": {
+      "median": 0.5191591983124104,
+      "ci95": [
+       0.5011067961165048,
+       0.5471790128932106
+      ],
+      "n_recordings": 57,
+      "n_instants": 9483
+     },
+     "F1_static_s2_k3": {
+      "median": 0.08464043840148891,
+      "ci95": [
+       0.07999225881366319,
+       0.10790327337068711
+      ],
+      "n_recordings": 57,
+      "n_instants": 9483
+     },
+     "F1_static_s2_k1": {
+      "median": 0.1326818623846683,
+      "ci95": [
+       0.12371134020618557,
+       0.1635322698469327
+      ],
+      "n_recordings": 57,
+      "n_instants": 9483
+     },
+     "F1_uniform_s2_k3": {
+      "median": 0.11281348983602545,
+      "ci95": [
+       0.10516973779312844,
+       0.13274470499691193
+      ],
+      "n_recordings": 57,
+      "n_instants": 9483
+     },
+     "F1_uniform_s2_k1": {
+      "median": 0.18435134744251072,
+      "ci95": [
+       0.16750756811301715,
+       0.19919705487396833
+      ],
+      "n_recordings": 57,
+      "n_instants": 9483
+     },
+     "disp_distance_px": {
+      "median": 2.23606797749979,
+      "ci95": [
+       2.0,
+       2.23606797749979
+      ],
+      "n_recordings": 57,
+      "n_instants": 9483
+     },
+     "share_disp_differs": {
+      "median": 0.9333333333333333,
+      "ci95": [
+       0.9246031746031746,
+       0.9379310344827586
+      ],
+      "n_recordings": 57,
+      "n_instants": 9483
+     }
+    },
+    "night": {
+     "F1_aligned_s2_k3": {
+      "median": 0.5201628034523569,
+      "ci95": [
+       0.5106040741227493,
+       0.5278838897240674
+      ],
+      "n_recordings": 47,
+      "n_instants": 12248
+     },
+     "F1_aligned_s2_k1": {
+      "median": 0.6102831367529182,
+      "ci95": [
+       0.6028342575477511,
+       0.6159953142082628
+      ],
+      "n_recordings": 47,
+      "n_instants": 12248
+     },
+     "F1_cmax_s2_k3": {
+      "median": 0.42019322356783234,
+      "ci95": [
+       0.4121282557573325,
+       0.426510973161332
+      ],
+      "n_recordings": 47,
+      "n_instants": 12248
+     },
+     "F1_cmax_s2_k1": {
+      "median": 0.5168133626275755,
+      "ci95": [
+       0.5131732264248728,
+       0.5241179758655838
+      ],
+      "n_recordings": 47,
+      "n_instants": 12248
+     },
+     "F1_static_s2_k3": {
+      "median": 0.08333464783298228,
+      "ci95": [
+       0.07485887964234311,
+       0.0920906849021313
+      ],
+      "n_recordings": 47,
+      "n_instants": 12248
+     },
+     "F1_static_s2_k1": {
+      "median": 0.11235831417681207,
+      "ci95": [
+       0.10661085805736797,
+       0.12052747090170801
+      ],
+      "n_recordings": 47,
+      "n_instants": 12248
+     },
+     "F1_uniform_s2_k3": {
+      "median": 0.10421420964551956,
+      "ci95": [
+       0.09680244160346857,
+       0.11656533439649158
+      ],
+      "n_recordings": 47,
+      "n_instants": 12248
+     },
+     "F1_uniform_s2_k1": {
+      "median": 0.16034545341867856,
+      "ci95": [
+       0.15222964737527844,
+       0.1720537972951076
+      ],
+      "n_recordings": 47,
+      "n_instants": 12248
+     },
+     "disp_distance_px": {
+      "median": 2.0,
+      "ci95": [
+       2.0,
+       2.23606797749979
+      ],
+      "n_recordings": 47,
+      "n_instants": 12248
+     },
+     "share_disp_differs": {
+      "median": 0.9230769230769231,
+      "ci95": [
+       0.9140461215932913,
+       0.9367816091954023
+      ],
+      "n_recordings": 47,
+      "n_instants": 12248
+     }
+    }
+   },
+   "m7": {
+    "day": {
+     "F1_aligned_s2_k3": {
+      "median": 0.4396924705076727,
+      "ci95": [
+       0.43272088337030096,
+       0.45101423638625854
+      ],
+      "n_recordings": 57,
+      "n_instants": 9483
+     },
+     "F1_aligned_s2_k1": {
+      "median": 0.5685814771395076,
+      "ci95": [
+       0.5606262150823698,
+       0.5780821917808219
+      ],
+      "n_recordings": 57,
+      "n_instants": 9483
+     },
+     "F1_cmax_s2_k3": {
+      "median": 0.34928315873465293,
+      "ci95": [
+       0.3395137775411531,
+       0.359660750971348
+      ],
+      "n_recordings": 57,
+      "n_instants": 9483
+     },
+     "F1_cmax_s2_k1": {
+      "median": 0.48392805083111823,
+      "ci95": [
+       0.46382391095116543,
+       0.5058780800335665
+      ],
+      "n_recordings": 57,
+      "n_instants": 9483
+     },
+     "F1_static_s2_k3": {
+      "median": 0.08114298272000328,
+      "ci95": [
+       0.07645195552071071,
+       0.10302387099840016
+      ],
+      "n_recordings": 57,
+      "n_instants": 9483
+     },
+     "F1_static_s2_k1": {
+      "median": 0.12647114957748573,
+      "ci95": [
+       0.11466354201540006,
+       0.15589656042058703
+      ],
+      "n_recordings": 57,
+      "n_instants": 9483
+     },
+     "F1_uniform_s2_k3": {
+      "median": 0.11311028743955423,
+      "ci95": [
+       0.10370984728256284,
+       0.13048001188883934
+      ],
+      "n_recordings": 57,
+      "n_instants": 9483
+     },
+     "F1_uniform_s2_k1": {
+      "median": 0.18430458688206464,
+      "ci95": [
+       0.16831099985274628,
+       0.20070637878217967
+      ],
+      "n_recordings": 57,
+      "n_instants": 9483
+     },
+     "disp_distance_px": {
+      "median": 2.23606797749979,
+      "ci95": [
+       2.23606797749979,
+       2.8284271247461903
+      ],
+      "n_recordings": 57,
+      "n_instants": 9483
+     },
+     "share_disp_differs": {
+      "median": 0.9550173010380623,
+      "ci95": [
+       0.9471544715447154,
+       0.961183541377716
+      ],
+      "n_recordings": 57,
+      "n_instants": 9483
+     }
+    },
+    "night": {
+     "F1_aligned_s2_k3": {
+      "median": 0.4958465590599041,
+      "ci95": [
+       0.48512532481909176,
+       0.5075657070208136
+      ],
+      "n_recordings": 47,
+      "n_instants": 12248
+     },
+     "F1_aligned_s2_k1": {
+      "median": 0.5856941861065832,
+      "ci95": [
+       0.5793537696189461,
+       0.592804750261963
+      ],
+      "n_recordings": 47,
+      "n_instants": 12248
+     },
+     "F1_cmax_s2_k3": {
+      "median": 0.3742719675867308,
+      "ci95": [
+       0.37021589460355886,
+       0.3856114408768826
+      ],
+      "n_recordings": 47,
+      "n_instants": 12248
+     },
+     "F1_cmax_s2_k1": {
+      "median": 0.4714514441249144,
+      "ci95": [
+       0.46061364711715735,
+       0.4761821543195481
+      ],
+      "n_recordings": 47,
+      "n_instants": 12248
+     },
+     "F1_static_s2_k3": {
+      "median": 0.07580336418719413,
+      "ci95": [
+       0.06864988558352403,
+       0.08125729855975088
+      ],
+      "n_recordings": 47,
+      "n_instants": 12248
+     },
+     "F1_static_s2_k1": {
+      "median": 0.10002127986937781,
+      "ci95": [
+       0.09742370144573523,
+       0.11147811725846409
+      ],
+      "n_recordings": 47,
+      "n_instants": 12248
+     },
+     "F1_uniform_s2_k3": {
+      "median": 0.10472138440246347,
+      "ci95": [
+       0.098168049187587,
+       0.11726727983395516
+      ],
+      "n_recordings": 47,
+      "n_instants": 12248
+     },
+     "F1_uniform_s2_k1": {
+      "median": 0.16087059833328887,
+      "ci95": [
+       0.1535789744889179,
+       0.17332220674597076
+      ],
+      "n_recordings": 47,
+      "n_instants": 12248
+     },
+     "disp_distance_px": {
+      "median": 2.23606797749979,
+      "ci95": [
+       2.23606797749979,
+       2.23606797749979
+      ],
+      "n_recordings": 47,
+      "n_instants": 12248
+     },
+     "share_disp_differs": {
+      "median": 0.9482758620689655,
+      "ci95": [
+       0.9345794392523364,
+       0.9518072289156626
+      ],
+      "n_recordings": 47,
+      "n_instants": 12248
+     }
+    }
+   },
+   "m8": {
+    "day": {
+     "F1_aligned_s2_k3": {
+      "median": 0.4175769862462998,
+      "ci95": [
+       0.4100735457989748,
+       0.4310003347124063
+      ],
+      "n_recordings": 57,
+      "n_instants": 9476
+     },
+     "F1_aligned_s2_k1": {
+      "median": 0.5431229996396701,
+      "ci95": [
+       0.5347519020577354,
+       0.5560169088771605
+      ],
+      "n_recordings": 57,
+      "n_instants": 9476
+     },
+     "F1_cmax_s2_k3": {
+      "median": 0.3177070848885388,
+      "ci95": [
+       0.30759753023855807,
+       0.32934899592121236
+      ],
+      "n_recordings": 57,
+      "n_instants": 9476
+     },
+     "F1_cmax_s2_k1": {
+      "median": 0.44649408168065907,
+      "ci95": [
+       0.42474097468847616,
+       0.46726622183541244
+      ],
+      "n_recordings": 57,
+      "n_instants": 9476
+     },
+     "F1_static_s2_k3": {
+      "median": 0.07732611966258711,
+      "ci95": [
+       0.07351017098396621,
+       0.09989360784426489
+      ],
+      "n_recordings": 57,
+      "n_instants": 9476
+     },
+     "F1_static_s2_k1": {
+      "median": 0.12321274443800279,
+      "ci95": [
+       0.11061879297173415,
+       0.14876450487411275
+      ],
+      "n_recordings": 57,
+      "n_instants": 9476
+     },
+     "F1_uniform_s2_k3": {
+      "median": 0.11251550128779929,
+      "ci95": [
+       0.10516567194896069,
+       0.1297210943754675
+      ],
+      "n_recordings": 57,
+      "n_instants": 9476
+     },
+     "F1_uniform_s2_k1": {
+      "median": 0.1835768676682445,
+      "ci95": [
+       0.16671481113511677,
+       0.19914114690808998
+      ],
+      "n_recordings": 57,
+      "n_instants": 9476
+     },
+     "disp_distance_px": {
+      "median": 3.1622776601683795,
+      "ci95": [
+       2.8284271247461903,
+       3.1622776601683795
+      ],
+      "n_recordings": 57,
+      "n_instants": 9476
+     },
+     "share_disp_differs": {
+      "median": 0.9672131147540983,
+      "ci95": [
+       0.9583333333333334,
+       0.972972972972973
+      ],
+      "n_recordings": 57,
+      "n_instants": 9476
+     }
+    },
+    "night": {
+     "F1_aligned_s2_k3": {
+      "median": 0.4788598523336407,
+      "ci95": [
+       0.4670943216916132,
+       0.4856076190502454
+      ],
+      "n_recordings": 47,
+      "n_instants": 12245
+     },
+     "F1_aligned_s2_k1": {
+      "median": 0.5636237017503188,
+      "ci95": [
+       0.5569693768890087,
+       0.5709691388730382
+      ],
+      "n_recordings": 47,
+      "n_instants": 12245
+     },
+     "F1_cmax_s2_k3": {
+      "median": 0.3417319500317595,
+      "ci95": [
+       0.33345254273657104,
+       0.34937266139554884
+      ],
+      "n_recordings": 47,
+      "n_instants": 12245
+     },
+     "F1_cmax_s2_k1": {
+      "median": 0.4300993847610033,
+      "ci95": [
+       0.42469587686687477,
+       0.43896292095895156
+      ],
+      "n_recordings": 47,
+      "n_instants": 12245
+     },
+     "F1_static_s2_k3": {
+      "median": 0.06966065628849816,
+      "ci95": [
+       0.06279630061397373,
+       0.07576396206533192
+      ],
+      "n_recordings": 47,
+      "n_instants": 12245
+     },
+     "F1_static_s2_k1": {
+      "median": 0.0919521926371202,
+      "ci95": [
+       0.08656416603343045,
+       0.10426709187716278
+      ],
+      "n_recordings": 47,
+      "n_instants": 12245
+     },
+     "F1_uniform_s2_k3": {
+      "median": 0.10376492194674013,
+      "ci95": [
+       0.09735320961362945,
+       0.11665206790263231
+      ],
+      "n_recordings": 47,
+      "n_instants": 12245
+     },
+     "F1_uniform_s2_k1": {
+      "median": 0.15938529770452264,
+      "ci95": [
+       0.1535333716243148,
+       0.1719156367742869
+      ],
+      "n_recordings": 47,
+      "n_instants": 12245
+     },
+     "disp_distance_px": {
+      "median": 3.0,
+      "ci95": [
+       2.8284271247461903,
+       3.1622776601683795
+      ],
+      "n_recordings": 47,
+      "n_instants": 12245
+     },
+     "share_disp_differs": {
+      "median": 0.954337899543379,
+      "ci95": [
+       0.9485294117647058,
+       0.9630434782608696
+      ],
+      "n_recordings": 47,
+      "n_instants": 12245
+     }
+    }
+   },
+   "m9": {
+    "day": {
+     "F1_aligned_s2_k3": {
+      "median": 0.39738033323702204,
+      "ci95": [
+       0.3903330178967166,
+       0.41190362310175777
+      ],
+      "n_recordings": 57,
+      "n_instants": 9482
+     },
+     "F1_aligned_s2_k1": {
+      "median": 0.5249391249705444,
+      "ci95": [
+       0.5176295026955058,
+       0.5368624060650395
+      ],
+      "n_recordings": 57,
+      "n_instants": 9482
+     },
+     "F1_cmax_s2_k3": {
+      "median": 0.28828695986729036,
+      "ci95": [
+       0.27837131116921926,
+       0.30089774939292613
+      ],
+      "n_recordings": 57,
+      "n_instants": 9482
+     },
+     "F1_cmax_s2_k1": {
+      "median": 0.41181748134387436,
+      "ci95": [
+       0.4005920078934386,
+       0.42979044540577727
+      ],
+      "n_recordings": 57,
+      "n_instants": 9482
+     },
+     "F1_static_s2_k3": {
+      "median": 0.0785413744740533,
+      "ci95": [
+       0.07241589150656351,
+       0.09302619645580606
+      ],
+      "n_recordings": 57,
+      "n_instants": 9482
+     },
+     "F1_static_s2_k1": {
+      "median": 0.12599165908877114,
+      "ci95": [
+       0.10801080108010801,
+       0.14252945721460306
+      ],
+      "n_recordings": 57,
+      "n_instants": 9482
+     },
+     "F1_uniform_s2_k3": {
+      "median": 0.11287444584237857,
+      "ci95": [
+       0.1039035722572887,
+       0.12946128665704817
+      ],
+      "n_recordings": 57,
+      "n_instants": 9482
+     },
+     "F1_uniform_s2_k1": {
+      "median": 0.18297705797428074,
+      "ci95": [
+       0.16784811381549597,
+       0.19766144291882976
+      ],
+      "n_recordings": 57,
+      "n_instants": 9482
+     },
+     "disp_distance_px": {
+      "median": 3.605551275463989,
+      "ci95": [
+       3.1622776601683795,
+       4.0
+      ],
+      "n_recordings": 57,
+      "n_instants": 9482
+     },
+     "share_disp_differs": {
+      "median": 0.9767441860465116,
+      "ci95": [
+       0.970856102003643,
+       0.9846153846153847
+      ],
+      "n_recordings": 57,
+      "n_instants": 9482
+     }
+    },
+    "night": {
+     "F1_aligned_s2_k3": {
+      "median": 0.459562811439079,
+      "ci95": [
+       0.4491381018426788,
+       0.46803615447822516
+      ],
+      "n_recordings": 47,
+      "n_instants": 12246
+     },
+     "F1_aligned_s2_k1": {
+      "median": 0.5409645909645909,
+      "ci95": [
+       0.5362637362637362,
+       0.5518443572378007
+      ],
+      "n_recordings": 47,
+      "n_instants": 12246
+     },
+     "F1_cmax_s2_k3": {
+      "median": 0.3122751935783718,
+      "ci95": [
+       0.3024721279689772,
+       0.3201587528963119
+      ],
+      "n_recordings": 47,
+      "n_instants": 12246
+     },
+     "F1_cmax_s2_k1": {
+      "median": 0.3964660136831225,
+      "ci95": [
+       0.38658519975786926,
+       0.4110059823999389
+      ],
+      "n_recordings": 47,
+      "n_instants": 12246
+     },
+     "F1_static_s2_k3": {
+      "median": 0.06317981581629203,
+      "ci95": [
+       0.05992403154902861,
+       0.07140057998275727
+      ],
+      "n_recordings": 47,
+      "n_instants": 12246
+     },
+     "F1_static_s2_k1": {
+      "median": 0.08651175965686098,
+      "ci95": [
+       0.08259786412482112,
+       0.0968274476026414
+      ],
+      "n_recordings": 47,
+      "n_instants": 12246
+     },
+     "F1_uniform_s2_k3": {
+      "median": 0.10434711218751283,
+      "ci95": [
+       0.09820049970523007,
+       0.11696010659603842
+      ],
+      "n_recordings": 47,
+      "n_instants": 12246
+     },
+     "F1_uniform_s2_k1": {
+      "median": 0.16047210710593304,
+      "ci95": [
+       0.1539180796224939,
+       0.16875689218266687
+      ],
+      "n_recordings": 47,
+      "n_instants": 12246
+     },
+     "disp_distance_px": {
+      "median": 3.1622776601683795,
+      "ci95": [
+       3.1622776601683795,
+       3.3839144678161843
+      ],
+      "n_recordings": 47,
+      "n_instants": 12246
+     },
+     "share_disp_differs": {
+      "median": 0.9652173913043478,
+      "ci95": [
+       0.9589322381930184,
+       0.9683377308707124
+      ],
+      "n_recordings": 47,
+      "n_instants": 12246
+     }
+    }
+   },
+   "m10": {
+    "day": {
+     "F1_aligned_s2_k3": {
+      "median": 0.38607093550770394,
+      "ci95": [
+       0.37716671444637123,
+       0.3955950712019479
+      ],
+      "n_recordings": 57,
+      "n_instants": 9477
+     },
+     "F1_aligned_s2_k1": {
+      "median": 0.5056668423827095,
+      "ci95": [
+       0.4955469562494448,
+       0.5175369784036671
+      ],
+      "n_recordings": 57,
+      "n_instants": 9477
+     },
+     "F1_cmax_s2_k3": {
+      "median": 0.26689722951791917,
+      "ci95": [
+       0.25824407522982207,
+       0.27602052871760585
+      ],
+      "n_recordings": 57,
+      "n_instants": 9477
+     },
+     "F1_cmax_s2_k1": {
+      "median": 0.37985653300449174,
+      "ci95": [
+       0.3660499105962839,
+       0.40165837479270317
+      ],
+      "n_recordings": 57,
+      "n_instants": 9477
+     },
+     "F1_static_s2_k3": {
+      "median": 0.07591613777657555,
+      "ci95": [
+       0.07065229776490414,
+       0.09280924904629836
+      ],
+      "n_recordings": 57,
+      "n_instants": 9477
+     },
+     "F1_static_s2_k1": {
+      "median": 0.12666572972696724,
+      "ci95": [
+       0.10504348355895533,
+       0.13592362641030775
+      ],
+      "n_recordings": 57,
+      "n_instants": 9477
+     },
+     "F1_uniform_s2_k3": {
+      "median": 0.11301971840792913,
+      "ci95": [
+       0.10389112010463969,
+       0.12946461999251216
+      ],
+      "n_recordings": 57,
+      "n_instants": 9477
+     },
+     "F1_uniform_s2_k1": {
+      "median": 0.18461057892544774,
+      "ci95": [
+       0.17033048461196462,
+       0.19913110145668286
+      ],
+      "n_recordings": 57,
+      "n_instants": 9477
+     },
+     "disp_distance_px": {
+      "median": 4.123105625617661,
+      "ci95": [
+       3.605551275463989,
+       4.357388321059432
+      ],
+      "n_recordings": 57,
+      "n_instants": 9477
+     },
+     "share_disp_differs": {
+      "median": 0.9821428571428571,
+      "ci95": [
+       0.9771428571428571,
+       0.9861123125720876
+      ],
+      "n_recordings": 57,
+      "n_instants": 9477
+     }
+    },
+    "night": {
+     "F1_aligned_s2_k3": {
+      "median": 0.4453420853319869,
+      "ci95": [
+       0.4363313990973565,
+       0.45298013245033114
+      ],
+      "n_recordings": 47,
+      "n_instants": 12246
+     },
+     "F1_aligned_s2_k1": {
+      "median": 0.5229656231295704,
+      "ci95": [
+       0.5192740122068744,
+       0.5322619107575115
+      ],
+      "n_recordings": 47,
+      "n_instants": 12246
+     },
+     "F1_cmax_s2_k3": {
+      "median": 0.2828528493815744,
+      "ci95": [
+       0.2802258119796831,
+       0.2874890938502773
+      ],
+      "n_recordings": 47,
+      "n_instants": 12246
+     },
+     "F1_cmax_s2_k1": {
+      "median": 0.360938773128887,
+      "ci95": [
+       0.35661103979460845,
+       0.3715081623051638
+      ],
+      "n_recordings": 47,
+      "n_instants": 12246
+     },
+     "F1_static_s2_k3": {
+      "median": 0.05796806298127387,
+      "ci95": [
+       0.05665957789566289,
+       0.0641915592525351
+      ],
+      "n_recordings": 47,
+      "n_instants": 12246
+     },
+     "F1_static_s2_k1": {
+      "median": 0.08151853557936273,
+      "ci95": [
+       0.0775387935133149,
+       0.08691413588108864
+      ],
+      "n_recordings": 47,
+      "n_instants": 12246
+     },
+     "F1_uniform_s2_k3": {
+      "median": 0.10338913282107574,
+      "ci95": [
+       0.096961995772986,
+       0.11608226976511836
+      ],
+      "n_recordings": 47,
+      "n_instants": 12246
+     },
+     "F1_uniform_s2_k1": {
+      "median": 0.15999825517253496,
+      "ci95": [
+       0.15199771859777755,
+       0.1686821522571748
+      ],
+      "n_recordings": 47,
+      "n_instants": 12246
+     },
+     "disp_distance_px": {
+      "median": 4.0,
+      "ci95": [
+       3.605551275463989,
+       4.123105625617661
+      ],
+      "n_recordings": 47,
+      "n_instants": 12246
+     },
+     "share_disp_differs": {
+      "median": 0.9762532981530343,
+      "ci95": [
+       0.971042471042471,
+       0.9807827102803737
+      ],
+      "n_recordings": 47,
+      "n_instants": 12246
+     }
+    }
+   }
+  },
+  "3_grid_aligned_K4_H": {
+   "day": {
+    "s1_k1": {
+     "median": 2.4253810607628115,
+     "ci95": [
+      2.3778514913188857,
+      2.457717487290704
+     ],
+     "n_recordings": 57,
+     "n_instants": 9488
+    },
+    "s1_k3": {
+     "median": 1.8801815977084362,
+     "ci95": [
+      1.8539038112040789,
+      1.9268218772371994
+     ],
+     "n_recordings": 57,
+     "n_instants": 9488
+    },
+    "s1_k8": {
+     "median": 1.3330100307769337,
+     "ci95": [
+      1.2771568557774986,
+      1.387563493679355
+     ],
+     "n_recordings": 57,
+     "n_instants": 9488
+    },
+    "s1_k32": {
+     "median": 0.7864625756133898,
+     "ci95": [
+      0.7648843707960389,
+      0.8019822586839324
+     ],
+     "n_recordings": 57,
+     "n_instants": 9488
+    },
+    "s2_k1": {
+     "median": 2.700556952649689,
+     "ci95": [
+      2.6422221779750017,
+      2.745511968149211
+     ],
+     "n_recordings": 57,
+     "n_instants": 9488
+    },
+    "s2_k3": {
+     "median": 2.2373558387621353,
+     "ci95": [
+      2.18165891657404,
+      2.26751876667405
+     ],
+     "n_recordings": 57,
+     "n_instants": 9488
+    },
+    "s2_k8": {
+     "median": 1.7556912803710603,
+     "ci95": [
+      1.7309114725558576,
+      1.7977409445238581
+     ],
+     "n_recordings": 57,
+     "n_instants": 9488
+    },
+    "s2_k32": {
+     "median": 1.0954546816653967,
+     "ci95": [
+      1.0536077697480835,
+      1.1232779645231024
+     ],
+     "n_recordings": 57,
+     "n_instants": 9488
+    },
+    "s4_k1": {
+     "median": 2.989768193033947,
+     "ci95": [
+      2.923833106773949,
+      3.04817385296131
+     ],
+     "n_recordings": 57,
+     "n_instants": 9488
+    },
+    "s4_k3": {
+     "median": 2.635858123922212,
+     "ci95": [
+      2.569642440656035,
+      2.6576848369735657
+     ],
+     "n_recordings": 57,
+     "n_instants": 9488
+    },
+    "s4_k8": {
+     "median": 2.270519156371777,
+     "ci95": [
+      2.209822248609843,
+      2.285703179160258
+     ],
+     "n_recordings": 57,
+     "n_instants": 9488
+    },
+    "s4_k32": {
+     "median": 1.5498700454947973,
+     "ci95": [
+      1.5095074796323906,
+      1.6033360717774783
+     ],
+     "n_recordings": 57,
+     "n_instants": 9488
+    }
+   },
+   "night": {
+    "s1_k1": {
+     "median": 2.469606802244244,
+     "ci95": [
+      2.3994858742850207,
+      2.497489163503929
+     ],
+     "n_recordings": 47,
+     "n_instants": 12251
+    },
+    "s1_k3": {
+     "median": 1.9826821088266984,
+     "ci95": [
+      1.9030792790712865,
+      2.017991731940818
+     ],
+     "n_recordings": 47,
+     "n_instants": 12251
+    },
+    "s1_k8": {
+     "median": 1.4937165832464454,
+     "ci95": [
+      1.4288900163708167,
+      1.5090613302499762
+     ],
+     "n_recordings": 47,
+     "n_instants": 12251
+    },
+    "s1_k32": {
+     "median": 0.918004951910525,
+     "ci95": [
+      0.8978396884029978,
+      0.9347696650391863
+     ],
+     "n_recordings": 47,
+     "n_instants": 12251
+    },
+    "s2_k1": {
+     "median": 2.730909634085994,
+     "ci95": [
+      2.6563533161307773,
+      2.7400735570363945
+     ],
+     "n_recordings": 47,
+     "n_instants": 12251
+    },
+    "s2_k3": {
+     "median": 2.3112315758071285,
+     "ci95": [
+      2.2678024417069906,
+      2.353059142216704
+     ],
+     "n_recordings": 47,
+     "n_instants": 12251
+    },
+    "s2_k8": {
+     "median": 1.8948859244912208,
+     "ci95": [
+      1.8210619097426437,
+      1.9289054304752007
+     ],
+     "n_recordings": 47,
+     "n_instants": 12251
+    },
+    "s2_k32": {
+     "median": 1.2344757977637064,
+     "ci95": [
+      1.202991832850124,
+      1.2453896910604234
+     ],
+     "n_recordings": 47,
+     "n_instants": 12251
+    },
+    "s4_k1": {
+     "median": 2.9570511658527217,
+     "ci95": [
+      2.9002301071596044,
+      3.000526690873416
+     ],
+     "n_recordings": 47,
+     "n_instants": 12251
+    },
+    "s4_k3": {
+     "median": 2.6667696724962466,
+     "ci95": [
+      2.620922095459007,
+      2.6993706434794116
+     ],
+     "n_recordings": 47,
+     "n_instants": 12251
+    },
+    "s4_k8": {
+     "median": 2.3346054484882965,
+     "ci95": [
+      2.288540103547251,
+      2.396469230411893
+     ],
+     "n_recordings": 47,
+     "n_instants": 12251
+    },
+    "s4_k32": {
+     "median": 1.6664568820309604,
+     "ci95": [
+      1.6332910730192163,
+      1.6823989785606335
+     ],
+     "n_recordings": 47,
+     "n_instants": 12251
+    }
+   }
+  },
+  "4_speed_class_isolated": {
+   "vehicles|0-20": {
+    "day": {
+     "gamma_aligned_K4": {
+      "median": 1.522807581089603,
+      "ci95": [
+       1.406274913246706,
+       1.5730607773200251
+      ],
+      "n_recordings": 19,
+      "n_instants": 1772
+     },
+     "fidelity_aligned_K4": {
+      "median": 0.5219436538101001,
+      "ci95": [
+       0.49458540950905394,
+       0.5527790088073268
+      ],
+      "n_recordings": 19,
+      "n_instants": 1772
+     },
+     "gamma_static_K4": {
+      "median": 1.2697618181736874,
+      "ci95": [
+       1.1664412089212177,
+       1.29541571126909
+      ],
+      "n_recordings": 19,
+      "n_instants": 1772
+     },
+     "fidelity_static_K4": {
+      "median": 0.4686291000841043,
+      "ci95": [
+       0.4179460071176497,
+       0.48269581056466304
+      ],
+      "n_recordings": 19,
+      "n_instants": 1772
+     },
+     "gamma_aligned_K11": {
+      "median": 3.112975879578972,
+      "ci95": [
+       2.9239128247681268,
+       3.32762264976057
+      ],
+      "n_recordings": 18,
+      "n_instants": 1616
+     },
+     "fidelity_aligned_K11": {
+      "median": 0.41457247929760993,
+      "ci95": [
+       0.38180083496181627,
+       0.44314908492328586
+      ],
+      "n_recordings": 18,
+      "n_instants": 1616
+     },
+     "gamma_static_K11": {
+      "median": 1.5638603814698588,
+      "ci95": [
+       1.4458520112764746,
+       1.7949376305087223
+      ],
+      "n_recordings": 18,
+      "n_instants": 1616
+     },
+     "fidelity_static_K11": {
+      "median": 0.24491658932465504,
+      "ci95": [
+       0.2378311969978068,
+       0.24817621644592394
+      ],
+      "n_recordings": 18,
+      "n_instants": 1616
+     }
+    },
+    "night": {
+     "gamma_aligned_K4": {
+      "median": 1.860392811625573,
+      "ci95": [
+       1.5464383258285967,
+       2.1096396117306897
+      ],
+      "n_recordings": 33,
+      "n_instants": 2736
+     },
+     "fidelity_aligned_K4": {
+      "median": 0.6096270133864404,
+      "ci95": [
+       0.5434608184006419,
+       0.6521842772389064
+      ],
+      "n_recordings": 33,
+      "n_instants": 2736
+     },
+     "gamma_static_K4": {
+      "median": 1.5751957600690878,
+      "ci95": [
+       1.4097695416846818,
+       1.65413833056685
+      ],
+      "n_recordings": 33,
+      "n_instants": 2736
+     },
+     "fidelity_static_K4": {
+      "median": 0.536237326323695,
+      "ci95": [
+       0.5036118542316227,
+       0.5629926902680235
+      ],
+      "n_recordings": 33,
+      "n_instants": 2736
+     },
+     "gamma_aligned_K11": {
+      "median": 3.9802340692215976,
+      "ci95": [
+       3.42814503755306,
+       4.495103033803057
+      ],
+      "n_recordings": 33,
+      "n_instants": 2684
+     },
+     "fidelity_aligned_K11": {
+      "median": 0.4980463698284132,
+      "ci95": [
+       0.43410678080648796,
+       0.5572882875443832
+      ],
+      "n_recordings": 33,
+      "n_instants": 2684
+     },
+     "gamma_static_K11": {
+      "median": 2.283404175893168,
+      "ci95": [
+       2.1246642384012824,
+       2.42426548694685
+      ],
+      "n_recordings": 33,
+      "n_instants": 2684
+     },
+     "fidelity_static_K11": {
+      "median": 0.3125501697615377,
+      "ci95": [
+       0.29429560956381656,
+       0.3295602524291295
+      ],
+      "n_recordings": 33,
+      "n_instants": 2684
+     }
+    }
+   },
+   "vehicles|20-100": {
+    "day": {
+     "gamma_aligned_K4": {
+      "median": 2.151543381345072,
+      "ci95": [
+       1.9974674124319474,
+       2.210464935535435
+      ],
+      "n_recordings": 38,
+      "n_instants": 4552
+     },
+     "fidelity_aligned_K4": {
+      "median": 0.6781269286121328,
+      "ci95": [
+       0.6561539258682585,
+       0.6946998506857471
+      ],
+      "n_recordings": 38,
+      "n_instants": 4552
+     },
+     "gamma_static_K4": {
+      "median": 1.0898911479540214,
+      "ci95": [
+       1.006651254002291,
+       1.1257959541324312
+      ],
+      "n_recordings": 38,
+      "n_instants": 4552
+     },
+     "fidelity_static_K4": {
+      "median": 0.42293893498365104,
+      "ci95": [
+       0.4018133909478564,
+       0.43102327034192045
+      ],
+      "n_recordings": 38,
+      "n_instants": 4552
+     },
+     "gamma_aligned_K11": {
+      "median": 4.183646656561574,
+      "ci95": [
+       3.9075914699011016,
+       4.585734596544524
+      ],
+      "n_recordings": 38,
+      "n_instants": 4538
+     },
+     "fidelity_aligned_K11": {
+      "median": 0.5457154905067001,
+      "ci95": [
+       0.5210889570655866,
+       0.5513755673447869
+      ],
+      "n_recordings": 38,
+      "n_instants": 4538
+     },
+     "gamma_static_K11": {
+      "median": 1.3798608589790302,
+      "ci95": [
+       1.179891781335359,
+       1.536438522150386
+      ],
+      "n_recordings": 38,
+      "n_instants": 4538
+     },
+     "fidelity_static_K11": {
+      "median": 0.22995360812330667,
+      "ci95": [
+       0.19382155718890587,
+       0.23506238885733888
+      ],
+      "n_recordings": 38,
+      "n_instants": 4538
+     }
+    },
+    "night": {
+     "gamma_aligned_K4": {
+      "median": 2.267156309777556,
+      "ci95": [
+       2.223766887887279,
+       2.3418902226494343
+      ],
+      "n_recordings": 43,
+      "n_instants": 6750
+     },
+     "fidelity_aligned_K4": {
+      "median": 0.7195901483677596,
+      "ci95": [
+       0.707760069073448,
+       0.7293712193692887
+      ],
+      "n_recordings": 43,
+      "n_instants": 6750
+     },
+     "gamma_static_K4": {
+      "median": 1.3034724373175546,
+      "ci95": [
+       1.2700271488162351,
+       1.3215201488173043
+      ],
+      "n_recordings": 43,
+      "n_instants": 6750
+     },
+     "fidelity_static_K4": {
+      "median": 0.4878895952860909,
+      "ci95": [
+       0.4767346380183386,
+       0.49736184393224103
+      ],
+      "n_recordings": 43,
+      "n_instants": 6750
+     },
+     "gamma_aligned_K11": {
+      "median": 4.651957037575618,
+      "ci95": [
+       4.469571118330215,
+       4.779524878014345
+      ],
+      "n_recordings": 43,
+      "n_instants": 6744
+     },
+     "fidelity_aligned_K11": {
+      "median": 0.5936178892898545,
+      "ci95": [
+       0.5753902888752305,
+       0.6040743486330051
+      ],
+      "n_recordings": 43,
+      "n_instants": 6744
+     },
+     "gamma_static_K11": {
+      "median": 1.5364394123973697,
+      "ci95": [
+       1.4872309160622637,
+       1.6049126069852095
+      ],
+      "n_recordings": 43,
+      "n_instants": 6744
+     },
+     "fidelity_static_K11": {
+      "median": 0.24259105165461178,
+      "ci95": [
+       0.23422753342919952,
+       0.24820422935279324
+      ],
+      "n_recordings": 43,
+      "n_instants": 6744
+     }
+    }
+   },
+   "vehicles|100-300": {
+    "day": {
+     "gamma_aligned_K4": {
+      "median": 2.2773137320998953,
+      "ci95": [
+       2.2265477052424805,
+       2.3111383057425448
+      ],
+      "n_recordings": 54,
+      "n_instants": 4726
+     },
+     "fidelity_aligned_K4": {
+      "median": 0.721290671783924,
+      "ci95": [
+       0.704838715848203,
+       0.7289919885085032
+      ],
+      "n_recordings": 54,
+      "n_instants": 4726
+     },
+     "gamma_static_K4": {
+      "median": 0.8762923717105018,
+      "ci95": [
+       0.8578126980927183,
+       0.9545383464767323
+      ],
+      "n_recordings": 54,
+      "n_instants": 4726
+     },
+     "fidelity_static_K4": {
+      "median": 0.36085024496212637,
+      "ci95": [
+       0.3554428620203263,
+       0.38230145468735155
+      ],
+      "n_recordings": 54,
+      "n_instants": 4726
+     },
+     "gamma_aligned_K11": {
+      "median": 4.122128534922631,
+      "ci95": [
+       4.067860693542027,
+       4.239226368166892
+      ],
+      "n_recordings": 54,
+      "n_instants": 4709
+     },
+     "fidelity_aligned_K11": {
+      "median": 0.5475790617821377,
+      "ci95": [
+       0.5196705507695636,
+       0.5548655265033078
+      ],
+      "n_recordings": 54,
+      "n_instants": 4709
+     },
+     "gamma_static_K11": {
+      "median": 1.1554416533164342,
+      "ci95": [
+       1.1044362382498998,
+       1.3610845043157698
+      ],
+      "n_recordings": 54,
+      "n_instants": 4709
+     },
+     "fidelity_static_K11": {
+      "median": 0.19646466151044148,
+      "ci95": [
+       0.19076125748565131,
+       0.20334328926868098
+      ],
+      "n_recordings": 54,
+      "n_instants": 4709
+     }
+    },
+    "night": {
+     "gamma_aligned_K4": {
+      "median": 2.356438788517856,
+      "ci95": [
+       2.30492614374419,
+       2.384307618136729
+      ],
+      "n_recordings": 45,
+      "n_instants": 5430
+     },
+     "fidelity_aligned_K4": {
+      "median": 0.7372022585349437,
+      "ci95": [
+       0.7274286883568651,
+       0.7421771611526147
+      ],
+      "n_recordings": 45,
+      "n_instants": 5430
+     },
+     "gamma_static_K4": {
+      "median": 0.9544982755917537,
+      "ci95": [
+       0.9406030054645146,
+       0.9730438204526604
+      ],
+      "n_recordings": 45,
+      "n_instants": 5430
+     },
+     "fidelity_static_K4": {
+      "median": 0.38188281057879325,
+      "ci95": [
+       0.37711401954021984,
+       0.38810769276236073
+      ],
+      "n_recordings": 45,
+      "n_instants": 5430
+     },
+     "gamma_aligned_K11": {
+      "median": 4.3081138553836205,
+      "ci95": [
+       4.234070812207837,
+       4.405834929781829
+      ],
+      "n_recordings": 45,
+      "n_instants": 5428
+     },
+     "fidelity_aligned_K11": {
+      "median": 0.5685309246709538,
+      "ci95": [
+       0.5586076256575608,
+       0.5781002172052863
+      ],
+      "n_recordings": 45,
+      "n_instants": 5428
+     },
+     "gamma_static_K11": {
+      "median": 1.1564436931443394,
+      "ci95": [
+       1.1303068082824872,
+       1.1823432903734377
+      ],
+      "n_recordings": 45,
+      "n_instants": 5428
+     },
+     "fidelity_static_K11": {
+      "median": 0.1905621865823025,
+      "ci95": [
+       0.18645494238675636,
+       0.19670796364423285
+      ],
+      "n_recordings": 45,
+      "n_instants": 5428
+     }
+    }
+   },
+   "vehicles|300-inf": {
+    "day": {
+     "gamma_aligned_K4": {
+      "median": 2.3129519492378354,
+      "ci95": [
+       2.29434637376964,
+       2.3537707503153857
+      ],
+      "n_recordings": 41,
+      "n_instants": 2297
+     },
+     "fidelity_aligned_K4": {
+      "median": 0.7317526860139458,
+      "ci95": [
+       0.7199055258710894,
+       0.7356580500770526
+      ],
+      "n_recordings": 41,
+      "n_instants": 2297
+     },
+     "gamma_static_K4": {
+      "median": 0.9078090932900139,
+      "ci95": [
+       0.8888608674413967,
+       0.9304593310602974
+      ],
+      "n_recordings": 41,
+      "n_instants": 2297
+     },
+     "fidelity_static_K4": {
+      "median": 0.3700500104648732,
+      "ci95": [
+       0.3639434727601326,
+       0.3780155141355097
+      ],
+      "n_recordings": 41,
+      "n_instants": 2297
+     },
+     "gamma_aligned_K11": {
+      "median": 4.040177719676379,
+      "ci95": [
+       3.964621199549964,
+       4.084506743855698
+      ],
+      "n_recordings": 41,
+      "n_instants": 2289
+     },
+     "fidelity_aligned_K11": {
+      "median": 0.5430345669406517,
+      "ci95": [
+       0.5288859137307231,
+       0.5479741666305923
+      ],
+      "n_recordings": 41,
+      "n_instants": 2289
+     },
+     "gamma_static_K11": {
+      "median": 1.2377045253949777,
+      "ci95": [
+       1.21669771490295,
+       1.3235487332219837
+      ],
+      "n_recordings": 41,
+      "n_instants": 2289
+     },
+     "fidelity_static_K11": {
+      "median": 0.20796383369536003,
+      "ci95": [
+       0.2044561513213091,
+       0.21879393501252684
+      ],
+      "n_recordings": 41,
+      "n_instants": 2289
+     }
+    },
+    "night": {
+     "gamma_aligned_K4": {
+      "median": 2.2609190634630583,
+      "ci95": [
+       2.2337896018387116,
+       2.2797478390927717
+      ],
+      "n_recordings": 22,
+      "n_instants": 1288
+     },
+     "fidelity_aligned_K4": {
+      "median": 0.7145610405264655,
+      "ci95": [
+       0.7099259637458752,
+       0.7217523511405299
+      ],
+      "n_recordings": 22,
+      "n_instants": 1288
+     },
+     "gamma_static_K4": {
+      "median": 0.8627746496736262,
+      "ci95": [
+       0.8504282089733617,
+       0.8715986743722648
+      ],
+      "n_recordings": 22,
+      "n_instants": 1288
+     },
+     "fidelity_static_K4": {
+      "median": 0.3477432024298054,
+      "ci95": [
+       0.3430672283157988,
+       0.35268089922075746
+      ],
+      "n_recordings": 22,
+      "n_instants": 1288
+     },
+     "gamma_aligned_K11": {
+      "median": 4.163414993374353,
+      "ci95": [
+       3.955719890869423,
+       4.193455204044255
+      ],
+      "n_recordings": 22,
+      "n_instants": 1288
+     },
+     "fidelity_aligned_K11": {
+      "median": 0.5365710534181676,
+      "ci95": [
+       0.5298114321999364,
+       0.5478896896457509
+      ],
+      "n_recordings": 22,
+      "n_instants": 1288
+     },
+     "gamma_static_K11": {
+      "median": 1.0600928178699203,
+      "ci95": [
+       1.0415123995420965,
+       1.0770973619716346
+      ],
+      "n_recordings": 22,
+      "n_instants": 1288
+     },
+     "fidelity_static_K11": {
+      "median": 0.17487836041646185,
+      "ci95": [
+       0.16975123301268222,
+       0.17735378985889255
+      ],
+      "n_recordings": 22,
+      "n_instants": 1288
+     }
+    }
+   },
+   "other|0-20": {
+    "day": {
+     "gamma_aligned_K4": {
+      "median": 1.176571211328362,
+      "ci95": [
+       1.1300113447194529,
+       1.2235252322188415
+      ],
+      "n_recordings": 26,
+      "n_instants": 1526
+     },
+     "fidelity_aligned_K4": {
+      "median": 0.4461844972068848,
+      "ci95": [
+       0.4272720773372292,
+       0.45927083794198936
+      ],
+      "n_recordings": 26,
+      "n_instants": 1526
+     },
+     "gamma_static_K4": {
+      "median": 0.959564422094497,
+      "ci95": [
+       0.9285455194344138,
+       1.0000896920264544
+      ],
+      "n_recordings": 26,
+      "n_instants": 1526
+     },
+     "fidelity_static_K4": {
+      "median": 0.3780870898350102,
+      "ci95": [
+       0.3699468380248175,
+       0.39314549877755134
+      ],
+      "n_recordings": 26,
+      "n_instants": 1526
+     },
+     "gamma_aligned_K11": {
+      "median": 1.789426023790852,
+      "ci95": [
+       1.7038349931156302,
+       1.8340318436890082
+      ],
+      "n_recordings": 23,
+      "n_instants": 1265
+     },
+     "fidelity_aligned_K11": {
+      "median": 0.26583807740841375,
+      "ci95": [
+       0.2532966020661359,
+       0.2755131193742402
+      ],
+      "n_recordings": 23,
+      "n_instants": 1265
+     },
+     "gamma_static_K11": {
+      "median": 1.1259822835342899,
+      "ci95": [
+       1.0633078128380902,
+       1.1645277207392195
+      ],
+      "n_recordings": 23,
+      "n_instants": 1265
+     },
+     "fidelity_static_K11": {
+      "median": 0.17822445561139028,
+      "ci95": [
+       0.16102832120912494,
+       0.1867635162360931
+      ],
+      "n_recordings": 23,
+      "n_instants": 1265
+     }
+    },
+    "night": {
+     "gamma_aligned_K4": {
+      "median": 1.3095869130753348,
+      "ci95": [
+       1.2090937006492368,
+       1.342566728739913
+      ],
+      "n_recordings": 21,
+      "n_instants": 1242
+     },
+     "fidelity_aligned_K4": {
+      "median": 0.47949500288295216,
+      "ci95": [
+       0.44729064039408867,
+       0.501259727780535
+      ],
+      "n_recordings": 21,
+      "n_instants": 1242
+     },
+     "gamma_static_K4": {
+      "median": 1.0722356626560277,
+      "ci95": [
+       0.9912023460410558,
+       1.1325396348925596
+      ],
+      "n_recordings": 21,
+      "n_instants": 1242
+     },
+     "fidelity_static_K4": {
+      "median": 0.4005406623113314,
+      "ci95": [
+       0.3851041416646665,
+       0.43691506300057703
+      ],
+      "n_recordings": 21,
+      "n_instants": 1242
+     },
+     "gamma_aligned_K11": {
+      "median": 2.057059706390634,
+      "ci95": [
+       1.8091521546709797,
+       2.83291580475707
+      ],
+      "n_recordings": 18,
+      "n_instants": 1087
+     },
+     "fidelity_aligned_K11": {
+      "median": 0.29117839631501996,
+      "ci95": [
+       0.26519523612342755,
+       0.3825182536435737
+      ],
+      "n_recordings": 18,
+      "n_instants": 1087
+     },
+     "gamma_static_K11": {
+      "median": 1.2754720811400722,
+      "ci95": [
+       1.0919197333278017,
+       1.6256434338591799
+      ],
+      "n_recordings": 18,
+      "n_instants": 1087
+     },
+     "fidelity_static_K11": {
+      "median": 0.1838388218828463,
+      "ci95": [
+       0.16998237316886053,
+       0.24137884208666766
+      ],
+      "n_recordings": 18,
+      "n_instants": 1087
+     }
+    }
+   },
+   "other|20-100": {
+    "day": {
+     "gamma_aligned_K4": {
+      "median": 1.4864831682456638,
+      "ci95": [
+       1.4332428844972736,
+       1.537895436157834
+      ],
+      "n_recordings": 54,
+      "n_instants": 5756
+     },
+     "fidelity_aligned_K4": {
+      "median": 0.5369925928829762,
+      "ci95": [
+       0.5256869080002823,
+       0.548908765132351
+      ],
+      "n_recordings": 54,
+      "n_instants": 5756
+     },
+     "gamma_static_K4": {
+      "median": 0.902352433247716,
+      "ci95": [
+       0.8609732570727893,
+       0.9410759755244271
+      ],
+      "n_recordings": 54,
+      "n_instants": 5756
+     },
+     "fidelity_static_K4": {
+      "median": 0.36151878352058064,
+      "ci95": [
+       0.3537334261800702,
+       0.37572126054150023
+      ],
+      "n_recordings": 54,
+      "n_instants": 5756
+     },
+     "gamma_aligned_K11": {
+      "median": 2.41734693351418,
+      "ci95": [
+       2.308479152079168,
+       2.5291788802156088
+      ],
+      "n_recordings": 54,
+      "n_instants": 5652
+     },
+     "fidelity_aligned_K11": {
+      "median": 0.3533235155977442,
+      "ci95": [
+       0.33607169155693717,
+       0.3706263727045196
+      ],
+      "n_recordings": 54,
+      "n_instants": 5652
+     },
+     "gamma_static_K11": {
+      "median": 1.0121790079074673,
+      "ci95": [
+       0.9451571497283212,
+       1.0937685741221155
+      ],
+      "n_recordings": 54,
+      "n_instants": 5652
+     },
+     "fidelity_static_K11": {
+      "median": 0.16614161450305384,
+      "ci95": [
+       0.1569699071442431,
+       0.1772847134733091
+      ],
+      "n_recordings": 54,
+      "n_instants": 5652
+     }
+    },
+    "night": {
+     "gamma_aligned_K4": {
+      "median": 1.446297917243546,
+      "ci95": [
+       1.3968496069007306,
+       1.4788639187659898
+      ],
+      "n_recordings": 40,
+      "n_instants": 5044
+     },
+     "fidelity_aligned_K4": {
+      "median": 0.5263851128747811,
+      "ci95": [
+       0.5123584364626719,
+       0.5329689200000834
+      ],
+      "n_recordings": 40,
+      "n_instants": 5044
+     },
+     "gamma_static_K4": {
+      "median": 0.8894668042922222,
+      "ci95": [
+       0.8688519450707644,
+       0.9137678296350101
+      ],
+      "n_recordings": 40,
+      "n_instants": 5044
+     },
+     "fidelity_static_K4": {
+      "median": 0.36097623836502546,
+      "ci95": [
+       0.3516462947414387,
+       0.37049858840525857
+      ],
+      "n_recordings": 40,
+      "n_instants": 5044
+     },
+     "gamma_aligned_K11": {
+      "median": 2.396912633161697,
+      "ci95": [
+       2.2572109132884206,
+       2.476727925968823
+      ],
+      "n_recordings": 40,
+      "n_instants": 4981
+     },
+     "fidelity_aligned_K11": {
+      "median": 0.3486913977963637,
+      "ci95": [
+       0.3322211681912862,
+       0.3573362580602002
+      ],
+      "n_recordings": 40,
+      "n_instants": 4981
+     },
+     "gamma_static_K11": {
+      "median": 0.9574779015239636,
+      "ci95": [
+       0.9311821457397536,
+       1.0015434796901517
+      ],
+      "n_recordings": 40,
+      "n_instants": 4981
+     },
+     "fidelity_static_K11": {
+      "median": 0.15756734743312914,
+      "ci95": [
+       0.1536626415627471,
+       0.1677492684738727
+      ],
+      "n_recordings": 40,
+      "n_instants": 4981
+     }
+    }
+   },
+   "other|100-300": {
+    "day": {
+     "gamma_aligned_K4": {
+      "median": 1.843531732214474,
+      "ci95": [
+       1.6958214427626672,
+       2.21030647497639
+      ],
+      "n_recordings": 12,
+      "n_instants": 357
+     },
+     "fidelity_aligned_K4": {
+      "median": 0.6257431371485316,
+      "ci95": [
+       0.5710311220623514,
+       0.7059161954974191
+      ],
+      "n_recordings": 12,
+      "n_instants": 357
+     },
+     "gamma_static_K4": {
+      "median": 0.7834107893536135,
+      "ci95": [
+       0.7523928903143582,
+       0.9292606875763919
+      ],
+      "n_recordings": 12,
+      "n_instants": 357
+     },
+     "fidelity_static_K4": {
+      "median": 0.32250431545273633,
+      "ci95": [
+       0.3133988345994707,
+       0.3773588023284382
+      ],
+      "n_recordings": 12,
+      "n_instants": 357
+     },
+     "gamma_aligned_K11": {
+      "median": 3.1526799835345454,
+      "ci95": [
+       3.0479556829004766,
+       4.127119010296819
+      ],
+      "n_recordings": 12,
+      "n_instants": 355
+     },
+     "fidelity_aligned_K11": {
+      "median": 0.43661624479901445,
+      "ci95": [
+       0.39661801165725385,
+       0.544238581549257
+      ],
+      "n_recordings": 12,
+      "n_instants": 355
+     },
+     "gamma_static_K11": {
+      "median": 1.0105848870115042,
+      "ci95": [
+       0.8981261172518273,
+       1.2361283629833477
+      ],
+      "n_recordings": 12,
+      "n_instants": 355
+     },
+     "fidelity_static_K11": {
+      "median": 0.16076455795050018,
+      "ci95": [
+       0.14720259466048613,
+       0.20208165480713952
+      ],
+      "n_recordings": 12,
+      "n_instants": 355
+     }
+    },
+    "night": {
+     "gamma_aligned_K4": {
+      "median": 1.9406655309662435,
+      "ci95": [
+       1.803064424652744,
+       2.316859741924589
+      ],
+      "n_recordings": 12,
+      "n_instants": 460
+     },
+     "fidelity_aligned_K4": {
+      "median": 0.6384759420561843,
+      "ci95": [
+       0.601615289326593,
+       0.7207114064470772
+      ],
+      "n_recordings": 12,
+      "n_instants": 460
+     },
+     "gamma_static_K4": {
+      "median": 0.7816341907183831,
+      "ci95": [
+       0.7574490373555016,
+       0.8509143607407129
+      ],
+      "n_recordings": 12,
+      "n_instants": 460
+     },
+     "fidelity_static_K4": {
+      "median": 0.3251878332907368,
+      "ci95": [
+       0.31639327189157607,
+       0.33131087392301395
+      ],
+      "n_recordings": 12,
+      "n_instants": 460
+     },
+     "gamma_aligned_K11": {
+      "median": 3.56211095954437,
+      "ci95": [
+       3.129975604839548,
+       4.838476605446026
+      ],
+      "n_recordings": 12,
+      "n_instants": 460
+     },
+     "fidelity_aligned_K11": {
+      "median": 0.4792281889690939,
+      "ci95": [
+       0.4286842975689819,
+       0.5920936755969295
+      ],
+      "n_recordings": 12,
+      "n_instants": 460
+     },
+     "gamma_static_K11": {
+      "median": 0.9035483206342969,
+      "ci95": [
+       0.8662920791765661,
+       1.0770637512474774
+      ],
+      "n_recordings": 12,
+      "n_instants": 460
+     },
+     "fidelity_static_K11": {
+      "median": 0.15486847652778374,
+      "ci95": [
+       0.1433217780172159,
+       0.1657607581133704
+      ],
+      "n_recordings": 12,
+      "n_instants": 460
+     }
+    }
+   },
+   "other|300-inf": {
+    "day": {
+     "gamma_aligned_K4": {
+      "median": null,
+      "ci95": [
+       null,
+       null
+      ],
+      "n_recordings": 0,
+      "n_instants": 0
+     },
+     "fidelity_aligned_K4": {
+      "median": null,
+      "ci95": [
+       null,
+       null
+      ],
+      "n_recordings": 0,
+      "n_instants": 0
+     },
+     "gamma_static_K4": {
+      "median": null,
+      "ci95": [
+       null,
+       null
+      ],
+      "n_recordings": 0,
+      "n_instants": 0
+     },
+     "fidelity_static_K4": {
+      "median": null,
+      "ci95": [
+       null,
+       null
+      ],
+      "n_recordings": 0,
+      "n_instants": 0
+     },
+     "gamma_aligned_K11": {
+      "median": null,
+      "ci95": [
+       null,
+       null
+      ],
+      "n_recordings": 0,
+      "n_instants": 0
+     },
+     "fidelity_aligned_K11": {
+      "median": null,
+      "ci95": [
+       null,
+       null
+      ],
+      "n_recordings": 0,
+      "n_instants": 0
+     },
+     "gamma_static_K11": {
+      "median": null,
+      "ci95": [
+       null,
+       null
+      ],
+      "n_recordings": 0,
+      "n_instants": 0
+     },
+     "fidelity_static_K11": {
+      "median": null,
+      "ci95": [
+       null,
+       null
+      ],
+      "n_recordings": 0,
+      "n_instants": 0
+     }
+    },
+    "night": {
+     "gamma_aligned_K4": {
+      "median": null,
+      "ci95": [
+       null,
+       null
+      ],
+      "n_recordings": 0,
+      "n_instants": 0
+     },
+     "fidelity_aligned_K4": {
+      "median": null,
+      "ci95": [
+       null,
+       null
+      ],
+      "n_recordings": 0,
+      "n_instants": 0
+     },
+     "gamma_static_K4": {
+      "median": null,
+      "ci95": [
+       null,
+       null
+      ],
+      "n_recordings": 0,
+      "n_instants": 0
+     },
+     "fidelity_static_K4": {
+      "median": null,
+      "ci95": [
+       null,
+       null
+      ],
+      "n_recordings": 0,
+      "n_instants": 0
+     },
+     "gamma_aligned_K11": {
+      "median": null,
+      "ci95": [
+       null,
+       null
+      ],
+      "n_recordings": 0,
+      "n_instants": 0
+     },
+     "fidelity_aligned_K11": {
+      "median": null,
+      "ci95": [
+       null,
+       null
+      ],
+      "n_recordings": 0,
+      "n_instants": 0
+     },
+     "gamma_static_K11": {
+      "median": null,
+      "ci95": [
+       null,
+       null
+      ],
+      "n_recordings": 0,
+      "n_instants": 0
+     },
+     "fidelity_static_K11": {
+      "median": null,
+      "ci95": [
+       null,
+       null
+      ],
+      "n_recordings": 0,
+      "n_instants": 0
+     }
+    }
+   }
+  },
+  "5_bits_H": {
+   "day": {
+    "K2": {
+     "b_direct": {
+      "median": 27.032580775990265,
+      "ci95": [
+       26.59489213209182,
+       27.33512440135498
+      ],
+      "n_recordings": 57,
+      "n_instants": 9495
+     },
+     "b_aligned": {
+      "median": 13.314226314226314,
+      "ci95": [
+       13.163519485737243,
+       13.401870627996542
+      ],
+      "n_recordings": 57,
+      "n_instants": 9495
+     },
+     "fidelity_aligned": {
+      "median": 0.8315610859728507,
+      "ci95": [
+       0.8213353445275076,
+       0.837600549186388
+      ],
+      "n_recordings": 57,
+      "n_instants": 9495
+     },
+     "share": {
+      "median": 0.49839862799428536,
+      "ci95": [
+       0.4965145120275282,
+       0.5
+      ],
+      "n_recordings": 57,
+      "n_instants": 9495
+     }
+    },
+    "K4": {
+     "b_direct": {
+      "median": 27.03100890946195,
+      "ci95": [
+       26.603530850975456,
+       27.290674548871493
+      ],
+      "n_recordings": 57,
+      "n_instants": 9488
+     },
+     "b_aligned": {
+      "median": 6.653937373170216,
+      "ci95": [
+       6.5978332971734535,
+       6.69590201119008
+      ],
+      "n_recordings": 57,
+      "n_instants": 9488
+     },
+     "fidelity_aligned": {
+      "median": 0.710408737382095,
+      "ci95": [
+       0.6939727612136509,
+       0.7215387752327873
+      ],
+      "n_recordings": 57,
+      "n_instants": 9488
+     },
+     "share": {
+      "median": 0.2481676693723165,
+      "ci95": [
+       0.24708382885048455,
+       0.2503398124235422
+      ],
+      "n_recordings": 57,
+      "n_instants": 9488
+     }
+    },
+    "K8": {
+     "b_direct": {
+      "median": 26.990840774659006,
+      "ci95": [
+       26.55709551640746,
+       27.288876636802204
+      ],
+      "n_recordings": 57,
+      "n_instants": 9470
+     },
+     "b_aligned": {
+      "median": 3.3450604020567605,
+      "ci95": [
+       3.2949119260176007,
+       3.3859058586684196
+      ],
+      "n_recordings": 57,
+      "n_instants": 9470
+     },
+     "fidelity_aligned": {
+      "median": 0.5918578892566719,
+      "ci95": [
+       0.5824061434995599,
+       0.6032219550781315
+      ],
+      "n_recordings": 57,
+      "n_instants": 9470
+     },
+     "share": {
+      "median": 0.12501160406099937,
+      "ci95": [
+       0.12238320297962113,
+       0.12603213829774773
+      ],
+      "n_recordings": 57,
+      "n_instants": 9470
+     }
+    },
+    "K11": {
+     "b_direct": {
+      "median": 26.97083287889604,
+      "ci95": [
+       26.56472726135874,
+       27.274861503893387
+      ],
+      "n_recordings": 57,
+      "n_instants": 9455
+     },
+     "b_aligned": {
+      "median": 2.4437356279207774,
+      "ci95": [
+       2.400902207185436,
+       2.4903288476282466
+      ],
+      "n_recordings": 57,
+      "n_instants": 9455
+     },
+     "fidelity_aligned": {
+      "median": 0.5401825387809396,
+      "ci95": [
+       0.5291317042375779,
+       0.5523584949222249
+      ],
+      "n_recordings": 57,
+      "n_instants": 9455
+     },
+     "share": {
+      "median": 0.09123003468172133,
+      "ci95": [
+       0.08939562102714156,
+       0.09309070304102496
+      ],
+      "n_recordings": 57,
+      "n_instants": 9455
+     }
+    },
+    "thin_q0.75": {
+     "b_thin": {
+      "median": 20.465093515586325,
+      "ci95": [
+       20.27558128754437,
+       20.71414185009351
+      ],
+      "n_recordings": 57,
+      "n_instants": 9495
+     },
+     "fidelity": 0.8571428571428571
+    },
+    "thin_q0.5": {
+     "b_thin": {
+      "median": 13.847738981110474,
+      "ci95": [
+       13.66180010891558,
+       14.002606590951405
+      ],
+      "n_recordings": 57,
+      "n_instants": 9495
+     },
+     "fidelity": 0.6666666666666666
+    },
+    "thin_q0.35": {
+     "b_thin": {
+      "median": 9.829563958747965,
+      "ci95": [
+       9.703652653342523,
+       9.945720560137397
+      ],
+      "n_recordings": 57,
+      "n_instants": 9495
+     },
+     "fidelity": 0.5185185185185185
+    },
+    "thin_q0.25": {
+     "b_thin": {
+      "median": 7.1169892054847805,
+      "ci95": [
+       7.026465746486007,
+       7.211958427992299
+      ],
+      "n_recordings": 57,
+      "n_instants": 9495
+     },
+     "fidelity": 0.4
+    },
+    "thin_q0.125": {
+     "b_thin": {
+      "median": 3.6914191419141913,
+      "ci95": [
+       3.586377708978328,
+       3.7357017073730954
+      ],
+      "n_recordings": 57,
+      "n_instants": 9495
+     },
+     "fidelity": 0.2222222222222222
+    },
+    "key_bits_per_event": {
+     "median": 27.03680164018452,
+     "ci95": [
+      26.593074137916073,
+      27.35245318795923
+     ],
+     "n_recordings": 57,
+     "n_instants": 9495
+    }
+   },
+   "night": {
+    "K2": {
+     "b_direct": {
+      "median": 26.479047554987556,
+      "ci95": [
+       26.270622758395827,
+       26.62881923910901
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "b_aligned": {
+      "median": 13.02367577826842,
+      "ci95": [
+       12.97363609404656,
+       13.085132508865119
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "fidelity_aligned": {
+      "median": 0.8389686289436102,
+      "ci95": [
+       0.8329457247274155,
+       0.8462668890147629
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "share": {
+      "median": 0.49793996468510887,
+      "ci95": [
+       0.49679460978413503,
+       0.49873706904490167
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     }
+    },
+    "K4": {
+     "b_direct": {
+      "median": 26.455294340206716,
+      "ci95": [
+       26.294926888349302,
+       26.583360954590653
+      ],
+      "n_recordings": 47,
+      "n_instants": 12251
+     },
+     "b_aligned": {
+      "median": 6.4982,
+      "ci95": [
+       6.461317068649548,
+       6.54569908056905
+      ],
+      "n_recordings": 47,
+      "n_instants": 12251
+     },
+     "fidelity_aligned": {
+      "median": 0.7303922829451932,
+      "ci95": [
+       0.7211606808726849,
+       0.7358136454182499
+      ],
+      "n_recordings": 47,
+      "n_instants": 12251
+     },
+     "share": {
+      "median": 0.24920973420583004,
+      "ci95": [
+       0.2481152440148828,
+       0.2498798110913153
+      ],
+      "n_recordings": 47,
+      "n_instants": 12251
+     }
+    },
+    "K8": {
+     "b_direct": {
+      "median": 26.423619280914085,
+      "ci95": [
+       26.334744697722762,
+       26.57419045034136
+      ],
+      "n_recordings": 47,
+      "n_instants": 12246
+     },
+     "b_aligned": {
+      "median": 3.2539799264632814,
+      "ci95": [
+       3.192140027881658,
+       3.2898476787406166
+      ],
+      "n_recordings": 47,
+      "n_instants": 12246
+     },
+     "fidelity_aligned": {
+      "median": 0.6304303552214597,
+      "ci95": [
+       0.6214720523779803,
+       0.6365036146511583
+      ],
+      "n_recordings": 47,
+      "n_instants": 12246
+     },
+     "share": {
+      "median": 0.12448180123987374,
+      "ci95": [
+       0.12355927234574378,
+       0.12556353931327915
+      ],
+      "n_recordings": 47,
+      "n_instants": 12246
+     }
+    },
+    "K11": {
+     "b_direct": {
+      "median": 26.426929288451184,
+      "ci95": [
+       26.3521451313994,
+       26.58736513981033
+      ],
+      "n_recordings": 47,
+      "n_instants": 12243
+     },
+     "b_aligned": {
+      "median": 2.3591433849996966,
+      "ci95": [
+       2.3306891390213185,
+       2.404407116409284
+      ],
+      "n_recordings": 47,
+      "n_instants": 12243
+     },
+     "fidelity_aligned": {
+      "median": 0.582520558667968,
+      "ci95": [
+       0.5743031784953698,
+       0.5894672004927626
+      ],
+      "n_recordings": 47,
+      "n_instants": 12243
+     },
+     "share": {
+      "median": 0.09093925641804168,
+      "ci95": [
+       0.09015134201772429,
+       0.09173237948134298
+      ],
+      "n_recordings": 47,
+      "n_instants": 12243
+     }
+    },
+    "thin_q0.75": {
+     "b_thin": {
+      "median": 20.117972350230414,
+      "ci95": [
+       20.03580773998072,
+       20.198748914142392
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "fidelity": 0.8571428571428571
+    },
+    "thin_q0.5": {
+     "b_thin": {
+      "median": 13.618697693406817,
+      "ci95": [
+       13.565945143987522,
+       13.659915934275888
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "fidelity": 0.6666666666666666
+    },
+    "thin_q0.35": {
+     "b_thin": {
+      "median": 9.65633596185586,
+      "ci95": [
+       9.606844986700635,
+       9.687777329568375
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "fidelity": 0.5185185185185185
+    },
+    "thin_q0.25": {
+     "b_thin": {
+      "median": 6.992670285180407,
+      "ci95": [
+       6.955319832851173,
+       7.0194230391038985
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "fidelity": 0.4
+    },
+    "thin_q0.125": {
+     "b_thin": {
+      "median": 3.6036347046358173,
+      "ci95": [
+       3.5686487137779386,
+       3.616116116116116
+      ],
+      "n_recordings": 47,
+      "n_instants": 12252
+     },
+     "fidelity": 0.2222222222222222
+    },
+    "key_bits_per_event": {
+     "median": 26.524000239105746,
+     "ci95": [
+      26.321648134291202,
+      26.637229359524742
+     ],
+     "n_recordings": 47,
+     "n_instants": 12252
+    }
+   }
+  },
+  "7_skips_and_search": {
+   "skips_by_reason_and_target": {
+    "1": {
+     "scored": 65497,
+     "source_too_small": 129
+    },
+    "2": {
+     "scored": 65310,
+     "future_too_small": 187,
+     "source_too_small": 129
+    },
+    "3": {
+     "scored": 65190,
+     "future_too_small": 307,
+     "source_too_small": 129
+    },
+    "4": {
+     "scored": 65093,
+     "future_too_small": 404,
+     "source_too_small": 129
+    },
+    "5": {
+     "scored": 65049,
+     "future_too_small": 448,
+     "source_too_small": 129
+    },
+    "6": {
+     "scored": 64973,
+     "future_too_small": 524,
+     "source_too_small": 129
+    },
+    "7": {
+     "scored": 64909,
+     "future_too_small": 588,
+     "source_too_small": 129
+    },
+    "8": {
+     "scored": 64864,
+     "future_too_small": 633,
+     "source_too_small": 129
+    },
+    "9": {
+     "scored": 64844,
+     "future_too_small": 653,
+     "source_too_small": 129
+    },
+    "10": {
+     "scored": 64798,
+     "future_too_small": 699,
+     "source_too_small": 129
+    }
+   },
+   "groups_without_full_targets_by_K": {
+    "2": 129,
+    "4": 532,
+    "8": 1233,
+    "11": 1701
+   },
+   "aligned_n_eval": {
+    "pooled_quantiles": {
+     "0.0": 81.0,
+     "0.05": 81.0,
+     "0.25": 83.0,
+     "0.5": 83.0,
+     "0.75": 108.0,
+     "0.95": 158.0,
+     "1.0": 208.0
+    },
+    "mean": 102.53713373926063,
+    "values": {
+     "81": 90050,
+     "83": 286350,
+     "106": 10372,
+     "108": 115786,
+     "131": 3955,
+     "133": 71261,
+     "156": 1006,
+     "158": 51417,
+     "181": 61,
+     "183": 18635,
+     "206": 2,
+     "208": 1632
+    }
+   }
+  },
+  "6_stage_S": {
+   "see": "share.json#/table_6",
+   "day": {
+    "n_recordings": 61,
+    "n_windows": 9392,
+    "event_share_A": {
+     "median_over_recordings": 0.804269381314108,
+     "ci95": [
+      0.7011146433834947,
+      0.8271776208853685
+     ],
+     "pooled": 0.7628850431898042
+    },
+    "event_share_L": {
+     "median_over_recordings": 0.7959598709579231,
+     "ci95": [
+      0.7011146433834947,
+      0.8266887690066906
+     ],
+     "pooled": 0.7609690318278943
+    },
+    "event_share_V": {
+     "median_over_recordings": 0.7662815920899965,
+     "ci95": [
+      0.6487000298366711,
+      0.8010599920124135
+     ],
+     "pooled": 0.7398180081420364
+    },
+    "pixel_share_A": {
+     "median_over_recordings": 0.03308642850907821,
+     "ci95": [
+      0.028656635533054003,
+      0.03648244598765432
+     ],
+     "pooled": 0.03666858344553728
+    },
+    "pixel_share_L": {
+     "median_over_recordings": 0.03298272860412787,
+     "ci95": [
+      0.028656635533054003,
+      0.036421925080128204
+     ],
+     "pooled": 0.03660790412551906
+    },
+    "pixel_share_V": {
+     "median_over_recordings": 0.029992725791433892,
+     "ci95": [
+      0.025170226727843914,
+      0.033941514756944444
+     ],
+     "pooled": 0.032404478998453175
+    },
+    "event_share_empty_A_windows": {
+     "median_over_recordings": 0.04196954874255106,
+     "ci95": [
+      0.034558812144414926,
+      0.0628547647966862
+     ],
+     "pooled": 0.04900228624034561
+    },
+    "share_of_windows_with_empty_A": 0.2548977853492334
+   },
+   "night": {
+    "n_recordings": 51,
+    "n_windows": 7591,
+    "event_share_A": {
+     "median_over_recordings": 0.5651110899933479,
+     "ci95": [
+      0.5166365982324328,
+      0.6455473660166767
+     ],
+     "pooled": 0.5567306144069613
+    },
+    "event_share_L": {
+     "median_over_recordings": 0.5651110899933479,
+     "ci95": [
+      0.516577267368159,
+      0.6441778268035887
+     ],
+     "pooled": 0.5564720207224861
+    },
+    "event_share_V": {
+     "median_over_recordings": 0.5255120778796424,
+     "ci95": [
+      0.5017046741341278,
+      0.6017743273417938
+     ],
+     "pooled": 0.5341364151898633
+    },
+    "pixel_share_A": {
+     "median_over_recordings": 0.04209059124228395,
+     "ci95": [
+      0.02894995418595679,
+      0.05008716724537037
+     ],
+     "pooled": 0.04705653550577072
+    },
+    "pixel_share_L": {
+     "median_over_recordings": 0.04205806327160494,
+     "ci95": [
+      0.02894995418595679,
+      0.049923918547453705
+     ],
+     "pooled": 0.047021073275049764
+    },
+    "pixel_share_V": {
+     "median_over_recordings": 0.03239440880082247,
+     "ci95": [
+      0.026237943672839506,
+      0.04023330811607697
+     ],
+     "pooled": 0.040658418595119955
+    },
+    "event_share_empty_A_windows": {
+     "median_over_recordings": 0.04617399221936174,
+     "ci95": [
+      0.038681449942037885,
+      0.053993917581553086
+     ],
+     "pooled": 0.05604361382589405
+    },
+    "share_of_windows_with_empty_A": 0.1503095771308128
+   }
+  }
+ }
+}
