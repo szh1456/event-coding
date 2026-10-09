@@ -13,7 +13,7 @@ of the companion project.
 | claim supported | a bandlimited signal can be recovered from the outputs of M linear systems, each sampled at 1/M of the Nyquist rate; delayed copies and derivatives are special cases |
 | source | A. Papoulis, "Generalized sampling expansion," IEEE Transactions on Circuits and Systems, vol. 24, no. 11, pp. 652-654, 1977, DOI 10.1109/TCS.1977.1084284 |
 | source type | primary (journal article) |
-| used in | `README.md`, directive 001 Section 1 (motivation only) |
+| used in | `README.md`, directive 001 Section 1 (motivation only), `docs/theory/translation_edge.tex` (remark on the relation to sampling theory, analogy only) |
 | version / conditions | bibliographic record confirmed in Crossref on 2026-10-08; the article itself was not re-read |
 | status | `PARTIAL`: citation verified, content stated from general knowledge |
 | does not support | any statement about non-uniform, signal-dependent (level-crossing) sampling, about noise, or about bits |
@@ -65,3 +65,51 @@ of the companion project.
 | version / conditions | eTraM 1.1, downloaded by the companion project on 2026-10-08 |
 | status | `PARTIAL`: the box corner convention, the time origin and the class mapping are not documented there; directive 001 checks the first two on data |
 | does not support | completeness of the labels, or the integer-to-name mapping of `class_id` |
+
+### `adam2020multichannel`
+
+| field | value |
+|---|---|
+| claim supported | if single-channel time encoding can sample and perfectly reconstruct a 2Ω-bandlimited signal, M-channel time encoding with shifted integrators can do so for a signal with M times the bandwidth, without knowledge of the shifts (noiseless case) |
+| source | K. Adam, A. Scholefield, M. Vetterli, "Sampling and reconstruction of bandlimited signals with multi-channel time encoding," IEEE Transactions on Signal Processing, vol. 68, pp. 1105-1119, 2020, DOI 10.1109/TSP.2020.2967182, arXiv:1907.05673 |
+| source type | primary (journal article) |
+| used in | `docs/theory/translation_edge.tex`, remark on the relation to sampling theory (analogy only: M pixels with different threshold phases against M integrate-and-fire channels with shifted integrators) |
+| version / conditions | title, authors and abstract read on the arXiv record on 2026-10-09; journal volume, pages and DOI from a metadata check on 2026-10-08, not re-read today |
+| status | `PARTIAL`: abstract read, body not read |
+| does not support | any statement about send-on-delta (level-crossing) pixels, about noise or jitter, or about bits; the note's "typical spacing of order C/M" is the note's own statement |
+
+### `cover2006elements`
+
+| field | value |
+|---|---|
+| claim supported | textbook facts used in the proofs: the entropy of a uniformly quantized variable is its differential entropy plus ln(1/δ) per dimension as δ → 0; the Gaussian maximizes differential entropy at a given variance; the entropy power inequality; the Shannon lower bound; a source of variance s² needs at most (1/2) ln(s²/d) nats at squared error d; a rate-distortion function vanishes from the distortion of the best constant output on |
+| source | T. M. Cover, J. A. Thomas, "Elements of Information Theory," 2nd ed., Wiley, 2006 |
+| source type | secondary (textbook), used for standard results only |
+| used in | `docs/theory/translation_edge.tex`, Theorems 1 and 2 |
+| version / conditions | edition, publisher and year stated from general knowledge; the publisher record could not be opened on 2026-10-09; chapter numbers (8 and 10) not checked against the book |
+| status | `UNRESOLVED`: bibliographic metadata and chapter numbers not verified. The mathematical statements were re-derived or checked numerically in `docs/theory/check_translation_edge.py` and by two independent checks |
+| does not support | anything specific to event sensors |
+
+### `kozachenko1987entropy`
+
+| field | value |
+|---|---|
+| claim supported | a nearest-neighbor estimate of the differential entropy of a random vector from samples |
+| source | L. F. Kozachenko, N. N. Leonenko, "Sample estimate of the entropy of a random vector," Problemy Peredachi Informatsii, vol. 23, no. 2, pp. 9-16, 1987; English translation in Problems of Information Transmission, vol. 23, no. 2, pp. 95-101 |
+| source type | primary (journal article) |
+| used in | `docs/theory/check_translation_edge.py`, function `kl_entropy` (check N2) |
+| version / conditions | bibliographic record read on mathnet.ru (https://www.mathnet.ru/eng/ppi797) on 2026-10-09; the article was not read |
+| status | `PARTIAL`: citation verified, content not read. The script uses the k-th neighbor form with k = 4 and a digamma correction, which is a later generalization whose source is not recorded here |
+| does not support | the accuracy of the estimate at finite sample size; check N2 is a consistency check against the closed form, not a proof |
+
+### `uniform_quantizer_high_resolution_loss`
+
+| field | value |
+|---|---|
+| claim supported | an entropy-coded uniform scalar quantizer at fine resolution spends (1/2) log2(2πe/12) = 0.255 bit per sample more than the Shannon lower bound under squared error |
+| source | standard high-resolution quantization result, commonly attributed to Gish and Pierce (1968); no source was opened |
+| source type | not established |
+| used in | `docs/theory/translation_edge.tex`, numerical check N3 (one comparison sentence) |
+| version / conditions | none |
+| status | `UNRESOLVED`: no primary source read. The value follows from the entropy of a uniform quantizer index, ln(1/Δ) plus the differential entropy, at distortion Δ²/12 |
+| does not support | any claim at coarse resolution, where the measured excess in N3 is larger |
