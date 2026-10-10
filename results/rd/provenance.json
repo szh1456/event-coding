@@ -1,0 +1,34 @@
+{
+ "directive": "006",
+ "host": "cnt-js01",
+ "commit": "af826a0f2854b724edf0a9493a8bb5025da54b69",
+ "python": "3.10.12",
+ "numpy": "1.26.4",
+ "scipy": "1.15.3",
+ "matplotlib": "3.5.1",
+ "matplotlib_installed_by_this_directive": false,
+ "matplotlib_note": "already present system-wide on cnt (/usr/lib/python3/dist-packages); D-006-4 needed no install",
+ "blas_threads": 1,
+ "nice": 19,
+ "reference": {
+  "command": "python3 -m ec.regimes reference results/rd/regimes.json",
+  "exit_status": 0,
+  "wall_s": 558.83,
+  "peak_rss_kb": 513160
+ },
+ "figure": {
+  "command": "python3 scripts/rd_figure.py results/rd/regimes.json results/rd/fig_regimes.pdf",
+  "exit_status": 0,
+  "wall_s": 1.97,
+  "peak_rss_kb": 136668
+ },
+ "suite": "49 passed in 35.46s, 0 skipped, at af826a0",
+ "files_sha256": {
+  "ec/regimes.py": "31b614b15d44759c3c721cd322de5954c725c9d456e46869029a022cf677cefb",
+  "tests/test_regimes_gate.py": "d88d2bd15a9c68c0eac44f16bc11044d0e183c6c6d458f4487d9727fd865a737",
+  "scripts/rd_figure.py": "b1a8c35457592bd9535d9b032132f4c9e2707444674d541b15f289dd0a1d84d3",
+  "results/rd/regimes.json": "7eb0dcc29aece56f30a60c410fbf8fdeca512075b03dcaf535d956b2e806f1fc",
+  "results/rd/fig_regimes.pdf": "092ef14762f3049267d8b22cae0c027358b065498094121ab8caae53f323a20f",
+  "results/rd/fig_regimes.png": "c3d221acfc2a73f7d4f8ee86b9f3689b67399b26d964d3bc0441f214cd36326d"
+ }
+}
