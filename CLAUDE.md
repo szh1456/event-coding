@@ -20,7 +20,9 @@ Never open, hash, count or copy them from this project, on any host.
 
 Never write inside a directory of the companion project (`~/prjs/sbu_full_staging`,
 `~/prjs/sbc_run`, `~/prjs/adaptive_comm_comp_event`, or its repository checkout).
-This project's files on a compute host live under `~/prjs/event_coding/`.
+This project's files on a compute host live under `~/prjs/event_coding/`. The
+files of the second dataset, and what is computed from them, live under
+`/data/<user>/event_coding/` on `cnt`, as `docs/DATA.md` states.
 
 ## Cluster
 
