@@ -529,9 +529,40 @@ describe the regions counted.
 (v) Main axis: total bits against fidelity.}
 
 \subsection{The Three Regimes}
-\todo{Fig.~2, controlled. The bounds of Theorem~\ref{thm:pixel} against an independent numerical
-rate-distortion computation and the operating points of a simple coder. The three regimes are
-labeled by what the code describes: every event time, one number per pixel, nothing.}
+% Numbers and figure: directive 006, results/rd/regimes.json and results/rd/fig_regimes.pdf at f063a79.
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figs/fig_regimes.pdf}
+\caption{Rate of one pixel against the timing tolerance for $n=3$ and $\sigma/\tau_i=0.05$:
+Theorem~\ref{thm:pixel}, a numerical rate-distortion function and a scalar quantizer. Bottom: the
+regime between $\sigma$ and $\sqrt{D_{A,i}}$.}
+\label{fig:regimes}
+\end{figure}
+Fig.~\ref{fig:regimes} compares Theorem~\ref{thm:pixel} with a rate-distortion function that is
+computed without it, for one pixel with $n=3$ and $\sigma/\tau_i=0.05$. These values illustrate the
+theorem and are not those of a particular sensor. By \eqref{eq:XW}, the event times are an
+orthogonal image of the scalar $X_i$, which carries the phase, and of $n-1$ normal variables. The
+iteration of \cite{blahut1972computation} gives the rate-distortion function of $X_i$ on a grid of
+$1217$ points, and the normal components enter in closed form at the same slope.
+
+Below $\sigma^2$ the numerical rate equals \eqref{eq:rdlow} to within $4\times10^{-6}$ nat.
+Between $\sigma^2$ and $D_{A,i}$ it stays inside the band between the bounds \eqref{eq:rdmid} and
+\eqref{eq:rdpos}, which is at most $\Gamma_i=0.187$ bit per pixel wide here, against the limit of
+$0.255$ bit. The rate leaves $\sigma^2$ on the lower bound $U_i-\Gamma_i$: the phase is still
+described finely there, and the code profits fully from its distribution, which is uniform and not
+normal. Toward $D_{A,i}$ the description becomes coarse, the rate depends on the phase only through
+its variance, and the numerical rate, the bound \eqref{eq:rdpos} and $U_i$ meet. From $D_{A,i}$ on
+the rate is zero, and the regenerated events \eqref{eq:regen} of $2\times10^6$ simulated pixels
+have the distortion $0.9994\,D_{A,i}$.
+
+The squares are a uniform scalar quantizer with entropy coding, applied to what each regime
+describes. On every component of the event times it stays $0.254$ to $0.258$ bit per event above
+\eqref{eq:rdlow}. This is the loss $\tfrac12\ln(2\pi e/12)$ of a uniform quantizer at fine
+resolution, the difference between the entropy $h-\ln\Delta$ of the index of a quantizer of step
+$\Delta$ and \eqref{eq:rdlow} at the distortion $\Delta^2/12$. On the mean event time alone, with
+the other components left out, it stays $0.09$ to $0.19$ bit per event above the lower bound up to
+$D_{A,i}$. A code that describes every event time, then one number per pixel, then nothing, is
+therefore within $0.26$ bit per event of the limit in all three regimes.
 
 \subsection{Total Bits Against Fidelity}
 \todo{Fig.~3, recorded \cite{verma2024etram}. The codec for groups of $K$ windows against the
