@@ -1,0 +1,70 @@
+{
+ "directive": "009",
+ "status": "BLOCKED at Stage D, step 3 (space)",
+ "P1": {
+  "host": "cnt-js01",
+  "python": "3.10.12",
+  "numpy": "1.26.4",
+  "scipy": "1.15.3",
+  "h5py": "3.16.0",
+  "zstandard": "0.25.0",
+  "numba": "0.60.0",
+  "blas_threads": {
+   "OMP_NUM_THREADS": "1",
+   "OPENBLAS_NUM_THREADS": "1",
+   "MKL_NUM_THREADS": "1",
+   "NUMEXPR_NUM_THREADS": "1"
+  },
+  "compared_with": "results/bk/preflight.json#/P1",
+  "differences": {},
+  "hdf5plugin": null,
+  "pass": true
+ },
+ "P2": {
+  "sha256": {
+   "ec/blockcodec.py": "644539ec0fb900cc2c3ccd08de0d7105ed55a56cf1d67a545b9784d690390c9e",
+   "tests/test_blockcodec_gate.py": "4ca8ec70fcd3ae5101a37592f1ab3d809d5d28692eacd9ac6d0687bb28adedf0",
+   "ec/dsec.py": "8d6d5baad01e7da4607e3108684578c280d7fdc9b95c6eb0319d549340437fb6",
+   "tests/test_dsec_gate.py": "d23276bc29229fbe79bb3fd986a4b3a1b47952fcf96b756bb74a04d93ef151c0"
+  },
+  "checked": "locally and on cnt",
+  "pass": true
+ },
+ "P3": {
+  "command": "python3 -m pytest -q -p no:anyio",
+  "commit": "f3f7697585706fc0fb904d4af33f63ea957633f8",
+  "result": "73 passed in 128.07s",
+  "skipped": 0,
+  "pass": true
+ },
+ "P4": {
+  "file": "results/bk/tuning.json",
+  "frozen": {
+   "B": 20,
+   "rho": 1.0
+  },
+  "unchanged_since": "b29393f (git diff b29393f -- results/bk/tuning.json is empty)",
+  "pass": true
+ },
+ "stage_D": {
+  "step_1_list": {
+   "page": "https://dsec.ifi.uzh.ch/dsec-datasets/download/",
+   "retrieved_utc": "2026-10-10T16:51:08+00:00",
+   "page_sha256": "b71c29ed9b2aa265220f2f29404e49273260539907060d022fd9c01410514573",
+   "n_sequences": 41,
+   "total_bytes": 69344223481,
+   "training_split_separate": true,
+   "left_camera_offered_by_itself": true,
+   "license_statement_on_page": null
+  },
+  "step_2_commit": "f51e0a7",
+  "step_3_space": {
+   "total_bytes": 69344223481,
+   "free_bytes_under_prjs_event_coding": 64093884416,
+   "needed_bytes": 238688446962,
+   "rule": "free > 2 x total + 100 GB",
+   "pass": false
+  },
+  "steps_4_to_7": "not run: no file was downloaded and no event file of DSEC was opened"
+ }
+}
