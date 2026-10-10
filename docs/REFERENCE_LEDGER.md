@@ -149,3 +149,16 @@ of the companion project.
 | version / conditions | none |
 | status | `UNRESOLVED`: no primary source read, bibliographic data not confirmed. In check R3 the correction is at most 3.7e-3 nat (14,883 cells, 2,000,000 samples), below the tolerance of 5e-3 nat, and the corrected estimate is compared with a value computed from the density |
 | does not support | accuracy when many cells hold few samples |
+
+### `dsec_dataset_and_format`
+
+| field | value |
+|---|---|
+| claim supported | DSEC was recorded from a car with two event cameras of 640 x 480 pixels and holds 53 sequences. An event file is an HDF5 file with `/events/{p, t, x, y}` (polarity, time in microseconds, column, row) and `/t_offset`, the offset in microseconds to add to the stored times; the files are compressed with Blosc and the ZSTD codec; the events are not rectified |
+| source | M. Gehrig, W. Aarents, D. Gehrig, D. Scaramuzza, "DSEC: A Stereo Event Camera Dataset for Driving Scenarios," IEEE Robotics and Automation Letters, vol. 6, no. 3, pp. 4947-4954, 2021, DOI 10.1109/LRA.2021.3068942 (`gehrig2021dsec` of the brief); and the dataset's documentation, "DSEC Data Format," https://dsec.ifi.uzh.ch/data-format/ (`dsec_format` of the brief) |
+| source type | primary (journal article and the dataset's own documentation) |
+| used in | directive 009; `ec/dsec.py`; `docs/DATA.md` |
+| version / conditions | the two sources keep the status of the brief (verified there on 2026-10-08). The format page was read again on 2026-10-10, and the project page (https://dsec.ifi.uzh.ch/) on the same day: "53 sequences", "VGA-resolution event cameras" |
+| status | `PARTIAL`. Not verified, and left to Stage D of directive 009: the list of the sequences of the training split, the sizes of the files, the data types of the four datasets, whether polarity is stored as 0 and 1, whether the stored times start near zero, the package that `h5py` needs for the compression (`hdf5plugin` is the director's expectation), and the license statement of the download page (the brief records CC BY-SA 4.0). The download page (https://dsec.ifi.uzh.ch/dsec-datasets/download/) could not be read from the director's side |
+| does not support | any event rate or duration of a sequence; which sequences are recorded at night; any property of the sensor settings |
+
