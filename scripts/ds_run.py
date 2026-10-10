@@ -50,7 +50,7 @@ FROZEN = (20, 1.0)
 CFG = "B20_rho1.0"
 STAGE0_GROUPS = 5
 CHUNK = 12                                  # groups per task in Stage R
-READ_SLOTS = 2
+READ_SLOTS = 1                              # one read at a time: a read of the largest file peaks near 145 GB
 BYTES_PER_EVENT_PEAK = 44                   # reader: four int64 arrays plus the stored arrays during the cast
 
 
