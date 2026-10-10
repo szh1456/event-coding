@@ -50,3 +50,17 @@ to `{0, 1}`, clamps decreasing timestamps to their predecessor, and clears a
 flipped bit 15 in two known coordinates. It returns the counts of both repairs.
 Report nonzero counts. Only HDF5 is available on the hosts. The RAW (EVT) files
 were not kept.
+
+## Second dataset: DSEC (directive 009)
+
+| item | rule |
+|---|---|
+| what | the event files of the left event camera of the training split of DSEC, as listed in `config/population_dsec.yaml` |
+| what not | the right camera, the test split, images, disparity, optical flow, semantic labels, calibration and rectification files. They are not downloaded. If an archive holds them next to the events, they are deleted after unpacking |
+| source | the official host of the dataset only (https://dsec.ifi.uzh.ch/, files served from `download.ifi.uzh.ch`). No mirror and no third-party copy |
+| where | `cnt`, `~/prjs/event_coding/data/dsec/`, one directory per sequence. Read-only after the download |
+| reading | `ec.dsec.read_events`. The stored times are used without `t_offset`. The events are not rectified and are used as they are |
+| record | URL, size and SHA-256 of every kept file, in `results/ds/provenance.json` |
+
+The rules for eTraM above are unchanged. A directive that reads DSEC opens no
+recording of eTraM, and the reverse.
