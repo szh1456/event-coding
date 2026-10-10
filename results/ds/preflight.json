@@ -1,6 +1,6 @@
 {
  "directive": "009",
- "status": "BLOCKED at Stage D, step 3 (space)",
+ "amendment": 1,
  "P1": {
   "host": "cnt-js01",
   "python": "3.10.12",
@@ -17,8 +17,9 @@
   },
   "compared_with": "results/bk/preflight.json#/P1",
   "differences": {},
-  "hdf5plugin": null,
-  "pass": true
+  "hdf5plugin": "7.1.0",
+  "pass": true,
+  "hdf5plugin_note": "installed with pip --target ~/prjs/event_coding/pylib --no-deps (D-009-1): h5py alone failed on the Blosc filter 32001"
  },
  "P2": {
   "sha256": {
@@ -58,13 +59,873 @@
    "license_statement_on_page": null
   },
   "step_2_commit": "f51e0a7",
-  "step_3_space": {
-   "total_bytes": 69344223481,
-   "free_bytes_under_prjs_event_coding": 64093884416,
-   "needed_bytes": 238688446962,
-   "rule": "free > 2 x total + 100 GB",
-   "pass": false
+  "A1_3_size_recheck": {
+   "utc": "2026-10-10T16:57:16+00:00",
+   "n": 41,
+   "n_differ": 0,
+   "pass": true
   },
-  "steps_4_to_7": "not run: no file was downloaded and no event file of DSEC was opened"
+  "step_3_space": {
+   "path": "/data/fi81zw@es.aau.dk/event_coding",
+   "total_bytes": 69344223481,
+   "free_bytes": 2272253734912,
+   "needed_bytes": 238688446962,
+   "pass": true
+  },
+  "step_4_download": {
+   "n_archives": 41,
+   "archive_bytes": 69344223481,
+   "archive_members": [
+    "events.h5",
+    "rectify_map.h5"
+   ],
+   "kept": "events.h5 of each sequence; rectify_map.h5 deleted after unpacking; archives deleted after unpacking",
+   "kept_bytes": 69762262540,
+   "wall_s": 3733,
+   "data_dir_read_only": true
+  },
+  "step_5_describe_first_file": {
+   "sequence": "interlaken_00_c",
+   "describe": {
+    "/events/p": {
+     "shape": [
+      455650825
+     ],
+     "dtype": "uint8",
+     "compression": "unknown",
+     "filters": {
+      "32001": "(2, 2, 1, 111243, 1, 2, 5)"
+     }
+    },
+    "/events/t": {
+     "shape": [
+      455650825
+     ],
+     "dtype": "uint32",
+     "compression": "unknown",
+     "filters": {
+      "32001": "(2, 2, 4, 222488, 1, 2, 5)"
+     }
+    },
+    "/events/x": {
+     "shape": [
+      455650825
+     ],
+     "dtype": "uint16",
+     "compression": "unknown",
+     "filters": {
+      "32001": "(2, 2, 2, 111244, 1, 2, 5)"
+     }
+    },
+    "/events/y": {
+     "shape": [
+      455650825
+     ],
+     "dtype": "uint16",
+     "compression": "unknown",
+     "filters": {
+      "32001": "(2, 2, 2, 111244, 1, 2, 5)"
+     }
+    },
+    "/ms_to_idx": {
+     "shape": [
+      26801
+     ],
+     "dtype": "uint64",
+     "compression": "unknown",
+     "filters": {
+      "32001": "(2, 2, 8, 13408, 1, 2, 5)"
+     }
+    },
+    "/t_offset": {
+     "shape": [],
+     "dtype": "int64",
+     "compression": "None",
+     "filters": {}
+    }
+   }
+  },
+  "step_5_read_errors": {},
+  "step_6_inventory": {
+   "interlaken_00_c": {
+    "n_events": 455650825,
+    "t_first_us": 0,
+    "t_last_us": 26799999,
+    "t_offset_us": 51805200776,
+    "n_time_inversions_clamped": 0,
+    "dtypes": {
+     "x": "uint16",
+     "y": "uint16",
+     "t": "uint32",
+     "p": "uint8"
+    },
+    "x_max": 639,
+    "y_max": 479,
+    "share_p1": 0.5205030650388924,
+    "duration_s": 26.799999,
+    "events_per_s": 17001897.089623027,
+    "events_per_pixel_and_window": 1.8448054547148578
+   },
+   "interlaken_00_d": {
+    "n_events": 1838216077,
+    "t_first_us": 0,
+    "t_last_us": 99500999,
+    "t_offset_us": 51832499776,
+    "n_time_inversions_clamped": 0,
+    "dtypes": {
+     "x": "uint16",
+     "y": "uint16",
+     "t": "uint32",
+     "p": "uint8"
+    },
+    "x_max": 639,
+    "y_max": 479,
+    "share_p1": 0.48659957781448565,
+    "duration_s": 99.500999,
+    "events_per_s": 18474347.951019067,
+    "events_per_pixel_and_window": 2.004575000818094
+   },
+   "interlaken_00_e": {
+    "n_events": 1251577615,
+    "t_first_us": 0,
+    "t_last_us": 99500999,
+    "t_offset_us": 51932499776,
+    "n_time_inversions_clamped": 0,
+    "dtypes": {
+     "x": "uint16",
+     "y": "uint16",
+     "t": "uint32",
+     "p": "uint8"
+    },
+    "x_max": 639,
+    "y_max": 479,
+    "share_p1": 0.5389345262459012,
+    "duration_s": 99.500999,
+    "events_per_s": 12578543.206385296,
+    "events_per_pixel_and_window": 1.3648456402944045
+   },
+   "interlaken_00_f": {
+    "n_events": 559759766,
+    "t_first_us": 0,
+    "t_last_us": 74500999,
+    "t_offset_us": 52032499776,
+    "n_time_inversions_clamped": 0,
+    "dtypes": {
+     "x": "uint16",
+     "y": "uint16",
+     "t": "uint32",
+     "p": "uint8"
+    },
+    "x_max": 639,
+    "y_max": 479,
+    "share_p1": 0.5714160545793854,
+    "duration_s": 74.500999,
+    "events_per_s": 7513453.1551717855,
+    "events_per_pixel_and_window": 0.8152536914757198
+   },
+   "interlaken_00_g": {
+    "n_events": 605967202,
+    "t_first_us": 0,
+    "t_last_us": 66700999,
+    "t_offset_us": 52107499776,
+    "n_time_inversions_clamped": 0,
+    "dtypes": {
+     "x": "uint16",
+     "y": "uint16",
+     "t": "uint32",
+     "p": "uint8"
+    },
+    "x_max": 639,
+    "y_max": 479,
+    "share_p1": 0.5571663002315429,
+    "duration_s": 66.700999,
+    "events_per_s": 9084829.479090711,
+    "events_per_pixel_and_window": 0.9857572299040712
+   },
+   "thun_00_a": {
+    "n_events": 134133270,
+    "t_first_us": 0,
+    "t_last_us": 11900999,
+    "t_offset_us": 49599200165,
+    "n_time_inversions_clamped": 0,
+    "dtypes": {
+     "x": "uint16",
+     "y": "uint16",
+     "t": "uint32",
+     "p": "uint8"
+    },
+    "x_max": 639,
+    "y_max": 479,
+    "share_p1": 0.5375290634456313,
+    "duration_s": 11.900998999999999,
+    "events_per_s": 11270757.186014386,
+    "events_per_pixel_and_window": 1.2229431942754476
+   },
+   "zurich_city_00_a": {
+    "n_events": 482077151,
+    "t_first_us": 0,
+    "t_last_us": 46900999,
+    "t_offset_us": 54718007193,
+    "n_time_inversions_clamped": 0,
+    "dtypes": {
+     "x": "uint16",
+     "y": "uint16",
+     "t": "uint32",
+     "p": "uint8"
+    },
+    "x_max": 639,
+    "y_max": 479,
+    "share_p1": 0.5367251994069306,
+    "duration_s": 46.900999,
+    "events_per_s": 10278611.570725817,
+    "events_per_pixel_and_window": 1.1152895816634234
+   },
+   "zurich_city_00_b": {
+    "n_events": 558906801,
+    "t_first_us": 0,
+    "t_last_us": 73100999,
+    "t_offset_us": 54816707193,
+    "n_time_inversions_clamped": 0,
+    "dtypes": {
+     "x": "uint16",
+     "y": "uint16",
+     "t": "uint32",
+     "p": "uint8"
+    },
+    "x_max": 639,
+    "y_max": 479,
+    "share_p1": 0.533137014018908,
+    "duration_s": 73.100999,
+    "events_per_s": 7645679.38394385,
+    "events_per_pixel_and_window": 0.8296010120605479
+   },
+   "zurich_city_01_a": {
+    "n_events": 315285500,
+    "t_first_us": 0,
+    "t_last_us": 34000999,
+    "t_offset_us": 55602907307,
+    "n_time_inversions_clamped": 0,
+    "dtypes": {
+     "x": "uint16",
+     "y": "uint16",
+     "t": "uint32",
+     "p": "uint8"
+    },
+    "x_max": 639,
+    "y_max": 479,
+    "share_p1": 0.5387177145793257,
+    "duration_s": 34.000999,
+    "events_per_s": 9272830.483598437,
+    "events_per_pixel_and_window": 1.0061564404615455
+   },
+   "zurich_city_01_b": {
+    "n_events": 742590821,
+    "t_first_us": 0,
+    "t_last_us": 66200999,
+    "t_offset_us": 55650007307,
+    "n_time_inversions_clamped": 0,
+    "dtypes": {
+     "x": "uint16",
+     "y": "uint16",
+     "t": "uint32",
+     "p": "uint8"
+    },
+    "x_max": 639,
+    "y_max": 479,
+    "share_p1": 0.5199589667430053,
+    "duration_s": 66.200999,
+    "events_per_s": 11217214.72813424,
+    "events_per_pixel_and_window": 1.2171335238701126
+   },
+   "zurich_city_01_c": {
+    "n_events": 728963877,
+    "t_first_us": 0,
+    "t_last_us": 48800999,
+    "t_offset_us": 55764607307,
+    "n_time_inversions_clamped": 0,
+    "dtypes": {
+     "x": "uint16",
+     "y": "uint16",
+     "t": "uint32",
+     "p": "uint8"
+    },
+    "x_max": 639,
+    "y_max": 479,
+    "share_p1": 0.5293120841432312,
+    "duration_s": 48.800999,
+    "events_per_s": 14937478.574977534,
+    "events_per_pixel_and_window": 1.6208039496735873
+   },
+   "zurich_city_01_d": {
+    "n_events": 501276676,
+    "t_first_us": 0,
+    "t_last_us": 39700999,
+    "t_offset_us": 55830707307,
+    "n_time_inversions_clamped": 0,
+    "dtypes": {
+     "x": "uint16",
+     "y": "uint16",
+     "t": "uint32",
+     "p": "uint8"
+    },
+    "x_max": 639,
+    "y_max": 479,
+    "share_p1": 0.5351193539274107,
+    "duration_s": 39.700998999999996,
+    "events_per_s": 12626298.799181351,
+    "events_per_pixel_and_window": 1.3700274019307035
+   },
+   "zurich_city_01_e": {
+    "n_events": 1032189688,
+    "t_first_us": 0,
+    "t_last_us": 99500999,
+    "t_offset_us": 55910007307,
+    "n_time_inversions_clamped": 0,
+    "dtypes": {
+     "x": "uint16",
+     "y": "uint16",
+     "t": "uint32",
+     "p": "uint8"
+    },
+    "x_max": 639,
+    "y_max": 479,
+    "share_p1": 0.5383246485213868,
+    "duration_s": 99.500999,
+    "events_per_s": 10373661.554895544,
+    "events_per_pixel_and_window": 1.1256030618793398
+   },
+   "zurich_city_01_f": {
+    "n_events": 1111402781,
+    "t_first_us": 0,
+    "t_last_us": 78600999,
+    "t_offset_us": 56010007307,
+    "n_time_inversions_clamped": 0,
+    "dtypes": {
+     "x": "uint16",
+     "y": "uint16",
+     "t": "uint32",
+     "p": "uint8"
+    },
+    "x_max": 639,
+    "y_max": 479,
+    "share_p1": 0.5120368832332444,
+    "duration_s": 78.600999,
+    "events_per_s": 14139804.775254829,
+    "events_per_pixel_and_window": 1.5342516685337537
+   },
+   "zurich_city_02_a": {
+    "n_events": 177115033,
+    "t_first_us": 0,
+    "t_last_us": 11700999,
+    "t_offset_us": 56174807054,
+    "n_time_inversions_clamped": 0,
+    "dtypes": {
+     "x": "uint16",
+     "y": "uint16",
+     "t": "uint32",
+     "p": "uint8"
+    },
+    "x_max": 639,
+    "y_max": 479,
+    "share_p1": 0.5168083671361764,
+    "duration_s": 11.700999,
+    "events_per_s": 15136744.563434286,
+    "events_per_pixel_and_window": 1.6424254769952962
+   },
+   "zurich_city_02_b": {
+    "n_events": 1041747401,
+    "t_first_us": 0,
+    "t_last_us": 61200999,
+    "t_offset_us": 56246407054,
+    "n_time_inversions_clamped": 0,
+    "dtypes": {
+     "x": "uint16",
+     "y": "uint16",
+     "t": "uint32",
+     "p": "uint8"
+    },
+    "x_max": 639,
+    "y_max": 479,
+    "share_p1": 0.5068389001913143,
+    "duration_s": 61.200998999999996,
+    "events_per_s": 17021738.501360085,
+    "events_per_pixel_and_window": 1.8469583641466005
+   },
+   "zurich_city_02_c": {
+    "n_events": 3311435635,
+    "t_first_us": 0,
+    "t_last_us": 144100999,
+    "t_offset_us": 56332607054,
+    "n_time_inversions_clamped": 0,
+    "dtypes": {
+     "x": "uint16",
+     "y": "uint16",
+     "t": "uint32",
+     "p": "uint8"
+    },
+    "x_max": 639,
+    "y_max": 479,
+    "share_p1": 0.481537463735121,
+    "duration_s": 144.100999,
+    "events_per_s": 22979963.067431614,
+    "events_per_pixel_and_window": 2.4934606410374283
+   },
+   "zurich_city_02_d": {
+    "n_events": 795100364,
+    "t_first_us": 0,
+    "t_last_us": 92100999,
+    "t_offset_us": 56538407054,
+    "n_time_inversions_clamped": 0,
+    "dtypes": {
+     "x": "uint16",
+     "y": "uint16",
+     "t": "uint32",
+     "p": "uint8"
+    },
+    "x_max": 639,
+    "y_max": 479,
+    "share_p1": 0.5396135612887231,
+    "duration_s": 92.100999,
+    "events_per_s": 8632917.912215045,
+    "events_per_pixel_and_window": 0.9367221769787244
+   },
+   "zurich_city_02_e": {
+    "n_events": 2203481739,
+    "t_first_us": 0,
+    "t_last_us": 92200999,
+    "t_offset_us": 56631007054,
+    "n_time_inversions_clamped": 0,
+    "dtypes": {
+     "x": "uint16",
+     "y": "uint16",
+     "t": "uint32",
+     "p": "uint8"
+    },
+    "x_max": 639,
+    "y_max": 479,
+    "share_p1": 0.46547062444251097,
+    "duration_s": 92.200999,
+    "events_per_s": 23898675.316956166,
+    "events_per_pixel_and_window": 2.593146303190429
+   },
+   "zurich_city_03_a": {
+    "n_events": 1143396879,
+    "t_first_us": 0,
+    "t_last_us": 44099999,
+    "t_offset_us": 57172707574,
+    "n_time_inversions_clamped": 0,
+    "dtypes": {
+     "x": "uint16",
+     "y": "uint16",
+     "t": "uint32",
+     "p": "uint8"
+    },
+    "x_max": 639,
+    "y_max": 479,
+    "share_p1": 0.4651082286188399,
+    "duration_s": 44.099999,
+    "events_per_s": 25927367.458670467,
+    "events_per_pixel_and_window": 2.8132712874344485
+   },
+   "zurich_city_04_a": {
+    "n_events": 358941868,
+    "t_first_us": 0,
+    "t_last_us": 35001999,
+    "t_offset_us": 36470599656,
+    "n_time_inversions_clamped": 0,
+    "dtypes": {
+     "x": "uint16",
+     "y": "uint16",
+     "t": "uint32",
+     "p": "uint8"
+    },
+    "x_max": 639,
+    "y_max": 479,
+    "share_p1": 0.5366104407747719,
+    "duration_s": 35.001999,
+    "events_per_s": 10254896.24178322,
+    "events_per_pixel_and_window": 1.112716329516146
+   },
+   "zurich_city_04_b": {
+    "n_events": 129563187,
+    "t_first_us": 0,
+    "t_last_us": 13400999,
+    "t_offset_us": 36607300656,
+    "n_time_inversions_clamped": 0,
+    "dtypes": {
+     "x": "uint16",
+     "y": "uint16",
+     "t": "uint32",
+     "p": "uint8"
+    },
+    "x_max": 639,
+    "y_max": 479,
+    "share_p1": 0.5408831290943777,
+    "duration_s": 13.400998999999999,
+    "events_per_s": 9668173.768239219,
+    "events_per_pixel_and_window": 1.0490535033096284
+   },
+   "zurich_city_04_c": {
+    "n_events": 391111416,
+    "t_first_us": 0,
+    "t_last_us": 58999999,
+    "t_offset_us": 36653100656,
+    "n_time_inversions_clamped": 0,
+    "dtypes": {
+     "x": "uint16",
+     "y": "uint16",
+     "t": "uint32",
+     "p": "uint8"
+    },
+    "x_max": 639,
+    "y_max": 479,
+    "share_p1": 0.5878849238192526,
+    "duration_s": 58.999998999999995,
+    "events_per_s": 6629007.163203511,
+    "events_per_pixel_and_window": 0.7192861190464279
+   },
+   "zurich_city_04_d": {
+    "n_events": 324912840,
+    "t_first_us": 0,
+    "t_last_us": 47800999,
+    "t_offset_us": 36739599656,
+    "n_time_inversions_clamped": 0,
+    "dtypes": {
+     "x": "uint16",
+     "y": "uint16",
+     "t": "uint32",
+     "p": "uint8"
+    },
+    "x_max": 639,
+    "y_max": 479,
+    "share_p1": 0.5875416680978197,
+    "duration_s": 47.800999,
+    "events_per_s": 6797197.690366263,
+    "events_per_pixel_and_window": 0.7375357767349564
+   },
+   "zurich_city_04_e": {
+    "n_events": 119172751,
+    "t_first_us": 1,
+    "t_last_us": 13400999,
+    "t_offset_us": 36880799656,
+    "n_time_inversions_clamped": 0,
+    "dtypes": {
+     "x": "uint16",
+     "y": "uint16",
+     "t": "uint32",
+     "p": "uint8"
+    },
+    "x_max": 639,
+    "y_max": 479,
+    "share_p1": 0.5862973826961501,
+    "duration_s": 13.400998,
+    "events_per_s": 8892826.564111121,
+    "events_per_pixel_and_window": 0.9649237886117058
+   },
+   "zurich_city_04_f": {
+    "n_events": 361541918,
+    "t_first_us": 0,
+    "t_last_us": 42907999,
+    "t_offset_us": 36914999656,
+    "n_time_inversions_clamped": 0,
+    "dtypes": {
+     "x": "uint16",
+     "y": "uint16",
+     "t": "uint32",
+     "p": "uint8"
+    },
+    "x_max": 639,
+    "y_max": 479,
+    "share_p1": 0.5502924117363343,
+    "duration_s": 42.907999,
+    "events_per_s": 8425979.454320394,
+    "events_per_pixel_and_window": 0.9142681417671277
+   },
+   "zurich_city_05_a": {
+    "n_events": 925152594,
+    "t_first_us": 0,
+    "t_last_us": 87601999,
+    "t_offset_us": 37379399960,
+    "n_time_inversions_clamped": 0,
+    "dtypes": {
+     "x": "uint16",
+     "y": "uint16",
+     "t": "uint32",
+     "p": "uint8"
+    },
+    "x_max": 639,
+    "y_max": 479,
+    "share_p1": 0.5574376047201571,
+    "duration_s": 87.60199899999999,
+    "events_per_s": 10560861.676227275,
+    "events_per_pixel_and_window": 1.1459153719195436
+   },
+   "zurich_city_05_b": {
+    "n_events": 974125637,
+    "t_first_us": 0,
+    "t_last_us": 81399999,
+    "t_offset_us": 37467500960,
+    "n_time_inversions_clamped": 0,
+    "dtypes": {
+     "x": "uint16",
+     "y": "uint16",
+     "t": "uint32",
+     "p": "uint8"
+    },
+    "x_max": 639,
+    "y_max": 479,
+    "share_p1": 0.5441283442989808,
+    "duration_s": 81.399999,
+    "events_per_s": 11967145.56470695,
+    "events_per_pixel_and_window": 1.298505413764247
+   },
+   "zurich_city_06_a": {
+    "n_events": 1510549938,
+    "t_first_us": 0,
+    "t_last_us": 76100999,
+    "t_offset_us": 41424200072,
+    "n_time_inversions_clamped": 0,
+    "dtypes": {
+     "x": "uint16",
+     "y": "uint16",
+     "t": "uint32",
+     "p": "uint8"
+    },
+    "x_max": 639,
+    "y_max": 479,
+    "share_p1": 0.4562414989818099,
+    "duration_s": 76.100999,
+    "events_per_s": 19849278.693437386,
+    "events_per_pixel_and_window": 2.153763042605301
+   },
+   "zurich_city_07_a": {
+    "n_events": 914497782,
+    "t_first_us": 0,
+    "t_last_us": 73100999,
+    "t_offset_us": 41776099323,
+    "n_time_inversions_clamped": 0,
+    "dtypes": {
+     "x": "uint16",
+     "y": "uint16",
+     "t": "uint32",
+     "p": "uint8"
+    },
+    "x_max": 639,
+    "y_max": 479,
+    "share_p1": 0.564059008291832,
+    "duration_s": 73.100999,
+    "events_per_s": 12510058.610826919,
+    "events_per_pixel_and_window": 1.3574146603993935
+   },
+   "zurich_city_08_a": {
+    "n_events": 509828476,
+    "t_first_us": 0,
+    "t_last_us": 39300999,
+    "t_offset_us": 39415399925,
+    "n_time_inversions_clamped": 0,
+    "dtypes": {
+     "x": "uint16",
+     "y": "uint16",
+     "t": "uint32",
+     "p": "uint8"
+    },
+    "x_max": 639,
+    "y_max": 479,
+    "share_p1": 0.5277507449387743,
+    "duration_s": 39.300999,
+    "events_per_s": 12972405.001715098,
+    "events_per_pixel_and_window": 1.4075819528716451
+   },
+   "zurich_city_09_a": {
+    "n_events": 1789706436,
+    "t_first_us": 0,
+    "t_last_us": 90600999,
+    "t_offset_us": 58051107239,
+    "n_time_inversions_clamped": 0,
+    "dtypes": {
+     "x": "uint16",
+     "y": "uint16",
+     "t": "uint32",
+     "p": "uint8"
+    },
+    "x_max": 639,
+    "y_max": 479,
+    "share_p1": 0.48191287054185905,
+    "duration_s": 90.600999,
+    "events_per_s": 19753716.358028237,
+    "events_per_pixel_and_window": 2.143393969277849
+   },
+   "zurich_city_09_b": {
+    "n_events": 166832789,
+    "t_first_us": 0,
+    "t_last_us": 18300999,
+    "t_offset_us": 58177507239,
+    "n_time_inversions_clamped": 0,
+    "dtypes": {
+     "x": "uint16",
+     "y": "uint16",
+     "t": "uint32",
+     "p": "uint8"
+    },
+    "x_max": 639,
+    "y_max": 479,
+    "share_p1": 0.5262452274894236,
+    "duration_s": 18.300999,
+    "events_per_s": 9116048.20042884,
+    "events_per_pixel_and_window": 0.9891446440914535
+   },
+   "zurich_city_09_c": {
+    "n_events": 657565671,
+    "t_first_us": 0,
+    "t_last_us": 66100999,
+    "t_offset_us": 58288007239,
+    "n_time_inversions_clamped": 0,
+    "dtypes": {
+     "x": "uint16",
+     "y": "uint16",
+     "t": "uint32",
+     "p": "uint8"
+    },
+    "x_max": 639,
+    "y_max": 479,
+    "share_p1": 0.5340868091029041,
+    "duration_s": 66.100999,
+    "events_per_s": 9947893.087062119,
+    "events_per_pixel_and_window": 1.0794046883822968
+   },
+   "zurich_city_09_d": {
+    "n_events": 858124703,
+    "t_first_us": 0,
+    "t_last_us": 84900999,
+    "t_offset_us": 58391107239,
+    "n_time_inversions_clamped": 0,
+    "dtypes": {
+     "x": "uint16",
+     "y": "uint16",
+     "t": "uint32",
+     "p": "uint8"
+    },
+    "x_max": 639,
+    "y_max": 479,
+    "share_p1": 0.5406779869848357,
+    "duration_s": 84.900999,
+    "events_per_s": 10107356.958190799,
+    "events_per_pixel_and_window": 1.0967074527583787
+   },
+   "zurich_city_09_e": {
+    "n_events": 404633759,
+    "t_first_us": 0,
+    "t_last_us": 40800999,
+    "t_offset_us": 58502707239,
+    "n_time_inversions_clamped": 0,
+    "dtypes": {
+     "x": "uint16",
+     "y": "uint16",
+     "t": "uint32",
+     "p": "uint8"
+    },
+    "x_max": 639,
+    "y_max": 479,
+    "share_p1": 0.5367025789857539,
+    "duration_s": 40.800999,
+    "events_per_s": 9917251.26632316,
+    "events_per_pixel_and_window": 1.0760798712902016
+   },
+   "zurich_city_10_a": {
+    "n_events": 2368470889,
+    "t_first_us": 0,
+    "t_last_us": 115700999,
+    "t_offset_us": 57267306983,
+    "n_time_inversions_clamped": 0,
+    "dtypes": {
+     "x": "uint16",
+     "y": "uint16",
+     "t": "uint32",
+     "p": "uint8"
+    },
+    "x_max": 639,
+    "y_max": 479,
+    "share_p1": 0.484096622983657,
+    "duration_s": 115.700999,
+    "events_per_s": 20470617.449033435,
+    "events_per_pixel_and_window": 2.221181938244243
+   },
+   "zurich_city_10_b": {
+    "n_events": 3043754731,
+    "t_first_us": 0,
+    "t_last_us": 120200999,
+    "t_offset_us": 57383506983,
+    "n_time_inversions_clamped": 0,
+    "dtypes": {
+     "x": "uint16",
+     "y": "uint16",
+     "t": "uint32",
+     "p": "uint8"
+    },
+    "x_max": 639,
+    "y_max": 479,
+    "share_p1": 0.46173068732718464,
+    "duration_s": 120.200999,
+    "events_per_s": 25322208.270498652,
+    "events_per_pixel_and_window": 2.7476079696631883
+   },
+   "zurich_city_11_a": {
+    "n_events": 129128809,
+    "t_first_us": 0,
+    "t_last_us": 23200999,
+    "t_offset_us": 37060099807,
+    "n_time_inversions_clamped": 0,
+    "dtypes": {
+     "x": "uint16",
+     "y": "uint16",
+     "t": "uint32",
+     "p": "uint8"
+    },
+    "x_max": 639,
+    "y_max": 479,
+    "share_p1": 0.5974411720935179,
+    "duration_s": 23.200999,
+    "events_per_s": 5565657.28053348,
+    "events_per_pixel_and_window": 0.6039064262110108
+   },
+   "zurich_city_11_b": {
+    "n_events": 839634511,
+    "t_first_us": 0,
+    "t_last_us": 96600999,
+    "t_offset_us": 37089399807,
+    "n_time_inversions_clamped": 0,
+    "dtypes": {
+     "x": "uint16",
+     "y": "uint16",
+     "t": "uint32",
+     "p": "uint8"
+    },
+    "x_max": 639,
+    "y_max": 479,
+    "share_p1": 0.5614642261887685,
+    "duration_s": 96.600999,
+    "events_per_s": 8691778.756863581,
+    "events_per_pixel_and_window": 0.943108923510852
+   },
+   "zurich_city_11_c": {
+    "n_events": 890779936,
+    "t_first_us": 0,
+    "t_last_us": 97799999,
+    "t_offset_us": 37186500807,
+    "n_time_inversions_clamped": 0,
+    "dtypes": {
+     "x": "uint16",
+     "y": "uint16",
+     "t": "uint32",
+     "p": "uint8"
+    },
+    "x_max": 639,
+    "y_max": 479,
+    "share_p1": 0.5751771299437979,
+    "duration_s": 97.799999,
+    "events_per_s": 9108179.397834145,
+    "events_per_pixel_and_window": 0.9882908329036639
+   }
+  }
  }
 }
