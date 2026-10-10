@@ -1,0 +1,53 @@
+{
+ "directive": "007",
+ "commit": "e671577d6afe5de2bd4af9fbddaf4e0c80cd8211",
+ "P1": {
+  "host": "cnt-js01",
+  "python": "3.10.12",
+  "numpy": "1.26.4",
+  "scipy": "1.15.3",
+  "h5py": "3.16.0",
+  "zstandard": "0.25.0",
+  "numba": "0.60.0",
+  "blas_threads": {
+   "OMP_NUM_THREADS": "1",
+   "OPENBLAS_NUM_THREADS": "1",
+   "MKL_NUM_THREADS": "1",
+   "NUMEXPR_NUM_THREADS": "1"
+  },
+  "compared_with": "results/af/preflight.json#/P1",
+  "differences": {},
+  "pass": true
+ },
+ "P2": {
+  "sha256": {
+   "ec/blockcodec.py": "644539ec0fb900cc2c3ccd08de0d7105ed55a56cf1d67a545b9784d690390c9e",
+   "tests/test_blockcodec_gate.py": "4ca8ec70fcd3ae5101a37592f1ab3d809d5d28692eacd9ac6d0687bb28adedf0"
+  },
+  "expected": {
+   "ec/blockcodec.py": "644539ec0fb900cc2c3ccd08de0d7105ed55a56cf1d67a545b9784d690390c9e",
+   "tests/test_blockcodec_gate.py": "4ca8ec70fcd3ae5101a37592f1ab3d809d5d28692eacd9ac6d0687bb28adedf0"
+  },
+  "pass": true
+ },
+ "P4": {
+  "n_event_files_found": 112,
+  "n_expected": 112,
+  "isfile_pass": true,
+  "event_counts": "checked against results/mp/preflight.json#/P2/per_recording by every process that reads a recording (census, Stage 0, Stages T and R, receivers)",
+  "event_counts_checked_in_census": {
+   "n_recordings": 112,
+   "all_equal_to_results_mp_preflight": true
+  }
+ },
+ "P3": {
+  "command": "python3 -m pytest -q -p no:anyio",
+  "host": "cnt-js01",
+  "commit": "e671577d6afe5de2bd4af9fbddaf4e0c80cd8211",
+  "result": "68 passed in 55.25s",
+  "skipped": 0,
+  "gates_unedited": true,
+  "pass": true,
+  "first_run": "commit 7d4134b: 68 passed in 55.15s"
+ }
+}
