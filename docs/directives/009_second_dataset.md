@@ -478,3 +478,43 @@ def test_the_codec_runs_on_the_sensor_of_the_second_dataset(tmp_path):
     assert rec["match"] == [row["n_key"]] + row["models"]["translation"]["match_s2_k3"][:3]
     assert bc.decode_header(stream)["width"] == 640 and bc.decode_header(stream)["height"] == 480
 ```
+
+## Amendment 1 (2026-10-10). The files of the second dataset live on `/data`
+
+Answers the `BLOCKED` report at `0dea424`. It overrides the location in D-009-1,
+Section 4 and Section 6, step 3, and it adds to step 7. Everything else stands.
+
+**A1.1 Location.** With `<user>` the login name of the user that runs the
+directive on `cnt`:
+
+- the downloaded files go to `/data/<user>/event_coding/dsec/`, one directory
+  per sequence;
+- everything that this directive computes and keeps on the host (Stage 0, the
+  census, the per-group files, the stream files) goes to
+  `/data/<user>/event_coding/ds/`.
+
+Create `/data/<user>/event_coding/` if it is absent, readable and writable by
+that user only. `results/ds/` in the repository is unchanged. This directive
+writes nothing else on `/data`, and it opens, lists and changes no file or
+directory of `/data` outside `/data/<user>/event_coding/`. Record the resolved
+paths in `results/ds/provenance.json`.
+
+**A1.2 Space.** Step 3 is measured on the filesystem that holds
+`/data/<user>/event_coding/`, with the same margin: the free space must exceed
+twice the total size of the files plus 100 GB.
+
+**A1.3 Steps 1 and 2 stand.** `config/population_dsec.yaml` and
+`results/ds/population_check.json` at `f51e0a7` are the list. Before the
+download, ask the server again for the size of each of the 41 files. If one
+differs from the population file, stop and report it.
+
+**A1.4 License.** In step 7, record in the ledger entry that the download page
+carries no license statement, with the date and the hash of the saved page.
+Then look for a license statement on the project page
+(https://dsec.ifi.uzh.ch/) and on the pages it links for the terms of use, and
+record what is found, quoted, with its URL, or that none was found. The brief
+records CC BY-SA 4.0 for the dataset. This step does not stop the directive:
+the project reads the files for research and passes none of them on.
+
+**A1.5 The rest of Stage D** (steps 4 to 7), Stage 0 and Stage R run as written.
+

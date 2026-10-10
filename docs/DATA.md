@@ -58,9 +58,10 @@ were not kept.
 | what | the event files of the left event camera of the training split of DSEC, as listed in `config/population_dsec.yaml` |
 | what not | the right camera, the test split, images, disparity, optical flow, semantic labels, calibration and rectification files. They are not downloaded. If an archive holds them next to the events, they are deleted after unpacking |
 | source | the official host of the dataset only (https://dsec.ifi.uzh.ch/, files served from `download.ifi.uzh.ch`). No mirror and no third-party copy |
-| where | `cnt`, `~/prjs/event_coding/data/dsec/`, one directory per sequence. Read-only after the download |
+| where | `cnt`, `/data/<user>/event_coding/dsec/`, one directory per sequence, with `<user>` the login name of the user that runs the directive (directive 009, Amendment 1: `/home` on `cnt` has no room for it). Read-only after the download. What a directive computes from these files and keeps on the host goes to `/data/<user>/event_coding/ds/` |
 | reading | `ec.dsec.read_events`. The stored times are used without `t_offset`. The events are not rectified and are used as they are |
 | record | URL, size and SHA-256 of every kept file, in `results/ds/provenance.json` |
 
 The rules for eTraM above are unchanged. A directive that reads DSEC opens no
-recording of eTraM, and the reverse.
+recording of eTraM, and the reverse. On `/data`, this project opens, lists and
+changes nothing outside `/data/<user>/event_coding/`.
