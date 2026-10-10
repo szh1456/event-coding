@@ -2,7 +2,8 @@
 
   python3 scripts/ds_stageD.py list PAGE.html OUT.yaml          # step 1, from the saved download page
   python3 scripts/ds_stageD.py popcheck POP.yaml OUT.json        # step 2, before any event file is opened
-  python3 scripts/ds_stageD.py space POP.yaml                     # step 3
+  python3 scripts/ds_stageD.py recheck POP.yaml OUT.json         # Amendment 1, A1.3
+  python3 scripts/ds_stageD.py space POP.yaml [PATH]              # step 3 (A1.2: on /data)
   python3 scripts/ds_stageD.py download POP.yaml DATADIR LOG.json # step 4
   python3 scripts/ds_stageD.py format POP.yaml DATADIR OUT.json   # steps 5 and 6
 
@@ -27,7 +28,7 @@ import yaml
 
 PAGE_URL = "https://dsec.ifi.uzh.ch/dsec-datasets/download/"
 PATTERN = re.compile(r"https://download\.ifi\.uzh\.ch/rpg/DSEC/train/([a-z0-9_]+)/\1_events_left\.zip")
-DATA_DIR = Path.home() / "prjs" / "event_coding" / "data" / "dsec"
+DATA_DIR = Path("/data") / os.environ.get("USER", "") / "event_coding" / "dsec"   # Amendment 1, A1.1
 KEEP = "events.h5"                          # the left event file inside the archive (verified in step 4)
 
 
@@ -75,12 +76,30 @@ def cmd_popcheck(pop, out):
     print(json.dumps({k: v for k, v in res.items() if k != "sequences"}, indent=1))
 
 
-def cmd_space(pop):
+def cmd_space(pop, where=None):
+    """Step 3 (Amendment 1, A1.2: measured on the filesystem that holds ``where``)."""
     d = yaml.safe_load(Path(pop).read_text())
     total = sum(s["size_bytes"] for s in d["sequences"])
-    free = shutil.disk_usage(Path.home() / "prjs" / "event_coding").free
+    where = Path(where) if where else Path.home() / "prjs" / "event_coding"
+    free = shutil.disk_usage(where).free
     need = 2 * total + 100e9
-    print(json.dumps({"total_bytes": total, "free_bytes": free, "needed_bytes": need, "pass": free > need}))
+    print(json.dumps({"path": str(where), "total_bytes": total, "free_bytes": free, "needed_bytes": need,
+                      "pass": free > need}))
+
+
+def cmd_recheck(pop, out):
+    """Amendment 1, A1.3: ask the server again for the size of every listed file; any difference stops."""
+    d = yaml.safe_load(Path(pop).read_text())
+    rows, diff = [], []
+    for s in d["sequences"]:
+        size, code = head_size(s["url"])
+        rows.append({"name": s["name"], "listed": s["size_bytes"], "now": size, "http_status": code})
+        if size != s["size_bytes"] or code != 200:
+            diff.append(rows[-1])
+    res = {"utc": datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="seconds"), "n": len(rows),
+           "n_differ": len(diff), "differ": diff, "rows": rows, "pass": not diff}
+    Path(out).write_text(json.dumps(res, indent=1) + "\n")
+    print(json.dumps({k: v for k, v in res.items() if k != "rows"}))
 
 
 def sha256(p):
@@ -156,5 +175,5 @@ def cmd_format(pop, datadir, out):
 
 
 if __name__ == "__main__":
-    {"list": cmd_list, "popcheck": cmd_popcheck, "space": cmd_space, "download": cmd_download,
+    {"list": cmd_list, "popcheck": cmd_popcheck, "space": cmd_space, "recheck": cmd_recheck, "download": cmd_download,
      "format": cmd_format}[sys.argv[1]](*sys.argv[2:])
