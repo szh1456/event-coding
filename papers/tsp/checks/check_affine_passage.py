@@ -12,6 +12,8 @@ P3  Appendix C. ln(sinh x / x) <= x^2 / 6, the inequality behind the lower bound
     itself against the zero-rate point and the upper bound U of Theorem 2.
 P4  Eq. (30). For one pixel and bins no longer than the event spacing, the voxel fidelity of the
     mean-time regeneration of an event train is Delta_t / tau in expectation over the phase.
+P5  Proposition 2. The mean-squared timing error of events that are moved from one pixel to another,
+    D_A,i + D_A,j + (4 n^2 - 1) (tau_i - tau_j)^2 / 12.
 
 Synthetic data only. Usage: python3 check_affine_passage.py [out.json]
 """
@@ -183,6 +185,21 @@ def check_bin_fidelity(seed=3, tau=1.0, n_events=200, trials=20000):
     return out
 
 
+def check_moved(seed=5, trials=400_000):
+    """Proposition 2: mean-squared timing error of moved events against the true events of another pixel."""
+    rng = np.random.default_rng(seed)
+    rows = []
+    for n, tau_i, tau_j, sigma in ((1, 1.0, 1.0, 0.1), (3, 1.0, 1.0, 0.2), (3, 1.0, 1.3, 0.2), (5, 0.8, 1.0, 0.05)):
+        k = np.arange(n)
+        Ti = rng.uniform(0, tau_i, (trials, 1)) + k * tau_i + rng.normal(0, sigma, (trials, n))
+        Tj = rng.uniform(0, tau_j, (trials, 1)) + k * tau_j + rng.normal(0, sigma, (trials, n))
+        mse = float(np.mean((Ti - Tj) ** 2))
+        formula = (2 * sigma ** 2 + (tau_i ** 2 + tau_j ** 2) / 12) + (4 * n * n - 1) / 12 * (tau_i - tau_j) ** 2
+        rows.append({"n": n, "tau_i": tau_i, "tau_j": tau_j, "sigma": sigma, "simulated": mse, "formula": formula,
+                     "relative_error": abs(mse - formula) / formula})
+    return rows
+
+
 if __name__ == "__main__":
     rng = np.random.default_rng(0)
     out = {"P1": {}}
@@ -201,5 +218,7 @@ if __name__ == "__main__":
     print("P3", json.dumps({k: v for k, v in out["P3"].items() if k != "rows"}))
     out["P4"] = check_bin_fidelity()
     print("P4", json.dumps(out["P4"]))
+    out["P5"] = check_moved()
+    print("P5", json.dumps(out["P5"]))
     if len(sys.argv) > 1:
         json.dump(out, open(sys.argv[1], "w"), indent=1)
