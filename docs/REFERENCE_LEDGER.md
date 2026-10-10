@@ -109,7 +109,7 @@ of the companion project.
 | claim supported | an entropy-coded uniform scalar quantizer at fine resolution spends (1/2) log2(2πe/12) = 0.255 bit per sample more than the Shannon lower bound under squared error |
 | source | standard high-resolution quantization result, commonly attributed to Gish and Pierce (1968); no source was opened |
 | source type | not established |
-| used in | `docs/theory/translation_edge.tex`, numerical check N3 (one comparison sentence) |
+| used in | `docs/theory/translation_edge.tex`, numerical check N3 (one comparison sentence); `papers/tsp/main.tex`, Section VI-B, where the value is stated with its derivation and without a citation, next to the measured excess of 0.254 to 0.258 bit per event (report 006, Table 4) |
 | version / conditions | none |
 | status | `UNRESOLVED`: no primary source read. The value follows from the entropy of a uniform quantizer index, ln(1/Δ) plus the differential entropy, at distortion Δ²/12 |
 | does not support | any claim at coarse resolution, where the measured excess in N3 is larger |
@@ -121,7 +121,7 @@ of the companion project.
 | claim supported | the rate-distortion function of a discrete source can be computed, at a given slope, by an alternating iteration on the output distribution |
 | source | R. E. Blahut, "Computation of channel capacity and rate-distortion functions," IEEE Transactions on Information Theory, vol. 18, no. 4, pp. 460-473, July 1972 |
 | source type | primary (journal article) |
-| used in | `ec/regimes.py`, function `blahut_arimoto` (directive 006, check R1) |
+| used in | `ec/regimes.py`, function `blahut_arimoto` (directive 006, check R1); `papers/tsp/main.tex`, Section VI-B (the numerical rate-distortion function of Fig. 2) |
 | version / conditions | title, author, journal and month read on the IEEE Information Theory Society page of the paper (https://itsoc.org/node/36671) on 2026-10-10; volume, issue and pages read on the author's dblp record (https://dblp1.uni-trier.de/pid/89/3073.html) on the same day. No DOI was confirmed, so none is given. The article was not read |
 | status | `PARTIAL`: citation verified, content stated from general knowledge. The iteration in the code was written from that knowledge and is checked against a Gaussian source in `tests/test_regimes_gate.py` |
 | does not support | a convergence rate, a stopping rule, or any statement about a continuous source: the code discretizes the source and repeats the computation on a second grid |
