@@ -1,0 +1,614 @@
+{
+ "streams": {
+  "interlaken_00_c__static_T_K2.ec07": {
+   "length": 6090701,
+   "expected_length": 6090701,
+   "sha256": "325fc7ed8d4d59665ab78be43418a4a411dcdbd811403874af66b1e2e9f5fdd4",
+   "failures": []
+  },
+  "interlaken_00_c__static_T_K4.ec07": {
+   "length": 6090701,
+   "expected_length": 6090701,
+   "sha256": "dfb2b688d6dde94aa59481adaf90488b880cb17ba14b24a39fc00957a9239e6e",
+   "failures": []
+  },
+  "interlaken_00_c__static_T_K8.ec07": {
+   "length": 6090701,
+   "expected_length": 6090701,
+   "sha256": "125076e6c66a73a1926943ad8757020249db32c0bad13afd893d2a0e444daca8",
+   "failures": []
+  },
+  "interlaken_00_c__static_T_K11.ec07": {
+   "length": 6090701,
+   "expected_length": 6090701,
+   "sha256": "58d5e79b4e33f598d45d1a4039db901e745e2ab3a9c4060f44f2e642272abccb",
+   "failures": []
+  },
+  "interlaken_00_c__static_Q_K2.ec07": {
+   "length": 692188,
+   "expected_length": 692188,
+   "sha256": "d0388cb66735ddf9316f83743b5a1f74f62b67cbb9ebd1759d5f97988df381d4",
+   "failures": []
+  },
+  "interlaken_00_c__static_Q_K4.ec07": {
+   "length": 692188,
+   "expected_length": 692188,
+   "sha256": "cce4b5a87c1194930dcceef7cfbe25b31ae61e60ed66c7d5269e2fe687d8f750",
+   "failures": []
+  },
+  "interlaken_00_c__static_Q_K8.ec07": {
+   "length": 692188,
+   "expected_length": 692188,
+   "sha256": "3a1ef3d89602e870c5731de9e50b669b09a5a9450c11f0a681af5014ce489ee4",
+   "failures": []
+  },
+  "interlaken_00_c__static_Q_K11.ec07": {
+   "length": 692188,
+   "expected_length": 692188,
+   "sha256": "15d861b71c08cc3f7f764de81a8b58b47ba13a51d71b062d1157ab1f6ab34a43",
+   "failures": []
+  },
+  "interlaken_00_c__translation_T_K2.ec07": {
+   "length": 6093108,
+   "expected_length": 6093108,
+   "sha256": "478ac2a5f409f80f32b18a20290020a3ece4125ae9cc7e1cd2450c637b7e7a68",
+   "failures": []
+  },
+  "interlaken_00_c__translation_T_K4.ec07": {
+   "length": 6097686,
+   "expected_length": 6097686,
+   "sha256": "08c1a71d8719fc671f302971653867313d4f4a783e932d450f6ffc83e449d6b7",
+   "failures": []
+  },
+  "interlaken_00_c__translation_T_K8.ec07": {
+   "length": 6106522,
+   "expected_length": 6106522,
+   "sha256": "5763366ec1e9248efe35b33efbcce845796a09eddfa8a4aee41cf8939eaaa323",
+   "failures": []
+  },
+  "interlaken_00_c__translation_T_K11.ec07": {
+   "length": 6113051,
+   "expected_length": 6113051,
+   "sha256": "c300845a465e3f7e86a21f268aeee7f9c416354f871a7b5df3dc529bc79c7f61",
+   "failures": []
+  },
+  "interlaken_00_c__translation_Q_K2.ec07": {
+   "length": 694595,
+   "expected_length": 694595,
+   "sha256": "cdfaa7a4e84c96196694384f0dc3dd88d9931d210b652c3640664faa1fa38ebe",
+   "failures": []
+  },
+  "interlaken_00_c__translation_Q_K4.ec07": {
+   "length": 699173,
+   "expected_length": 699173,
+   "sha256": "89efee51eb0ee0eb209feb7b1c7e5042876d82b8751300097ebf2d6a2dd764be",
+   "failures": []
+  },
+  "interlaken_00_c__translation_Q_K8.ec07": {
+   "length": 708009,
+   "expected_length": 708009,
+   "sha256": "91abbaee9b07876643823053e8539afb83418fe6510564caf21b6c7b1dda4710",
+   "failures": []
+  },
+  "interlaken_00_c__translation_Q_K11.ec07": {
+   "length": 714538,
+   "expected_length": 714538,
+   "sha256": "8391fee1558a15aa084a353b1caad236f2b1821cb7b28ae3aa9655efabc16d7c",
+   "failures": []
+  },
+  "interlaken_00_c__affine_T_K2.ec07": {
+   "length": 6096246,
+   "expected_length": 6096246,
+   "sha256": "5e1585754244ba5099dfb1855efda660b6cf1c0d38fd45b02313b9cffa98d3b4",
+   "failures": []
+  },
+  "interlaken_00_c__affine_T_K4.ec07": {
+   "length": 6107633,
+   "expected_length": 6107633,
+   "sha256": "5ae469c1fdaa97cb32e27f73dc8fc71e502d7167d14b6f54ee6114911e0e664e",
+   "failures": []
+  },
+  "interlaken_00_c__affine_T_K8.ec07": {
+   "length": 6131034,
+   "expected_length": 6131034,
+   "sha256": "644f2828363ce4bd43fc6d4806d0eebda2d21969fa69a88611360838eeec6313",
+   "failures": []
+  },
+  "interlaken_00_c__affine_T_K11.ec07": {
+   "length": 6148479,
+   "expected_length": 6148479,
+   "sha256": "b0159259c8eb5d04032f1aa1d5707bbd54374b049f6caccebfad103fabfb74c1",
+   "failures": []
+  },
+  "interlaken_00_c__affine_Q_K2.ec07": {
+   "length": 697733,
+   "expected_length": 697733,
+   "sha256": "ef2c040da5578df407e6e8f3080d104ea285163d944f1785ba6ef1070b57a528",
+   "failures": []
+  },
+  "interlaken_00_c__affine_Q_K4.ec07": {
+   "length": 709120,
+   "expected_length": 709120,
+   "sha256": "5257d1586a961cf06e50230e5966482cd19b995fbb61c3192ee48c92c9342728",
+   "failures": []
+  },
+  "interlaken_00_c__affine_Q_K8.ec07": {
+   "length": 732521,
+   "expected_length": 732521,
+   "sha256": "5a5b458cecd8b902580214fe3195bc90e54d0d9cbb0fff8b8d5dafd9b9315de1",
+   "failures": []
+  },
+  "interlaken_00_c__affine_Q_K11.ec07": {
+   "length": 749966,
+   "expected_length": 749966,
+   "sha256": "d294ac86f08501c009a01260af3f8da86f2a7b2ea7422569a895189681dedf3b",
+   "failures": []
+  },
+  "zurich_city_04_a__static_T_K2.ec07": {
+   "length": 4619040,
+   "expected_length": 4619040,
+   "sha256": "2a07f879fbff9423d6d95e29a1d1b6a9034b739df213a269527407b334f5fd3f",
+   "failures": []
+  },
+  "zurich_city_04_a__static_T_K4.ec07": {
+   "length": 4619040,
+   "expected_length": 4619040,
+   "sha256": "c65b461f5924a9afe1393e2bb8858e525683bcf6a31cf1dff261760a14bc4fb9",
+   "failures": []
+  },
+  "zurich_city_04_a__static_T_K8.ec07": {
+   "length": 4619040,
+   "expected_length": 4619040,
+   "sha256": "4d169dad76d48a3605a90b58cbce53fec5b2c3e26eecb795c81d083b1cd0a4e7",
+   "failures": []
+  },
+  "zurich_city_04_a__static_T_K11.ec07": {
+   "length": 4619040,
+   "expected_length": 4619040,
+   "sha256": "9eae9ea1e0ff4ea9785a0087ea56f7da4385cd6cda63d66a96c51843920e45fb",
+   "failures": []
+  },
+  "zurich_city_04_a__static_Q_K2.ec07": {
+   "length": 480950,
+   "expected_length": 480950,
+   "sha256": "42b89fb217cfedab93471f4d2f7b53bb35feb5fe75bc4dff2fa54cfd9a3bdd0e",
+   "failures": []
+  },
+  "zurich_city_04_a__static_Q_K4.ec07": {
+   "length": 480950,
+   "expected_length": 480950,
+   "sha256": "ed21f47e7935f41baef7c5e32d8dd6a3f75928f5119824a8fe6487d972bbf835",
+   "failures": []
+  },
+  "zurich_city_04_a__static_Q_K8.ec07": {
+   "length": 480950,
+   "expected_length": 480950,
+   "sha256": "67178ca0ac99e3a12bcc2a6b0524fe900c77dadc70aaa96d1c56739e14baaa3f",
+   "failures": []
+  },
+  "zurich_city_04_a__static_Q_K11.ec07": {
+   "length": 480950,
+   "expected_length": 480950,
+   "sha256": "4a5b6524095cf935559c94c50b1221868a86d503296e3e56931f6ea107b736dc",
+   "failures": []
+  },
+  "zurich_city_04_a__translation_T_K2.ec07": {
+   "length": 4620454,
+   "expected_length": 4620454,
+   "sha256": "3b0d630386a0116cb79190186cab4e9e5ad1304aeb747b76a3f14a194fb0bf17",
+   "failures": []
+  },
+  "zurich_city_04_a__translation_T_K4.ec07": {
+   "length": 4622974,
+   "expected_length": 4622974,
+   "sha256": "3682f9237dae56553379e7c190a5d1a69e1defddee347cf5ad0a8727d2c4b086",
+   "failures": []
+  },
+  "zurich_city_04_a__translation_T_K8.ec07": {
+   "length": 4628190,
+   "expected_length": 4628190,
+   "sha256": "4ebdd455a172899440b1810dd3e6356a4e5218230d629e1fc1e6535c4dcd185b",
+   "failures": []
+  },
+  "zurich_city_04_a__translation_T_K11.ec07": {
+   "length": 4632403,
+   "expected_length": 4632403,
+   "sha256": "6f0a26743b3323d024c74e63ad08dcd73ed5364dabb6280156b5642e6bb956b3",
+   "failures": []
+  },
+  "zurich_city_04_a__translation_Q_K2.ec07": {
+   "length": 482364,
+   "expected_length": 482364,
+   "sha256": "146ca33eb044633c6ce72ac35203edae431a77abecae4469079944ef336965a7",
+   "failures": []
+  },
+  "zurich_city_04_a__translation_Q_K4.ec07": {
+   "length": 484884,
+   "expected_length": 484884,
+   "sha256": "8aa9b76e840b6dbd0a0e23c734f79c6ab53f289c28648a966dd37f38fbf537cb",
+   "failures": []
+  },
+  "zurich_city_04_a__translation_Q_K8.ec07": {
+   "length": 490100,
+   "expected_length": 490100,
+   "sha256": "f861bf7f5a001ec56a5110fa5c5d52e37a8d4a5f135dc3a99645bd1e26e00432",
+   "failures": []
+  },
+  "zurich_city_04_a__translation_Q_K11.ec07": {
+   "length": 494313,
+   "expected_length": 494313,
+   "sha256": "7cf5bf6c317e4e81de51191c24c4ac4e74d194e1d6982f7dc0f19254ebb6704f",
+   "failures": []
+  },
+  "zurich_city_04_a__affine_T_K2.ec07": {
+   "length": 4621985,
+   "expected_length": 4621985,
+   "sha256": "1a745629c7cd85b420ad47c5471194d51adeccecdeaa57998a62c371b60168aa",
+   "failures": []
+  },
+  "zurich_city_04_a__affine_T_K4.ec07": {
+   "length": 4628528,
+   "expected_length": 4628528,
+   "sha256": "c704cb661b115689e7cbe2c73b4e24d65a8034f66500860dc0388ff6a71f50f3",
+   "failures": []
+  },
+  "zurich_city_04_a__affine_T_K8.ec07": {
+   "length": 4643133,
+   "expected_length": 4643133,
+   "sha256": "03154a7a2a018fc96a5daa8d521081ff2fdd357f8ef16bdca7af78ff27cfc701",
+   "failures": []
+  },
+  "zurich_city_04_a__affine_T_K11.ec07": {
+   "length": 4654757,
+   "expected_length": 4654757,
+   "sha256": "cf51478414472b912932b2790184d3d75417627c4a3832b4f1d8baeed256faa0",
+   "failures": []
+  },
+  "zurich_city_04_a__affine_Q_K2.ec07": {
+   "length": 483895,
+   "expected_length": 483895,
+   "sha256": "da9da783cd34011f4392debc5e2e276c769104b2ba2114afcd6a38325115c034",
+   "failures": []
+  },
+  "zurich_city_04_a__affine_Q_K4.ec07": {
+   "length": 490438,
+   "expected_length": 490438,
+   "sha256": "42e9771b21cc8856fc2e54a6464e3e08551cb38ddce7b10b8193d688b8111adc",
+   "failures": []
+  },
+  "zurich_city_04_a__affine_Q_K8.ec07": {
+   "length": 505043,
+   "expected_length": 505043,
+   "sha256": "13ff78fc1523385a789e9725055539fea7ce38184c60707db45bc2b7e255f314",
+   "failures": []
+  },
+  "zurich_city_04_a__affine_Q_K11.ec07": {
+   "length": 516667,
+   "expected_length": 516667,
+   "sha256": "0c321b681843db303deb2c9a0610c078aa0f87bbaa585e20b63faca99e4a8ee3",
+   "failures": []
+  }
+ },
+ "groups": {
+  "interlaken_00_c": {
+   "n_config_model_group": 75,
+   "failures": []
+  },
+  "zurich_city_04_a": {
+   "n_config_model_group": 75,
+   "failures": []
+  }
+ },
+ "pass": true,
+ "n_streams": 48,
+ "times": [
+  {
+   "rid": "interlaken_00_c",
+   "j": 0,
+   "w": 30,
+   "evaluate_group_s": 543.7855211421847,
+   "fits": [
+    {
+     "B": 20,
+     "model": "static",
+     "n_blocks": 678,
+     "s": 1.8751349449157715
+    },
+    {
+     "B": 20,
+     "model": "translation",
+     "n_blocks": 678,
+     "s": 78.22745814919472
+    },
+    {
+     "B": 20,
+     "model": "affine",
+     "n_blocks": 678,
+     "s": 182.7888649404049
+    }
+   ]
+  },
+  {
+   "rid": "interlaken_00_c",
+   "j": 1,
+   "w": 60,
+   "evaluate_group_s": 597.9112592637539,
+   "fits": [
+    {
+     "B": 20,
+     "model": "static",
+     "n_blocks": 672,
+     "s": 2.142765648663044
+    },
+    {
+     "B": 20,
+     "model": "translation",
+     "n_blocks": 672,
+     "s": 97.38740990310907
+    },
+    {
+     "B": 20,
+     "model": "affine",
+     "n_blocks": 672,
+     "s": 226.4351885393262
+    }
+   ]
+  },
+  {
+   "rid": "interlaken_00_c",
+   "j": 2,
+   "w": 90,
+   "evaluate_group_s": 463.5234958603978,
+   "fits": [
+    {
+     "B": 20,
+     "model": "static",
+     "n_blocks": 659,
+     "s": 1.771335408091545
+    },
+    {
+     "B": 20,
+     "model": "translation",
+     "n_blocks": 659,
+     "s": 85.58962785452604
+    },
+    {
+     "B": 20,
+     "model": "affine",
+     "n_blocks": 659,
+     "s": 192.83034946769476
+    }
+   ]
+  },
+  {
+   "rid": "interlaken_00_c",
+   "j": 3,
+   "w": 120,
+   "evaluate_group_s": 522.157792724669,
+   "fits": [
+    {
+     "B": 20,
+     "model": "static",
+     "n_blocks": 699,
+     "s": 1.9505398273468018
+    },
+    {
+     "B": 20,
+     "model": "translation",
+     "n_blocks": 699,
+     "s": 93.97889594733715
+    },
+    {
+     "B": 20,
+     "model": "affine",
+     "n_blocks": 699,
+     "s": 207.50927590578794
+    }
+   ]
+  },
+  {
+   "rid": "interlaken_00_c",
+   "j": 4,
+   "w": 150,
+   "evaluate_group_s": 437.3095008507371,
+   "fits": [
+    {
+     "B": 20,
+     "model": "static",
+     "n_blocks": 694,
+     "s": 1.6476910337805748
+    },
+    {
+     "B": 20,
+     "model": "translation",
+     "n_blocks": 694,
+     "s": 79.53256885707378
+    },
+    {
+     "B": 20,
+     "model": "affine",
+     "n_blocks": 694,
+     "s": 175.45936280488968
+    }
+   ]
+  },
+  {
+   "rid": "zurich_city_04_a",
+   "j": 0,
+   "w": 30,
+   "evaluate_group_s": 221.73229138553143,
+   "fits": [
+    {
+     "B": 20,
+     "model": "static",
+     "n_blocks": 432,
+     "s": 0.8429251238703728
+    },
+    {
+     "B": 20,
+     "model": "translation",
+     "n_blocks": 432,
+     "s": 39.990419670939445
+    },
+    {
+     "B": 20,
+     "model": "affine",
+     "n_blocks": 432,
+     "s": 91.57063462585211
+    }
+   ]
+  },
+  {
+   "rid": "zurich_city_04_a",
+   "j": 1,
+   "w": 60,
+   "evaluate_group_s": 126.1968284919858,
+   "fits": [
+    {
+     "B": 20,
+     "model": "static",
+     "n_blocks": 417,
+     "s": 0.601039469242096
+    },
+    {
+     "B": 20,
+     "model": "translation",
+     "n_blocks": 417,
+     "s": 28.50528359413147
+    },
+    {
+     "B": 20,
+     "model": "affine",
+     "n_blocks": 417,
+     "s": 67.08049386739731
+    }
+   ]
+  },
+  {
+   "rid": "zurich_city_04_a",
+   "j": 2,
+   "w": 90,
+   "evaluate_group_s": 274.5897880345583,
+   "fits": [
+    {
+     "B": 20,
+     "model": "static",
+     "n_blocks": 470,
+     "s": 1.0614567324519157
+    },
+    {
+     "B": 20,
+     "model": "translation",
+     "n_blocks": 470,
+     "s": 46.908835500478745
+    },
+    {
+     "B": 20,
+     "model": "affine",
+     "n_blocks": 470,
+     "s": 104.27843373268843
+    }
+   ]
+  },
+  {
+   "rid": "zurich_city_04_a",
+   "j": 3,
+   "w": 120,
+   "evaluate_group_s": 454.2958709523082,
+   "fits": [
+    {
+     "B": 20,
+     "model": "static",
+     "n_blocks": 628,
+     "s": 1.685487799346447
+    },
+    {
+     "B": 20,
+     "model": "translation",
+     "n_blocks": 628,
+     "s": 71.2391694188118
+    },
+    {
+     "B": 20,
+     "model": "affine",
+     "n_blocks": 628,
+     "s": 153.6868331283331
+    }
+   ]
+  },
+  {
+   "rid": "zurich_city_04_a",
+   "j": 4,
+   "w": 150,
+   "evaluate_group_s": 494.5383697003126,
+   "fits": [
+    {
+     "B": 20,
+     "model": "static",
+     "n_blocks": 612,
+     "s": 1.692149855196476
+    },
+    {
+     "B": 20,
+     "model": "translation",
+     "n_blocks": 612,
+     "s": 71.95259047299623
+    },
+    {
+     "B": 20,
+     "model": "affine",
+     "n_blocks": 612,
+     "s": 156.41739197820425
+    }
+   ]
+  }
+ ],
+ "projection": {
+  "c_20_s_per_block": 0.36748373591466044,
+  "c_20_samples": [
+   0.38497982756578114,
+   0.4818788667298144,
+   0.4224885847074671,
+   0.4313135505767169,
+   0.36742353265412603,
+   0.30453947753886934,
+   0.2292224879173352,
+   0.3216750409216323,
+   0.3581624244381288,
+   0.37315356609673284
+  ],
+  "c_0_s_per_group": 186.94011042043567,
+  "c_0_samples": [
+   280.89406310766935,
+   271.9458951726556,
+   183.33218313008547,
+   218.71908104419708,
+   180.66987815499306,
+   89.3283119648695,
+   30.010011561214924,
+   122.34106206893921,
+   227.68438060581684,
+   264.47623739391565
+  ],
+  "limit_cpu_h": 150,
+  "projection": {
+   "30": {
+    "n_groups": 2599,
+    "stage_R_cpu_h": 295.9256001672039
+   },
+   "60": {
+    "n_groups": 1311,
+    "stage_R_cpu_h": 149.2066391771727
+   },
+   "90": {
+    "n_groups": 878,
+    "stage_R_cpu_h": 99.98306694141091
+   }
+  },
+  "spacing_chosen": 60,
+  "rule": "Section 12: S = 30 unless Stage R exceeds 150 CPU-hours, then 60, then 90, else stop after Stage 0"
+ },
+ "spacing_chosen": 60,
+ "receiver": "a separate process (scripts/ds_run.py receive), started after the 48 stream files were closed; given the stream directory only; it read the events of the sequence named in each file name to score",
+ "census_incident": "a first census with three workers was stopped after six minutes, before it wrote anything, when two concurrent reads (116 and 121 GB) left 6 GB of memory on cnt; it was rerun with one worker"
+}
