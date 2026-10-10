@@ -1,0 +1,695 @@
+{
+ "directive": "007",
+ "host": "cnt-js01",
+ "utc": "2026-10-10T08:12:19+00:00",
+ "commit": "a836311d82304399ed1986b24377c28c7f7139c5",
+ "population": "config/population.yaml",
+ "ids_sorted_sha256": "01a6c4326c5b024cc40165cbc5096833b3efc86efec19832f4e140452c175adf",
+ "ids_sorted_sha256_expected": "01a6c4326c5b024cc40165cbc5096833b3efc86efec19832f4e140452c175adf",
+ "n_recordings": 112,
+ "event_dir": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data",
+ "annotation_paths_built": 0,
+ "method": "event paths constructed from the identifiers and checked with os.path.isfile; no directory listed, no file opened or hashed; no annotation path built",
+ "n_event_found": 112,
+ "names_outside_population": [],
+ "statement": "every event file name belongs to a recording of config/population.yaml; none starts with val_ or test_",
+ "tuning_subset": [
+  "train_day_0001_td",
+  "train_day_0011_td",
+  "train_day_0021_td",
+  "train_day_0031_td",
+  "train_day_0041_td",
+  "train_day_0051_td",
+  "train_night_0001_td",
+  "train_night_0011_td",
+  "train_night_0021_td",
+  "train_night_0031_td",
+  "train_night_0041_td",
+  "train_night_0051_td"
+ ],
+ "reporting_subset": [
+  "train_day_0002_td",
+  "train_day_0003_td",
+  "train_day_0004_td",
+  "train_day_0005_td",
+  "train_day_0006_td",
+  "train_day_0007_td",
+  "train_day_0008_td",
+  "train_day_0009_td",
+  "train_day_0010_td",
+  "train_day_0012_td",
+  "train_day_0013_td",
+  "train_day_0014_td",
+  "train_day_0015_td",
+  "train_day_0016_td",
+  "train_day_0017_td",
+  "train_day_0018_td",
+  "train_day_0019_td",
+  "train_day_0020_td",
+  "train_day_0022_td",
+  "train_day_0023_td",
+  "train_day_0024_td",
+  "train_day_0025_td",
+  "train_day_0026_td",
+  "train_day_0027_td",
+  "train_day_0028_td",
+  "train_day_0029_td",
+  "train_day_0030_td",
+  "train_day_0032_td",
+  "train_day_0033_td",
+  "train_day_0034_td",
+  "train_day_0035_td",
+  "train_day_0036_td",
+  "train_day_0037_td",
+  "train_day_0038_td",
+  "train_day_0039_td",
+  "train_day_0040_td",
+  "train_day_0042_td",
+  "train_day_0043_td",
+  "train_day_0044_td",
+  "train_day_0045_td",
+  "train_day_0046_td",
+  "train_day_0047_td",
+  "train_day_0048_td",
+  "train_day_0049_td",
+  "train_day_0050_td",
+  "train_day_0052_td",
+  "train_day_0053_td",
+  "train_day_0054_td",
+  "train_day_0055_td",
+  "train_day_0056_td",
+  "train_day_0057_td",
+  "train_day_0058_td",
+  "train_day_0059_td",
+  "train_day_0060_td",
+  "train_day_0061_td",
+  "train_night_0002_td",
+  "train_night_0003_td",
+  "train_night_0004_td",
+  "train_night_0005_td",
+  "train_night_0006_td",
+  "train_night_0007_td",
+  "train_night_0008_td",
+  "train_night_0009_td",
+  "train_night_0010_td",
+  "train_night_0012_td",
+  "train_night_0013_td",
+  "train_night_0014_td",
+  "train_night_0015_td",
+  "train_night_0016_td",
+  "train_night_0017_td",
+  "train_night_0018_td",
+  "train_night_0019_td",
+  "train_night_0020_td",
+  "train_night_0022_td",
+  "train_night_0023_td",
+  "train_night_0024_td",
+  "train_night_0025_td",
+  "train_night_0026_td",
+  "train_night_0027_td",
+  "train_night_0028_td",
+  "train_night_0029_td",
+  "train_night_0030_td",
+  "train_night_0032_td",
+  "train_night_0033_td",
+  "train_night_0034_td",
+  "train_night_0035_td",
+  "train_night_0036_td",
+  "train_night_0037_td",
+  "train_night_0038_td",
+  "train_night_0039_td",
+  "train_night_0040_td",
+  "train_night_0042_td",
+  "train_night_0043_td",
+  "train_night_0044_td",
+  "train_night_0045_td",
+  "train_night_0046_td",
+  "train_night_0047_td",
+  "train_night_0048_td",
+  "train_night_0049_td",
+  "train_night_0050_td"
+ ],
+ "subset_rule": "sorted day ids and sorted night ids; tuning = positions 0, 10, 20, 30, 40, 50 of each",
+ "files": [
+  {
+   "recording_id": "train_day_0001_td",
+   "event_file": "train_day_0001_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_day_0002_td",
+   "event_file": "train_day_0002_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_day_0003_td",
+   "event_file": "train_day_0003_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_day_0004_td",
+   "event_file": "train_day_0004_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_day_0005_td",
+   "event_file": "train_day_0005_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_day_0006_td",
+   "event_file": "train_day_0006_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_day_0007_td",
+   "event_file": "train_day_0007_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_day_0008_td",
+   "event_file": "train_day_0008_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_day_0009_td",
+   "event_file": "train_day_0009_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_day_0010_td",
+   "event_file": "train_day_0010_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_day_0011_td",
+   "event_file": "train_day_0011_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_day_0012_td",
+   "event_file": "train_day_0012_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_day_0013_td",
+   "event_file": "train_day_0013_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_day_0014_td",
+   "event_file": "train_day_0014_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_day_0015_td",
+   "event_file": "train_day_0015_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_day_0016_td",
+   "event_file": "train_day_0016_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_day_0017_td",
+   "event_file": "train_day_0017_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_day_0018_td",
+   "event_file": "train_day_0018_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_day_0019_td",
+   "event_file": "train_day_0019_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_day_0020_td",
+   "event_file": "train_day_0020_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_day_0021_td",
+   "event_file": "train_day_0021_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_day_0022_td",
+   "event_file": "train_day_0022_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_day_0023_td",
+   "event_file": "train_day_0023_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_day_0024_td",
+   "event_file": "train_day_0024_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_day_0025_td",
+   "event_file": "train_day_0025_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_day_0026_td",
+   "event_file": "train_day_0026_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_day_0027_td",
+   "event_file": "train_day_0027_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_day_0028_td",
+   "event_file": "train_day_0028_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_day_0029_td",
+   "event_file": "train_day_0029_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_day_0030_td",
+   "event_file": "train_day_0030_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_day_0031_td",
+   "event_file": "train_day_0031_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_day_0032_td",
+   "event_file": "train_day_0032_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_day_0033_td",
+   "event_file": "train_day_0033_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_day_0034_td",
+   "event_file": "train_day_0034_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_day_0035_td",
+   "event_file": "train_day_0035_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_day_0036_td",
+   "event_file": "train_day_0036_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_day_0037_td",
+   "event_file": "train_day_0037_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_day_0038_td",
+   "event_file": "train_day_0038_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_day_0039_td",
+   "event_file": "train_day_0039_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_day_0040_td",
+   "event_file": "train_day_0040_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_day_0041_td",
+   "event_file": "train_day_0041_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_day_0042_td",
+   "event_file": "train_day_0042_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_day_0043_td",
+   "event_file": "train_day_0043_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_day_0044_td",
+   "event_file": "train_day_0044_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_day_0045_td",
+   "event_file": "train_day_0045_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_day_0046_td",
+   "event_file": "train_day_0046_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_day_0047_td",
+   "event_file": "train_day_0047_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_day_0048_td",
+   "event_file": "train_day_0048_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_day_0049_td",
+   "event_file": "train_day_0049_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_day_0050_td",
+   "event_file": "train_day_0050_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_day_0051_td",
+   "event_file": "train_day_0051_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_day_0052_td",
+   "event_file": "train_day_0052_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_day_0053_td",
+   "event_file": "train_day_0053_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_day_0054_td",
+   "event_file": "train_day_0054_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_day_0055_td",
+   "event_file": "train_day_0055_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_day_0056_td",
+   "event_file": "train_day_0056_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_day_0057_td",
+   "event_file": "train_day_0057_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_day_0058_td",
+   "event_file": "train_day_0058_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_day_0059_td",
+   "event_file": "train_day_0059_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_day_0060_td",
+   "event_file": "train_day_0060_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_day_0061_td",
+   "event_file": "train_day_0061_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_night_0001_td",
+   "event_file": "train_night_0001_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_night_0002_td",
+   "event_file": "train_night_0002_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_night_0003_td",
+   "event_file": "train_night_0003_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_night_0004_td",
+   "event_file": "train_night_0004_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_night_0005_td",
+   "event_file": "train_night_0005_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_night_0006_td",
+   "event_file": "train_night_0006_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_night_0007_td",
+   "event_file": "train_night_0007_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_night_0008_td",
+   "event_file": "train_night_0008_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_night_0009_td",
+   "event_file": "train_night_0009_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_night_0010_td",
+   "event_file": "train_night_0010_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_night_0011_td",
+   "event_file": "train_night_0011_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_night_0012_td",
+   "event_file": "train_night_0012_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_night_0013_td",
+   "event_file": "train_night_0013_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_night_0014_td",
+   "event_file": "train_night_0014_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_night_0015_td",
+   "event_file": "train_night_0015_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_night_0016_td",
+   "event_file": "train_night_0016_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_night_0017_td",
+   "event_file": "train_night_0017_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_night_0018_td",
+   "event_file": "train_night_0018_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_night_0019_td",
+   "event_file": "train_night_0019_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_night_0020_td",
+   "event_file": "train_night_0020_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_night_0021_td",
+   "event_file": "train_night_0021_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_night_0022_td",
+   "event_file": "train_night_0022_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_night_0023_td",
+   "event_file": "train_night_0023_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_night_0024_td",
+   "event_file": "train_night_0024_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_night_0025_td",
+   "event_file": "train_night_0025_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_night_0026_td",
+   "event_file": "train_night_0026_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_night_0027_td",
+   "event_file": "train_night_0027_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_night_0028_td",
+   "event_file": "train_night_0028_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_night_0029_td",
+   "event_file": "train_night_0029_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_night_0030_td",
+   "event_file": "train_night_0030_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_night_0031_td",
+   "event_file": "train_night_0031_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_night_0032_td",
+   "event_file": "train_night_0032_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_night_0033_td",
+   "event_file": "train_night_0033_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_night_0034_td",
+   "event_file": "train_night_0034_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_night_0035_td",
+   "event_file": "train_night_0035_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_night_0036_td",
+   "event_file": "train_night_0036_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_night_0037_td",
+   "event_file": "train_night_0037_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_night_0038_td",
+   "event_file": "train_night_0038_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_night_0039_td",
+   "event_file": "train_night_0039_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_night_0040_td",
+   "event_file": "train_night_0040_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_night_0041_td",
+   "event_file": "train_night_0041_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_night_0042_td",
+   "event_file": "train_night_0042_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_night_0043_td",
+   "event_file": "train_night_0043_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_night_0044_td",
+   "event_file": "train_night_0044_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_night_0045_td",
+   "event_file": "train_night_0045_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_night_0046_td",
+   "event_file": "train_night_0046_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_night_0047_td",
+   "event_file": "train_night_0047_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_night_0048_td",
+   "event_file": "train_night_0048_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_night_0049_td",
+   "event_file": "train_night_0049_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_night_0050_td",
+   "event_file": "train_night_0050_td.h5",
+   "event_found": true
+  },
+  {
+   "recording_id": "train_night_0051_td",
+   "event_file": "train_night_0051_td.h5",
+   "event_found": true
+  }
+ ]
+}
