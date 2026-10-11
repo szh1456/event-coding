@@ -162,3 +162,15 @@ of the companion project.
 | status | `VERIFIED` for the training split, left camera, as read by directive 009, Stage D, on 2026-10-10: (1) the download page (https://dsec.ifi.uzh.ch/dsec-datasets/download/, saved page SHA-256 `b71c29ed9b2aa265220f2f29404e49273260539907060d022fd9c01410514573`) separates the training split and offers the left event camera of each training sequence by itself (`<seq>_events_left.zip`); 41 training sequences do, 69,344,223,481 bytes together, listed in `config/population_dsec.yaml`; each archive holds `events.h5` and `rectify_map.h5`; (2) in all 41 files `/events/x` and `/events/y` are `uint16`, `/events/t` `uint32`, `/events/p` `uint8` with values 0 and 1; the datasets carry the Blosc filter 32001 with codec ZSTD, which `h5py` 3.16.0 reads only with `hdf5plugin` (7.1.0); the stored times start at 0 or 1 us; `/t_offset` is present; (3) the download page carries no license statement (checked on the saved page above); the project page (https://dsec.ifi.uzh.ch/, read 2026-10-10, saved page SHA-256 `2dfa3e83ba338afb751f0c5646e5c35cd5f6ae59f063db62889d28fdb24a4f98`) states: "This dataset is provided to you under the Creative Commons Attribution-ShareAlike 4.0 International public license (CC BY-SA 4.0)", and links https://creativecommons.org/licenses/by-sa/4.0/legalcode. The count of 53 sequences (journal article, project page) covers both splits and was not checked against the test split, which is not read |
 | does not support | which sequences are recorded at night; any property of the sensor settings; the test split. Event rates and durations of the training sequences are measured in `results/ds/preflight.json`, not stated by the sources |
 
+### `rfc8878`
+
+| field | value |
+|---|---|
+| claim supported | Zstandard is a published, general-purpose lossless compression format |
+| source | Y. Collet, M. Kucherawy (Ed.), "Zstandard Compression and the 'application/zstd' Media Type," RFC 8878, February 2021, DOI 10.17487/RFC8878 |
+| source type | primary (specification) |
+| used in | `papers/tsp/main.tex`, Section V-C, as the reference for the compressor of both event coders and of the map payload (`ec/baseline.py`, `ec/blockcodec.py`, through the package `zstandard`) |
+| version / conditions | number, title, authors, date, category (Informational) and DOI read on https://www.rfc-editor.org/rfc/rfc8878 on 2026-10-11. The text of the RFC was not read. The runs used `zstandard` 0.25.0 (reports 007 and 009) |
+| status | `PARTIAL`: citation verified, content not read |
+| does not support | any compression ratio or speed; that the levels 1 and 19 of the package are defined by the RFC |
+
