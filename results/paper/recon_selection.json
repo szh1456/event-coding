@@ -88,8 +88,8 @@
   "rule": "012"
  },
  "all": {
-  "recording": "zurich_city_11_b",
-  "w": 1530,
+  "recording": "zurich_city_01_d",
+  "w": 990,
   "m": 4,
   "crop": [
    0,
@@ -98,37 +98,39 @@
    480
   ],
   "n_events": {
-   "key": 441485,
-   "true": 475077,
-   "rec": 437717
+   "key": 488843,
+   "true": 559694,
+   "rec": 483752
   },
-  "F_window": 0.5576197915411364,
-  "F_window_median": 0.5415913888687361,
-  "n_groups": 1311,
-  "n_recordings": 41,
-  "stream_file": "/data/fi81zw@es.aau.dk/event_coding/ds/R_streams/zurich_city_11_b__affine_Q_K11.ec07",
+  "F_window": 0.5610486790883285,
+  "F_window_median": 0.5436291180249044,
+  "n_groups": 1189,
+  "n_recordings": 36,
+  "stream_file": "/data/fi81zw@es.aau.dk/event_coding/ds/R_streams/zurich_city_01_d__affine_Q_K11.ec07",
   "check_step_5": {
    "match": [
-    254496,
-    254496
+    292712,
+    292712
    ],
    "n_rec": [
-    437717,
-    437717
+    483752,
+    483752
    ],
    "n_true": [
-    475077,
-    475077
+    559694,
+    559694
    ],
    "F_m": [
-    0.5576197915411364,
-    0.5576197915411364
+    0.5610486790883285,
+    0.5610486790883285
    ]
   },
   "check_pass": true,
-  "F_rec": 0.5556620442711263,
-  "F_rec_median": 0.5556620442711263,
-  "n_recordings_F_rec": 41,
-  "rule": "012"
+  "F_rec": 0.558458224284512,
+  "F_rec_median": 0.5570601342778192,
+  "n_recordings_F_rec": 36,
+  "rule": "012",
+  "subset": "reporting subset of directive 013 (36 sequences)",
+  "config": "B20_rho1.0"
  }
 }

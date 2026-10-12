@@ -36,8 +36,8 @@
   "F_window_median": 0.5614899425738225
  },
  "DSEC": {
-  "recording": "zurich_city_11_b",
-  "w": 1530,
+  "recording": "zurich_city_01_d",
+  "w": 990,
   "m": 4,
   "crop": [
    0,
@@ -46,11 +46,11 @@
    480
   ],
   "n_events": {
-   "key": 441485,
-   "true": 475077,
-   "rec": 437717
+   "key": 488843,
+   "true": 559694,
+   "rec": 483752
   },
-  "F_window": 0.5576197915411364,
-  "F_window_median": 0.5415913888687361
+  "F_window": 0.5610486790883285,
+  "F_window_median": 0.5436291180249044
  }
 }
