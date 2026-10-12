@@ -1,6 +1,6 @@
 """Directive 011, Section 5: one typical group per stratum, decoded from its kept stream, for Fig. 5.
 
-  python3 scripts/pf_recon.py OUTDIR
+  python3 scripts/pf_recon.py OUTDIR [--rule 011|012]       (default 012)
 
 Strata: eTraM by day and by night (the reporting recordings that enter the tables of report 007) and
 DSEC (all 41 sequences). Selection from the per-group outputs of Stage R at the frozen configuration
@@ -9,6 +9,11 @@ groups of the stratum, the group closest to it (ties: smaller recording identifi
 window). The group is decoded from the stream ``affine_Q_K11`` that Stage R kept; the true events of
 window w + m are read with the dataset's reader; the match, the counts and F_m are checked against the
 per-group values. No group is evaluated again (D-011-2). Writes recon_images.npz and recon_selection.json.
+
+Rule 012 (directive 012, Section 3), the aggregation of the paper: for every recording
+F_rec = 2 S_match / (S_rec + S_true) from the sums over its groups; the recording closest to the median
+of F_rec over the recordings of the stratum (ties: smaller identifier); within it, the group whose F_m is
+closest to F_rec (ties: smaller key window). Rule 011 is the selection of directive 011.
 """
 from __future__ import annotations
 
@@ -63,9 +68,23 @@ def candidates(stratum):
 
 
 def select(cands):
+    """Rule 011: the group whose F_m is closest to the median of F_m over the groups of the stratum."""
     med = float(np.median([c[2] for c in cands]))
     best = min(cands, key=lambda c: (abs(c[2] - med), c[0], c[1]))
     return best, med
+
+
+def select_012(cands):
+    """Rule 012: the recording closest to the median of F_rec, then its group closest to F_rec."""
+    sums = {}
+    for r, w, F, match, n_rec, n_true in cands:
+        s = sums.setdefault(r, [0, 0, 0])
+        s[0] += match; s[1] += n_rec; s[2] += n_true
+    f_rec = {r: (2.0 * s[0] / (s[1] + s[2]) if s[1] + s[2] > 0 else 0.0) for r, s in sums.items()}
+    med = float(np.median(list(f_rec.values())))
+    rid = min(f_rec, key=lambda r: (abs(f_rec[r] - med), r))
+    best = min((c for c in cands if c[0] == rid), key=lambda c: (abs(c[2] - f_rec[rid]), c[1]))
+    return best, f_rec[rid], med, len(f_rec)
 
 
 def signed(t, x, y, p, crop):
@@ -91,13 +110,20 @@ def best_crop(x, y, W, H):
     return arg
 
 
-def main(outdir):
+def main(outdir, rule="012"):
     out = Path(outdir)
     out.mkdir(parents=True, exist_ok=True)
     images, record = {}, {}
     for stratum in ("day", "night", "all"):
         rids, cands = candidates(stratum)
-        (rid, w, F, match, n_rec, n_true), med = select(cands)
+        extra = {}
+        if rule == "012":
+            (rid, w, F, match, n_rec, n_true), F_rec, F_rec_med, n_rec_rec = select_012(cands)
+            med = float(np.median([c[2] for c in cands]))
+            extra = {"F_rec": F_rec, "F_rec_median": F_rec_med, "n_recordings_F_rec": n_rec_rec, "rule": "012"}
+        else:
+            (rid, w, F, match, n_rec, n_true), med = select(cands)
+            extra = {"rule": "011"}
         if stratum == "all":
             stream = DS_DIR / "R_streams" / f"{rid}__affine_Q_K11.ec07"
             t, x, y, p, _ = dsec.read_events(DR.DATA / rid / "events.h5")
@@ -125,7 +151,7 @@ def main(outdir):
             images[f"{stratum}_{name}"], n_ev[name] = signed(*evs, crop)
         record[stratum] = {"recording": rid, "w": w, "m": M, "crop": crop, "n_events": n_ev, "F_window": F,
                            "F_window_median": med, "n_groups": len(cands), "n_recordings": len(rids),
-                           "stream_file": str(stream), "check_step_5": check, "check_pass": bool(ok)}
+                           "stream_file": str(stream), "check_step_5": check, "check_pass": bool(ok), **extra}
         print(stratum, rid, w, round(F, 4), round(med, 4), len(cands), "check", ok, check, flush=True)
         del t, x, y, p
     np.savez_compressed(out / "recon_images.npz", **images)
@@ -133,4 +159,4 @@ def main(outdir):
 
 
 if __name__ == "__main__":
-    main(sys.argv[1])
+    main(sys.argv[1], sys.argv[3] if len(sys.argv) > 3 and sys.argv[2] == "--rule" else "012")
