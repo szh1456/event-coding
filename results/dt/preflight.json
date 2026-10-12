@@ -1,0 +1,56 @@
+{
+ "directive": "013",
+ "P1": {
+  "host": "cnt-js01",
+  "python": "3.10.12",
+  "numpy": "1.26.4",
+  "scipy": "1.15.3",
+  "h5py": "3.16.0",
+  "zstandard": "0.25.0",
+  "numba": "0.60.0",
+  "hdf5plugin": "7.1.0",
+  "blas_threads": {
+   "OMP_NUM_THREADS": "1",
+   "OPENBLAS_NUM_THREADS": "1",
+   "MKL_NUM_THREADS": "1",
+   "NUMEXPR_NUM_THREADS": "1"
+  },
+  "compared_with": "results/ds/provenance.json#/versions",
+  "differences": {},
+  "pass": true
+ },
+ "P2": {
+  "sha256": {
+   "ec/blockcodec.py": "644539ec0fb900cc2c3ccd08de0d7105ed55a56cf1d67a545b9784d690390c9e",
+   "tests/test_blockcodec_gate.py": "4ca8ec70fcd3ae5101a37592f1ab3d809d5d28692eacd9ac6d0687bb28adedf0",
+   "ec/dsec.py": "8d6d5baad01e7da4607e3108684578c280d7fdc9b95c6eb0319d549340437fb6",
+   "tests/test_dsec_gate.py": "d23276bc29229fbe79bb3fd986a4b3a1b47952fcf96b756bb74a04d93ef151c0"
+  },
+  "expected": {
+   "ec/blockcodec.py": "644539ec0fb900cc2c3ccd08de0d7105ed55a56cf1d67a545b9784d690390c9e",
+   "tests/test_blockcodec_gate.py": "4ca8ec70fcd3ae5101a37592f1ab3d809d5d28692eacd9ac6d0687bb28adedf0",
+   "ec/dsec.py": "8d6d5baad01e7da4607e3108684578c280d7fdc9b95c6eb0319d549340437fb6",
+   "tests/test_dsec_gate.py": "d23276bc29229fbe79bb3fd986a4b3a1b47952fcf96b756bb74a04d93ef151c0"
+  },
+  "pass": true,
+  "suite": {
+   "command": "python3 -m pytest -q -p no:anyio",
+   "result": "73 passed at 7890ccb (pytest exit 0; junit: tests 73, failures 0, errors 0, skipped 0)",
+   "pass": true
+  }
+ },
+ "P3": {
+  "n_files": 41,
+  "n_ok": 41,
+  "failing": [],
+  "pass": true
+ },
+ "P4": {
+  "n_per_group": 112,
+  "n_per_group_ok": 112,
+  "n_streams": 576,
+  "n_streams_ok": 576,
+  "failing": [],
+  "pass": true
+ }
+}
