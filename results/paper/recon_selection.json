@@ -41,7 +41,42 @@
   "F_rec": 0.6034028496092085,
   "F_rec_median": 0.6034028496092085,
   "n_recordings_F_rec": 53,
-  "rule": "012"
+  "rule": "012",
+  "zoom": [
+   80,
+   440,
+   80,
+   80
+  ],
+  "zoom_n_events": {
+   "true": [
+    4324,
+    4364,
+    4432
+   ],
+   "rec": [
+    4482,
+    4742,
+    4691
+   ]
+  },
+  "zoom_F_bins": [
+   0.6538723597547127,
+   0.6758181418844718,
+   0.6493478022580291
+  ],
+  "zoom_check_step_5": {
+   "sum_over_thirds": {
+    "true": 13120,
+    "rec": 13915
+   },
+   "counted_directly": {
+    "true": 13120,
+    "rec": 13915
+   },
+   "pass": true,
+   "decoded_window_equals_check_step_5_of_011": true
+  }
  },
  "night": {
   "recording": "train_night_0022_td",
@@ -85,7 +120,42 @@
   "F_rec": 0.5673441294068245,
   "F_rec_median": 0.5673975462062096,
   "n_recordings_F_rec": 40,
-  "rule": "012"
+  "rule": "012",
+  "zoom": [
+   40,
+   620,
+   80,
+   80
+  ],
+  "zoom_n_events": {
+   "true": [
+    11015,
+    11242,
+    10896
+   ],
+   "rec": [
+    11690,
+    11823,
+    11272
+   ]
+  },
+  "zoom_F_bins": [
+   0.7623871393966086,
+   0.7932365055278561,
+   0.7550523276795381
+  ],
+  "zoom_check_step_5": {
+   "sum_over_thirds": {
+    "true": 33153,
+    "rec": 34785
+   },
+   "counted_directly": {
+    "true": 33153,
+    "rec": 34785
+   },
+   "pass": true,
+   "decoded_window_equals_check_step_5_of_011": true
+  }
  },
  "all": {
   "recording": "zurich_city_01_d",
@@ -131,6 +201,41 @@
   "n_recordings_F_rec": 36,
   "rule": "012",
   "subset": "reporting subset of directive 013 (36 sequences)",
-  "config": "B20_rho1.0"
+  "config": "B20_rho1.0",
+  "zoom": [
+   560,
+   0,
+   80,
+   80
+  ],
+  "zoom_n_events": {
+   "true": [
+    25195,
+    24506,
+    24105
+   ],
+   "rec": [
+    28614,
+    29368,
+    29763
+   ]
+  },
+  "zoom_F_bins": [
+   0.642606255459124,
+   0.6508891116308423,
+   0.6470631915051608
+  ],
+  "zoom_check_step_5": {
+   "sum_over_thirds": {
+    "true": 73806,
+    "rec": 87745
+   },
+   "counted_directly": {
+    "true": 73806,
+    "rec": 87745
+   },
+   "pass": true,
+   "decoded_window_equals_check_step_5_of_011": true
+  }
  }
 }
