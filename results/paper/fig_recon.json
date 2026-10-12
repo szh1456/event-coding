@@ -1,0 +1,56 @@
+{
+ "eTraM, day": {
+  "recording": "train_day_0052_td",
+  "w": 1470,
+  "m": 4,
+  "crop": [
+   140,
+   540,
+   320,
+   180
+  ],
+  "n_events": {
+   "key": 947,
+   "true": 9263,
+   "rec": 947
+  },
+  "F_window": 0.2052955815756191,
+  "F_window_median": 0.2052955815756191
+ },
+ "eTraM, night": {
+  "recording": "train_night_0004_td",
+  "w": 30,
+  "m": 4,
+  "crop": [
+   60,
+   300,
+   320,
+   180
+  ],
+  "n_events": {
+   "key": 25116,
+   "true": 34378,
+   "rec": 26552
+  },
+  "F_window": 0.5614899425738225,
+  "F_window_median": 0.5614899425738225
+ },
+ "DSEC": {
+  "recording": "zurich_city_01_f",
+  "w": 1830,
+  "m": 4,
+  "crop": [
+   0,
+   0,
+   640,
+   480
+  ],
+  "n_events": {
+   "key": 511691,
+   "true": 619390,
+   "rec": 510868
+  },
+  "F_window": 0.5415913888687361,
+  "F_window_median": 0.5415913888687361
+ }
+}
