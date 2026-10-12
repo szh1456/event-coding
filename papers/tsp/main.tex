@@ -18,6 +18,9 @@
 \newcommand{\figorbox}[1]{\figorboxw{#1}{\columnwidth}}
 \newcommand{\figorboxw}[2]{\IfFileExists{#1}{\includegraphics[width=#2]{#1}}%
   {\fbox{\parbox{0.95\dimexpr#2\relax}{\centering\vspace{2em}Figure file \texttt{\detokenize{#1}}\\ (directive 014)\vspace{2em}}}}}
+\renewcommand{\topfraction}{0.9}\renewcommand{\dbltopfraction}{0.9}
+\renewcommand{\textfraction}{0.07}\renewcommand{\floatpagefraction}{0.8}
+\renewcommand{\dblfloatpagefraction}{0.8}\setcounter{topnumber}{3}\setcounter{totalnumber}{4}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\E}{\mathbb{E}}
@@ -675,12 +678,12 @@ $D_{A,i}$. A code that describes every event time, then one number per pixel, th
 therefore within $0.26$ bit per event of the limit in all three regimes.
 
 \subsection{From Regeneration to REMAKE}\label{sec:bridge}
-% Numbers and figure: directive 014, results/br/bridge.json and results/paper/fig_bridge.pdf.
+% Numbers and figure: directive 014, results/br/bridge.json and results/paper/fig_bridge.pdf at a1379d5.
 \begin{figure}[t]
 \centering
 \figorbox{figs/fig_bridge.pdf}
-\caption{From the regenerating decoder to REMAKE on the model, $n=3$, $\sigma/\tau=0.05$, ten
-pixels per window. Top: timing error per event against the window $m$; open markers give
+\caption{From the regenerating decoder to REMAKE on the model, $n=3$, $\sigma/\tau=0.05$, $10$ or
+$10.4$ pixels per window, spacing growing by $5\%$ per window where marked. Top: timing error per event against the window $m$; open markers give
 Proposition~\ref{prop:moved} with the bias of a whole-pixel map. Bottom: fidelity on one-pixel
 voxels against the bin; dotted lines give \eqref{eq:binfid} and \eqref{eq:binfidmoved}.}
 \label{fig:bridge}
@@ -689,15 +692,27 @@ Between the decoder \eqref{eq:regen} and REMAKE lie four steps: the events are m
 regenerated, the map moves them by whole pixels, a window boundary cuts the event trains, and the
 map is fitted to the events. Fig.~\ref{fig:bridge} separates them on the model, for an
 edge that passes ten or $10.4$ pixels per window, so that the exact map is or is not a whole
-number of pixels. \todo{numbers from report 014: regenerated and moved timing error against
-$D_A$ and $2D_A$; whole-pixel bias; fidelity of the four steps at $\Delta_t=\tau/2$; share of
-fitted shifts at the nearest pixel.}
+number of pixels. In timing error, the regenerated events reach $D_A$ and the events moved by the
+exact map $2.006\,D_A$, against the $2D_A$ of Proposition~\ref{prop:moved}. When the event spacing
+grows by $5\%$ per window, the error of the moved events grows with $m$ and averages $3.56\,D_A$,
+as the last term of \eqref{eq:moved} predicts. A map in whole pixels adds the squared timing bias
+of its rounding, which depends on the fractional part of the displacement and averages
+$0.92\,D_A$ at $10.4$ pixels per window (Fig.~\ref{fig:bridge}, top). In voxel fidelity at
+$\Delta_t=\tau/2$, the regenerated events reach $0.499$ and the moved events $0.470$, against
+$0.5$ and $0.472$ from \eqref{eq:binfid} and \eqref{eq:binfidmoved}. The map in whole pixels lowers
+the fidelity to $0.441$. Scored on whole windows, the exact map reaches $0.430$, because a window
+boundary cuts the train of a source pixel and the train of its target at different events, and the
+fitted map reaches $0.410$ at $10.4$ pixels per window (Fig.~\ref{fig:bridge}, bottom). The fit
+picks the nearest whole pixel for $93\%$ of the shifts at ten pixels per window and $78\%$ at
+$10.4$, because its working grid of two pixels and $T_0/3$ rarely separates neighboring shifts. The
+steps that REMAKE adds to moving, maps in whole pixels and windows that cut trains, thus lower the
+fidelity more than the phases of the moved events do.
 
 \subsection{Bits at Equal Fidelity}\label{sec:bits}
 % Numbers: docs/directives/reports/007.md (eTraM) and 013.md over results/dt/report.json (DSEC); 001.md and 003.md where named.
 \begin{figure*}[t]
 \centering
-% Left: results/paper/fig_bits_all.pdf, directive 013 at 8623ddb. Right: fig_tradeoff.pdf, directive 014.
+% Left: results/paper/fig_bits_all.pdf, directive 013 at 8623ddb. Right: fig_tradeoff.pdf, directive 014 at a1379d5.
 \begin{minipage}[t]{0.49\textwidth}\centering\figorboxw{figs/fig_bits_all.pdf}{\textwidth}\end{minipage}\hfill
 \begin{minipage}[t]{0.49\textwidth}\centering\figorboxw{figs/fig_tradeoff.pdf}{\textwidth}\end{minipage}
 \caption{Bits as a percentage of the bits of all events, matched coder, working grid. Left: REMAKE
@@ -728,9 +743,9 @@ DSEC         & 4  & 0.67 & 0.52 & 0.66 & 1.31 & 1.48 & 2.38\\
 \begin{figure*}[t]
 \centering
 % Top: results/paper/fig_recon.pdf, directive 013 at 8623ddb (eTraM rows of directive 012).
-% Bottom: results/paper/fig_slices.pdf, directive 014.
-\IfFileExists{figs/fig_recon.pdf}{\includegraphics[width=0.82\textwidth]{figs/fig_recon.pdf}}{\fbox{figs/fig_recon.pdf}}\\[4pt]
-\figorboxw{figs/fig_slices.pdf}{0.82\textwidth}
+% Bottom: results/paper/fig_slices.pdf, directive 014 at a1379d5.
+\IfFileExists{figs/fig_recon.pdf}{\includegraphics[width=0.74\textwidth]{figs/fig_recon.pdf}}{\fbox{figs/fig_recon.pdf}}\\[4pt]
+\figorboxw{figs/fig_slices.pdf}{0.74\textwidth}
 \caption{A typical group of each stratum, signed event counts per pixel, positive minus negative
 polarity. Top: the key events that REMAKE sends, the true events of window $m=4$, and the events
 that the receiver rebuilds for it from the stream. Bottom: an $80\times80$-pixel square of window
@@ -760,7 +775,8 @@ $\psi=1/16$ to $\psi=1$, the bits for $K=4$ fall from $0.62$ to $0.42$ by day, f
 $0.35$ by night and from $0.72$ to $0.52$ on DSEC, the fidelity falls from $0.75$ to $0.71$, from
 $0.74$ to $0.65$ and from $0.71$ to $0.67$, and $G$ rises from $1.17$ to $1.55$, from $0.93$ to
 $1.62$ and from $1.06$ to $1.31$. The blocks that a lower threshold adds cost key events and
-return few pairs in the later windows. At $\psi=1$ the regions are $1\%$ of the blocks of eTraM
+return few pairs in the later windows. Along the threshold REMAKE stays below the subset schemes
+in bits, except at night for $K=4$ and $\psi\le1/8$, where the gain is $0.93$ and $1.01$. At $\psi=1$ the regions are $1\%$ of the blocks of eTraM
 and hold $83\%$ of the events of the key window by day and $69\%$ by night. On DSEC they are $31\%$
 of the blocks and hold $86\%$.
 
@@ -782,12 +798,17 @@ rebuilt edges lie where the true ones are. Where none does, nothing is rebuilt, 
 the lower half of the DSEC view, whose blocks hold fewer than $\psi B^2$ events in the key window.
 Inside the regions the rebuilt edges are dotted where the true ones are filled, since a map moves
 every key event to one pixel, and a map that enlarges the region spreads the same events over more
-pixels. \todo{time bins of the zoomed square, report 014.}
+pixels. The square of $80\times80$ pixels at the bottom of Fig.~\ref{fig:recon} is the one with
+the most true events of the window, and it holds about as many rebuilt as true events, so regions
+cover it. Its fidelity in each third of the window is $0.65$ to $0.68$ by day, $0.76$ to $0.79$ by
+night and $0.64$ to $0.65$ on DSEC, above the fidelity of the whole window, and it does not fall
+from one third to the next: inside the regions the rebuilt events follow the true ones in time at
+the resolution of the working grid.
 
 \subsection{Limits of the Gain}\label{sec:limits}
 \begin{figure}[t]
 \centering
-% Figure: results/paper/fig_limits.pdf, directive 014 (fidelity panels as at 8623ddb).
+% Figure: results/paper/fig_limits.pdf, directive 014 at a1379d5 (fidelity panels as at 8623ddb).
 \figorbox{figs/fig_limits.pdf}
 \caption{Top: fidelity of a group of four windows against the time bin of the receiver grid, at
 $\Delta_x=2$ pixels. Middle: the gain on the same grids, transport coder. Bottom: fidelity of
