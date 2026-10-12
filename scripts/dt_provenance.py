@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import re
 import socket
 import sys
 from pathlib import Path
@@ -33,7 +34,8 @@ def main(suite, outdir):
     tuning, reporting = DT.subsets()
     pre = json.loads((DT.DT / "preflight.json").read_text())
     pre["P2"]["suite"] = {"command": "python3 -m pytest -q -p no:anyio", "result": suite,
-                          "pass": "passed" in suite and not any(w in suite for w in ("failed", "skipped", "error"))}
+                          "pass": bool(re.search(r"\b\d+ passed", suite)) and "exit 0" in suite
+                          and not re.search(r"\b[1-9]\d* (failed|skipped|errors?)\b", suite)}
     (out / "preflight.json").write_text(json.dumps(pre, indent=1) + "\n")
     ds = json.loads((mp.REPO / "results" / "ds" / "provenance.json").read_text())
     tasks = [json.loads(p.read_text()) for p in sorted((DT.DT / "T").glob("task_*.json"))]
