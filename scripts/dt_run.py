@@ -33,7 +33,7 @@ import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from ec import blockcodec as bc, dsec, mp  # noqa: E402
+from ec import blockcodec as bc, codec, dsec, mp  # noqa: E402
 import bk_run as BK  # noqa: E402
 import ds_run as DR  # noqa: E402
 import mp_measure as M  # noqa: E402
@@ -147,9 +147,9 @@ def task_T(dtdir, key):
         w, w_prev = ws[j], (ws[j - 1] if j > 0 else 0)
         BK._FIT_TIMES.clear()
         t0 = time.perf_counter()
-        g = bc.evaluate_group(t, x, y, p, w, w_prev, DR.W, DR.H)
+        g = codec.evaluate_group(t, x, y, p, w, w_prev, DR.W, DR.H)
         res.append({"j": j, "w": w, "w_prev": w_prev, "evaluate_group_s": time.perf_counter() - t0,
-                    "finished_utc": time.time(), "fits": list(BK._FIT_TIMES), "group": g})
+                    "finished_utc": time.time(), "fits": list(BK._FIT_TIMES), "codec": codec.NAME, "group": g})
     tmp = out.with_suffix(".tmp")
     with open(tmp, "wb") as f:
         pickle.dump(res, f, protocol=5)

@@ -37,7 +37,7 @@ import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from ec import baseline, blockcodec as bc, mp  # noqa: E402
+from ec import baseline, blockcodec as bc, codec, mp  # noqa: E402
 import mp_measure as M  # noqa: E402
 
 W, H, T0 = 1280, 720, bc.T0_US
@@ -51,15 +51,16 @@ CHUNK = 3                                  # groups per task in Stages T and R
 _FIT_TIMES = []
 
 
-def _timed_fit(*a, **k):
-    t0 = time.perf_counter()
-    r = _ORIG_FIT(*a, **k)
-    _FIT_TIMES.append({"B": int(a[2]), "model": a[3], "n_blocks": int(len(r["ids"])), "s": time.perf_counter() - t0})
-    return r
+def _timer(orig):
+    def _timed_fit(*a, **k):
+        t0 = time.perf_counter()
+        r = orig(*a, **k)
+        _FIT_TIMES.append({"B": int(a[2]), "model": a[3], "n_blocks": int(len(r["ids"])), "s": time.perf_counter() - t0})
+        return r
+    return _timed_fit
 
 
-_ORIG_FIT = bc.fit_group
-bc.fit_group = _timed_fit                  # evaluate_group calls the module attribute: wrapped from the runner
+codec.wrap_fit(_timer)                     # evaluate_group calls the module attribute: wrapped from the runner
 
 
 def expected_events(rid) -> int:
@@ -141,7 +142,7 @@ def stage0(bkdir):
         for j, w in enumerate(ws):
             _FIT_TIMES.clear()
             t0 = time.perf_counter()
-            g = bc.evaluate_group(ev.t_us, ev.x, ev.y, ev.p, w, w_prev, W, H, grid_for=(40, 1 / 16),
+            g = bc.evaluate_group(ev.t_us, ev.x, ev.y, ev.p, w, w_prev, W, H, grid_for=(40, 1 / 16),  # Stage 0: the reference
                                   records_for=(40, 1 / 16))
             el = time.perf_counter() - t0
             res["times"].append({"rid": rid, "j": j, "w": w, "evaluate_group_s": el, "fits": list(_FIT_TIMES)})
@@ -173,10 +174,10 @@ def receive(streamdir, out):
     res = {}
     for rid, fs in by_rid.items():
         ev = read(rid)
-        for f in fs:
-            buf = f.read_bytes()
-            res[f.name] = {"length": len(buf), "sha256": hashlib.sha256(buf).hexdigest(),
-                           "groups": bc.evaluate_stream(buf, ev.t_us, ev.x, ev.y, ev.p)}
+        bufs = [f.read_bytes() for f in fs]
+        for f, buf, rows in zip(fs, bufs, codec.evaluate_streams(bufs, ev.t_us, ev.x, ev.y, ev.p)):
+            res[f.name] = {"length": len(buf), "sha256": hashlib.sha256(buf).hexdigest(), "groups": rows,
+                           "codec": codec.NAME}
     Path(out).write_text(json.dumps(res) + "\n")
     print(len(res), "streams scored", flush=True)
 
@@ -351,13 +352,13 @@ def task(stage, bkdir, key, S, frozen):
         _FIT_TIMES.clear()
         t0 = time.perf_counter()
         if stage == "T":
-            g = bc.evaluate_group(ev.t_us, ev.x, ev.y, ev.p, w, w_prev, W, H)
+            g = codec.evaluate_group(ev.t_us, ev.x, ev.y, ev.p, w, w_prev, W, H)
         else:
             B, rho = frozen
-            g = bc.evaluate_group(ev.t_us, ev.x, ev.y, ev.p, w, w_prev, W, H, blocks=(B,), grid_for=(B, rho),
+            g = codec.evaluate_group(ev.t_us, ev.x, ev.y, ev.p, w, w_prev, W, H, blocks=(B,), grid_for=(B, rho),
                                   records_for=(B, rho))
         res.append({"j": j, "w": w, "w_prev": w_prev, "evaluate_group_s": time.perf_counter() - t0,
-                    "fits": list(_FIT_TIMES), "group": g})
+                    "fits": list(_FIT_TIMES), "codec": codec.NAME, "group": g})
     tmp = out.with_suffix(".tmp")
     with open(tmp, "wb") as f:
         pickle.dump(res, f, protocol=5)

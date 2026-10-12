@@ -39,7 +39,7 @@ import yaml
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from ec import blockcodec as bc, dsec, mp  # noqa: E402
+from ec import blockcodec as bc, codec, dsec, mp  # noqa: E402
 import bk_run as BK  # noqa: E402   (fit_group timing wrapper, stream comparison; it opens no file on import)
 import mp_measure as M  # noqa: E402
 
@@ -117,7 +117,7 @@ def stage0(dsdir):
         for j, w in enumerate(ws):
             BK._FIT_TIMES.clear()
             t0 = time.perf_counter()
-            g = bc.evaluate_group(t, x, y, p, w, w_prev, W, H, blocks=(FROZEN[0],), grid_for=FROZEN, records_for=FROZEN)
+            g = bc.evaluate_group(t, x, y, p, w, w_prev, W, H, blocks=(FROZEN[0],), grid_for=FROZEN, records_for=FROZEN)  # Stage 0: the reference
             el = time.perf_counter() - t0
             res["times"].append({"rid": seq, "j": j, "w": w, "evaluate_group_s": el, "fits": list(BK._FIT_TIMES)})
             groups.append(g)
@@ -146,10 +146,10 @@ def receive(streamdir, out):
     res = {}
     for seq, fs in by.items():
         t, x, y, p, _ = read(seq)
-        for f in fs:
-            buf = f.read_bytes()
-            res[f.name] = {"length": len(buf), "sha256": hashlib.sha256(buf).hexdigest(),
-                           "groups": bc.evaluate_stream(buf, t, x, y, p)}
+        bufs = [f.read_bytes() for f in fs]
+        for f, buf, rows in zip(fs, bufs, codec.evaluate_streams(bufs, t, x, y, p)):
+            res[f.name] = {"length": len(buf), "sha256": hashlib.sha256(buf).hexdigest(), "groups": rows,
+                           "codec": codec.NAME}
         del t, x, y, p
         print(seq, len(fs), "streams", flush=True)
     Path(out).write_text(json.dumps(res) + "\n")
@@ -270,9 +270,9 @@ def task(dsdir, key, S):
         w, w_prev = ws[j], (ws[j - 1] if j > 0 else 0)
         BK._FIT_TIMES.clear()
         t0 = time.perf_counter()
-        g = bc.evaluate_group(t, x, y, p, w, w_prev, W, H, blocks=(FROZEN[0],), grid_for=FROZEN, records_for=FROZEN)
+        g = codec.evaluate_group(t, x, y, p, w, w_prev, W, H, blocks=(FROZEN[0],), grid_for=FROZEN, records_for=FROZEN)
         res.append({"j": j, "w": w, "w_prev": w_prev, "evaluate_group_s": time.perf_counter() - t0,
-                    "fits": list(BK._FIT_TIMES), "group": g})
+                    "fits": list(BK._FIT_TIMES), "codec": codec.NAME, "group": g})
     tmp = out.with_suffix(".tmp")
     with open(tmp, "wb") as f:
         pickle.dump(res, f, protocol=5)

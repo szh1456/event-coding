@@ -128,3 +128,16 @@ def test_streams_decode_and_score_as_the_reference(ev):
                 assert not _equal(list(bc.reconstruct(h, g, m)), list(fast.reconstruct(h, g, m)))
     assert not _equal(ref, fast.evaluate_streams(bufs, *ev))
     assert not _equal([bc.evaluate_stream(b, *ev, cell=(4, 1)) for b in bufs], fast.evaluate_streams(bufs, *ev, cell=(4, 1)))
+
+
+def test_the_runners_switch_and_their_timing_wrapper(ev):
+    from ec import codec
+    assert codec.FAST and codec.evaluate_group.__name__ == "evaluate_group"
+    seen, g = [], fast.evaluate_group.__globals__
+    orig = bc.fit_group, g["fit_group"]
+    codec.wrap_fit(lambda f: (lambda *a, **k: seen.append(a[3]) or f(*a, **k)))
+    try:
+        assert not _equal(codec.evaluate_group(*ev, 3, 0, W, H, blocks=(80,)), bc.evaluate_group(*ev, 3, 0, W, H, blocks=(80,)))
+        assert seen.count("affine") == 2                    # once in each implementation
+    finally:
+        bc.fit_group, g["fit_group"] = orig

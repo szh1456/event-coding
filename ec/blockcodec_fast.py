@@ -17,9 +17,10 @@ rebound by ``_rebind``) with five helpers replaced:
   true window are built once for all streams that hold it.
 
 Use. Unit tests (``tests/test_blockcodec_fast.py``) compare every output with the reference on
-synthetic events. Directive 007, Section 6, admits a faster implementation only if it reproduces
-the reference on every Stage 0 group in every field. That check has not been run, and running it
-needs a directive. Until then no result of this project is computed with this module.
+synthetic events. Directive 007, Section 6, admits a faster implementation if it reproduces the
+reference on every Stage 0 group in every field. It does, on the 20 Stage 0 groups of directives 007
+and 009 and on their 96 streams (``results/fast/stage0_check.json``, ``scripts/fast_check.py``; check
+authorized by the author on 2026-10-12). The runners reach it through ``ec.codec``.
 """
 from __future__ import annotations
 
