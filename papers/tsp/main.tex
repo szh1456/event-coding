@@ -17,7 +17,7 @@
 % manuscript builds.
 \newcommand{\figorbox}[1]{\figorboxw{#1}{\columnwidth}}
 \newcommand{\figorboxw}[2]{\IfFileExists{#1}{\includegraphics[width=#2]{#1}}%
-  {\fbox{\parbox{0.95\dimexpr#2\relax}{\centering\vspace{2em}Figure file \texttt{\detokenize{#1}}\\ (directive 014)\vspace{2em}}}}}
+  {\fbox{\parbox{0.95\dimexpr#2\relax}{\centering\vspace{2em}Figure file \texttt{\detokenize{#1}}\\ (directive 015)\vspace{2em}}}}}
 \renewcommand{\topfraction}{0.9}\renewcommand{\dbltopfraction}{0.9}
 \renewcommand{\textfraction}{0.07}\renewcommand{\floatpagefraction}{0.8}
 \renewcommand{\dblfloatpagefraction}{0.8}\setcounter{topnumber}{3}\setcounter{totalnumber}{4}
@@ -712,9 +712,8 @@ fidelity more than the phases of the moved events do.
 % Numbers: docs/directives/reports/007.md (eTraM) and 013.md over results/dt/report.json (DSEC); 001.md and 003.md where named.
 \begin{figure*}[t]
 \centering
-% Left: results/paper/fig_bits_all.pdf, directive 013 at 8623ddb. Right: fig_tradeoff.pdf, directive 014 at a1379d5.
-\begin{minipage}[t]{0.49\textwidth}\centering\figorboxw{figs/fig_bits_all.pdf}{\textwidth}\end{minipage}\hfill
-\begin{minipage}[t]{0.49\textwidth}\centering\figorboxw{figs/fig_tradeoff.pdf}{\textwidth}\end{minipage}
+% Figure: results/paper/fig_bits_pair.pdf, directive 015.
+\figorboxw{figs/fig_bits_pair.pdf}{0.92\textwidth}
 \caption{Bits as a percentage of the bits of all events, matched coder, working grid. Left: REMAKE
 and the cheapest subset scheme at the fidelity $F$ of REMAKE, at $\psi=1$, for groups of $K$
 windows; the labels give $G$. Right: the same against $F$ for the five thresholds, $K=4$ and $11$.}
