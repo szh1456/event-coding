@@ -1,23 +1,30 @@
-"""Directive 010: the two figures of the recorded experiments, drawn from the committed reports.
+"""Directives 010 and 011: the figures of the recorded experiments, drawn from committed files.
 
-  python3 scripts/paper_figures.py ETRAM_REPORT.json DSEC_REPORT.json OUTDIR
+  python3 scripts/paper_figures.py ETRAM_REPORT.json DSEC_REPORT.json OUTDIR [RECON_DIR]
 
 ETRAM_REPORT is ``results/bk/report.json`` (directive 007), DSEC_REPORT is ``results/ds/report.json``
 (directive 009). Three strata are drawn: ``day`` and ``night`` of the first and ``all`` of the second.
 All values are the medians over recordings of the reports, frozen configuration. Nothing is computed
-here. Each figure is written as PDF and PNG, with its plotted values as JSON.
+here but percentages and the images of Section 5 of directive 011. Each figure is written as PDF and
+PNG, with its plotted values as JSON.
 
-fig_bits_all   Total bits against fidelity, coder Q, working grid, one panel per stratum, from
-               ``tables/2_headline/Q``. Circles: the codec with the affine map for the four group
-               lengths, (bits, F). Squares: the repeated key events, (bits, F). Solid: the subset
-               schemes at the fidelity of the codec, (bits_base, F), ending at the direct stream,
-               (bits_direct, 1). Dashed: random thinning alone, (bits_thin, F), same end point.
+fig_bits_all   Bits against fidelity, matched coder, working grid, from ``tables/2_headline/Q``. One
+               panel per stratum and one row per group length K. In each row, at the fidelity F of
+               the codec, a circle marks the bits of the codec and a ring the bits of the cheapest
+               subset scheme at that fidelity (``bits_base``), both as a percentage of the bits of
+               sending every event (``bits_direct``). The label is the gain G of the report.
 
 fig_limits     Top: fidelity of a group of four windows against the time bin of the receiver grid,
                2 px blocks, affine map, from ``tables/6_grids`` (cells ``s2_k1``, ``s2_k3``, ``s2_k8``,
                ``s2_k32``, a window being 33,333 us). Bottom: fidelity of window m against m on the
                working grid, from ``tables/5_windows``, for the affine map (solid) and the
                translation (dashed).
+
+fig_recon      Drawn only when RECON_DIR holds ``recon_images.npz`` and ``recon_selection.json``
+               (directive 011, Section 5). One row per stratum, three columns: the key events that
+               are sent, the true events of window m, and the events that the receiver rebuilds for
+               window m from the stream. Each image is the signed event count per pixel, positive
+               polarity minus negative, clipped to [-2, 2].
 """
 from __future__ import annotations
 
@@ -29,6 +36,8 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import matplotlib.ticker  # noqa: F401
+import numpy as np
+from matplotlib.colors import LinearSegmentedColormap
 from matplotlib.lines import Line2D
 
 BLUE, ORANGE, AQUA = "#2a78d6", "#d6542a", "#1baf7a"      # checked together for color-vision separation
@@ -37,6 +46,7 @@ GROUPS = ("K2", "K4", "K8", "K11")
 T0_MS = 33.333
 BINS = (("s2_k32", T0_MS / 32), ("s2_k8", T0_MS / 8), ("s2_k3", T0_MS / 3), ("s2_k1", T0_MS))
 STRATA = (("eTraM, day", 0, "day", BLUE, "o"), ("eTraM, night", 0, "night", AQUA, "^"), ("DSEC", 1, "all", ORANGE, "s"))
+COLUMNS = (("key", "sent: key events"), ("true", "true, window $m$"), ("rec", "rebuilt, window $m$"))
 plt.rcParams.update({"font.family": "serif", "font.size": 8, "axes.linewidth": 0.6, "pdf.fonttype": 42,
                      "mathtext.fontset": "cm"})
 
@@ -57,41 +67,36 @@ def _clean(ax):
 
 def fig_bits_all(reports, out):
     plotted = {}
-    fig, axes = plt.subplots(len(STRATA), 1, figsize=(3.45, 0.35 + 1.8 * len(STRATA)), sharex=True,
-                             gridspec_kw={"hspace": 0.12})
+    fig, axes = plt.subplots(len(STRATA), 1, figsize=(3.45, 0.45 + 1.2 * len(STRATA)), sharex=True,
+                             gridspec_kw={"hspace": 0.32})
     for ax, (label, which, name, _, _) in zip(axes, STRATA):
         rows = reports[which]["tables"]["2_headline"]["Q"][name]
-        med = lambda K, model, key: rows[K][model][key]["median"]
-        F = [med(K, "affine", "F") for K in GROUPS]
-        bits = [med(K, "affine", "bits") for K in GROUPS]
-        direct = med(GROUPS[-1], "affine", "bits_direct")
-        ax.plot([med(K, "affine", "bits_thin") for K in GROUPS][::-1] + [direct], F[::-1] + [1.0], color=MUTED, lw=0.8,
-                ls=(0, (3, 2)), zorder=1, label="random thinning")
-        ax.plot([med(K, "affine", "bits_base") for K in GROUPS][::-1] + [direct], F[::-1] + [1.0], color=INK, lw=1.1,
-                marker="o", ms=1.8, zorder=2, label="subset schemes")
-        ax.plot([med(K, "static", "bits") for K in GROUPS], [med(K, "static", "F") for K in GROUPS], "s", color=ORANGE,
-                ms=3.4, mec="white", mew=0.5, zorder=3, label="repeated key events")
-        ax.plot(bits, F, "-o", color=BLUE, lw=0.8, ms=3.8, mec="white", mew=0.5, zorder=4, label="codec")
-        for K, b, f in zip(GROUPS, bits, F):
-            last_K = K == GROUPS[-1]
-            ax.annotate(f"$K={K[1:]}$", (b, f), xytext=(-3 if last_K else 0, 5), textcoords="offset points",
-                        ha="right" if last_K else "center", va="bottom", fontsize=6.5, color=INK)
-        ax.set_xscale("log")
-        ax.set_xlim(0.09, 2.6)
-        ax.set_ylim(0.0, 1.04)
-        ax.set_yticks([0.0, 0.25, 0.5, 0.75, 1.0])
-        ax.set_ylabel("fidelity $F$", labelpad=2)
-        ax.text(0.03, 0.93, label, transform=ax.transAxes, ha="left", va="top", fontsize=7.5, color=INK)
+        med = lambda K, key: rows[K]["affine"][key]["median"]
+        plotted[label] = {}
+        for r, K in enumerate(GROUPS):
+            y = len(GROUPS) - 1 - r
+            direct = med(K, "bits_direct")
+            codec, base = 100.0 * med(K, "bits") / direct, 100.0 * med(K, "bits_base") / direct
+            F, G = med(K, "F"), med(K, "gain")
+            ax.plot([codec, base], [y, y], color=MUTED, lw=1.0, zorder=1)
+            ax.plot(base, y, "o", ms=4.6, mfc="white", mec=INK, mew=0.9, zorder=2)
+            ax.plot(codec, y, "o", ms=4.6, color=BLUE, mec="white", mew=0.5, zorder=3)
+            ax.text(max(codec, base) + 2.5, y, f"$\\times{G:.2f}$", va="center", ha="left", fontsize=7, color=INK)
+            plotted[label][K] = {"F": F, "codec_percent": codec, "subset_percent": base, "gain": G}
+        ax.set_yticks(range(len(GROUPS)))
+        ax.set_yticklabels([f"$K={K[1:]}$, $F={plotted[label][K]['F']:.2f}$" for K in GROUPS][::-1], fontsize=7)
+        ax.set_ylim(-0.6, len(GROUPS) - 0.4)
+        ax.set_xlim(0, 100)
+        ax.set_title(label, fontsize=7.5, loc="left", pad=2, color=INK)
         _clean(ax)
-        plotted[label] = {"F": dict(zip(GROUPS, F)), "bits": dict(zip(GROUPS, bits)), "bits_direct": direct,
-                          "bits_base": {K: med(K, "affine", "bits_base") for K in GROUPS},
-                          "bits_thin": {K: med(K, "affine", "bits_thin") for K in GROUPS},
-                          "static": {K: [med(K, "static", "bits"), med(K, "static", "F")] for K in GROUPS}}
-    axes[-1].set_xticks([0.1, 0.2, 0.5, 1.0, 2.0])
-    axes[-1].set_xticklabels(["0.1", "0.2", "0.5", "1", "2"])
-    axes[-1].xaxis.set_minor_formatter(matplotlib.ticker.NullFormatter())
-    axes[-1].set_xlabel("bits per event", labelpad=1)
-    axes[0].legend(loc="lower right", frameon=False, fontsize=6.5, handlelength=1.6, borderaxespad=0.2, labelspacing=0.25)
+        ax.tick_params(axis="y", length=0)
+        ax.grid(axis="x", color="#e4e3dd", lw=0.5, zorder=0)
+    axes[-1].set_xlabel("bits sent, % of sending every event", labelpad=1)
+    axes[0].legend(handles=[Line2D([], [], ls="", marker="o", ms=4.6, color=BLUE, mec="white", label="codec"),
+                            Line2D([], [], ls="", marker="o", ms=4.6, mfc="white", mec=INK, mew=0.9,
+                                   label="cheapest subset scheme, same $F$")],
+                   loc="upper center", bbox_to_anchor=(0.5, 1.42), ncol=2, frameon=False, fontsize=6.5,
+                   handletextpad=0.3, columnspacing=1.2)
     _finish(fig, out, plotted)
 
 
@@ -131,12 +136,43 @@ def fig_limits(reports, out):
     _finish(fig, out, plotted)
 
 
+def fig_recon(recon_dir, out):
+    images = np.load(Path(recon_dir) / "recon_images.npz")
+    sel = json.loads((Path(recon_dir) / "recon_selection.json").read_text())
+    cmap = LinearSegmentedColormap.from_list("signed", [BLUE, "#ffffff", ORANGE])
+    fig, axes = plt.subplots(len(STRATA), len(COLUMNS), figsize=(7.0, 0.3 + 1.45 * len(STRATA)),
+                             gridspec_kw={"hspace": 0.08, "wspace": 0.04})
+    plotted = {}
+    for r, (label, _, name, _, _) in enumerate(STRATA):
+        s = sel[name]
+        plotted[label] = {k: s[k] for k in ("recording", "w", "m", "crop", "n_events", "F_window", "F_window_median")}
+        for c, (panel, title) in enumerate(COLUMNS):
+            ax = axes[r, c]
+            img = np.clip(images[f"{name}_{panel}"], -2, 2)
+            ax.imshow(img, cmap=cmap, vmin=-2, vmax=2, interpolation="nearest", aspect="equal")
+            ax.set_xticks([]); ax.set_yticks([])
+            for sp in ax.spines.values():
+                sp.set_linewidth(0.4); sp.set_color(MUTED)
+            ax.text(0.02, 0.03, f"{s['n_events'][panel]:,} events", transform=ax.transAxes, fontsize=6, color=INK,
+                    ha="left", va="bottom", bbox=dict(facecolor="white", edgecolor="none", pad=0.8, alpha=0.8))
+            if panel == "rec":
+                ax.text(0.98, 0.03, f"$F={s['F_window']:.2f}$", transform=ax.transAxes, fontsize=6.5, color=INK,
+                        ha="right", va="bottom", bbox=dict(facecolor="white", edgecolor="none", pad=0.8, alpha=0.8))
+            if r == 0:
+                ax.set_title(title.replace("$m$", f"$m={s['m']}$"), fontsize=7.5, pad=3)
+            if c == 0:
+                ax.set_ylabel(label, fontsize=7.5, labelpad=3)
+    _finish(fig, out, plotted)
+
+
 if __name__ == "__main__":
-    if len(sys.argv) != 4:
-        sys.exit("usage: python3 scripts/paper_figures.py ETRAM_REPORT.json DSEC_REPORT.json OUTDIR")
+    if len(sys.argv) not in (4, 5):
+        sys.exit("usage: python3 scripts/paper_figures.py ETRAM_REPORT.json DSEC_REPORT.json OUTDIR [RECON_DIR]")
     reports = [json.loads(Path(p).read_text()) for p in sys.argv[1:3]]
     outdir = Path(sys.argv[3])
     outdir.mkdir(parents=True, exist_ok=True)
     fig_bits_all(reports, outdir / "fig_bits_all")
     fig_limits(reports, outdir / "fig_limits")
-    print("wrote", outdir / "fig_bits_all.pdf", "and", outdir / "fig_limits.pdf")
+    if len(sys.argv) == 5:
+        fig_recon(sys.argv[4], outdir / "fig_recon")
+    print("wrote the figures under", outdir)
