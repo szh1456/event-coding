@@ -312,7 +312,7 @@ def load(ds, stage, rid):
     return out
 
 
-def run(stage, workers):
+def run(stage, workers, dsec_max=6):
     state = FB_E / stage
     if (state / "plan.json").exists():
         if not (state / "RESUME").exists():
@@ -350,7 +350,12 @@ def run(stage, workers):
             pending = []
         target = M._target_workers(state, workers)
         while pending and len(running) < target and M._mem_available_gb() > 40.0:
-            k = pending.pop(0)
+            n_dsec = sum(k.startswith("dsec|") for k in running.values())     # DSEC reads are serialized: cap its slots
+            nxt = next((k for k in pending if not k.startswith("dsec|") or n_dsec < dsec_max), None)
+            if nxt is None:
+                break
+            pending.remove(nxt)
+            k = nxt
             lf = open(state / "logs" / f"{k.replace('|', '_')}.log", "w")
             running[subprocess.Popen([sys.executable, __file__, "one", stage, k], stdout=lf,
                                      stderr=subprocess.STDOUT)] = k
@@ -430,8 +435,9 @@ def main():
     ap.add_argument("mode")
     ap.add_argument("args", nargs="*")
     ap.add_argument("--workers", type=int, default=20)
+    ap.add_argument("--dsec-max", type=int, default=6)
     a = ap.parse_args()
-    {"run": lambda: run(a.args[0], a.workers), "one": lambda: task(*a.args), "project": lambda: project(*a.args),
+    {"run": lambda: run(a.args[0], a.workers, a.dsec_max), "one": lambda: task(*a.args), "project": lambda: project(*a.args),
      "tune": lambda: tune(*a.args)}[a.mode]()
 
 
