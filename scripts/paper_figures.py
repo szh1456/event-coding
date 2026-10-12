@@ -1,4 +1,4 @@
-"""Directives 010 to 014: the figures of the paper, drawn from committed files.
+"""Directives 010 to 015: the figures of the paper, drawn from committed files.
 
   python3 scripts/paper_figures.py --etram ETRAM_REPORT.json --dsec DSEC_REPORT.json --out OUTDIR
                                    [--recon RECON_DIR] [--tradeoff TRADEOFF.json] [--bridge BRIDGE.json]
@@ -24,6 +24,10 @@ fig_limits     Top: fidelity of a group of four windows against the time bin of 
                ``s2_k8``, ``s2_k32``, a window being 33,333 us). Middle: the gain of the transport coder
                on the same grids, from the same cells. Bottom: fidelity of window m against m on the
                working grid, from ``tables/5_windows``, affine map (solid) and translation (dashed).
+
+fig_bits_pair  Drawn when TRADEOFF.json is given (directive 015). fig_bits_all and fig_tradeoff on one
+               grid: one row per stratum, the panel of fig_bits_all on the left and that of
+               fig_tradeoff on the right, rows aligned, each column with its legend at the top.
 
 fig_recon      Drawn when RECON_DIR holds ``recon_images.npz`` and ``recon_selection.json``
                (directives 011 to 013). One row per stratum, three columns: the key events that are
@@ -84,38 +88,45 @@ def _clean(ax):
     ax.tick_params(which="minor", length=1.2, width=0.4)
 
 
+def _dumbbell(ax, rows):
+    med = lambda K, key: rows[K]["affine"][key]["median"]
+    plotted = {}
+    for r, K in enumerate(GROUPS):
+        y = len(GROUPS) - 1 - r
+        direct = med(K, "bits_direct")
+        codec, base = 100.0 * med(K, "bits") / direct, 100.0 * med(K, "bits_base") / direct
+        F, G = med(K, "F"), med(K, "gain")
+        ax.plot([codec, base], [y, y], color=MUTED, lw=1.0, zorder=1)
+        ax.plot(base, y, "o", ms=4.6, mfc="white", mec=INK, mew=0.9, zorder=2)
+        ax.plot(codec, y, "o", ms=4.6, color=BLUE, mec="white", mew=0.5, zorder=3)
+        ax.text(max(codec, base) + 2.5, y, f"$\\times{G:.2f}$", va="center", ha="left", fontsize=7, color=INK)
+        plotted[K] = {"F": F, "codec_percent": codec, "subset_percent": base, "gain": G}
+    ax.set_yticks(range(len(GROUPS)))
+    ax.set_yticklabels([f"$K={K[1:]}$, $F={plotted[K]['F']:.2f}$" for K in GROUPS][::-1], fontsize=7)
+    ax.set_ylim(-0.6, len(GROUPS) - 0.4)
+    ax.set_xlim(0, 100)
+    _clean(ax)
+    ax.tick_params(axis="y", length=0)
+    ax.grid(axis="x", color="#e4e3dd", lw=0.5, zorder=0)
+    return plotted
+
+
+def _dumbbell_legend():
+    return [Line2D([], [], ls="", marker="o", ms=4.6, color=BLUE, mec="white", label="REMAKE"),
+            Line2D([], [], ls="", marker="o", ms=4.6, mfc="white", mec=INK, mew=0.9,
+                   label="cheapest subset scheme, same $F$")]
+
+
 def fig_bits_all(reports, out):
     plotted = {}
     fig, axes = plt.subplots(len(STRATA), 1, figsize=(3.45, 0.45 + 1.2 * len(STRATA)), sharex=True,
                              gridspec_kw={"hspace": 0.32})
     for ax, (label, which, name, _, _) in zip(axes, STRATA):
-        rows = reports[which]["tables"]["2_headline"]["Q"][name]
-        med = lambda K, key: rows[K]["affine"][key]["median"]
-        plotted[label] = {}
-        for r, K in enumerate(GROUPS):
-            y = len(GROUPS) - 1 - r
-            direct = med(K, "bits_direct")
-            codec, base = 100.0 * med(K, "bits") / direct, 100.0 * med(K, "bits_base") / direct
-            F, G = med(K, "F"), med(K, "gain")
-            ax.plot([codec, base], [y, y], color=MUTED, lw=1.0, zorder=1)
-            ax.plot(base, y, "o", ms=4.6, mfc="white", mec=INK, mew=0.9, zorder=2)
-            ax.plot(codec, y, "o", ms=4.6, color=BLUE, mec="white", mew=0.5, zorder=3)
-            ax.text(max(codec, base) + 2.5, y, f"$\\times{G:.2f}$", va="center", ha="left", fontsize=7, color=INK)
-            plotted[label][K] = {"F": F, "codec_percent": codec, "subset_percent": base, "gain": G}
-        ax.set_yticks(range(len(GROUPS)))
-        ax.set_yticklabels([f"$K={K[1:]}$, $F={plotted[label][K]['F']:.2f}$" for K in GROUPS][::-1], fontsize=7)
-        ax.set_ylim(-0.6, len(GROUPS) - 0.4)
-        ax.set_xlim(0, 100)
+        plotted[label] = _dumbbell(ax, reports[which]["tables"]["2_headline"]["Q"][name])
         ax.set_title(label, fontsize=7.5, loc="left", pad=2, color=INK)
-        _clean(ax)
-        ax.tick_params(axis="y", length=0)
-        ax.grid(axis="x", color="#e4e3dd", lw=0.5, zorder=0)
     axes[-1].set_xlabel("bits sent, % of sending every event", labelpad=1)
-    axes[0].legend(handles=[Line2D([], [], ls="", marker="o", ms=4.6, color=BLUE, mec="white", label="REMAKE"),
-                            Line2D([], [], ls="", marker="o", ms=4.6, mfc="white", mec=INK, mew=0.9,
-                                   label="cheapest subset scheme, same $F$")],
-                   loc="upper center", bbox_to_anchor=(0.5, 1.42), ncol=2, frameon=False, fontsize=6.5,
-                   handletextpad=0.3, columnspacing=1.2)
+    axes[0].legend(handles=_dumbbell_legend(), loc="upper center", bbox_to_anchor=(0.5, 1.42), ncol=2,
+                   frameon=False, fontsize=6.5, handletextpad=0.3, columnspacing=1.2)
     _finish(fig, out, plotted)
 
 
@@ -196,32 +207,68 @@ RHOS = (("B20_rho0.0625", "1/16"), ("B20_rho0.125", "1/8"), ("B20_rho0.25", "1/4
 TRADE_K = (("K4", BLUE, "o"), ("K11", ORANGE, "s"))
 
 
+def _tradeoff(ax, trade, name):
+    plotted = {}
+    for K, color, marker in TRADE_K:
+        pts = [trade["strata"][name][K][rho] for rho, _ in RHOS]
+        F = [p["F"] for p in pts]
+        ax.plot(F, [p["bits_pct"] for p in pts], "-", marker=marker, color=color, lw=0.9, ms=3.6,
+                mec="white", mew=0.5, zorder=3)
+        ax.plot(F, [p["sub_pct"] for p in pts], ls=(0, (3, 2)), marker=marker, color=color, lw=0.8, ms=3.6,
+                mfc="white", mec=color, mew=0.8, zorder=2)
+        plotted[K] = {rho: pts[i] for i, (rho, _) in enumerate(RHOS)}
+    ax.set_ylim(0, None)
+    _clean(ax)
+    ax.grid(color="#e4e3dd", lw=0.5, zorder=0)
+    return plotted
+
+
+def _tradeoff_legend():
+    handles = [Line2D([], [], color=c, marker=mk, ms=3.6, lw=0.9, mec="white", mew=0.5, label=f"REMAKE, $K={K[1:]}$")
+               for K, c, mk in TRADE_K]
+    handles += [Line2D([], [], color=c, marker=mk, ms=3.6, lw=0.8, ls=(0, (3, 2)), mfc="white", mec=c, mew=0.8,
+                       label=f"subset, $K={K[1:]}$") for K, c, mk in TRADE_K]
+    return handles
+
+
 def fig_tradeoff(trade, out):
     plotted = {}
     fig, axes = plt.subplots(len(STRATA), 1, figsize=(3.45, 0.5 + 1.55 * len(STRATA)), sharex=True,
                              gridspec_kw={"hspace": 0.3})
     for ax, (label, _, name, _, _) in zip(axes, STRATA):
-        plotted[label] = {}
-        for K, color, marker in TRADE_K:
-            pts = [trade["strata"][name][K][rho] for rho, _ in RHOS]
-            F = [p["F"] for p in pts]
-            ax.plot(F, [p["bits_pct"] for p in pts], "-", marker=marker, color=color, lw=0.9, ms=3.6,
-                    mec="white", mew=0.5, zorder=3)
-            ax.plot(F, [p["sub_pct"] for p in pts], ls=(0, (3, 2)), marker=marker, color=color, lw=0.8, ms=3.6,
-                    mfc="white", mec=color, mew=0.8, zorder=2)
-            plotted[label][K] = {rho: pts[i] for i, (rho, _) in enumerate(RHOS)}
+        plotted[label] = _tradeoff(ax, trade, name)
         ax.set_title(label, fontsize=7.5, loc="left", pad=2, color=INK)
         ax.set_ylabel("bits, % of all", labelpad=2)
-        ax.set_ylim(0, None)
-        _clean(ax)
-        ax.grid(color="#e4e3dd", lw=0.5, zorder=0)
     axes[-1].set_xlabel("fidelity $F$", labelpad=1)
-    handles = [Line2D([], [], color=c, marker=mk, ms=3.6, lw=0.9, mec="white", mew=0.5, label=f"REMAKE, $K={K[1:]}$")
-               for K, c, mk in TRADE_K]
-    handles += [Line2D([], [], color=c, marker=mk, ms=3.6, lw=0.8, ls=(0, (3, 2)), mfc="white", mec=c, mew=0.8,
-                       label=f"subset, $K={K[1:]}$") for K, c, mk in TRADE_K]
-    axes[0].legend(handles=handles, loc="upper center", bbox_to_anchor=(0.5, 1.48), ncol=2, frameon=False,
+    axes[0].legend(handles=_tradeoff_legend(), loc="upper center", bbox_to_anchor=(0.5, 1.48), ncol=2, frameon=False,
                    fontsize=6.5, handlelength=2.2, columnspacing=1.0, labelspacing=0.3)
+    _finish(fig, out, plotted)
+
+
+def fig_bits_pair(reports, trade, out):
+    plotted = {"bits": {}, "tradeoff": {}}
+    fig, axes = plt.subplots(len(STRATA), 2, figsize=(7.0, 0.75 + 1.3 * len(STRATA)),
+                             gridspec_kw={"hspace": 0.38, "wspace": 0.28, "width_ratios": [1.0, 1.0]})
+    for r, (label, which, name, _, _) in enumerate(STRATA):
+        plotted["bits"][label] = _dumbbell(axes[r, 0], reports[which]["tables"]["2_headline"]["Q"][name])
+        plotted["tradeoff"][label] = _tradeoff(axes[r, 1], trade, name)
+        axes[r, 0].set_title(label, fontsize=7.5, loc="left", pad=2, color=INK)
+        axes[r, 1].set_title(label, fontsize=7.5, loc="left", pad=2, color=INK)
+        axes[r, 1].set_ylabel("bits, % of all", labelpad=2)
+        if r < len(STRATA) - 1:
+            axes[r, 0].tick_params(labelbottom=False)
+            axes[r, 1].tick_params(labelbottom=False)
+    lo = min(min(p["F"] for p in plotted["tradeoff"][lab][K].values()) for lab in plotted["tradeoff"] for K in plotted["tradeoff"][lab])
+    hi = max(max(p["F"] for p in plotted["tradeoff"][lab][K].values()) for lab in plotted["tradeoff"] for K in plotted["tradeoff"][lab])
+    for r in range(len(STRATA)):
+        axes[r, 1].set_xlim(lo - 0.01, hi + 0.01)
+    axes[-1, 0].set_xlabel("bits sent, % of sending every event", labelpad=1)
+    axes[-1, 1].set_xlabel("fidelity $F$", labelpad=1)
+    axes[0, 0].legend(handles=_dumbbell_legend(), loc="lower center", bbox_to_anchor=(0.5, 1.14), ncol=1,
+                      frameon=False, fontsize=6.5, handletextpad=0.3, labelspacing=0.3)
+    axes[0, 1].legend(handles=_tradeoff_legend(), loc="lower center", bbox_to_anchor=(0.5, 1.14), ncol=2,
+                      frameon=False, fontsize=6.5, handlelength=2.0, columnspacing=1.0, handletextpad=0.4,
+                      labelspacing=0.3)
     _finish(fig, out, plotted)
 
 
@@ -325,7 +372,9 @@ def main(argv=None):
         if "day_zoom_true_b0" in np.load(Path(a.recon) / "recon_images.npz").files:
             fig_slices(a.recon, outdir / "fig_slices")
     if a.tradeoff:
-        fig_tradeoff(json.loads(Path(a.tradeoff).read_text()), outdir / "fig_tradeoff")
+        trade = json.loads(Path(a.tradeoff).read_text())
+        fig_tradeoff(trade, outdir / "fig_tradeoff")
+        fig_bits_pair(reports, trade, outdir / "fig_bits_pair")
     if a.bridge:
         fig_bridge(json.loads(Path(a.bridge).read_text()), outdir / "fig_bridge")
     print("wrote the figures under", outdir)
