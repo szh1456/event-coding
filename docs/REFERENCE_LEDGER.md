@@ -174,3 +174,39 @@ of the companion project.
 | status | `PARTIAL`: citation verified, content not read |
 | does not support | any compression ratio or speed; that the levels 1 and 19 of the package are defined by the RFC |
 
+
+### `stumpp2024`
+
+| field | value |
+|---|---|
+| claim supported | The flow-based coder FBC alternates a sending state, in which every event is sent with its flow when the flow is confident, and a predicting state, in which only events without a confident flow are sent; the receiver extrapolates each flow event along a straight line and keeps pixels within a slack of 0.4 px; ST is the time in which the mean speed of the first 500 flow events moves one pixel; flows are two 12-bit values; no residual is sent |
+| source | D. C. Stumpp, H. Akolkar, A. D. George, R. B. Benosman, "Flow-Based Visual Stream Compression for Event Cameras," IEEE Internet of Things Journal, vol. 11, no. 24, pp. 40229-40243, 2024, DOI 10.1109/JIOT.2024.3450428; arXiv:2403.08086 |
+| source type | primary (journal article; arXiv version read) |
+| used in | `ec/fbc.py` (directive 016), the motion-predictive baseline of the manuscript, Section VI |
+| version / conditions | the brief's entry (status V, Crossref and arXiv v1 full text); the arXiv abstract page and its summary read on 2026-10-12 for the algorithmic details above |
+| status | `PARTIAL`: citation verified (brief); algorithm details taken from the arXiv version, not from the journal version |
+| does not support | that `ec/fbc.py` reproduces the authors' implementation or numbers; its flow is a plane fit, not ARMS |
+
+### `benosman2014`
+
+| field | value |
+|---|---|
+| claim supported | Visual flow can be estimated from an event stream by fitting a plane, per incoming event, to the times of the events in a local spatio-temporal neighborhood; the slopes of the plane give the velocity |
+| source | R. Benosman, C. Clercq, X. Lagorce, S.-H. Ieng, C. Bartolozzi, "Event-Based Visual Flow," IEEE Transactions on Neural Networks and Learning Systems, vol. 25, no. 2, pp. 407-417, 2014, DOI 10.1109/TNNLS.2013.2273537 |
+| source type | primary (journal article) |
+| used in | `ec/fbc.py`, function `plane_flow` (directive 016) |
+| version / conditions | metadata from the Crossref record, read on 2026-10-12. The plane-fitting statements from a copy of the paper hosted on academia.edu (record 14427547), read on 2026-10-12; the publisher's version was not read |
+| status | `PARTIAL`: citation verified; method statements from a non-publisher copy |
+| does not support | the robust iterative variant, its thresholds or its accuracy; `plane_flow` fits once on the latest event time per pixel and polarity |
+
+### `gallego2018cmax`
+
+| field | value |
+|---|---|
+| claim supported | Motion parameters of events can be estimated by warping the events along candidate motion and maximizing the contrast (variance) of the image of warped events |
+| source | G. Gallego, H. Rebecq, D. Scaramuzza, "A Unifying Contrast Maximization Framework for Event Cameras, With Applications to Motion, Depth, and Optical Flow Estimation," Proc. IEEE/CVF CVPR, pp. 3867-3876, 2018 |
+| source type | primary (conference paper) |
+| used in | `ec/downstream.py`, function `cmax_velocity` (directive 016), the motion task of the manuscript, Section VI |
+| version / conditions | status as in the brief (V, CVF open-access abstract page; no DOI on that page) |
+| status | `PARTIAL`: citation verified (brief); the full text was not read for this use |
+| does not support | the grid search, the step sizes or the event cap of `cmax_velocity`, which are this project's choices |
