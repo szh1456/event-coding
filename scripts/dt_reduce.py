@@ -38,6 +38,13 @@ def main(dsdir, dtdir, resdir):
     strata = {k: [s for s in reporting if k == "all" or s.startswith(k)] for k in r["strata"]}
     strata = {k: [s for s in v if s not in r["recordings_below_min_groups"]] for k, v in strata.items()}
 
+    # Table 1 over the reporting subset (the reducer of 009 copies the inventory of all 41 files)
+    inv = {k: v for k, v in T["1_inventory"]["per_sequence"].items() if k in reporting}
+    T["1_inventory"] = {"per_sequence": inv, "totals": {
+        "n_sequences": len(inv), "n_events": int(sum(v["n_events"] for v in inv.values())),
+        "duration_s": float(sum(v["duration_s"] for v in inv.values())),
+        "median_events_per_pixel_and_window": float(np.median([v["events_per_pixel_and_window"] for v in inv.values()])),
+        "time_inversions_clamped": int(sum(v["n_time_inversions_clamped"] for v in inv.values()))}}
     # Table 9 at B*, from the evaluated groups (the number of active blocks of each key window)
     sums_groups = {s: [x["group"] for x in DR.load_groups(dsdir, s)] for s in reporting}
     nblk = (DR.W // B) * (DR.H // B)
