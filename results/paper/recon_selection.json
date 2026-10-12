@@ -1,87 +1,95 @@
 {
  "day": {
-  "recording": "train_day_0052_td",
-  "w": 1470,
+  "recording": "train_day_0061_td",
+  "w": 930,
   "m": 4,
   "crop": [
-   140,
+   0,
+   360,
+   320,
+   180
+  ],
+  "n_events": {
+   "key": 45864,
+   "true": 38042,
+   "rec": 46217
+  },
+  "F_window": 0.611839872684508,
+  "F_window_median": 0.2052955815756191,
+  "n_groups": 2767,
+  "n_recordings": 53,
+  "stream_file": "/home/es.aau.dk/fi81zw/prjs/event_coding/bk/R_streams/train_day_0061_td__affine_Q_K11.ec07",
+  "check_step_5": {
+   "match": [
+    26143,
+    26143
+   ],
+   "n_rec": [
+    46221,
+    46221
+   ],
+   "n_true": [
+    39236,
+    39236
+   ],
+   "F_m": [
+    0.611839872684508,
+    0.611839872684508
+   ]
+  },
+  "check_pass": true,
+  "F_rec": 0.6034028496092085,
+  "F_rec_median": 0.6034028496092085,
+  "n_recordings_F_rec": 53,
+  "rule": "012"
+ },
+ "night": {
+  "recording": "train_night_0022_td",
+  "w": 840,
+  "m": 4,
+  "crop": [
+   0,
    540,
    320,
    180
   ],
   "n_events": {
-   "key": 947,
-   "true": 9263,
-   "rec": 947
+   "key": 54360,
+   "true": 62090,
+   "rec": 63209
   },
-  "F_window": 0.2052955815756191,
-  "F_window_median": 0.2052955815756191,
-  "n_groups": 2767,
-  "n_recordings": 53,
-  "stream_file": "/home/es.aau.dk/fi81zw/prjs/event_coding/bk/R_streams/train_day_0052_td__affine_Q_K11.ec07",
-  "check_step_5": {
-   "match": [
-    2516,
-    2516
-   ],
-   "n_rec": [
-    5588,
-    5588
-   ],
-   "n_true": [
-    18923,
-    18923
-   ],
-   "F_m": [
-    0.2052955815756191,
-    0.2052955815756191
-   ]
-  },
-  "check_pass": true
- },
- "night": {
-  "recording": "train_night_0004_td",
-  "w": 30,
-  "m": 4,
-  "crop": [
-   60,
-   300,
-   320,
-   180
-  ],
-  "n_events": {
-   "key": 25116,
-   "true": 34378,
-   "rec": 26552
-  },
-  "F_window": 0.5614899425738225,
+  "F_window": 0.5671018410567179,
   "F_window_median": 0.5614899425738225,
   "n_groups": 2191,
   "n_recordings": 40,
-  "stream_file": "/home/es.aau.dk/fi81zw/prjs/event_coding/bk/R_streams/train_night_0004_td__affine_Q_K11.ec07",
+  "stream_file": "/home/es.aau.dk/fi81zw/prjs/event_coding/bk/R_streams/train_night_0022_td__affine_Q_K11.ec07",
   "check_step_5": {
    "match": [
-    35786,
-    35786
+    66396,
+    66396
    ],
    "n_rec": [
-    50206,
-    50206
+    104994,
+    104994
    ],
    "n_true": [
-    77262,
-    77262
+    129165,
+    129165
    ],
    "F_m": [
-    0.5614899425738225,
-    0.5614899425738225
+    0.5671018410567179,
+    0.5671018410567179
    ]
   },
-  "check_pass": true
+  "check_pass": true,
+  "F_rec": 0.5673441294068245,
+  "F_rec_median": 0.5673975462062096,
+  "n_recordings_F_rec": 40,
+  "rule": "012"
  },
  "all": {
-  "recording": "zurich_city_01_f",
-  "w": 1830,
+  "recording": "zurich_city_11_b",
+  "w": 1530,
   "m": 4,
   "crop": [
    0,
@@ -90,33 +98,37 @@
    480
   ],
   "n_events": {
-   "key": 511691,
-   "true": 619390,
-   "rec": 510868
+   "key": 441485,
+   "true": 475077,
+   "rec": 437717
   },
-  "F_window": 0.5415913888687361,
+  "F_window": 0.5576197915411364,
   "F_window_median": 0.5415913888687361,
   "n_groups": 1311,
   "n_recordings": 41,
-  "stream_file": "/data/fi81zw@es.aau.dk/event_coding/ds/R_streams/zurich_city_01_f__affine_Q_K11.ec07",
+  "stream_file": "/data/fi81zw@es.aau.dk/event_coding/ds/R_streams/zurich_city_11_b__affine_Q_K11.ec07",
   "check_step_5": {
    "match": [
-    306069,
-    306069
+    254496,
+    254496
    ],
    "n_rec": [
-    510868,
-    510868
+    437717,
+    437717
    ],
    "n_true": [
-    619390,
-    619390
+    475077,
+    475077
    ],
    "F_m": [
-    0.5415913888687361,
-    0.5415913888687361
+    0.5576197915411364,
+    0.5576197915411364
    ]
   },
-  "check_pass": true
+  "check_pass": true,
+  "F_rec": 0.5556620442711263,
+  "F_rec_median": 0.5556620442711263,
+  "n_recordings_F_rec": 41,
+  "rule": "012"
  }
 }
