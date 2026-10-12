@@ -255,7 +255,9 @@ def downstream(ds, ev, g, w, fbc_recs, tracks):
 
 
 # ------------------------------------------------------------------------------------------- tasks
-def task(stage, key):
+def task(stage, key, pre=None, rows_all=None):
+    """One task. ``pre`` (``seq_R``): the events of each group, ``group_events`` of a read shared by the tasks of
+    one sequence; otherwise the task reads the recording itself. Either way a group receives the same events."""
     ds, rid, ci = key.split("|")
     ci = int(ci)
     od = outdir(ds, stage)
@@ -263,14 +265,18 @@ def task(stage, key):
     if out.exists():
         return
     t_start, c_start = time.time(), time.process_time()
-    rows = remake_groups(ds, stage, rid)[ci * CHUNK[stage]:(ci + 1) * CHUNK[stage]]
-    ev = read(ds, rid, [r["w"] for r in rows], od)
+    rows = (rows_all or remake_groups(ds, stage, rid))[ci * CHUNK[stage]:(ci + 1) * CHUNK[stage]]
+    if pre is None:
+        ev = read(ds, rid, [r["w"] for r in rows], od)
+        events_of = lambda w: group_events(ev, w)
+    else:
+        events_of = lambda w: pre[w]
     W_, H_ = DIMS[ds]
     tracks = an.tracks(an.load_boxes(mp.annotation_path(rid))) if (ds == "etram" and stage == "R") else None
     res = []
     for r in rows:
         w, g = r["w"], r["group"]
-        e = group_events(ev, w)
+        e = events_of(w)
         item = {"j": r["j"], "w": w}
         c0, p0 = time.process_time(), time.perf_counter()
         if stage == "T":
@@ -292,15 +298,81 @@ def task(stage, key):
             item["n_true_equal"] = all(item["fbc"][c][f"{c}_K{K}"]["n_true"] == g["n_true"][:K]
                                        for c in bc.CODERS for K in bc.GROUPS)
             item["fbc_cpu_s"] = time.process_time() - c0
-            item["downstream"] = downstream(ds, ev, g, w, recs, tracks)
+            item["downstream"] = downstream(ds, e, g, w, recs, tracks)
         item["cpu_s"], item["wall_s"] = time.process_time() - c0, time.perf_counter() - p0
         item["finished_utc"] = time.time()
         res.append(item)
     tmp = out.with_suffix(".tmp")
     with open(tmp, "wb") as f:
         pickle.dump({"key": key, "commit": (mp.REPO / "COMMIT").read_text().strip(), "groups": res,
-                     "task_wall_s": time.time() - t_start, "task_cpu_s": time.process_time() - c_start}, f, protocol=5)
+                     "task_wall_s": time.time() - t_start, "task_cpu_s": time.process_time() - c_start,
+                     "shared_read": pre is not None}, f, protocol=5)
     tmp.rename(out)
+
+
+# ------------------------------------------------------------------------------------------- DSEC Stage R, one read per sequence
+_PRE, _ROWS = None, None
+
+
+def _seq_task(key):
+    task("R", key, _PRE, _ROWS)
+    return key
+
+
+def seq_R(rid, procs):
+    """The pending Stage R tasks of one DSEC sequence after a single read of it (the read lock and memory wait of
+    directive 009, so reads stay one at a time): the events of each pending group are cut out with
+    ``group_events``, the full arrays are dropped, and the tasks run in ``procs`` forked processes."""
+    import multiprocessing as mpr
+    global _PRE, _ROWS
+    od = outdir("dsec", "R")
+    rows = remake_groups("dsec", "R", rid)
+    n_chunks = -(-len(rows) // CHUNK["R"])
+    keys = [f"dsec|{rid}|{c}" for c in range(n_chunks) if not (od / out_name(f"dsec|{rid}|{c}")).exists()]
+    log = lambda m: print(f"{time.strftime('%H:%M:%S')} {rid} {m}", flush=True)
+    if not keys:
+        log("nothing pending")
+        return
+    ws = [r["w"] for k in keys for r in rows[int(k.split("|")[2]) * CHUNK["R"]:(int(k.split("|")[2]) + 1) * CHUNK["R"]]]
+    t0 = time.time()
+    t, x, y, p, _ = DR.read(rid, od)
+    full = (t, x, y, p)
+    pre = {}
+    for w in ws:
+        a, b = np.searchsorted(t, (w * T0 - fbc.FIT_WINDOW_US, (w + bc.N_TARGETS + 1) * T0))
+        pre[w] = tuple(np.asarray(v[a:b], dtype=np.int64).copy() for v in full)
+    del t, x, y, p, full
+    log(f"read and cut in {time.time() - t0:.0f} s; {len(keys)} tasks, {len(ws)} groups")
+    _PRE, _ROWS = pre, rows
+    with mpr.get_context("fork").Pool(procs) as pool:
+        for k in pool.imap_unordered(_seq_task, keys):
+            log(f"{k} ok")
+    log("done")
+
+
+def seqs_R(procs, at_once):
+    """Every DSEC sequence with pending Stage R tasks, ``at_once`` sequences at a time (one of them reading)."""
+    od = outdir("dsec", "R")
+    todo = []
+    for rid in recordings("dsec", "R"):
+        n = -(-len(remake_groups("dsec", "R", rid)) // CHUNK["R"])
+        if any(not (od / out_name(f"dsec|{rid}|{c}")).exists() for c in range(n)):
+            todo.append(rid)
+    print(f"{time.strftime('%H:%M:%S')} {len(todo)} sequences pending: {todo}", flush=True)
+    running = {}
+    while todo or running:
+        for pr, rid in list(running.items()):
+            if pr.poll() is not None:
+                del running[pr]
+                print(f"{time.strftime('%H:%M:%S')} {rid} exit {pr.returncode}", flush=True)
+        while todo and len(running) < at_once and M._mem_available_gb() > 40.0:
+            rid = todo.pop(0)
+            lf = open(FB_E / "R" / "logs" / f"seq_{rid}.log", "w")
+            running[subprocess.Popen([sys.executable, __file__, "seqR", rid, "--procs", str(procs)], stdout=lf,
+                                     stderr=subprocess.STDOUT)] = rid
+            time.sleep(5)
+        time.sleep(15)
+    print(f"{time.strftime('%H:%M:%S')} DONE", flush=True)
 
 
 def load(ds, stage, rid):
@@ -436,9 +508,12 @@ def main():
     ap.add_argument("args", nargs="*")
     ap.add_argument("--workers", type=int, default=20)
     ap.add_argument("--dsec-max", type=int, default=6)
+    ap.add_argument("--procs", type=int, default=10)
+    ap.add_argument("--at-once", type=int, default=2)
     a = ap.parse_args()
     {"run": lambda: run(a.args[0], a.workers, a.dsec_max), "one": lambda: task(*a.args), "project": lambda: project(*a.args),
-     "tune": lambda: tune(*a.args)}[a.mode]()
+     "tune": lambda: tune(*a.args), "seqR": lambda: seq_R(a.args[0], a.procs),
+     "seqsR": lambda: seqs_R(a.procs, a.at_once)}[a.mode]()
 
 
 if __name__ == "__main__":
