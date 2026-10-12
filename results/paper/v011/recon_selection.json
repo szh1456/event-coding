@@ -1,0 +1,122 @@
+{
+ "day": {
+  "recording": "train_day_0052_td",
+  "w": 1470,
+  "m": 4,
+  "crop": [
+   140,
+   540,
+   320,
+   180
+  ],
+  "n_events": {
+   "key": 947,
+   "true": 9263,
+   "rec": 947
+  },
+  "F_window": 0.2052955815756191,
+  "F_window_median": 0.2052955815756191,
+  "n_groups": 2767,
+  "n_recordings": 53,
+  "stream_file": "/home/es.aau.dk/fi81zw/prjs/event_coding/bk/R_streams/train_day_0052_td__affine_Q_K11.ec07",
+  "check_step_5": {
+   "match": [
+    2516,
+    2516
+   ],
+   "n_rec": [
+    5588,
+    5588
+   ],
+   "n_true": [
+    18923,
+    18923
+   ],
+   "F_m": [
+    0.2052955815756191,
+    0.2052955815756191
+   ]
+  },
+  "check_pass": true
+ },
+ "night": {
+  "recording": "train_night_0004_td",
+  "w": 30,
+  "m": 4,
+  "crop": [
+   60,
+   300,
+   320,
+   180
+  ],
+  "n_events": {
+   "key": 25116,
+   "true": 34378,
+   "rec": 26552
+  },
+  "F_window": 0.5614899425738225,
+  "F_window_median": 0.5614899425738225,
+  "n_groups": 2191,
+  "n_recordings": 40,
+  "stream_file": "/home/es.aau.dk/fi81zw/prjs/event_coding/bk/R_streams/train_night_0004_td__affine_Q_K11.ec07",
+  "check_step_5": {
+   "match": [
+    35786,
+    35786
+   ],
+   "n_rec": [
+    50206,
+    50206
+   ],
+   "n_true": [
+    77262,
+    77262
+   ],
+   "F_m": [
+    0.5614899425738225,
+    0.5614899425738225
+   ]
+  },
+  "check_pass": true
+ },
+ "all": {
+  "recording": "zurich_city_01_f",
+  "w": 1830,
+  "m": 4,
+  "crop": [
+   0,
+   0,
+   640,
+   480
+  ],
+  "n_events": {
+   "key": 511691,
+   "true": 619390,
+   "rec": 510868
+  },
+  "F_window": 0.5415913888687361,
+  "F_window_median": 0.5415913888687361,
+  "n_groups": 1311,
+  "n_recordings": 41,
+  "stream_file": "/data/fi81zw@es.aau.dk/event_coding/ds/R_streams/zurich_city_01_f__affine_Q_K11.ec07",
+  "check_step_5": {
+   "match": [
+    306069,
+    306069
+   ],
+   "n_rec": [
+    510868,
+    510868
+   ],
+   "n_true": [
+    619390,
+    619390
+   ],
+   "F_m": [
+    0.5415913888687361,
+    0.5415913888687361
+   ]
+  },
+  "check_pass": true
+ }
+}

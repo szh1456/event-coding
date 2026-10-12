@@ -1,16 +1,17 @@
-"""Directives 010 and 011: the figures of the recorded experiments, drawn from committed files.
+"""Directives 010 to 012: the figures of the recorded experiments, drawn from committed files.
 
   python3 scripts/paper_figures.py ETRAM_REPORT.json DSEC_REPORT.json OUTDIR [RECON_DIR]
 
 ETRAM_REPORT is ``results/bk/report.json`` (directive 007), DSEC_REPORT is ``results/ds/report.json``
 (directive 009). Three strata are drawn: ``day`` and ``night`` of the first and ``all`` of the second.
 All values are the medians over recordings of the reports, frozen configuration. Nothing is computed
-here but percentages and the images of Section 5 of directive 011. Each figure is written as PDF and
+here but percentages and the images of Section 5 of directive 011, with the selection of
+directive 012. Each figure is written as PDF and
 PNG, with its plotted values as JSON.
 
 fig_bits_all   Bits against fidelity, matched coder, working grid, from ``tables/2_headline/Q``. One
                panel per stratum and one row per group length K. In each row, at the fidelity F of
-               the codec, a circle marks the bits of the codec and a ring the bits of the cheapest
+               the codec (REMAKE in the manuscript), a circle marks the bits of the codec and a ring the bits of the cheapest
                subset scheme at that fidelity (``bits_base``), both as a percentage of the bits of
                sending every event (``bits_direct``). The label is the gain G of the report.
 
@@ -92,7 +93,7 @@ def fig_bits_all(reports, out):
         ax.tick_params(axis="y", length=0)
         ax.grid(axis="x", color="#e4e3dd", lw=0.5, zorder=0)
     axes[-1].set_xlabel("bits sent, % of sending every event", labelpad=1)
-    axes[0].legend(handles=[Line2D([], [], ls="", marker="o", ms=4.6, color=BLUE, mec="white", label="codec"),
+    axes[0].legend(handles=[Line2D([], [], ls="", marker="o", ms=4.6, color=BLUE, mec="white", label="REMAKE"),
                             Line2D([], [], ls="", marker="o", ms=4.6, mfc="white", mec=INK, mew=0.9,
                                    label="cheapest subset scheme, same $F$")],
                    loc="upper center", bbox_to_anchor=(0.5, 1.42), ncol=2, frameon=False, fontsize=6.5,
