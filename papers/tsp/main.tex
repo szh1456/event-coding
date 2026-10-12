@@ -41,12 +41,12 @@ Above it the code describes one number per pixel. Beyond a threshold set by the 
 the pixel it describes nothing, because the events can be regenerated from the edge and its motion,
 and what remains is the motion, at a cost that grows at most logarithmically with the path. The
 rate-distortion function is exact in the first regime and known within $0.255$ bit per pixel in the
-second. These results lead to a codec that transmits the events of one window as a template and one
+second. These results lead to REMAKE, a codec that transmits the events of one window as a template and one
 affine map for each later window, and we quantify what moving events loses against regenerating
 them.
-% Verified against the final experiments (reports 007 and 009) on 2026-10-11.
+% Verified against the final experiments (reports 007, 009 and 013) on 2026-10-12.
 On recordings from a static camera and from a moving car, with regions that the sender finds
-itself and with the bytes of a complete stream as the cost, the codec needs fewer bits than schemes that
+itself and with the bytes of a complete stream as the cost, REMAKE needs fewer bits than schemes that
 send a subset of the events at equal fidelity once a group holds four windows or more, and its
 advantage shrinks as the time bin of the receiver shortens.
 \end{abstract}
@@ -115,13 +115,12 @@ $M$.
 by the events of a key window, which the receiver moves along a fitted affine map. Moved events
 keep the phases of the pixels they came from, and we show that this doubles the timing error of the
 ideal decoder at equal event spacings (Proposition~\ref{prop:moved}). The sender finds its regions
-on a fixed block grid, and the stream is complete, so that its bytes are the cost. We measure the
-codec on recordings from a static camera \cite{verma2024etram} and, with the same configuration, on
-recordings from a moving car \cite{gehrig2021dsec}, against schemes that send a subset of the
-events.
+on a fixed block grid, and the stream is complete, so that its bytes are the cost. We measure this
+codec, REMAKE, on recordings from a static camera \cite{verma2024etram} and from a moving car
+\cite{gehrig2021dsec}, against schemes that send a subset of the events.
 
 Section~\ref{sec:model} states the model. Sections~\ref{sec:lossless} and~\ref{sec:tolerance}
-contain the theory. Section~\ref{sec:codec} describes the codec, and Section~\ref{sec:experiments}
+contain the theory. Section~\ref{sec:codec} describes REMAKE, and Section~\ref{sec:experiments}
 the measurements. Proofs are in the appendices. Rates are in nats unless bits are named, $\|\cdot\|$
 is the Euclidean norm of a vector and the spectral norm of a matrix, and $[x]^+=\max(x,0)$.
 
@@ -437,8 +436,9 @@ here.
 
 \section{A Regenerating Codec}\label{sec:codec}
 The decoder \eqref{eq:regen} needs the edge and the flow. A practical sender has neither. It has
-the events. The codec of this section replaces the edge by events that the receiver already holds
-and the flow by maps that the sender fits, and it finds its regions without any annotation.
+the events. The codec of this section, REMAKE (REgeneration by Mapping Affine Key Events), replaces
+the edge by events that the receiver already holds and the flow by maps that the sender fits, and it
+finds its regions without any annotation.
 
 \subsection{Regions, Key Events and Groups}
 Time is cut into windows of length $T_0$, and consecutive windows form groups of $K$. The sensor is
@@ -485,7 +485,8 @@ events and the maps, each of the two preceded by its length. The regions are not
 blocks that hold key events, and the maps follow in the raster order of these blocks, as
 differences along $m$ in a variable-length integer code, compressed with Zstandard
 \cite{rfc8878}. The bits of a group are eight times the bytes of its record. The header, 28 bytes
-per stream, is less than $10^{-3}$ of a stream and is left out. Every fidelity of this codec in
+per stream, is less than $10^{-3}$ of a stream and is left out. A record is complete when the last
+window of its group has arrived, so the sender delays a stream by one group. Every fidelity of REMAKE in
 Section~\ref{sec:experiments} is measured on events that a decoder rebuilds from the bytes alone.
 
 Two event coders serve the key events and all schemes that we compare with. The \emph{transport
@@ -498,7 +499,7 @@ coded at one pixel and the time bin of that grid, because a map moves them by wh
 keeps their time bin.
 
 \subsection{Moved Events Against Regenerated Events}
-The codec differs from the decoder \eqref{eq:regen} in three ways. It moves the phases of the key
+REMAKE differs from the decoder \eqref{eq:regen} in three ways. It moves the phases of the key
 pixels where \eqref{eq:regen} outputs the mean over the phase, it moves the jitter of the key
 events, and it moves a fixed number of events. The first two have a price that the model gives
 exactly.
@@ -510,7 +511,7 @@ $i$ at the time $\tilde T_{i,k}=T_{j,k}+t_i-t_j$. Then
   \frac1n\,\E\|T_i-\tilde T_i\|^2=D_{A,i}+D_{A,j}+\frac{4n^2-1}{12}\,(\tau_i-\tau_j)^2 .
 \end{equation}
 \end{proposition}
-With equal event spacings the error is $2D_A$, twice that of \eqref{eq:regen}: the codec trades a
+With equal event spacings the error is $2D_A$, twice that of \eqref{eq:regen}: REMAKE trades a
 factor of two in the timing error for not needing the edge. Unequal spacings, as under a change of
 scale, add the last term, which grows with the square of the number of events per pixel. If the
 moved events fall on their own pixel, as for an object that is nearly at rest, the phases coincide
@@ -565,7 +566,7 @@ bin length.
 
 \section{Experiments}\label{sec:experiments}
 Section~\ref{sec:regimes} checks Theorem~\ref{thm:pixel} on the model. The other sections measure
-the codec of Section~\ref{sec:codec} on recorded streams.
+REMAKE on recorded streams.
 
 \subsection{Protocol}
 \emph{Data.} The recordings from a static camera are the 112 recordings of the training split of
@@ -573,24 +574,30 @@ eTraM \cite{verma2024etram}, 61 by day and 51 by night, from a sensor of $1280\t
 above a road, with $2.4\times10^{10}$ events. The recordings from a moving camera are the 41
 training sequences of DSEC \cite{gehrig2021dsec}, left event camera, $640\times480$ pixels, on a
 car, with $3.7\times10^{10}$ events in $2634$~s. A window of the median DSEC sequence holds $1.15$
-events per pixel, against $0.04$ for eTraM.
+events per pixel, against $0.04$ for eTraM. Each recording is replayed as a stream, in the order
+of its events.
 
 \emph{Codec.} Windows have $T_0=33.3$~ms. Groups of $K=2$, $4$, $8$ and $11$ windows share their
 key window, which is taken every $3$~s of an eTraM recording and every $2$~s of a DSEC sequence.
 The working grid has $\Delta_x=2$ pixels and $\Delta_t=T_0/3=11.1$~ms, and the event coder is the
-matched coder on that grid unless the transport coder is named. Twelve eTraM recordings, every
-tenth by day and by night, select the block side among $20$, $40$ and $80$ pixels and the
-threshold among $1/16$, $1/8$, $1/4$, $1/2$ and $1$ event per pixel. The criterion is the bits
-that the codec saves against the subset schemes at equal fidelity for $K=4$, as a share of the
-bits of all events. It selects $B=20$ and $\psi=1$, which then stay fixed for the other 100 eTraM
-recordings and, unchanged, for DSEC. The selected threshold is the largest candidate. The saving
-grows with the threshold over the whole range while the fidelity falls, so the threshold acts as
-a rate control, and Section~\ref{sec:bits} reports the two ends of the range.
+matched coder on that grid unless the transport coder is named. Each dataset is calibrated on a
+tuning subset of its own: twelve eTraM recordings, every tenth by day and by night, and five DSEC
+sequences, every tenth of the sorted list. On it the block side is selected among $20$, $40$ and
+$80$ pixels and the threshold among $1/16$, $1/8$, $1/4$, $1/2$ and $1$ event per pixel. The
+criterion is the bits that REMAKE saves against the subset schemes at equal fidelity for $K=4$, as
+a share of the bits of all events. It selects $B=20$ and $\psi=1$ on both datasets. On DSEC
+the runner-up, $B=40$ and $\psi=1$, saves $0.086$ of the bits of all events against $0.090$. The configuration is then fixed, and every
+result below is over the other 100 eTraM recordings and 36 DSEC sequences. The selected threshold
+is the largest candidate. The saving grows with the threshold over the whole range while the
+fidelity falls, so the threshold acts as a rate control, and Section~\ref{sec:bits} reports the
+two ends of the range. Only $B$ and $\psi$ are calibrated, and $T_0$, $K$, the grids and the
+coders are set in advance. The regions, the key events and the maps are computed from the stream,
+for every group anew.
 
 \emph{Statistics.} A recording enters with the sums over its groups, and we report the median over
 recordings, with a 95\% interval from a bootstrap over recordings where one is given. Of the 100
 eTraM recordings, 93 hold the ten groups that we require (53 by day and 40 by night, 4958 groups).
-The DSEC sequences are shorter, so we require five groups there, and all 41 enter, with 1311
+The DSEC sequences are shorter, so we require five groups there, and all 36 enter, with 1189
 groups.
 
 \subsection{The Three Regimes}\label{sec:regimes}
@@ -630,19 +637,19 @@ $D_{A,i}$. A code that describes every event time, then one number per pixel, th
 therefore within $0.26$ bit per event of the limit in all three regimes.
 
 \subsection{Total Bits Against Fidelity}\label{sec:bits}
-% Numbers: docs/directives/reports/007.md (eTraM) and 009.md (DSEC); 001.md and 003.md where named.
+% Numbers: docs/directives/reports/007.md (eTraM) and 013.md over results/dt/report.json (DSEC); 001.md and 003.md where named.
 \begin{figure}[t]
 \centering
-% Figure: results/paper/fig_bits_all.pdf, directive 010 at eb8cb59.
+% Figure: results/paper/fig_bits_all.pdf, directive 013 at 8623ddb.
 \figorbox{figs/fig_bits_all.pdf}
-\caption{Bits per event against fidelity on the working grid for groups of $K$ windows: the codec,
-the subset schemes and random thinning at the fidelity of the codec, and the key events repeated
-without motion.}
+\caption{Bits of REMAKE and of the cheapest subset scheme at the fidelity $F$ of REMAKE, as a
+percentage of the bits of all events, for groups of $K$ windows. Matched coder, working grid. The
+labels give $G$.}
 \label{fig:bits}
 \end{figure}
 \begin{table}[t]
 \centering
-\caption{The codec with the affine map on the working grid, matched coder. $b$ and
+\caption{REMAKE on the working grid, matched coder. $b$ and
 $b_{\mathrm{sub}}$ in bits per event, $G_{\mathrm{rep}}$ for the repeated key events, with the ratio
 taken per recording, $G_{\mathrm T}$ with the transport coder.}
 \label{tab:headline}
@@ -655,60 +662,71 @@ eTraM, day   & 4  & 0.71 & 0.42 & 0.65 & 1.55 & 2.57 & 2.68\\
              & 11 & 0.62 & 0.16 & 0.53 & 3.26 & 4.13 & 5.96\\
 eTraM, night & 4  & 0.65 & 0.35 & 0.57 & 1.62 & 1.82 & 2.85\\
              & 11 & 0.57 & 0.13 & 0.48 & 3.64 & 2.45 & 6.62\\
-DSEC         & 4  & 0.68 & 0.52 & 0.67 & 1.30 & 1.50 & 2.37\\
-             & 11 & 0.58 & 0.20 & 0.55 & 2.69 & 1.61 & 5.17\\
+DSEC         & 4  & 0.67 & 0.52 & 0.66 & 1.31 & 1.48 & 2.38\\
+             & 11 & 0.58 & 0.20 & 0.55 & 2.71 & 1.59 & 5.20\\
 \bottomrule
 \end{tabular}
 \end{table}
-Fig.~\ref{fig:bits} shows the bits of the codec against its fidelity, and
-Table~\ref{tab:headline} gives the groups of four and of eleven windows.
+\begin{figure*}[t]
+\centering
+% Figure: results/paper/fig_recon.pdf, directive 013 at 8623ddb (eTraM rows of directive 012).
+\IfFileExists{figs/fig_recon.pdf}{\includegraphics[width=0.82\textwidth]{figs/fig_recon.pdf}}{\fbox{figs/fig_recon.pdf}}
+\caption{Signed event counts per pixel, positive minus negative polarity, of a typical group:
+the key events that REMAKE sends, the true events of window $m=4$, and the events that the
+receiver rebuilds for it from the stream.}
+\label{fig:recon}
+\end{figure*}
+Fig.~\ref{fig:bits} shows the bits of REMAKE against those of the subset schemes at its fidelity,
+and Table~\ref{tab:headline} gives the groups of four and of eleven windows.
 
 \emph{Gain.} On eTraM a group of four windows costs $0.42$ bit per event by day and $0.35$ by
 night and reaches the fidelities $0.71$ and $0.65$. The cheapest subset scheme needs $0.65$ and
 $0.57$ bit at these fidelities, so $G=1.55$ (95\% interval $1.52$ to $1.57$) by day and $1.62$
 ($1.61$ to $1.65$) by night. The gain grows with the group, to $3.26$ and $3.64$ for eleven
-windows, while the fidelity falls to $0.62$ and $0.57$: a further window costs the codec only its
+windows, while the fidelity falls to $0.62$ and $0.57$: a further window costs REMAKE only its
 maps, $3\%$ of a record for $K=4$ and $8\%$ to $10\%$ for $K=11$ on eTraM, and costs a subset
-scheme every event that it keeps. On DSEC, with the configuration of eTraM, $G=1.30$ ($1.29$ to $1.32$) for
-four windows and $2.69$ ($2.61$ to $2.79$) for eleven. Its two locations with five sequences or
-more have $G=1.31$ (35 sequences) and $1.20$ (5 sequences) for four windows.
+scheme every event that it keeps. On DSEC $G=1.31$ ($1.29$ to $1.34$) for four windows and $2.71$
+($2.63$ to $2.88$) for eleven, and $1.32$ for four windows over the 31 sequences from Zurich. The
+key events that REMAKE sends are $21\%$ of the events of a group of four windows by day, $17\%$ by
+night and $22\%$ on DSEC, and $7\%$, $6\%$ and $8\%$ of a group of eleven. The receiver rebuilds the
+rest. Fig.~\ref{fig:recon} shows the rebuilt events of a typical group of each stratum.
 
-\emph{Short groups.} For $K=2$ the codec loses, with $G=0.92$ by day, $0.94$ by night and $0.81$
+\emph{Short groups.} For $K=2$ REMAKE loses, with $G=0.92$ by day, $0.94$ by night and $0.81$
 on DSEC. Half of such a group is its key window, and a key event costs more than an event of a
 subset: a map moves it by whole pixels, so it is coded at one pixel where the subset is coded at
 the two pixels of the grid. The maps repay this in groups of four windows and more.
 
 \emph{Motion.} Key events that are repeated in place, without maps, stay below the subset schemes
-for $K=4$, with $G_{\mathrm{rep}}=0.60$, $0.90$ and $0.87$. The gain of the codec is therefore the
-gain of its maps, a factor $2.57$, $1.82$ and $1.50$ over repetition (the median of the ratio per
+for $K=4$, with $G_{\mathrm{rep}}=0.60$, $0.90$ and $0.88$. The gain of REMAKE is therefore the
+gain of its maps, a factor $2.57$, $1.82$ and $1.48$ over repetition (the median of the ratio per
 recording). Repetition does better where true events stay in the regions. Ten windows after the key window,
-$25\%$ of the true events of eTraM by day still fall into the regions, and $71\%$ on DSEC, where
+$25\%$ of the true events of eTraM by day still fall into the regions, and $70\%$ on DSEC, where
 the whole scene moves. A repeated event there meets some other event in its voxel, and the
-fidelity of repeated windows falls only from $0.38$ to $0.27$ over ten windows on DSEC, against
+fidelity of repeated windows falls only from $0.39$ to $0.26$ over ten windows on DSEC, against
 $0.18$ to $0.07$ on eTraM by day. Such pairs do not need the right motion. For eleven windows
-repetition exceeds the subset schemes at night and on DSEC ($1.40$ and $1.59$), and the ratio
+repetition exceeds the subset schemes at night and on DSEC ($1.40$ and $1.63$), and the ratio
 $G/G_{\mathrm{rep}}$ removes this part.
 
 \emph{Threshold.} From $\psi=1/16$ to $\psi=1$, the bits for $K=4$ fall from $0.62$ to $0.42$ by
 day, from $0.74$ to $0.35$ by night and from $0.72$ to $0.52$ on DSEC, the fidelity falls from
-$0.75$ to $0.71$, from $0.74$ to $0.65$ and from $0.71$ to $0.68$, and $G$ rises from $1.17$ to
-$1.55$, from $0.93$ to $1.62$ and from $1.06$ to $1.30$. The blocks that a lower threshold adds
+$0.75$ to $0.71$, from $0.74$ to $0.65$ and from $0.71$ to $0.67$, and $G$ rises from $1.17$ to
+$1.55$, from $0.93$ to $1.62$ and from $1.06$ to $1.31$. The blocks that a lower threshold adds
 cost key events and return few pairs in the later windows. At $\psi=1$
 the regions are $1\%$ of the blocks of eTraM and hold $83\%$ of the events of the key window by
-day and $69\%$ by night. On DSEC they are $31\%$ of the blocks and hold $87\%$.
+day and $69\%$ by night. On DSEC they are $31\%$ of the blocks and hold $86\%$.
 
 \emph{Affine map against translation.} With one translation per block in place of the affine map,
-the fidelity for $K=11$ is lower by $0.02$ by day, $0.01$ by night and $0.04$ on DSEC. In gain the
+the fidelity for $K=11$ is lower by $0.02$ by day, $0.01$ by night and $0.03$ on DSEC. In gain the
 translation is ahead on eTraM, by $1\%$ to $3\%$, because the shape parameters cost more bits
 there than their pairs return, and the affine map is ahead on DSEC, by $2.5\%$ for $K=4$. On DSEC
 the whole scene moves with the camera: ten windows after the key window the median block has
 moved by $38$ pixels, and $91\%$ of the blocks have a nonzero shape parameter.
 
 \emph{Coders.} With the transport coder all events cost $23.4$, $24.0$ and $22.0$ bits each, and
-with the matched coder $1.56$, $2.04$ and $1.62$. A receiver that counts on the working grid
+with the matched coder $1.56$, $2.04$ and $1.64$. A receiver that counts on the working grid
 needs $7\%$ to $9\%$ of the bits of the transport. The rest buys precision that this receiver
 does not use. Against
-the transport coder the codec gains more, $2.4$ to $2.9$ for four windows and $5.2$ to $6.6$ for
+the transport coder REMAKE gains more, $2.4$ to $2.9$ for four windows and $5.2$ to $6.6$ for
 eleven, because that coder leaves more to save. We take the matched coder as the reference.
 
 \emph{Lossless reference.} A fidelity of one on a voxel grid is not a lossless reconstruction. For
@@ -724,7 +742,7 @@ Theorem~\ref{thm:lossless} states for the model.
 \subsection{Where Regeneration Stops Working}
 \begin{figure}[t]
 \centering
-% Figure: results/paper/fig_limits.pdf, directive 010 at eb8cb59.
+% Figure: results/paper/fig_limits.pdf, directive 013 at 8623ddb.
 \figorbox{figs/fig_limits.pdf}
 \caption{Top: fidelity of a group of four windows against the time bin of the receiver grid, at
 $\Delta_x=2$ pixels. Bottom: fidelity of window $m$ on the working grid, for the affine map (solid)
@@ -736,7 +754,7 @@ $33.3$~ms to one of $1.04$~ms, the fidelity of a group of four windows falls fro
 on eTraM by day, from $0.69$ to $0.47$ by night and from $0.74$ to $0.45$ on DSEC
 (Fig.~\ref{fig:limits}, top). The transport coder serves every grid, and with it the gain falls
 from $2.95$, $3.07$ and $2.73$ to $1.69$, $1.81$ and $1.35$ over this range, and to $1.24$, $1.42$
-and $1.00$ on the grid of one pixel and $1.04$~ms. Moved events carry the phases and the jitter
+and $1.01$ on the grid of one pixel and $1.04$~ms. Moved events carry the phases and the jitter
 of the pixels they came from (Proposition~\ref{prop:moved}), and by \eqref{eq:binfid} a train
 whose offset to the true one is uniform cannot fill bins shorter than the event spacing.
 This is the scaling of the threshold of Theorem~\ref{thm:pixel}. The event spacings of the
@@ -747,26 +765,40 @@ day, and from $0.61$ to between $0.71$ and $0.74$ by night: by \eqref{eq:tau} a 
 spacing, so the same bin is a larger tolerance for it.
 
 \emph{Distance from the key window.} The fidelity of window $m$ falls with $m$, from $0.67$ to
-$0.51$ on eTraM by day, from $0.62$ to $0.49$ by night and from $0.61$ to $0.50$ on DSEC over ten
+$0.51$ on eTraM by day, from $0.62$ to $0.49$ by night and from $0.62$ to $0.50$ on DSEC over ten
 windows (Fig.~\ref{fig:limits}, bottom). The number of reconstructed events does not cause the
-fall: its ratio to the number of true events moves from $0.83$ to $0.80$ by day and from $0.87$ to
+fall: its ratio to the number of true events moves from $0.83$ to $0.80$ by day and from $0.86$ to
 $0.83$ on DSEC. The moved events fall into the wrong voxels. The translation loses more than the affine map, and the difference grows with $m$,
 to $0.03$ by day, $0.01$ by night and $0.04$ on DSEC at the tenth window, as the residual of a
 block translation against the flow accumulates. Two losses are present from the first window on,
-where the fidelity is $0.61$ to $0.67$: the events outside the regions, which hold the key window
-itself to $0.91$, $0.82$ and $0.93$, and the phases and jitter that moved events carry.
+where the fidelity is $0.62$ to $0.67$: the events outside the regions, which hold the key window
+itself to $0.91$, $0.82$ and $0.92$, and the phases and jitter that moved events carry.
+
+\emph{A typical group.} Fig.~\ref{fig:recon} shows both losses in one group of each stratum. The
+group is taken from the recording whose fidelity of window $m=4$, formed from the sums over its
+groups, is the median of the stratum, and it is the group of that recording whose fidelity is
+closest to the recording's. Its fidelity is $0.61$ by day, $0.57$ by night and $0.56$ on DSEC. A
+first version of the figure took the median group, which weights every group equally and by day
+picked a sparse group of fidelity $0.21$. The rule above aggregates as the tables do.
+Where a region holds the key events, the rebuilt edges lie where the true ones are. Where none
+does, nothing is rebuilt, as for the road in the lower half of the DSEC view, whose blocks hold
+fewer than $\psi B^2$ events in the key window. Inside the regions the rebuilt edges are dotted where the true ones are filled, since a
+map moves every key event to one pixel, and a map that enlarges the region spreads the same events
+over more pixels.
 
 \section{Conclusion}
 The pixels on the path of a moving edge share the edge and its motion, and each has a threshold
 phase and a jitter of its own. A lossless code pays for the phase and the jitter at every pixel. A
 timing tolerance removes first the jitter and then the phase from what a code must describe, and
 beyond a threshold set by the event spacing the events are regenerated from the edge and the
-motion alone. A codec built on this, key events moved along affine maps on a block grid, needs
-fewer bits than schemes that send a subset of the events at equal fidelity once a group holds
-four windows, on a static camera and, with the same configuration, on a moving one. Its advantage
+motion alone. REMAKE, a codec built on this, moves key events along affine maps on a block grid.
+Calibrated on a few recordings of each dataset, it needs fewer bits than schemes that send a
+subset of the events at equal fidelity once a group holds four windows, on a static camera and on
+a moving one. Its advantage
 shrinks as the time bin of the receiver shortens, in line with the threshold of the theory. Two
-steps remain open. The codec moves a fixed number of events and keeps its regions for a
-whole group, where a change of scale changes the count and new objects enter. And the theory
+steps remain open. REMAKE moves a fixed number of events, keeps its regions for a whole group and
+its group length and threshold for a whole stream, where a change of scale changes the count, new
+objects enter, and the best group length and threshold vary with the scene. And the theory
 covers one ramp edge in uniform passage, so texture, noise events and threshold mismatch are still
 to be modeled.
 
