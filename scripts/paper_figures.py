@@ -1,31 +1,48 @@
-"""Directives 010 to 012: the figures of the recorded experiments, drawn from committed files.
+"""Directives 010 to 014: the figures of the paper, drawn from committed files.
 
-  python3 scripts/paper_figures.py ETRAM_REPORT.json DSEC_REPORT.json OUTDIR [RECON_DIR]
+  python3 scripts/paper_figures.py --etram ETRAM_REPORT.json --dsec DSEC_REPORT.json --out OUTDIR
+                                   [--recon RECON_DIR] [--tradeoff TRADEOFF.json] [--bridge BRIDGE.json]
 
-ETRAM_REPORT is ``results/bk/report.json`` (directive 007), DSEC_REPORT is ``results/ds/report.json``
-(directive 009). Three strata are drawn: ``day`` and ``night`` of the first and ``all`` of the second.
-All values are the medians over recordings of the reports, frozen configuration. Nothing is computed
-here but percentages and the images of Section 5 of directive 011, with the selection of
-directive 012. Each figure is written as PDF and
-PNG, with its plotted values as JSON.
+ETRAM_REPORT is ``results/bk/report.json`` (directive 007), DSEC_REPORT is ``results/dt/report.json``
+(directive 013). Three strata are drawn: ``day`` and ``night`` of the first and ``all`` of the second.
+Values are medians over recordings, frozen configuration. Nothing is computed here but percentages.
+Each figure is written as PDF and PNG, with its plotted values as JSON.
 
-fig_bits_all   Bits against fidelity, matched coder, working grid, from ``tables/2_headline/Q``. One
-               panel per stratum and one row per group length K. In each row, at the fidelity F of
-               the codec (REMAKE in the manuscript), a circle marks the bits of the codec and a ring the bits of the cheapest
-               subset scheme at that fidelity (``bits_base``), both as a percentage of the bits of
-               sending every event (``bits_direct``). The label is the gain G of the report.
+fig_bits_all   Bits against fidelity at one operating point per K, matched coder, working grid, from
+               ``tables/2_headline/Q``. One panel per stratum and one row per group length K. In each
+               row, at the fidelity F of REMAKE, a circle marks its bits and a ring the bits of the
+               cheapest subset scheme at that fidelity (``bits_base``), both as a percentage of the bits
+               of sending every event (``bits_direct``). The label is the gain G of the report.
+
+fig_tradeoff   Drawn when TRADEOFF.json is given (directive 014, Section 6). One panel per stratum:
+               bits as a percentage of the bits of every event against F, for K = 4 and K = 11, over
+               the five thresholds. Solid with filled markers: REMAKE. Dashed with open markers: the
+               cheapest subset scheme at the fidelity of each point. The threshold rises to the left.
 
 fig_limits     Top: fidelity of a group of four windows against the time bin of the receiver grid,
-               2 px blocks, affine map, from ``tables/6_grids`` (cells ``s2_k1``, ``s2_k3``, ``s2_k8``,
-               ``s2_k32``, a window being 33,333 us). Bottom: fidelity of window m against m on the
-               working grid, from ``tables/5_windows``, for the affine map (solid) and the
-               translation (dashed).
+               2 px blocks, affine map, from ``tables/6_grids`` (cells ``s2_k1``, ``s2_k3``,
+               ``s2_k8``, ``s2_k32``, a window being 33,333 us). Middle: the gain of the transport coder
+               on the same grids, from the same cells. Bottom: fidelity of window m against m on the
+               working grid, from ``tables/5_windows``, affine map (solid) and translation (dashed).
 
-fig_recon      Drawn only when RECON_DIR holds ``recon_images.npz`` and ``recon_selection.json``
-               (directive 011, Section 5). One row per stratum, three columns: the key events that
-               are sent, the true events of window m, and the events that the receiver rebuilds for
-               window m from the stream. Each image is the signed event count per pixel, positive
-               polarity minus negative, clipped to [-2, 2].
+fig_recon      Drawn when RECON_DIR holds ``recon_images.npz`` and ``recon_selection.json``
+               (directives 011 to 013). One row per stratum, three columns: the key events that are
+               sent, the true events of window m, and the events that the receiver rebuilds for window
+               m from the stream. Each image is the signed event count per pixel, positive polarity
+               minus negative, clipped to [-2, 2].
+
+fig_slices     Drawn when the npz also holds the zoom images of directive 014, Section 7. One row per
+               stratum, six columns: the true and the rebuilt events of the zoom square in each third of
+               window m, signed counts per pixel clipped to [-1, 1], with the fidelity of that third on
+               the working grid inside the square.
+
+fig_bridge     Drawn when BRIDGE.json is given (``ec.bridge``, directive 014). Top: timing error per
+               event over D_A against the window m, for the regenerated events, moved events under the
+               exact map (equal and growing spacings) and under the nearest whole-pixel map, with the
+               prediction of Proposition 2 as open markers. Bottom: fidelity on one-pixel voxels
+               against the bin over the event spacing, for the regenerated events, the moved events
+               (exact map, and nearest whole-pixel map), and the moved events of the fitted map scored
+               on whole windows as REMAKE is, with the predictions for bins up to half the spacing.
 """
 from __future__ import annotations
 
@@ -42,6 +59,7 @@ from matplotlib.colors import LinearSegmentedColormap
 from matplotlib.lines import Line2D
 
 BLUE, ORANGE, AQUA = "#2a78d6", "#d6542a", "#1baf7a"      # checked together for color-vision separation
+PURPLE = "#8a5cc2"
 INK, MUTED = "#0b0b0b", "#6f6e69"
 GROUPS = ("K2", "K4", "K8", "K11")
 T0_MS = 33.333
@@ -102,13 +120,16 @@ def fig_bits_all(reports, out):
 
 
 def fig_limits(reports, out):
-    plotted = {"bins_ms": [b for _, b in BINS], "group_fidelity_K4": {}, "window_fidelity": {}}
-    fig, (ax, bx) = plt.subplots(2, 1, figsize=(3.45, 4.1), gridspec_kw={"hspace": 0.42})
+    plotted = {"bins_ms": [b for _, b in BINS], "group_fidelity_K4": {}, "gain_T_K4": {}, "window_fidelity": {}}
+    fig, (ax, gx, bx) = plt.subplots(3, 1, figsize=(3.45, 5.7), gridspec_kw={"hspace": 0.5})
     for label, which, name, color, marker in STRATA:
         tables = reports[which]["tables"]
         F = [tables["6_grids"][name][cell]["F"]["median"] for cell, _ in BINS]
         ax.plot([b for _, b in BINS], F, "-", marker=marker, color=color, lw=0.9, ms=3.8, mec="white", mew=0.5, label=label)
         plotted["group_fidelity_K4"][label] = F
+        Gt = [tables["6_grids"][name][cell]["gain"]["median"] for cell, _ in BINS]
+        gx.plot([b for _, b in BINS], Gt, "-", marker=marker, color=color, lw=0.9, ms=3.8, mec="white", mew=0.5)
+        plotted["gain_T_K4"][label] = Gt
         w = tables["5_windows"][name]
         m = list(range(1, 11))
         aff = [w[f"affine_s2_k3_m{j}"]["median"] for j in m]
@@ -116,14 +137,18 @@ def fig_limits(reports, out):
         bx.plot(m, tra, color=color, lw=0.8, ls=(0, (3, 2)))
         bx.plot(m, aff, "-", marker=marker, color=color, lw=0.9, ms=3.4, mec="white", mew=0.5)
         plotted["window_fidelity"][label] = {"affine": aff, "translation": tra}
-    ax.set_xscale("log")
-    ax.set_xticks([b for _, b in BINS])
-    ax.set_xticklabels(["1.04", "4.17", "11.1", "33.3"])
-    ax.xaxis.set_minor_formatter(matplotlib.ticker.NullFormatter())
-    ax.minorticks_off()
-    ax.set_xlabel("time bin of the receiver grid (ms)", labelpad=1)
+    for a in (ax, gx):
+        a.set_xscale("log")
+        a.set_xticks([b for _, b in BINS])
+        a.set_xticklabels(["1.04", "4.17", "11.1", "33.3"])
+        a.xaxis.set_minor_formatter(matplotlib.ticker.NullFormatter())
+        a.minorticks_off()
+        a.set_xlabel("time bin of the receiver grid (ms)", labelpad=1)
     ax.set_ylabel("fidelity, $K=4$", labelpad=2)
     ax.set_ylim(0.4, 0.8)
+    gx.set_ylabel("gain $G_{\\mathrm{T}}$, $K=4$", labelpad=2)
+    gx.axhline(1.0, color=MUTED, lw=0.5, ls=(0, (2, 2)), zorder=0)
+    gx.set_ylim(0, 3.4)
     ax.legend(loc="lower right", frameon=False, fontsize=6.5, handlelength=1.8, borderaxespad=0.2, labelspacing=0.25)
     bx.set_xticks(range(1, 11))
     bx.set_xlabel("windows since the key window, $m$", labelpad=1)
@@ -132,8 +157,8 @@ def fig_limits(reports, out):
     bx.legend(handles=[Line2D([], [], color=INK, lw=0.9, label="affine map"),
                        Line2D([], [], color=INK, lw=0.8, ls=(0, (3, 2)), label="translation")],
               loc="upper right", frameon=False, fontsize=6.5, handlelength=1.8, borderaxespad=0.2, labelspacing=0.25)
-    _clean(ax)
-    _clean(bx)
+    for a in (ax, gx, bx):
+        _clean(a)
     _finish(fig, out, plotted)
 
 
@@ -166,14 +191,145 @@ def fig_recon(recon_dir, out):
     _finish(fig, out, plotted)
 
 
-if __name__ == "__main__":
-    if len(sys.argv) not in (4, 5):
-        sys.exit("usage: python3 scripts/paper_figures.py ETRAM_REPORT.json DSEC_REPORT.json OUTDIR [RECON_DIR]")
-    reports = [json.loads(Path(p).read_text()) for p in sys.argv[1:3]]
-    outdir = Path(sys.argv[3])
+RHOS = (("B20_rho0.0625", "1/16"), ("B20_rho0.125", "1/8"), ("B20_rho0.25", "1/4"), ("B20_rho0.5", "1/2"),
+        ("B20_rho1.0", "1"))
+TRADE_K = (("K4", BLUE, "o"), ("K11", ORANGE, "s"))
+
+
+def fig_tradeoff(trade, out):
+    plotted = {}
+    fig, axes = plt.subplots(len(STRATA), 1, figsize=(3.45, 0.5 + 1.55 * len(STRATA)), sharex=True,
+                             gridspec_kw={"hspace": 0.3})
+    for ax, (label, _, name, _, _) in zip(axes, STRATA):
+        plotted[label] = {}
+        for K, color, marker in TRADE_K:
+            pts = [trade["strata"][name][K][rho] for rho, _ in RHOS]
+            F = [p["F"] for p in pts]
+            ax.plot(F, [p["bits_pct"] for p in pts], "-", marker=marker, color=color, lw=0.9, ms=3.6,
+                    mec="white", mew=0.5, zorder=3)
+            ax.plot(F, [p["sub_pct"] for p in pts], ls=(0, (3, 2)), marker=marker, color=color, lw=0.8, ms=3.6,
+                    mfc="white", mec=color, mew=0.8, zorder=2)
+            plotted[label][K] = {rho: pts[i] for i, (rho, _) in enumerate(RHOS)}
+        ax.set_title(label, fontsize=7.5, loc="left", pad=2, color=INK)
+        ax.set_ylabel("bits, % of all", labelpad=2)
+        ax.set_ylim(0, None)
+        _clean(ax)
+        ax.grid(color="#e4e3dd", lw=0.5, zorder=0)
+    axes[-1].set_xlabel("fidelity $F$", labelpad=1)
+    handles = [Line2D([], [], color=c, marker=mk, ms=3.6, lw=0.9, mec="white", mew=0.5, label=f"REMAKE, $K={K[1:]}$")
+               for K, c, mk in TRADE_K]
+    handles += [Line2D([], [], color=c, marker=mk, ms=3.6, lw=0.8, ls=(0, (3, 2)), mfc="white", mec=c, mew=0.8,
+                       label=f"subset, $K={K[1:]}$") for K, c, mk in TRADE_K]
+    axes[0].legend(handles=handles, loc="upper center", bbox_to_anchor=(0.5, 1.48), ncol=2, frameon=False,
+                   fontsize=6.5, handlelength=2.2, columnspacing=1.0, labelspacing=0.3)
+    _finish(fig, out, plotted)
+
+
+def fig_slices(recon_dir, out):
+    images = np.load(Path(recon_dir) / "recon_images.npz")
+    sel = json.loads((Path(recon_dir) / "recon_selection.json").read_text())
+    cmap = LinearSegmentedColormap.from_list("signed", [BLUE, "#ffffff", ORANGE])
+    fig, axes = plt.subplots(len(STRATA), 6, figsize=(7.0, 0.35 + 1.18 * len(STRATA)),
+                             gridspec_kw={"hspace": 0.1, "wspace": 0.05})
+    plotted = {}
+    for r, (label, _, name, _, _) in enumerate(STRATA):
+        s = sel[name]
+        plotted[label] = {"zoom": s["zoom"], "zoom_F_bins": s["zoom_F_bins"], "zoom_n_events": s["zoom_n_events"]}
+        for b in range(3):
+            for c, kind in enumerate(("true", "rec")):
+                ax = axes[r, 2 * b + c]
+                img = np.clip(images[f"{name}_zoom_{kind}_b{b}"], -1, 1)
+                ax.imshow(img, cmap=cmap, vmin=-1, vmax=1, interpolation="nearest", aspect="equal")
+                ax.set_xticks([]); ax.set_yticks([])
+                for sp in ax.spines.values():
+                    sp.set_linewidth(0.4); sp.set_color(MUTED)
+                if kind == "rec":
+                    ax.text(0.97, 0.04, f"$F={s['zoom_F_bins'][b]:.2f}$", transform=ax.transAxes, fontsize=6,
+                            color=INK, ha="right", va="bottom",
+                            bbox=dict(facecolor="white", edgecolor="none", pad=0.6, alpha=0.8))
+                if r == 0:
+                    t0, t1 = b * T0_MS / 3, (b + 1) * T0_MS / 3
+                    ax.set_title(("true" if kind == "true" else "rebuilt") + f", {t0:.0f}$-${t1:.0f} ms",
+                                 fontsize=6.8, pad=3)
+                if c == 0 and b == 0:
+                    ax.set_ylabel(label, fontsize=7.5, labelpad=3)
+    _finish(fig, out, plotted)
+
+
+def fig_bridge(br, out):
+    cases = br["cases"]
+    fig, (ax, bx) = plt.subplots(2, 1, figsize=(3.45, 4.6), gridspec_kw={"hspace": 0.62})
+    plotted = {"timing": {}, "fidelity": {}}
+    series = (("regenerated", cases["translation"], "regen", BLUE, "o"),
+              ("moved, exact map", cases["translation"], "exact", ORANGE, "s"),
+              ("moved, exact map, growing spacing", cases["scale"], "exact", PURPLE, "D"),
+              ("moved, nearest whole pixel", cases["subpixel"], "round", AQUA, "^"))
+    for label, c, key, color, marker in series:
+        m = [row["m"] for row in c["per_m"]]
+        y = [row[f"{key}_D_over_DA"] for row in c["per_m"]]
+        ax.plot(m, y, "-", marker=marker, color=color, lw=0.9, ms=3.4, mec="white", mew=0.5, label=label, zorder=3)
+        if key != "regen":
+            pr = [row[f"{key}_pred_over_DA"] for row in c["per_m"]]
+            ax.plot(m, pr, ls="", marker=marker, ms=5.2, mfc="none", mec=INK, mew=0.5, zorder=4)
+        else:
+            pr = None
+        plotted["timing"][label] = {"m": m, "measured": y, "predicted": pr}
+    ax.set_xticks(range(1, 11))
+    ax.set_xlabel("windows since the key window, $m$", labelpad=1)
+    ax.set_ylabel("timing error / $D_{A}$", labelpad=2)
+    ax.set_ylim(0, None)
+    ax.legend(loc="lower center", bbox_to_anchor=(0.5, 1.0), ncol=2, frameon=False, fontsize=6.2, handlelength=1.8,
+              borderaxespad=0.2, labelspacing=0.25, columnspacing=1.0)
+    dts = cases["translation"]["dt_over_tau"]
+    fseries = (("regenerated", cases["translation"]["fidelity"]["pixel"]["regen"], BLUE, "o", "-"),
+               ("moved, exact map", cases["translation"]["fidelity"]["pixel"]["exact"], ORANGE, "s", "-"),
+               ("moved, nearest whole pixel", cases["subpixel"]["fidelity"]["pixel"]["round"], AQUA, "^", "-"),
+               ("moved, fitted map, whole windows", cases["subpixel"]["fidelity"]["window"]["fit"], INK, "v", "-"))
+    for label, y, color, marker, ls in fseries:
+        bx.plot(dts, y, ls=ls, marker=marker, color=color, lw=0.9, ms=3.4, mec="white", mew=0.5, label=label, zorder=3)
+        plotted["fidelity"][label] = y
+    th = cases["translation"]["fidelity_theory"]
+    xs = [d for d in dts if d <= 0.5]
+    bx.plot(xs, [th["regen"][dts.index(d)] for d in xs], color=BLUE, lw=0.5, ls=(0, (1, 1.5)), zorder=2)
+    bx.plot(xs, [th["moved"][dts.index(d)] for d in xs], color=ORANGE, lw=0.5, ls=(0, (1, 1.5)), zorder=2)
+    plotted["fidelity"]["dt_over_tau"] = dts
+    plotted["fidelity"]["theory"] = th
+    bx.set_xscale("log")
+    bx.set_xlabel("time bin / event spacing, $\\Delta_t/\\tau$", labelpad=1)
+    bx.set_ylabel("fidelity, 1-pixel voxels", labelpad=2)
+    bx.set_ylim(0, 1.0)
+    bx.xaxis.set_major_formatter(matplotlib.ticker.FuncFormatter(lambda v, _: f"{v:g}"))
+    bx.legend(loc="upper left", frameon=False, fontsize=6.2, handlelength=1.8, borderaxespad=0.2, labelspacing=0.25)
+    for a in (ax, bx):
+        _clean(a)
+    _finish(fig, out, plotted)
+
+
+def main(argv=None):
+    import argparse
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--etram", required=True)
+    ap.add_argument("--dsec", required=True)
+    ap.add_argument("--out", required=True)
+    ap.add_argument("--recon")
+    ap.add_argument("--tradeoff")
+    ap.add_argument("--bridge")
+    a = ap.parse_args(argv)
+    reports = [json.loads(Path(p).read_text()) for p in (a.etram, a.dsec)]
+    outdir = Path(a.out)
     outdir.mkdir(parents=True, exist_ok=True)
     fig_bits_all(reports, outdir / "fig_bits_all")
     fig_limits(reports, outdir / "fig_limits")
-    if len(sys.argv) == 5:
-        fig_recon(sys.argv[4], outdir / "fig_recon")
+    if a.recon:
+        fig_recon(a.recon, outdir / "fig_recon")
+        if "day_zoom_true_b0" in np.load(Path(a.recon) / "recon_images.npz").files:
+            fig_slices(a.recon, outdir / "fig_slices")
+    if a.tradeoff:
+        fig_tradeoff(json.loads(Path(a.tradeoff).read_text()), outdir / "fig_tradeoff")
+    if a.bridge:
+        fig_bridge(json.loads(Path(a.bridge).read_text()), outdir / "fig_bridge")
     print("wrote the figures under", outdir)
+
+
+if __name__ == "__main__":
+    main()

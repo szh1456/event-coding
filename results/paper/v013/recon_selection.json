@@ -1,0 +1,136 @@
+{
+ "day": {
+  "recording": "train_day_0061_td",
+  "w": 930,
+  "m": 4,
+  "crop": [
+   0,
+   360,
+   320,
+   180
+  ],
+  "n_events": {
+   "key": 45864,
+   "true": 38042,
+   "rec": 46217
+  },
+  "F_window": 0.611839872684508,
+  "F_window_median": 0.2052955815756191,
+  "n_groups": 2767,
+  "n_recordings": 53,
+  "stream_file": "/home/es.aau.dk/fi81zw/prjs/event_coding/bk/R_streams/train_day_0061_td__affine_Q_K11.ec07",
+  "check_step_5": {
+   "match": [
+    26143,
+    26143
+   ],
+   "n_rec": [
+    46221,
+    46221
+   ],
+   "n_true": [
+    39236,
+    39236
+   ],
+   "F_m": [
+    0.611839872684508,
+    0.611839872684508
+   ]
+  },
+  "check_pass": true,
+  "F_rec": 0.6034028496092085,
+  "F_rec_median": 0.6034028496092085,
+  "n_recordings_F_rec": 53,
+  "rule": "012"
+ },
+ "night": {
+  "recording": "train_night_0022_td",
+  "w": 840,
+  "m": 4,
+  "crop": [
+   0,
+   540,
+   320,
+   180
+  ],
+  "n_events": {
+   "key": 54360,
+   "true": 62090,
+   "rec": 63209
+  },
+  "F_window": 0.5671018410567179,
+  "F_window_median": 0.5614899425738225,
+  "n_groups": 2191,
+  "n_recordings": 40,
+  "stream_file": "/home/es.aau.dk/fi81zw/prjs/event_coding/bk/R_streams/train_night_0022_td__affine_Q_K11.ec07",
+  "check_step_5": {
+   "match": [
+    66396,
+    66396
+   ],
+   "n_rec": [
+    104994,
+    104994
+   ],
+   "n_true": [
+    129165,
+    129165
+   ],
+   "F_m": [
+    0.5671018410567179,
+    0.5671018410567179
+   ]
+  },
+  "check_pass": true,
+  "F_rec": 0.5673441294068245,
+  "F_rec_median": 0.5673975462062096,
+  "n_recordings_F_rec": 40,
+  "rule": "012"
+ },
+ "all": {
+  "recording": "zurich_city_01_d",
+  "w": 990,
+  "m": 4,
+  "crop": [
+   0,
+   0,
+   640,
+   480
+  ],
+  "n_events": {
+   "key": 488843,
+   "true": 559694,
+   "rec": 483752
+  },
+  "F_window": 0.5610486790883285,
+  "F_window_median": 0.5436291180249044,
+  "n_groups": 1189,
+  "n_recordings": 36,
+  "stream_file": "/data/fi81zw@es.aau.dk/event_coding/ds/R_streams/zurich_city_01_d__affine_Q_K11.ec07",
+  "check_step_5": {
+   "match": [
+    292712,
+    292712
+   ],
+   "n_rec": [
+    483752,
+    483752
+   ],
+   "n_true": [
+    559694,
+    559694
+   ],
+   "F_m": [
+    0.5610486790883285,
+    0.5610486790883285
+   ]
+  },
+  "check_pass": true,
+  "F_rec": 0.558458224284512,
+  "F_rec_median": 0.5570601342778192,
+  "n_recordings_F_rec": 36,
+  "rule": "012",
+  "subset": "reporting subset of directive 013 (36 sequences)",
+  "config": "B20_rho1.0"
+ }
+}
