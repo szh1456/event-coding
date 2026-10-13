@@ -219,21 +219,21 @@ of the companion project.
 | source | W. Dinkelbach, "On Nonlinear Fractional Programming," Management Science, vol. 13, no. 7, pp. 492-498, 1967, DOI 10.1287/mnsc.13.7.492 |
 | source type | primary (journal article) |
 | used in | `ec/hybrid.py` (directive 017): the objective `U = 2 M - phi N_rec` as the linearization of the fidelity `F = 2 M / (N_rec + N_true)` |
-| version / conditions | title and DOI from the publisher's DOI page as listed in a web search on 2026-10-13, and volume, issue and pages from the RePEc record of the same article. The page was not opened and the text was not read |
-| status | `PARTIAL`: citation verified from the publisher's listing and RePEc; content not read |
+| version / conditions | JSTOR copy (stable URL https://www.jstor.org/stable/2627691) supplied by the author as an OCR transcript on 2026-10-13 and read in full; its cover page prints Management Science, Mar. 1967, vol. 13, no. 7, Series A, pp. 492-498. The parametric theorem (Section 2) and the iteration q_{k+1} = N(x_k)/D(x_k) (Section 3) were checked in that text. The DOI is from the publisher's listing and is not printed on the JSTOR copy. Transcript kept in the claude.ai Project as `refs/dinkelbach1967.md` |
+| status | `VERIFIED` for the claim and for venue, volume, issue and pages; DOI `PARTIAL` (publisher listing only) |
 | does not support | convergence after one step; `ec/hybrid.py` performs one step |
 
 ### `shoham1988`
 
 | field | value |
 |---|---|
-| claim supported | For an additive distortion and an additive rate over independently coded units, the operating points of a Lagrangian with one common multiplier solve the constrained allocation on the convex hull |
-| source | Y. Shoham, A. Gersho, "Efficient bit allocation for an arbitrary set of quantizers," IEEE Trans. Acoustics, Speech, and Signal Processing, 1988 (volume, issue, pages and DOI not verified) |
+| claim supported | For any lambda >= 0, the allocation B*(lambda) that minimizes the sum of distortions plus lambda times the total rate over independently quantized units also solves the constrained problem with rate budget R_c = R(B*(lambda)) (Section III, "Theorem") |
+| source | Y. Shoham, A. Gersho, "Efficient bit allocation for an arbitrary set of quantizers," IEEE Trans. Acoustics, Speech, and Signal Processing (year, volume, issue, pages and DOI not verified) |
 | source type | primary (journal article) |
 | used in | `ec/hybrid.py` (directive 017): the rule that an action is taken when its gain per bit is at least `lam` |
-| version / conditions | Crossref returned HTTP 429 on 2026-10-13; only secondary pages that cite the article were seen |
-| status | `UNRESOLVED`: metadata not verified from a primary record. Not to be cited until verified |
-| does not support | optimality of the greedy claims, of estimated rates, or of a single pass |
+| version / conditions | full text supplied by the author as an OCR transcript on 2026-10-13 and read in full; title, authors and the theorem with its proof are in that text. The transcript does not carry the journal name, year, volume, issue or pages. Transcript kept in the claude.ai Project as `refs/shoham1988.md` |
+| status | `PARTIAL`: content and authorship verified from the article text; venue, year, volume, issue, pages and DOI `UNRESOLVED` |
+| does not support | the existence of a lambda that meets a given budget exactly (the paper states the theorem does not guarantee it); optimality of greedy claims, of estimated rates, or of a single pass; non-additive rates |
 
 ### `sullivan1998`
 
@@ -243,7 +243,7 @@ of the companion project.
 | source | G. J. Sullivan, T. Wiegand, "Rate-distortion optimization for video compression," IEEE Signal Processing Magazine, vol. 15, no. 6, pp. 74-90 |
 | source type | primary (magazine article) |
 | used in | `ec/hybrid.py` (directive 017) and the manuscript, Section V, as the precedent of the mode choice |
-| version / conditions | title, authors, venue, volume, issue and pages from the authors' institutional publication page (Microsoft Research), read on 2026-10-13; the year and the DOI are not shown there |
+| version / conditions | title, authors, venue, volume, issue and pages from the authors' institutional publication page (Microsoft Research), read on 2026-10-13; the year and the DOI are not shown there. Full text supplied by the author as an OCR transcript on 2026-10-13: it confirms title, authors and the Lagrangian formulation of the encoder's choices; it does not print venue metadata. Transcript kept in the claude.ai Project as `refs/sullivan1998.md` |
 | status | `PARTIAL`: year and DOI not verified |
 | does not support | anything about event data |
 
@@ -255,6 +255,30 @@ of the companion project.
 | source | T. Wiegand, H. Schwarz, A. Joch, F. Kossentini, G. J. Sullivan, "Rate-Constrained Coder Control and Comparison of Video Coding Standards," IEEE Trans. Circuits and Systems for Video Technology, July 2003 |
 | source type | primary (journal article, author's copy) |
 | used in | `ec/hybrid.py` (directive 017) and the manuscript, Section V |
-| version / conditions | title, authors, journal, month and year, and the mode decision of its Eq. (7), from the author's copy at iphome.hhi.de, read on 2026-10-13; volume, issue and pages are not printed on that copy |
+| version / conditions | title, authors, journal, month and year, and the mode decision of its Eq. (7), from the author's copy at iphome.hhi.de, read on 2026-10-13; volume, issue and pages are not printed on that copy. An OCR transcript supplied by the author on 2026-10-13 confirms J_MODE = D_REC + lambda_MODE R_REC minimized per macroblock over mode sets that contain INTRA, SKIP and INTER modes. Transcript kept in the claude.ai Project as `refs/wiegand2003.md` |
 | status | `PARTIAL`: volume, issue, pages and DOI not verified |
 | does not support | anything about event data |
+
+### `everett1963`
+
+| field | value |
+|---|---|
+| claim supported | If x* maximizes the Lagrangian H(x) - sum_k lambda_k C_k(x) for nonnegative lambda_k, then x* maximizes H among all x with C_k(x) <= C_k(x*); with separable payoff and cost the unconstrained problem decouples into independent cell problems, and gaps in the attainable resource levels arise where the cell payoff is not concave in the resource (Theorem 1 and its discussion) |
+| source | H. Everett III, "Generalized Lagrange Multiplier Method for Solving Problems of Optimum Allocation of Resources," Operations Research, vol. 11, no. 3, pp. 399-417, 1963, DOI 10.1287/opre.11.3.399 |
+| source type | primary (journal article) |
+| used in | directive 017 rework of `ec/hybrid.py`: one multiplier shared by all blocks and windows, and the statement that budgets falling in a gap are reached only by mixing two multipliers |
+| version / conditions | INFORMS copy supplied by the author as an OCR transcript on 2026-10-13 and read in full; the cover page prints the citation and DOI given here. Transcript kept in the claude.ai Project as `refs/everett1963.md` |
+| status | `VERIFIED` |
+| does not support | optimality for non-separable costs, such as coded rates that depend on the joint content of several blocks |
+
+### `chou1989`
+
+| field | value |
+|---|---|
+| claim supported | The generalized BFOS algorithm minimizes delta(S) + lambda I(S) over pruned subtrees S of a tree T, and pruning in order of the smallest magnitude of slope of Delta u(S_t) yields nested subtrees that trace the lower boundary of the convex hull of the achievable distortion-rate points |
+| source | P. A. Chou, T. Lookabaugh, R. M. Gray, "Optimal Pruning with Applications to Tree-Structured Source Coding and Modeling," IEEE Trans. Information Theory (year, volume, issue, pages and DOI not verified) |
+| source type | primary (journal article) |
+| used in | directive 017 rework of `ec/hybrid.py`: the region as parent node of its blocks, kept or pruned by the same multiplier |
+| version / conditions | full text supplied by the author as an OCR transcript on 2026-10-13; title, authors, abstract and Sections I-II read. The transcript does not carry journal metadata. Transcript kept in the claude.ai Project as `refs/chou1989.md` |
+| status | `PARTIAL`: content and authorship verified from the article text; venue, year, volume, issue, pages and DOI `UNRESOLVED` |
+| does not support | anything about event data; optimality when the cost of a node depends on its siblings |
