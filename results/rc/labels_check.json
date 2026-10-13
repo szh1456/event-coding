@@ -1,0 +1,167 @@
+{
+ "directive": "017",
+ "sequences": {
+  "interlaken_00_d": {
+   "t_offset_us": 51832499776,
+   "key_windows": [
+    30,
+    90,
+    150,
+    210,
+    270,
+    330,
+    390,
+    450,
+    510,
+    570,
+    630,
+    690,
+    750,
+    810,
+    870,
+    930,
+    990,
+    1050,
+    1110,
+    1170
+   ],
+   "as_stored": {
+    "n_boxes": 0,
+    "median_ratio": null
+   },
+   "minus_t_offset": {
+    "n_boxes": 43,
+    "median_ratio": 2.0223557022952385
+   }
+  },
+  "interlaken_00_e": {
+   "t_offset_us": 51932499776,
+   "key_windows": [
+    30,
+    90,
+    150,
+    210,
+    270,
+    330,
+    390,
+    450,
+    510,
+    570,
+    630,
+    690,
+    750,
+    810,
+    870,
+    930,
+    990,
+    1050,
+    1110,
+    1170
+   ],
+   "as_stored": {
+    "n_boxes": 0,
+    "median_ratio": null
+   },
+   "minus_t_offset": {
+    "n_boxes": 62,
+    "median_ratio": 2.4688633174430534
+   }
+  },
+  "interlaken_00_f": {
+   "t_offset_us": 52032499776,
+   "key_windows": [
+    30,
+    90,
+    150,
+    210,
+    270,
+    330,
+    390,
+    450,
+    510,
+    570,
+    630,
+    690,
+    750,
+    810,
+    870,
+    930,
+    990,
+    1050,
+    1110,
+    1170
+   ],
+   "as_stored": {
+    "n_boxes": 0,
+    "median_ratio": null
+   },
+   "minus_t_offset": {
+    "n_boxes": 88,
+    "median_ratio": 2.0952849631468586
+   }
+  },
+  "interlaken_00_g": {
+   "t_offset_us": 52107499776,
+   "key_windows": [
+    30,
+    90,
+    150,
+    210,
+    270,
+    330,
+    390,
+    450,
+    510,
+    570,
+    630,
+    690,
+    750,
+    810,
+    870,
+    930,
+    990,
+    1050,
+    1110,
+    1170
+   ],
+   "as_stored": {
+    "n_boxes": 0,
+    "median_ratio": null
+   },
+   "minus_t_offset": {
+    "n_boxes": 119,
+    "median_ratio": 2.1224136688054216
+   }
+  },
+  "thun_00_a": {
+   "t_offset_us": 49599200165,
+   "key_windows": [
+    30,
+    90,
+    150,
+    210,
+    270,
+    330
+   ],
+   "as_stored": {
+    "n_boxes": 0,
+    "median_ratio": null
+   },
+   "minus_t_offset": {
+    "n_boxes": 23,
+    "median_ratio": 2.023345875529786
+   }
+  }
+ },
+ "rule": "per box: (events of the key window in the box / box area) / (events in the ring 5 to 15 px around the box / ring area), the box and ring clipped to the sensor; the first 20 key windows of each sequence; the convention with the larger median over all boxes",
+ "median_ratio": {
+  "as_stored": null,
+  "minus_t_offset": 2.1224136688054216
+ },
+ "n_boxes": {
+  "as_stored": 0,
+  "minus_t_offset": 335
+ },
+ "convention": "minus_t_offset",
+ "pass": true
+}
