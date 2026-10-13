@@ -210,3 +210,51 @@ of the companion project.
 | version / conditions | status as in the brief (V, CVF open-access abstract page; no DOI on that page) |
 | status | `PARTIAL`: citation verified (brief); the full text was not read for this use |
 | does not support | the grid search, the step sizes or the event cap of `cmax_velocity`, which are this project's choices |
+
+### `dinkelbach1967`
+
+| field | value |
+|---|---|
+| claim supported | A ratio objective N(x)/D(x) with D > 0 is maximized by solving the parametric problems max N(x) - q D(x) and updating q to the attained ratio |
+| source | W. Dinkelbach, "On Nonlinear Fractional Programming," Management Science, vol. 13, no. 7, pp. 492-498, 1967, DOI 10.1287/mnsc.13.7.492 |
+| source type | primary (journal article) |
+| used in | `ec/hybrid.py` (directive 017): the objective `U = 2 M - phi N_rec` as the linearization of the fidelity `F = 2 M / (N_rec + N_true)` |
+| version / conditions | title and DOI from the publisher's DOI page as listed in a web search on 2026-10-13, and volume, issue and pages from the RePEc record of the same article. The page was not opened and the text was not read |
+| status | `PARTIAL`: citation verified from the publisher's listing and RePEc; content not read |
+| does not support | convergence after one step; `ec/hybrid.py` performs one step |
+
+### `shoham1988`
+
+| field | value |
+|---|---|
+| claim supported | For an additive distortion and an additive rate over independently coded units, the operating points of a Lagrangian with one common multiplier solve the constrained allocation on the convex hull |
+| source | Y. Shoham, A. Gersho, "Efficient bit allocation for an arbitrary set of quantizers," IEEE Trans. Acoustics, Speech, and Signal Processing, 1988 (volume, issue, pages and DOI not verified) |
+| source type | primary (journal article) |
+| used in | `ec/hybrid.py` (directive 017): the rule that an action is taken when its gain per bit is at least `lam` |
+| version / conditions | Crossref returned HTTP 429 on 2026-10-13; only secondary pages that cite the article were seen |
+| status | `UNRESOLVED`: metadata not verified from a primary record. Not to be cited until verified |
+| does not support | optimality of the greedy claims, of estimated rates, or of a single pass |
+
+### `sullivan1998`
+
+| field | value |
+|---|---|
+| claim supported | In video coders the encoder's choice among modes (motion-compensated prediction, coding of refreshed regions) is made by Lagrangian rate-distortion optimization |
+| source | G. J. Sullivan, T. Wiegand, "Rate-distortion optimization for video compression," IEEE Signal Processing Magazine, vol. 15, no. 6, pp. 74-90 |
+| source type | primary (magazine article) |
+| used in | `ec/hybrid.py` (directive 017) and the manuscript, Section V, as the precedent of the mode choice |
+| version / conditions | title, authors, venue, volume, issue and pages from the authors' institutional publication page (Microsoft Research), read on 2026-10-13; the year and the DOI are not shown there |
+| status | `PARTIAL`: year and DOI not verified |
+| does not support | anything about event data |
+
+### `wiegand2003`
+
+| field | value |
+|---|---|
+| claim supported | Lagrangian mode decision per macroblock among SKIP, INTER and INTRA minimizes D + lambda R |
+| source | T. Wiegand, H. Schwarz, A. Joch, F. Kossentini, G. J. Sullivan, "Rate-Constrained Coder Control and Comparison of Video Coding Standards," IEEE Trans. Circuits and Systems for Video Technology, July 2003 |
+| source type | primary (journal article, author's copy) |
+| used in | `ec/hybrid.py` (directive 017) and the manuscript, Section V |
+| version / conditions | title, authors, journal, month and year, and the mode decision of its Eq. (7), from the author's copy at iphome.hhi.de, read on 2026-10-13; volume, issue and pages are not printed on that copy |
+| status | `PARTIAL`: volume, issue, pages and DOI not verified |
+| does not support | anything about event data |
