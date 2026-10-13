@@ -141,3 +141,19 @@ def test_the_runners_switch_and_their_timing_wrapper(ev):
         assert seen.count("affine") == 2                    # once in each implementation
     finally:
         bc.fit_group, g["fit_group"] = orig
+
+
+def test_fast_decoders_routed_through_the_reference_module(ev):
+    from ec import codec
+    bufs = _streams(ev, (0, 6))
+    ref = [bc.decode_stream(b) for b in bufs]
+    rec_ref = [[bc.reconstruct(h, g, m) for g in gs for m in range(h["K"])] for h, gs in ref]
+    orig = bc.decode_events_T, bc.reconstruct
+    try:
+        codec.use_fast_decoders()
+        assert bc.decode_events_T is fast.decode_events_T and bc.reconstruct is fast.reconstruct
+        got = [bc.decode_stream(b) for b in bufs]
+        assert not _equal([g for _, g in ref], [g for _, g in got])
+        assert not _equal(rec_ref, [[bc.reconstruct(h, g, m) for g in gs for m in range(h["K"])] for h, gs in got])
+    finally:
+        bc.decode_events_T, bc.reconstruct = orig

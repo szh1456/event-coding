@@ -36,3 +36,18 @@ def wrap_fit(wrapper_factory):
     bc.fit_group = wrapper_factory(bc.fit_group)
     g = fast.evaluate_group.__globals__
     g["fit_group"] = wrapper_factory(g["fit_group"])
+
+
+DECODERS = "ec.blockcodec (reference)"
+
+
+def use_fast_decoders():
+    """Route the record decoding of modules that call ``ec.blockcodec`` directly (``decode_stream`` for coder-T
+    payloads, and ``reconstruct``) through ``ec.blockcodec_fast``, whose ``decode_events_T`` and ``reconstruct``
+    equal the reference on every Stage 0 stream. Does nothing under ``EC_CODEC=reference``."""
+    global DECODERS
+    if FAST:
+        bc.decode_events_T = fast.decode_events_T
+        bc.reconstruct = fast.reconstruct
+        DECODERS = "ec.blockcodec_fast.decode_events_T and reconstruct (equal to the reference on every Stage 0 stream)"
+    return DECODERS
