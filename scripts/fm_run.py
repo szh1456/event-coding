@@ -95,6 +95,8 @@ def cache():
 def dsec_events(rid, ws):
     """The events of the groups ``ws`` from the cache: (t, x, y, p) as int64 over the union of their ranges."""
     d = CACHE / rid
+    while not (d / "DONE").exists():                            # the conversion of ``cache`` may still run
+        time.sleep(30)
     W = np.load(d / "w.npy")
     n = np.load(d / "n.npy")
     off = np.concatenate(([0], np.cumsum(n)))
