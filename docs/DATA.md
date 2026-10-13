@@ -61,6 +61,7 @@ were not kept.
 | where | `cnt`, `/data/<user>/event_coding/dsec/`, one directory per sequence, with `<user>` the login name of the user that runs the directive (directive 009, Amendment 1: `/home` on `cnt` has no room for it). Read-only after the download. What a directive computes from these files and keeps on the host goes to `/data/<user>/event_coding/ds/` |
 | reading | `ec.dsec.read_events`. The stored times are used without `t_offset`. The events are not rectified and are used as they are |
 | record | URL, size and SHA-256 of every kept file, in `results/ds/provenance.json` |
+| labels (directive 017, D-017-4) | the DSEC-Detection boxes and tracks, `object_detections/left/tracks.npy` of each of the 41 sequences of `config/population_dsec.yaml`, from the official archive `https://download.ifi.uzh.ch/rpg/DSEC/detection/dsec-det_left_object_detections.zip` only. Kept read-only under `/data/<user>/event_coding/dsec_det/<sequence>/tracks.npy`; the files of every other sequence are deleted after unpacking, and the test-split archive inside it is not extracted. Label times minus the `t_offset` of the event file are on the clock of the events (directive 017, Section 4). URL, size and SHA-256 of the archive and of each kept file in `results/rc/provenance.json` |
 
 The rules for eTraM above are unchanged. A directive that reads DSEC opens no
 recording of eTraM, and the reverse. On `/data`, this project opens, lists and
