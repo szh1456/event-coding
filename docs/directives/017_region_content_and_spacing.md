@@ -3,7 +3,7 @@
 | | |
 |---|---|
 | track | `region content`, short name `rc` |
-| population | eTraM: the reporting recordings of directive 007 and their train annotations. DSEC: the 36 reporting sequences of directive 013 |
+| population | eTraM: the reporting recordings of directive 007 and their train annotations. DSEC: the 36 reporting sequences of directive 013 and their DSEC-Detection labels (Section 4) |
 | results directory | `results/rc/` |
 | report | `docs/directives/reports/017.md` |
 | runs after | directive 016 |
@@ -18,7 +18,7 @@ the blocks of eTraM and hold 83% of the key window's events by day. What
 those blocks contain was never measured. This directive measures three
 things and runs no codec.
 
-1. **What the regions hold** (eTraM). For each region we ask whether it
+1. **What the regions hold** (both datasets). For each region we ask whether it
    touches an annotated object, and whether its map stays in place over
    three windows. The second test separates flicker and swaying
    vegetation from motion. We also measure how much of REMAKE's fidelity
@@ -32,6 +32,14 @@ things and runs no codec.
    with bins of 11.1, 2.78 and 1.04 ms. Section VI-E of the manuscript
    now compares only trends, because the spacings were not measured.
    This turns that comparison into a measurement.
+
+The tasks that the two datasets define for their labels decide what a
+good reconstruction is. eTraM annotates boxes of traffic participants
+with track ids for detection and multi-object tracking
+[verma2024etram]. DSEC-Detection annotates boxes with track ids in the
+event view of DSEC [dsec_detection]. This directive adds those labels for
+the DSEC sequences of the population, so that both datasets are scored on
+the same two tasks.
 
 The results decide two things. First, whether the gain of REMAKE in the
 manuscript is a gain on objects or on clutter. Second, how the distortion
@@ -52,8 +60,11 @@ found:
 
 The estimator was replaced by the median over pixels of per-pixel
 medians, over the key window and the three windows before it. The claim
-order was confirmed equal to that of `fit_group`, ties included. The
-director read no recording.
+order was confirmed equal to that of `fit_group`, ties included. A
+second review found that the DSEC labels are on the absolute clock and
+come at 20 Hz. That finding led to the time-base test of Section 4 and
+to the interpolated boxes of `boxes_at`. The director read no
+recording.
 
 ## 3. Author decisions
 
@@ -70,6 +81,26 @@ unchanged.
 
 **D-017-3, default: as stated in Sections 4 to 6.** The protocol.
 
+**D-017-4, default: authorized.** A change of the data rules of
+`docs/DATA.md`, *DSEC* row *what not*. The executor downloads the
+DSEC-Detection labels and keeps them, read-only, as follows.
+
+- **Source:** the official host only,
+  `https://download.ifi.uzh.ch/rpg/DSEC/detection/dsec-det_left_object_detections.zip`,
+  listed at `https://dsec.ifi.uzh.ch/dsec-detection/` (4.7 MB).
+- **What is kept:** for each of the 41 sequences of
+  `config/population_dsec.yaml`, its `object_detections/left/tracks.npy`.
+  It goes under `/data/<user>/event_coding/dsec_det/<sequence>/`.
+- **What is deleted:** the files of every other sequence, right after
+  unpacking.
+- **Record:** URL, size and SHA-256 of the archive and of each kept file,
+  in `results/rc/provenance.json`.
+- **DATA.md:** the executor adds a row for these labels to the DSEC table
+  of `docs/DATA.md`, citing this directive.
+
+A sequence of the population without labels takes part without boxes,
+and the report lists it.
+
 ## 4. Definitions
 
 **Groups.** The groups of Stage R that directive 016, Section 7, used:
@@ -84,9 +115,26 @@ directive 016 read them, one recording at a time.
   m = 0 to 10.
 - `before` holds those of `[max(0, w - 3) T0, w T0)`.
 
-**Boxes (eTraM).** For m = 0, 1, 2 and 3, the boxes of window `w + m` are
-those that `scripts/fb_run.py:boxes_for(tracks, w + m, W, H)` returns,
-without the track ids.
+**Boxes.** For m = 0, 1, 2 and 3, the boxes of window `w + m` are those
+that `ec.regions.boxes_at(tracks, w + m, W, H)` returns, without the track
+ids. `boxes_at` interpolates each box at the center of the window. The tracks come from `ec.annotations.tracks(ec.annotations.load_boxes(path))`:
+
+- eTraM: the train annotation file;
+- DSEC: the kept `tracks.npy`, whose fields carry the same names. Its
+  boxes are in the unrectified event view, which is the view of our
+  events.
+
+**The time base of the DSEC labels.** Settle it before anything else, as
+directive 001 settled that of eTraM. For each of the first five
+reporting sequences with labels, and for every box of 20 key windows,
+take the ratio of the event density inside the box to the density in
+the ring 5 to 15 px around it. Compute the ratio under two conventions:
+
+1. the label times as stored;
+2. the label times minus the `t_offset` of the event file.
+
+Use the convention with the larger median ratio. If that median is below
+2, stop and report `BLOCKED` with both medians.
 
 **Strata.** Day and night for eTraM. `all` for DSEC.
 
@@ -96,7 +144,8 @@ For every group, call
 
     ec.regions.evaluate_group(windows, g["records"], w, W, H, g, boxes=boxes, before=before)
 
-with `boxes=None` for DSEC. Keep its output per group, under
+on both datasets, with `boxes=None` only for a sequence without labels.
+Keep its output per group, under
 `~/prjs/event_coding/rc/` for eTraM and `/data/<user>/event_coding/ds/rc/`
 for DSEC. Nothing else is computed per group.
 
@@ -107,7 +156,7 @@ recordings with 95% intervals: the bootstrap of directive 007, seed
 20261016, with the entering rule of report 016 (10 groups on eTraM, 5 on
 DSEC). Where a table pools blocks instead, it says so.
 
-**Table 1, objects (eTraM).** Per recording:
+**Table 1, objects (both datasets).** Per recording:
 
 1. the share of active blocks that touch a box dilated by 10 px
    (`blocks.touch[10]`);
@@ -122,16 +171,14 @@ DSEC). Where a table pools blocks instead, it says so.
    - the share of boxes with none there;
    - the share of boxes with at least half there.
 
-**Table 2, the regions by kind (eTraM).** Pool the active blocks of all
-groups of a stratum, split by `touch[10]`. For each part report:
+**Table 2, the regions by kind (both datasets).** Pool the active blocks
+of all groups of a stratum, split by `touch[10]`. For each part report:
 
 - the number of blocks;
 - the share with a static map (`static`);
 - the median speed (`speed_px_per_window`);
 - the median share of pixels with both polarities (`both_polarity`);
 - the median key count (`n_key`).
-
-Add the same columns for all active blocks of DSEC, without the split.
 
 **Table 3, precision against Δt/τ (both datasets).**
 
@@ -146,7 +193,7 @@ Add the same columns for all active blocks of DSEC, without the split.
     Eq. (binfid) for an exact map.
 - Report this once for m = 1 and once for m = 1 to 10.
 - Per stratum, also report the share of active blocks with a finite τ,
-  the median of `covered`, and the median τ. For eTraM, give the median τ
+  the median of `covered`, and the median τ. Give the median τ also
   separately for blocks that touch a box and blocks that do not.
 
 ## 7. Cost
@@ -166,9 +213,11 @@ and the claims of Section 5, with no fit and no codec.
    with no skipped test.
 2. For every group, `checks` is `{"n_key": True, "maps_k4_prefix": True,
    "match_equals_kept": True}`.
-3. No eTraM val or test file was opened, and the annotation root was not
-   listed.
-4. Nothing outside `results/rc/` changed under `results/`.
+3. The time base of the DSEC labels passed the test of Section 4.
+4. No eTraM val or test file was opened, and the annotation root was not
+   listed. Of the DSEC-Detection archive, only the files of the
+   population were kept.
+5. Nothing outside `results/rc/` changed under `results/`.
 
 ## 9. Outputs
 
@@ -177,7 +226,8 @@ and the claims of Section 5, with no fit and no codec.
 | `results/rc/per_recording.json` | per recording, the sums behind Tables 1 and 3 and the number of groups |
 | `results/rc/blocks.json` | per stratum, the pooled block columns behind Tables 2 and 3 (`tau_us`, `covered`, `static`, `speed`, `both_polarity`, `n_key`, `touch`, and `got` and `n_in` per grid and m) |
 | `results/rc/report.json` | Tables 1 to 3 |
-| `results/rc/provenance.json` | commit, host, versions, wall and CPU time, and the files read |
+| `results/rc/labels_check.json` | the two medians of the time-base test of Section 4, per sequence, and the convention used |
+| `results/rc/provenance.json` | commit, host, versions, wall and CPU time, the files read, and the URL, size and SHA-256 of the DSEC-Detection archive and of each kept file |
 
 ## 10. Files
 
@@ -186,8 +236,8 @@ lines of its appendix, ending in one newline.
 
 | file | SHA-256 |
 |---|---|
-| `ec/regions.py` | `afd8b63ac1551a4516412b2d82e463752f7263978fb9efee2597a4218d8af9de` |
-| `tests/test_regions_gate.py` | `f7e38fe63b7582529e450a4d2fd10321e6013798babcd7e833c09a7860c11b6d` |
+| `ec/regions.py` | `647cc106d3854806268205f995b5279067fc6f775f835df6c342a6d54f58d14c` |
+| `tests/test_regions_gate.py` | `540dd7f4955623ccdce3a483e65a0f4a7bc31057c0c1bab2feb1cfd15b8512f8` |
 
 ## Appendix A. `ec/regions.py`
 
@@ -204,8 +254,10 @@ Regions. The active blocks of the group are the blocks of side B that hold key e
 ``ec.blockcodec.decode_stream`` returns them. The key events are all events of the key window in these
 blocks (check ``n_key``).
 
-Boxes. A box is ``(x0, y0, w, h)`` in pixels, top-left corner, as ``scripts/fb_run.py:boxes_for`` returns
-it. Pixel ``(x, y)`` lies in the box dilated by ``d`` pixels if ``x0 - d <= x < x0 + w + d`` and
+Boxes. ``boxes_at`` gives, for every track alive at the center of a window, its box interpolated
+linearly between its labeled frames at that instant and clipped to the sensor, as ``(track_id, (x0, y0,
+w, h))`` in pixels with the top-left corner. Directive 016 took the nearest labeled frame instead, which
+leaves windows without a box when labels come at 20 Hz, as those of DSEC-Detection do. Pixel ``(x, y)`` lies in the box dilated by ``d`` pixels if ``x0 - d <= x < x0 + w + d`` and
 ``y0 - d <= y < y0 + h + d``. For ``d`` = 0 this is the rule of ``ec.downstream.box_scores``.
 
 Precision of a block. For window ``m`` of the group and a grid of ``s`` pixels and ``k`` time bins per
@@ -239,6 +291,21 @@ SPAN_BEFORE = 3
 MIN_PIXELS = 5
 MIN_BOX_EVENTS = 50
 STATIC_PX = 1
+
+
+def boxes_at(tracks, wm: int, width: int, height: int, T0_us: int = bc.T0_US):
+    """Boxes of the tracks alive at the center of window ``wm``, interpolated and clipped to the sensor."""
+    c = (wm + 0.5) * T0_us
+    out = []
+    for tr in tracks:
+        if not (tr.t_first <= c <= tr.t_last):
+            continue
+        x, y, w, h = (float(v) for v in tr.box(c))
+        x0, y0 = max(0.0, x), max(0.0, y)
+        x1, y1 = min(float(width), x + w), min(float(height), y + h)
+        if x1 > x0 and y1 > y0:
+            out.append((int(tr.track_id), (x0, y0, x1 - x0, y1 - y0)))
+    return out
 
 
 def cell_name(cell) -> str:
@@ -600,4 +667,19 @@ def test_spacing_and_polarity_of_constructed_trains():
 def test_spacing_of_the_moving_box_is_its_crossing_interval():
     b = group()["out"]["blocks"]
     assert np.all(np.isfinite(b["tau_us"])) and np.all(b["covered"] > 0.5)
+
+
+def test_boxes_at_interpolates_between_labels():
+    from ec import annotations as an
+    bx = synth.rigid_translation(width=W, height=H, n_points=10, duration_s=1.0, seed=0).boxes
+    tr = an.tracks(bx[::3])                  # labels at 10 Hz
+    for wm in range(1, 25):
+        b = rg.boxes_at(tr, wm, W, H)
+        c = (wm + 0.5) * T0
+        if c > tr[0].t_last:
+            assert b == []
+            continue
+        assert len(b) == 1 and b[0][0] == tr[0].track_id
+        x = float(np.interp(c, tr[0].t.astype(float), tr[0].x))
+        assert abs(b[0][1][0] - max(0.0, x)) < 1e-9
 ````

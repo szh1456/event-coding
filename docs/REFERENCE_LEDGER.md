@@ -306,3 +306,27 @@ of the companion project.
 | version / conditions | the paper itself was not read; the mirror gives the start page only |
 | status | `PARTIAL`: metadata from a secondary listing; content not read. Not to be cited for any property beyond its existence until read |
 | does not support | anything about its rate, its distortion measure or its performance |
+
+### `verma2024etram` (tasks and background filter)
+
+| field | value |
+|---|---|
+| claim supported | eTraM labels 2D boxes of traffic participants with object ids for detection and multi-object tracking, with RVT, RED and YOLOv8 as detection baselines and an IoU tracker; its label frames used a spatiotemporal filter that removes events without same-polarity neighbors within a 10 ms window |
+| source | the citation of the brief, `docs/brief/event_coding_brief.md`, entry `[verma2024etram]`; arXiv 2403.19976v2 (HTML), read on 2026-10-13 |
+| source type | primary (conference paper, arXiv version) |
+| used in | directive 017, Section 1 (the tasks); directive 018, Sections 1 and 4 and `ec/families.py` (`ISO_TAU_US` = 10 ms, the neighborhood of the isolation estimate) |
+| version / conditions | the brief's status stands for the citation; this entry covers the two claims above, taken from the arXiv HTML through a summarizing fetch, not from the CVF PDF |
+| status | `PARTIAL`: the claims were read in a summary of the arXiv text; the filter's minimum of 2 neighbors is the paper's, ours requires 1 |
+| does not support | that the filter of eTraM removes only background events, or any background rate of the sensor |
+
+### `dsec_detection`
+
+| field | value |
+|---|---|
+| claim supported | DSEC-Detection gives 2D boxes with track ids for 60 sequences of DSEC and its extension, in the distorted (unrectified) view of the left event camera, as `object_detections/left/tracks.npy` with the fields `t, x, y, h, w, class_id, class_confidence, track_id`; the labels archive is 4.7 MB at `https://download.ifi.uzh.ch/rpg/DSEC/detection/dsec-det_left_object_detections.zip` |
+| source | the DSEC-Detection page, https://dsec.ifi.uzh.ch/dsec-detection/, and the README of https://github.com/uzh-rpg/dsec-det, both read on 2026-10-13 (through a summarizing fetch); the associated publication is D. Gehrig and D. Scaramuzza, Nature, 2024 (not read) |
+| source type | primary (dataset page and the authors' repository) |
+| used in | directives 017 and 018: the boxes and tracks of the DSEC sequences |
+| version / conditions | neither page states the label rate or the time base; a reviewer read the repository's loader as matching label times to event times with `t_offset` added, which directive 017, Section 4, tests on data before use |
+| status | `PARTIAL`: format, view and download verified from the two pages; the list of labeled sequences, the label rate and the time base not stated there |
+| does not support | which of the 41 train sequences carry labels, or the quality of the labels |
