@@ -243,9 +243,10 @@ of the companion project.
 | source | G. J. Sullivan, T. Wiegand, "Rate-distortion optimization for video compression," IEEE Signal Processing Magazine, vol. 15, no. 6, pp. 74-90 |
 | source type | primary (magazine article) |
 | used in | the planned Lagrangian codec (after directive 018) and the manuscript, as the precedent of the mode choice; directive 018 cites the hybrid video coder it describes as the structure of its HEVC baseline |
-| version / conditions | title, authors, venue, volume, issue and pages from the authors' institutional publication page (Microsoft Research), read on 2026-10-13; the year and the DOI are not shown there. Full text supplied by the author as an OCR transcript on 2026-10-13: it confirms title, authors and the Lagrangian formulation of the encoder's choices; it does not print venue metadata. Transcript kept in the claude.ai Project as `refs/sullivan1998.md` |
-| status | `PARTIAL`: year and DOI not verified |
+| version / conditions | title, authors, venue, volume, issue and pages from the authors' institutional publication page (Microsoft Research), read on 2026-10-13; the year (1998, publication date 1998-10-31) and the DOI 10.1109/79.733497 from the record of the same page in the Microsoft Research API (`/wp-json/wp/v2/msr-research-item/799324`), read on 2026-10-14. Full text supplied by the author as an OCR transcript on 2026-10-13: it confirms title, authors and the Lagrangian formulation of the encoder's choices; it does not print venue metadata. Transcript kept in the claude.ai Project as `refs/sullivan1998.md` |
+| status | `VERIFIED`: metadata from the authors' institutional record; the hybrid structure (motion-compensated prediction, coding of the displaced frame difference, INTRA/INTER/SKIP modes) read in the transcript |
 | does not support | anything about event data |
+| manuscript use (2026-10-14) | `papers/tsp/main.tex`, Section V and the introduction: the hybrid video coder predicts a block from a displaced block of a decoded picture and codes the residual |
 
 ### `wiegand2003`
 
@@ -294,6 +295,7 @@ of the companion project.
 | version / conditions | director's tests: ffmpeg 6.1.1 (Ubuntu build) with libx265 on 2026-10-13; the executor records the versions on `cnt` in `results/fm/provenance.json` |
 | status | `PARTIAL`: behavior of the parameters checked on synthetic streams (one intra picture per clip, no B frames, deterministic output, the P-frame QP as set and the intra frame at the default offset; for 019, with libx265 3.5: lossless mode returns the input exactly, `ipratio=1` gives the intra frame the P-frame QP, and the level-1 CSV names the intra 4x4 share `4x4`); the documentation pages were not read for this entry, and H.265 was not read |
 | does not support | that x265 at these settings is the best HEVC coder for count frames, or that HEVC is the best video coder for them |
+| manuscript use (2026-10-14) | `papers/tsp/main.tex`, Sections VI-A and VI-E, bib key `x265`, cited only as an HEVC encoder at version 3.5 with the settings the directives set; author "MulticoreWare" as in the source field |
 
 ### `fu2019spike`
 
@@ -330,3 +332,17 @@ of the companion project.
 | version / conditions | neither page states the label rate or the time base; a reviewer read the repository's loader as matching label times to event times with `t_offset` added, which directive 017, Section 4, tests on data before use. Downloaded on `cnt` on 2026-10-13 (directive 017): archive 4,655,023 bytes, SHA-256 `a5840ac6...ff49eb1f`; it holds `train_object_detections.zip` (47 train sequences, all 41 of the population among them) and `test_object_detections.zip` (not extracted). Measured on data: labels every ~50 ms (20 Hz); label time minus the event file's `t_offset` is on the event clock (in-box/ring density ratio 2.12 over 335 boxes; as stored, no label falls in a key window), `results/rc/labels_check.json` |
 | status | `PARTIAL`: format, view and download verified from the two pages; the list of labeled sequences, the label rate and the time base not stated there |
 | does not support | which of the 41 train sequences carry labels, or the quality of the labels |
+| manuscript use (2026-10-14) | `papers/tsp/main.tex`, Section VI-A (tasks), bib key `dsecdet`, cited by its dataset page |
+
+### `sullivan2012hevc`
+
+| field | value |
+|---|---|
+| claim supported | HEVC is a video coding standard of ITU-T VCEG and ISO/IEC MPEG; the paper gives an overview of its technical features |
+| source | G. J. Sullivan, J.-R. Ohm, W.-J. Han, T. Wiegand, "Overview of the High Efficiency Video Coding (HEVC) Standard," IEEE Trans. Circuits and Systems for Video Technology, vol. 22, no. 12, pp. 1649-1668, Dec. 2012, DOI 10.1109/TCSVT.2012.2221191 |
+| source type | primary metadata: the IEEE Circuits and Systems Society page https://ieee-cas.org/media/53 (title, authors, venue, volume, issue, pages, DOI and abstract), read on 2026-10-14; volume, issue and pages also on the Microsoft Research page of the first author (https://www.microsoft.com/en-us/research/?p=798934) |
+| used in | `papers/tsp/main.tex`: the introduction and Sections V and VI-A, as the standard that x265 encodes |
+| version / conditions | the abstract was read; the body was not |
+| status | `VERIFIED` for the metadata and the claim above |
+| does not support | any statement about HEVC's tools (merge, inter, transform, quantizer) beyond those x265 itself reports in its per-frame log; those rest on `x265_hevc` and `sullivan1998` |
+
