@@ -40,8 +40,27 @@ annotation path from the train subdirectory above and a recording identifier of
 `config/population.yaml`. Do not list any directory under the annotation root.
 
 Both data directories are read-only for this project. Do not copy the corpus. If
-a derived cache is needed, write it under `~/prjs/event_coding/cache/` on the
-same host.
+a derived cache is needed, write it under `/data/<user>/event_coding/home/cache/`
+on the same host.
+
+## Where this project's files live on `cnt` (directive 020, D-020-3)
+
+`/home` on `cnt` has little room. After directive 019, everything the project kept
+under `~/prjs/event_coding/` except the code mirror (`repo/`) and the private Python
+packages (`pylib/`) was moved to `/data/<user>/event_coding/home/<name>`, and each
+`~/prjs/event_coding/<name>` became a symbolic link to it. The links keep the old
+paths of the reports, the provenance files and the runners valid.
+
+| what | location on `cnt` |
+|---|---|
+| code mirror and private packages | `~/prjs/event_coding/repo/`, `~/prjs/event_coding/pylib/` |
+| per-group outputs, streams and logs of the eTraM stages (directives 001 to 020: `mp`, `rg`, `gp`, `af`, `dg`, `bk`, `fb`, `rc`, `fm`, `hd`, `th`, ...) | `/data/<user>/event_coding/home/<name>/`, reached through `~/prjs/event_coding/<name>` |
+| DSEC events (read-only) | `/data/<user>/event_coding/dsec/` |
+| everything computed from DSEC, including the per-group caches of directive 017 | `/data/<user>/event_coding/ds/` |
+| DSEC-Detection labels (read-only) | `/data/<user>/event_coding/dsec_det/` |
+
+The eTraM recordings and annotations stay in the companion project's directories
+listed above. They are not moved, copied or written.
 
 ## Reading
 
