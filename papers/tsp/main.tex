@@ -17,7 +17,7 @@
 % manuscript builds.
 \newcommand{\figorbox}[1]{\figorboxw{#1}{\columnwidth}}
 \newcommand{\figorboxw}[2]{\IfFileExists{#1}{\includegraphics[width=#2]{#1}}%
-  {\fbox{\parbox{0.95\dimexpr#2\relax}{\centering\vspace{2em}Figure file \texttt{\detokenize{#1}}\\ (directive 015)\vspace{2em}}}}}
+  {\fbox{\parbox{0.95\dimexpr#2\relax}{\centering\vspace{2em}Figure file \texttt{\detokenize{#1}}\\ (pending)\vspace{2em}}}}}
 \renewcommand{\topfraction}{0.9}\renewcommand{\dbltopfraction}{0.9}
 \renewcommand{\textfraction}{0.07}\renewcommand{\floatpagefraction}{0.8}
 \renewcommand{\dblfloatpagefraction}{0.8}\setcounter{topnumber}{3}\setcounter{totalnumber}{4}
@@ -27,7 +27,7 @@
 \newcommand{\ip}[2]{\langle #1,#2\rangle}
 
 \begin{document}
-\title{Rate Limits and Regeneration for the Event Stream of a Moving Edge}
+\title{Threshold Phases and the Limits of Motion Compensation for Event Streams}
 \author{[Author list to be set]}
 \maketitle
 
@@ -43,19 +43,20 @@ grows. Under a mean-squared timing tolerance the rate has three regimes. Below t
 the code describes every event time, and the rate is exact. Above it, the code describes one number
 per pixel, and the rate is known within $0.255$ bit. Beyond a threshold set by the event spacing of
 the pixel, the rate given the edge and its motion is zero, and a description of the motion needs a
-number of nats that grows at most logarithmically with the length of the path. Because a practical
-sender has the events and not the edge, our codec REMAKE sends the events of one window in place of
-the edge and moves them along one affine map per block and window. Moving the events instead of
-regenerating them doubles the timing error of the ideal decoder when the event spacings are equal.
-% Verified against the final experiments (reports 007, 009 and 013) on 2026-10-12.
-On recordings from a static camera and from a moving car, REMAKE reduces the bits by a factor of
-$1.3$ to $1.6$ relative to the cheapest scheme that sends a subset of the events at equal fidelity, for
-groups of four windows, and its advantage shrinks as the time bin of the receiver shortens.
+number of nats that grows at most logarithmically with the length of the path. A sender has the
+events and not the edge, and the closest it can come is to move events along the motion. A moved
+event keeps the phase of its source pixel, so on a voxel grid the moved counts reproduce only a
+share of about $\Delta_t/\tau$ of the true counts when the time bin $\Delta_t$ is shorter than the
+event spacing $\tau$. A standard HEVC coder on count pictures follows these limits. On the model,
+its lossless P pictures cost about $0.1$ bit per event when the bin is long against the event spacing
+and $5$ to $14$ bits when it is not. On recordings from a static camera and from a moving car, its
+lossless bits are $0.92$ to $1.18$ times those of a list of the counts without prediction, and on
+fine grids its quantizer removes single events instead of coarsening them.
 \end{abstract}
 
 \begin{IEEEkeywords}
 Event camera, send-on-delta sampling, level-crossing sampling, rate-distortion theory, generalized
-sampling, motion compensation, neuromorphic sensing.
+sampling, motion compensation, video coding, HEVC, neuromorphic sensing.
 \end{IEEEkeywords}
 
 \section{Introduction}
@@ -91,13 +92,16 @@ extrapolate them. A recent survey notes that reported results are hard to compar
 \cite{brites2025}, and no accepted distortion measure for lossy event coding exists
 \cite{rezaee2026}. On the theoretical side, rate-distortion results for point processes concern
 Poisson and finite point processes \cite{rubin1974,verdu1996,lapidoth2015,koliander2018}. They do
-not model events that a moving profile generates through a threshold rule.
+not model events that a moving profile generates through a threshold rule. Event streams have also
+been aggregated into count pictures per polarity and coded without loss by HEVC
+\cite{khan2021talven,sullivan2012hevc}, a video coder whose prediction is motion compensated
+\cite{sullivan1998}, but what the prediction saves on such pictures has not been reported.
 
 This paper models that mechanism and derives what a code can and cannot save. The phase mechanism
 holds for any scene (Lemma~\ref{lem:lattice}). For the rates we specialize to a ramp edge that
 passes each pixel once under an affine flow, with independent uniform phases and Gaussian jitter,
-which isolates the mechanism and gives closed forms. Recordings then test the mechanism in a
-codec. The central result is the rate-distortion function of the events of a pixel under a timing
+which isolates the mechanism and gives closed forms. A standard video coder then serves as a probe
+of the mechanism on recordings. The central result is the rate-distortion function of the events of a pixel under a timing
 tolerance. The other results lead to it or follow from it.
 
 \emph{1) Mechanism.} Given the edge and its motion, the events of a pixel are a function of a
@@ -116,19 +120,19 @@ contrast threshold divided by the rate of change of its intensity, so slowly cro
 larger tolerance. Along a path of $M$ pixels, a description of the motion of $O(\ln M)$ nats then
 replaces a lossless description of order $M$.
 
-\emph{3) Regeneration in practice.} Because a sender has the events and not the edge, our codec
-REMAKE replaces the edge by the events of a key window, which the receiver moves along fitted
-affine maps. The sender finds its regions from the events and writes a complete stream, whose bytes
-are the cost. Moved events keep the phases of the pixels they came from. At equal event spacings
-this doubles the timing error of the ideal decoder (Proposition~\ref{prop:moved}), but it lowers
-the voxel fidelity of a receiver only by a term of order $1/n$. On the model we measure each step
-from the ideal decoder to REMAKE. On recordings from a static camera \cite{verma2024etram} and from
-a moving car \cite{gehrig2021dsec}, we compare REMAKE with schemes that send a subset of the events,
-with the same coder and at the same fidelity, so that the comparison isolates the contribution of
-regeneration.
+\emph{3) Moved events and a video coder.} A sender has the events and not the edge, and the
+closest it can come to regeneration is to move events along the motion, which is what the prediction
+of a video coder does. A moved event keeps the phase of its source pixel. At equal event spacings
+this doubles the timing error of the ideal decoder (Proposition~\ref{prop:moved}), and on a voxel
+grid the moved counts reproduce a share of about $\Delta_t/\tau$ of the true counts when the bin is
+shorter than the event spacing. On the model, the best block motion compensation follows this share
+within $0.005$. We then code voxel counts of recordings from a static camera \cite{verma2024etram}
+and from a moving car \cite{gehrig2021dsec} with x265, an unmodified HEVC encoder, and with a list of
+the counts that predicts nothing. Without loss, the motion-compensated prediction of x265 saves
+nothing against the list, and with loss its quantizer removes single events on fine grids.
 
 Section~\ref{sec:model} states the model. Sections~\ref{sec:lossless} and~\ref{sec:tolerance}
-contain the theory. Section~\ref{sec:codec} describes REMAKE, and Section~\ref{sec:experiments}
+contain the theory, Section~\ref{sec:moved} the moved events, and Section~\ref{sec:experiments}
 the measurements. Proofs are in the appendices. Rates are in nats unless bits are named, $\|\cdot\|$
 is the Euclidean norm of a vector and the spectral norm of a matrix, and $[x]^+=\max(x,0)$.
 
@@ -284,7 +288,7 @@ term of \eqref{eq:perevent} falls as the path gets longer: a decoder that knows 
 motion exactly still needs \eqref{eq:perevent} for every event. What the pixels of a path share,
 the edge and its motion, a code can describe once. What is private to each pixel, its phase and its
 jitter, it must describe for each pixel, and \eqref{eq:HY} is that irreducible conditional rate.
-Section~\ref{sec:lossless-rec} measures the saving that the motion brings to a code on recordings.
+Section~\ref{sec:hevc} measures what the motion saves a video coder on recordings.
 
 \begin{remark}[Accuracy of the uniform passage]\label{rem:passage}
 For an affine flow \eqref{eq:flow}, $\dot\nu_t=-\Lambda^{\!\top}\nu_t$ and
@@ -310,9 +314,8 @@ Theorems~\ref{thm:pixel} and~\ref{thm:path} count the bits of the event times wh
 the decoder know the template, the flow, and hence the pixels that the edge passes and the number
 of events of each, and when the index of every event is known (A4). Their zero rate is a rate
 given all of this. Proposition~\ref{prop:motion} adds the cost of the flow, while the decoder still
-holds the template. REMAKE (Section~\ref{sec:codec}) holds neither: it sends events of a key
-window in place of the template and maps in place of the flow, and every bit of its stream is
-counted.
+holds the template. A practical sender holds neither, and Section~\ref{sec:moved} turns to what it
+can send instead.
 
 The decoder outputs
 $\hat T_i\in\R^n$ for each pixel, and the distortion is the mean-squared timing error
@@ -428,8 +431,7 @@ finite exponents, and hence $B=O(\ln M)$, for an affine flow whose normal speed 
 zero on the path and whose duration is polynomial in $M$. The lossless cost of the same events is
 the sum of \eqref{eq:HY}, of order $M$, so the ratio of the two grows at least as $M/\ln M$. Above
 $\bar D_A$ the description that remains is $O(\ln M)$. Below it, a rate proportional to $M$
-remains. The bound \eqref{eq:B} is for a receiver that holds the edge. Section~\ref{sec:codec}
-accounts for the template and the regions.
+remains. The bound \eqref{eq:B} is for a receiver that holds the edge.
 
 \begin{remark}[Event count under a change of scale]\label{rem:count}
 An edge segment emits $n$ events for every pixel that it passes, so its event rate is $n$ times the
@@ -454,139 +456,52 @@ depends on the slope are outside the model, and their effect on the three regime
 here.
 \end{remark}
 
-\section{A Regenerating Codec}\label{sec:codec}
-The decoder \eqref{eq:regen} needs the edge and the flow. A practical sender has neither. It has
-the events. The codec of this section, REMAKE (REgeneration by Mapping Affine Key Events), replaces
-the edge by events that the receiver already holds and the flow by maps that the sender fits, and it
-finds its regions without any annotation.
+\section{Moved Events}\label{sec:moved}
+The decoder \eqref{eq:regen} needs the edge and the flow. A sender has neither. It has the events,
+and the closest it can come to \eqref{eq:regen} is to let the receiver move events it already holds
+along the motion. This is motion-compensated prediction, the core of a hybrid video coder
+\cite{sullivan1998,sullivan2012hevc}: a block of a decoded picture, displaced by a motion vector,
+predicts a block of the next picture, and the coder sends the residual. This section gives what a
+moved event costs in timing error and in the fidelity of a receiver that counts events.
 
-\subsection{Regions, Key Events and Groups}
-Time is cut into windows of length $T_0$, and consecutive windows form groups of $K$. The sensor is
-cut into square blocks of $B\times B$ pixels. In the first window of a group, the key window, the
-blocks that hold at least $\psi B^2$ events are the regions of the group, where the threshold
-$\psi$ is a density in events per pixel. The sender transmits the events of the regions, the key
-events, and for each of the following $K-1$ windows one affine map per region. The receiver moves
-every key event $(x,p,t)$ of a region to the pixel nearest to the image of $x$ under the map of
-that region and to the time $t+mT_0$, where $m$ counts the windows since the key window, and it
-keeps the polarity. A moved event may leave its block. One that leaves the sensor is dropped. The
-moved events are the reconstruction of window $m$. The regions stay fixed within a group, so what
-enters the scene after the key window is not reconstructed before the next one.
-
-Under an affine flow, the map from one instant to an instant $mT_0$ later is the same for all
-instants of a window, so one map per window is exact for the positions of the edges of a region
-that moves with the flow. It does not change the number of events, which a change of scale does
-(Remark~\ref{rem:count}).
-
-\subsection{Maps and Their Fit}
-With $c$ the center of the block, a map moves the position $x$ to
-\begin{equation}\label{eq:map}
-  x'=x+d+\frac{2}{B}\,A\,(x-c),
-\end{equation}
-where $d\in\Z^2$ is a displacement in pixels and $A\in\Z^{2\times2}$ holds four shape parameters.
-Each of them is a displacement in pixels at the edge of the block: the diagonal of $A$ stretches
-the block along the two axes, and the other two entries shear or rotate it. With $A=0$ the map is a
-translation.
-
-The sender fits the maps of a window region by region, by a greedy search for the number of moved
-events that can be paired with true events of that window inside a voxel of one fixed working
-grid, which is the numerator of the fidelity \eqref{eq:fid}. It visits the regions in the order of
-decreasing event count, and a true event that an earlier region has paired is not available to a
-later one, so the pairs of the regions add up to the pairs of the whole reconstruction. For each
-region a search from coarse to fine finds the displacement, from zero in the first window and
-from the extrapolated map of the previous window afterwards, and a coordinate search then finds
-the shape parameters. On the true events that are still unpaired when a region is visited, its
-map never pairs fewer events than the translation it started from, and that translation never
-fewer than no motion. Results on other grids use the same maps.
-
-\subsection{Bitstream and Event Coders}
-A stream is a header with the configuration (the sensor size, $B$, $K$, $T_0$, the kind of map
-and the event coder), followed by one record per group: the index of its key window, the key
-events and the maps, each of the two preceded by its length. The regions are not listed. They are the
-blocks that hold key events, and the maps follow in the raster order of these blocks, as
-differences along $m$ in a variable-length integer code, compressed with Zstandard
-\cite{rfc8878}. The bits of a group are eight times the bytes of its record. The header, 28 bytes
-per stream, is less than $10^{-3}$ of a stream and is left out. A record is complete when the last
-window of its group has arrived, so the sender delays a stream by one group. Every fidelity of REMAKE in
-Section~\ref{sec:experiments} is measured on events that a decoder rebuilds from the bytes alone.
-
-Two event coders serve the key events and all schemes that we compare with. The \emph{transport
-coder} keeps time stamps of one microsecond: it packs the addresses, writes the time differences
-in a variable-length code and applies Zstandard at its first level. The \emph{matched coder} is
-for a receiver that counts events on a known grid: it sorts the events of a window by voxel and
-writes the gaps between voxel indices in a variable-length code, followed by Zstandard at level
-19. A subset of the events is then coded on the grid of the receiver. The key events are
-coded at one pixel and the time bin of that grid, because a map moves them by whole pixels and
-keeps their time bin.
-
-\subsection{Moved Events Against Regenerated Events}
-REMAKE differs from the decoder \eqref{eq:regen} in three ways. It moves the phases of the key
-pixels where \eqref{eq:regen} outputs the mean over the phase, it moves the jitter of the key
-events, and it moves a fixed number of events. The model gives the cost of the first two
-exactly.
+\subsection{Timing Error}
 \begin{proposition}[Moved events]\label{prop:moved}
-Let the same edge pass pixel $j$ in the key window and a different pixel $i$ later, under (A1) to
-(A4) and (A2$'$), and let the map be exact, so that the $k$th event of pixel $j$ is moved to pixel
+Let the same edge pass pixel $j$ in an earlier window and a different pixel $i$ later, under (A1) to
+(A4) and (A2$'$), and let the motion be exact, so that the $k$th event of pixel $j$ is moved to pixel
 $i$ at the time $\tilde T_{i,k}=T_{j,k}+t_i-t_j$. Then
 \begin{equation}\label{eq:moved}
   \frac1n\,\E\|T_i-\tilde T_i\|^2=D_{A,i}+D_{A,j}+\frac{4n^2-1}{12}\,(\tau_i-\tau_j)^2 .
 \end{equation}
 \end{proposition}
-With equal event spacings the error is $2D_A$, twice that of \eqref{eq:regen}, which is the timing error
-that REMAKE accepts for not needing the edge. Unequal spacings, as under a change of
-scale, add the last term, which grows with the square of the number of events per pixel. If the
-moved events fall on their own pixel, as for an object that is nearly at rest, the phases coincide
-and only the jitter term $2\sigma^2$ remains. The third difference, the number of events, is not a
-timing error. Section~\ref{sec:bridge} measures these differences on the model, together with
-those that REMAKE adds: maps in whole pixels, windows that cut event trains, and maps that are
-fitted.
+With equal event spacings the error is $2D_A$, twice that of \eqref{eq:regen}: a moved event carries
+the phase and the jitter of its source pixel, and both are independent of those of its target.
+Unequal spacings, as under a change of scale, add the last term, which grows with the square of the
+number of events per pixel. If the moved events fall on their own pixel, as for an object at rest,
+the phases coincide and only the jitter term $2\sigma^2$ remains.
 
-\subsection{Receiver Representation, Fidelity and Baselines}
-The theory uses the timing error \eqref{eq:dist}, which presupposes that regenerated and true
-events are paired. For measured streams we use the representation that event-based receivers
-compute, a voxel grid: the number of events of each polarity in blocks of
-$\Delta_x\times\Delta_x$ pixels and in time bins of length $\Delta_t$. For a reconstruction with
-voxel counts $c'$ and a true set with counts $c$, of sizes $N'$ and $N$, the fidelity is
+\subsection{Voxel Fidelity}
+The timing error \eqref{eq:dist} presupposes that predicted and true events are paired. Receivers
+of event streams count events instead, on a voxel grid: the number of events of each polarity in
+blocks of $\Delta_x\times\Delta_x$ pixels and in time bins of length $\Delta_t$. A video coder codes
+the same counts as pictures. For a reconstruction with voxel counts $c'$ and a true set with counts
+$c$, of sizes $N'$ and $N$, the fidelity is
 \begin{equation}\label{eq:fid}
-  F=\frac{2\sum\min(c',c)}{N'+N},
+  F=\frac{2\sum\min(c',c)}{N'+N}=1-\frac{\sum|c'-c|}{N'+N},
 \end{equation}
-the share of the events of the two sets that can be paired one to one inside a voxel. It is
-computed over the complete sensor, so the events outside the regions count as lost. A subset that
-holds a share $\chi$ of the events has $F=2\chi/(1+\chi)$ on every grid, whichever events it keeps.
-A reconstruction of fidelity $F$ is therefore matched by a subset of the share
-\begin{equation}\label{eq:share}
-  \chi_F=\frac{F}{2-F}.
-\end{equation}
+the share of the events of the two sets that can be paired one to one inside a voxel.
 
-Schemes that send a subset of the events and regenerate nothing are the baseline. We measure
-three: a random subset, complete windows with the other windows dropped, and, in every window, the
-blocks that the rule of the key window selects. Two such schemes can be mixed over windows, which
-mixes their shares and their bits linearly, so the cheapest subset scheme at a share $\chi$ costs
-$b_{\mathrm{sub}}(\chi)$ bits per event, the lower convex envelope of the measured operating
-points and the origin. For a codec that uses $b$ bits per event of a group and reaches the
-fidelity $F$ over the group, the key window included, we report
-\begin{equation}\label{eq:gain}
-  G=\frac{b_{\mathrm{sub}}(\chi_F)}{b},
-\end{equation}
-the factor by which it lowers the bits at equal fidelity. A random subset alone is a weaker
-baseline than the envelope: its events lie further apart than those of whole windows or whole
-blocks, and each of them costs more bits.
-
-The fidelity \eqref{eq:fid} and the timing error \eqref{eq:dist} are different distortion
-measures, and the bin length plays the role of the tolerance. One case connects them. For blocks of
-one pixel, a train that is long against the event spacing, and a jitter that is small against the
-bin, Lemma~\ref{lem:times} gives the fidelity of the regenerated events \eqref{eq:regen} directly:
-a bin holds at most one event of each train when $\Delta_t\le\tau_i$, the offset between the two
-trains is uniform, and in expectation over the phase
+For blocks of one pixel, a train that is long against the event spacing, and a jitter that is small
+against the bin, Lemma~\ref{lem:times} gives the fidelity of the regenerated events
+\eqref{eq:regen} directly: a bin holds at most one event of each train when $\Delta_t\le\tau_i$, the
+offset between the two trains is uniform, and in expectation over the phase
 \begin{equation}\label{eq:binfid}
   F=\frac{\Delta_t}{\tau_i}\qquad\text{for }\Delta_t\le\tau_i,
 \end{equation}
 with $F=1$ at $\Delta_t=\tau_i$. The voxel counts of a pixel are thus reproduced only when the bin
 is at least as long as its event spacing, the same scaling as the threshold of
-Theorem~\ref{thm:pixel}, for which $\sqrt{D_{A,i}}=\tau_i/\sqrt{12}$ when $\sigma\ll\tau_i$. In
-larger blocks the independent phases of the pixels average, and the fidelity is higher at a given
-bin length.
+Theorem~\ref{thm:pixel}, for which $\sqrt{D_{A,i}}=\tau_i/\sqrt{12}$ when $\sigma\ll\tau_i$.
 
-On this grid, moved events reach almost the fidelity of regenerated events. With equal spacings and no jitter, the $k$th moved
+Moved events do almost as well on this grid. With equal spacings and no jitter, the $k$th moved
 event lies at the offset $\delta=A_i-A_j$ from the $k$th true event, and $\delta$ has the
 triangular density $(\tau_i-|\delta|)/\tau_i^2$ on $(-\tau_i,\tau_i)$. Two events at the offset
 $x$ share a bin with probability $[1-|x|/\Delta_t]^+$ over the position of the bins. When
@@ -594,52 +509,66 @@ $|\delta|>\tau_i-\Delta_t$, a moved event can share its bin with a neighbor of i
 instead, which has a partner for $n-1$ of the $n$ events of a train. For a train of $n$ events and
 $\Delta_t\le\tau_i/2$, the two contributions give
 \begin{equation}\label{eq:binfidmoved}
-  F=\frac{\Delta_t}{\tau_i}-\frac{\Delta_t^2}{3n\tau_i^2},
+  F=\frac{\Delta_t}{\tau_i}-\frac{\Delta_t^2}{3n\tau_i^2}.
 \end{equation}
-against $\Delta_t/\tau_i$ for the regenerated events with the same $n$ and $\Delta_t$. A voxel grid
-does not distinguish the events of a pixel, and the doubled timing error of \eqref{eq:moved}
-therefore lowers the fidelity only by a term of order $1/n$.
+A voxel grid does not distinguish the events of a pixel, so the doubled timing error of
+\eqref{eq:moved} lowers the fidelity only by a term of order $1/n$.
+
+For prediction, \eqref{eq:binfidmoved} sets a limit that no motion estimate can raise. With the exact
+motion, the counts of the previous window moved to their targets reproduce a share of about
+$\Delta_t/\tau_i$ of the true counts when the bin is shorter than the event spacing, and the rest is a
+residual. On such a bin the count of a pixel is zero or one, and which bins hold the ones is decided
+by the phases, which motion does not carry. When the bin is long against the spacing, a bin holds
+whole trains or long parts of them, the offset $\delta$ moves only the events at its ends, and the
+moved counts approach the true ones. A motion-compensated coder of voxel counts can therefore save
+bits through its prediction on long bins and not on short ones.
 
 \section{Experiments}\label{sec:experiments}
-The experiments address three questions: on the model, the three regimes and the cost of each
-step from the ideal decoder to REMAKE (Sections~\ref{sec:regimes} and~\ref{sec:bridge}); on
-recorded streams, the bits that regeneration saves at equal fidelity (Section~\ref{sec:bits}); and
-the conditions under which this saving shrinks (Section~\ref{sec:limits}).
+The experiments address three questions: on the model, the three regimes of
+Theorem~\ref{thm:pixel} (Section~\ref{sec:regimes}); on the model and on recordings, whether moved
+counts follow \eqref{eq:binfidmoved} (Sections~\ref{sec:moved-model} and~\ref{sec:threshold-rec});
+and what a standard video coder spends against these limits on recordings
+(Section~\ref{sec:hevc}).
 
-\subsection{Protocol}
+\subsection{Protocol}\label{sec:protocol}
 \emph{Data.} The recordings from a static camera are the 112 recordings of the training split of
 eTraM \cite{verma2024etram}, 61 by day and 51 by night, from a sensor of $1280\times720$ pixels
 above a road, with $2.4\times10^{10}$ events. The recordings from a moving camera are the 41
 training sequences of DSEC \cite{gehrig2021dsec}, left event camera, $640\times480$ pixels, on a
-car, with $3.7\times10^{10}$ events in $2634$~s. A window of the median DSEC sequence holds $1.15$
-events per pixel, against $0.04$ for eTraM. Each recording is replayed as a stream, in the order
-of its events.
+car, with $3.7\times10^{10}$ events in $2634$~s. A window of $33.3$~ms of the median DSEC sequence
+holds $1.15$ events per pixel, against $0.04$ for eTraM. Twelve eTraM recordings and five DSEC
+sequences are held out for tuning, and the results below are over the other 100 and 36.
 
-\emph{Codec.} Windows have $T_0=33.3$~ms. Groups of $K=2$, $4$, $8$ and $11$ windows share their
-key window, which is taken every $3$~s of an eTraM recording and every $2$~s of a DSEC sequence.
-The working grid has $\Delta_x=2$ pixels and $\Delta_t=T_0/3=11.1$~ms, and the event coder is the
-matched coder on that grid unless the transport coder is named. Each dataset is calibrated on a
-tuning subset of its own: twelve eTraM recordings, every tenth by day and by night, and five DSEC
-sequences, every tenth of the sorted list. On it the block side is selected among $20$, $40$ and
-$80$ pixels and the threshold among $1/16$, $1/8$, $1/4$, $1/2$ and $1$ event per pixel. The
-criterion is the bits that REMAKE saves against the subset schemes at equal fidelity for $K=4$, as
-a share of the bits of all events. It selects $B=20$ and $\psi=1$ on both datasets. On DSEC
-the runner-up, $B=40$ and $\psi=1$, saves $0.086$ of the bits of all events against $0.090$. The configuration is then fixed, and every
-result below is over the other 100 eTraM recordings and 36 DSEC sequences. The selected threshold
-is the largest candidate. The saving grows with the threshold over the whole range while the
-fidelity falls, so the threshold acts as a rate control, and Section~\ref{sec:bits} reports the
-whole range. Only $B$ and $\psi$ are calibrated, and $T_0$, $K$, the grids and the
-coders are set in advance. The regions, the key events and the maps are computed from the stream,
-for every group anew. With the transport coder all events cost $23.4$, $24.0$ and $22.0$ bits each
-by day, by night and on DSEC, and with the matched coder $1.56$, $2.04$ and $1.64$. A receiver that
-counts on the working grid thus needs $7\%$ to $9\%$ of the bits of the transport, and we take the
-matched coder as the reference.
+\emph{Grids.} Time is cut into windows of $T_0=33.3$~ms and each window into $k$ slices, so
+$\Delta_t=T_0/k$. A voxel holds $s\times s$ pixels and one polarity. We use $s\in\{1,2\}$ and
+$k\in\{1,3,6,12,32,64\}$, from $\Delta_t=33.3$~ms to $0.52$~ms. A group is four consecutive windows,
+taken every $3$~s of an eTraM recording and every $2$~s of a DSEC sequence.
 
-\emph{Statistics.} A recording enters with the sums over its groups, and we report the median over
-recordings, with a 95\% interval from a bootstrap over recordings where one is given. Of the 100
-eTraM recordings, 93 hold the ten groups that we require (53 by day and 40 by night, 4958 groups).
-The DSEC sequences are shorter, so we require five groups there, and all 36 enter, with 1189
-groups.
+\emph{Video coder.} The counts of a group form one clip of $4k$ pictures, with the two polarities side
+by side in the luma plane of a $4{:}2{:}0$ picture and constant chroma. They are coded by x265~3.5
+\cite{x265}, an encoder of HEVC \cite{sullivan2012hevc}, through ffmpeg~4.4.2, in the Main profile at
+the preset \texttt{slow}. Each clip has one intra picture and P pictures after it, without B
+pictures. Adaptive quantization and the psychovisual options are off. In lossless mode the luma is
+the count. At a constant quantization parameter (QP) the luma is $16$ times the count, the decoder
+rounds the luma divided by $16$, and the intra picture is coded at the QP of the P pictures. Counts
+are clipped at $15$. On one-pixel voxels with $k\ge3$, clipping removes less than $1\%$ of the events;
+at $k=1$ and on two-pixel voxels it removes up to $6\%$ and $28\%$, by night. Every bit of the HEVC stream is counted, parameter
+sets included.
+
+\emph{Voxel list.} As a coder without prediction, the voxel list sorts the events of a window by
+voxel, writes the gaps between their voxel indices in a variable-length integer code and compresses
+the result with Zstandard at level 19 \cite{rfc8878}. It codes the same clipped counts as HEVC and
+returns them exactly.
+
+\emph{Tasks.} With the annotated objects of eTraM and of DSEC-Detection \cite{dsecdet}, the fidelity \eqref{eq:fid} inside
+the boxes of the objects (box $F$), the share of boxes that the decode leaves without events, and
+the error of the motion of each box estimated by contrast maximization \cite{gallego2018cmax}, in
+pixels per window.
+
+\emph{Statistics.} Bits are per true event. A recording enters with the sums over its groups, and
+we report the median over recordings. The coder comparisons of Section~\ref{sec:hevc} use one group in
+$40$ of eTraM and one in $20$ of DSEC, with all grids and QPs ($42$ recordings by day, $34$ by night
+and $36$ sequences); the representation of Section~\ref{sec:hevc} uses one group in five.
 
 \subsection{The Three Regimes}\label{sec:regimes}
 % Numbers and figure: directive 006, results/rd/regimes.json and results/rd/fig_regimes.pdf at f063a79.
@@ -677,223 +606,150 @@ the other components left out, it stays $0.09$ to $0.19$ bit per event above the
 $D_{A,i}$. A code that describes every event time, then one number per pixel, then nothing, is
 therefore within $0.26$ bit per event of the limit in all three regimes.
 
-\subsection{From Regeneration to REMAKE}\label{sec:bridge}
-% Numbers and figure: directive 014, results/br/bridge.json and results/paper/fig_bridge.pdf at a1379d5.
-\begin{figure}[t]
-\centering
-\figorbox{figs/fig_bridge.pdf}
-\caption{From the regenerating decoder to REMAKE on the model, $n=3$, $\sigma/\tau=0.05$, $10$ or
-$10.4$ pixels per window, spacing growing by $5\%$ per window where marked. Top: timing error per event against the window $m$; open markers give
-Proposition~\ref{prop:moved} with the bias of a whole-pixel map. Bottom: fidelity on one-pixel
-voxels against the bin; dotted lines give \eqref{eq:binfid} and \eqref{eq:binfidmoved}.}
-\label{fig:bridge}
-\end{figure}
-Between the decoder \eqref{eq:regen} and REMAKE lie four steps: the events are moved instead of
-regenerated, the map moves them by whole pixels, a window boundary cuts the event trains, and the
-map is fitted to the events. Fig.~\ref{fig:bridge} separates them on the model, for an
-edge that passes ten or $10.4$ pixels per window, so that the exact map is or is not a whole
-number of pixels. In timing error, the regenerated events reach $D_A$ and the events moved by the
-exact map $2.006\,D_A$, against the $2D_A$ of Proposition~\ref{prop:moved}. When the event spacing
-grows by $5\%$ per window, the error of the moved events grows with $m$ and averages $3.56\,D_A$,
-as the last term of \eqref{eq:moved} predicts. A map in whole pixels adds the squared timing bias
-of its rounding, which depends on the fractional part of the displacement and averages
-$0.92\,D_A$ at $10.4$ pixels per window (Fig.~\ref{fig:bridge}, top). In voxel fidelity at
-$\Delta_t=\tau/2$, the regenerated events reach $0.499$ and the moved events $0.470$, against
-$0.5$ and $0.472$ from \eqref{eq:binfid} and \eqref{eq:binfidmoved}. The map in whole pixels lowers
-the fidelity to $0.441$. Scored on whole windows, the exact map reaches $0.430$, because a window
-boundary cuts the train of a source pixel and the train of its target at different events, and the
-fitted map reaches $0.410$ at $10.4$ pixels per window (Fig.~\ref{fig:bridge}, bottom). The fit
-picks the nearest whole pixel for $93\%$ of the shifts at ten pixels per window and $78\%$ at
-$10.4$, because its working grid of two pixels and $T_0/3$ rarely separates neighboring shifts. The
-steps that REMAKE adds to moving, maps in whole pixels and windows that cut trains, thus lower the
-fidelity more than the phases of the moved events do.
-
-\subsection{Bits at Equal Fidelity}\label{sec:bits}
-% Numbers: docs/directives/reports/007.md (eTraM) and 013.md over results/dt/report.json (DSEC); 001.md and 003.md where named.
-\begin{figure*}[t]
-\centering
-% Figure: results/paper/fig_bits_pair.pdf, directive 015.
-\figorboxw{figs/fig_bits_pair.pdf}{0.92\textwidth}
-\caption{Bits as a percentage of the bits of all events, matched coder, working grid. Left: REMAKE
-and the cheapest subset scheme at the fidelity $F$ of REMAKE, at $\psi=1$, for groups of $K$
-windows; the labels give $G$. Right: the same against $F$ for the five thresholds, $K=4$ and $11$.}
-\label{fig:bits}
-\end{figure*}
+\subsection{Moved Counts on the Model}\label{sec:moved-model}
+% Numbers: directive 019, D3, results/hd/report.json#/tables/4_model and results/hd/model.json at 5edad1d.
 \begin{table}[t]
 \centering
-\caption{REMAKE on the working grid, matched coder. $b$ and
-$b_{\mathrm{sub}}$ in bits per event, $G_{\mathrm{rep}}$ for the repeated key events, with the ratio
-taken per recording, $G_{\mathrm T}$ with the transport coder.}
-\label{tab:headline}
-\setlength{\tabcolsep}{3.6pt}
-\begin{tabular}{@{}lrcccccc@{}}
+\caption{Moved counts and lossless HEVC on the model, $n=3$, one-pixel voxels, means over three
+seeds. $F$: the counts of the previous window moved by the true motion. $b_{\mathrm P}$: bits of the
+P pictures per event, x265 lossless.}
+\label{tab:model}
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}rrcccc@{}}
 \toprule
- & $K$ & $F$ & $b$ & $b_{\mathrm{sub}}$ & $G$ & $G/G_{\mathrm{rep}}$ & $G_{\mathrm T}$\\
+$\tau$ (ms) & $k$ & $\Delta_t/\tau$ & $F$ & \eqref{eq:binfidmoved} & $b_{\mathrm P}$\\
 \midrule
-eTraM, day   & 4  & 0.71 & 0.42 & 0.65 & 1.55 & 2.57 & 2.68\\
-             & 11 & 0.62 & 0.16 & 0.53 & 3.26 & 4.13 & 5.96\\
-eTraM, night & 4  & 0.65 & 0.35 & 0.57 & 1.62 & 1.82 & 2.85\\
-             & 11 & 0.57 & 0.13 & 0.48 & 3.64 & 2.45 & 6.62\\
-DSEC         & 4  & 0.67 & 0.52 & 0.66 & 1.31 & 1.48 & 2.38\\
-             & 11 & 0.58 & 0.20 & 0.55 & 2.71 & 1.59 & 5.20\\
+1 & 1  & 33.3  & 0.990 & -- & 0.14\\
+1 & 3  & 11.1  & 0.970 & -- & 0.45\\
+1 & 12 & 2.78  & 0.879 & -- & 1.95\\
+1 & 32 & 1.04  & 0.851 & -- & 5.39\\
+1 & 64 & 0.521 & 0.489 & -- & 7.89\\
+4 & 12 & 0.694 & 0.639 & -- & 3.76\\
+4 & 32 & 0.260 & 0.251 & 0.253 & 7.01\\
+4 & 64 & 0.130 & 0.127 & 0.128 & 9.48\\
+8 & 12 & 0.347 & 0.331 & 0.334 & 5.06\\
+8 & 64 & 0.065 & 0.064 & 0.065 & 10.13\\
 \bottomrule
 \end{tabular}
 \end{table}
-\begin{figure*}[t]
-\centering
-% Top: results/paper/fig_recon.pdf, directive 013 at 8623ddb (eTraM rows of directive 012).
-% Bottom: results/paper/fig_slices.pdf, directive 014 at a1379d5.
-\IfFileExists{figs/fig_recon.pdf}{\includegraphics[width=0.74\textwidth]{figs/fig_recon.pdf}}{\fbox{figs/fig_recon.pdf}}\\[4pt]
-\figorboxw{figs/fig_slices.pdf}{0.74\textwidth}
-\caption{A typical group of each stratum, signed event counts per pixel, positive minus negative
-polarity. Top: the key events that REMAKE sends, the true events of window $m=4$, and the events
-that the receiver rebuilds for it from the stream. Bottom: an $80\times80$-pixel square of window
-$m=4$ in its three time bins, true and rebuilt, with the fidelity of each bin.}
-\label{fig:recon}
-\end{figure*}
-Table~\ref{tab:headline} and Fig.~\ref{fig:bits} (left) give the bits of REMAKE against those of
-the subset schemes at its fidelity.
+Straight edges cross a sensor of $320\times240$ pixels at six pixels per window, $40$ pixels apart,
+for twelve windows. Every row of pixels is a path of the model, with $\tau$ from $0.25$ to $8$~ms,
+$n\in\{1,3\}$ and $\sigma=0.05\,\tau$. The prediction of window $m$ is the counts of window $m-1$
+moved by exactly six pixels, the best that block motion compensation can do.
 
-\emph{Gain.} On eTraM a group of four windows costs $0.42$ bit per event by day and $0.35$ by
-night and reaches the fidelities $0.71$ and $0.65$. The cheapest subset scheme needs $0.65$ and
-$0.57$ bit at these fidelities, so $G=1.55$ (95\% interval $1.52$ to $1.57$) by day and $1.62$
-($1.61$ to $1.65$) by night. On DSEC $G=1.31$ ($1.29$ to $1.34$), and $1.32$ over the 31 sequences
-from Zurich. The key events that REMAKE sends are $21\%$ of the events of the group by day, $17\%$
-by night and $22\%$ on DSEC, and the receiver rebuilds the rest. The gain grows with the group, to
-$3.26$, $3.64$ and $2.71$ for eleven windows, at fidelities lower by $0.09$, $0.08$ and $0.10$,
-with $7\%$, $6\%$ and $8\%$ of the events sent. A further window costs REMAKE only its maps, $3\%$
-of a record for $K=4$ and $8\%$ to $10\%$ for $K=11$, and costs a subset scheme every event that it
-keeps. For $K=2$ REMAKE loses, with $G=0.92$, $0.94$ and $0.81$. Half of such a group is its key
-window, and a key event is coded at one pixel, because a map moves it by whole pixels, where a
-subset is coded at the two pixels of the grid. From four windows on, the bits that the maps save
-exceed this cost.
+Wherever \eqref{eq:binfidmoved} applies, in all twelve cells of $\tau$, $n$ and $k$ with
+$\Delta_t\le\tau/2$, the fidelity of the moved counts lies $0.001$ to $0.005$ below it
+(Table~\ref{tab:model}). As $\Delta_t/\tau$ falls from $33$ to $0.52$ at $\tau=1$~ms, the fidelity
+falls from $0.990$ to $0.489$, so half of the counts are a residual even under the true motion.
 
-\emph{Threshold.} The threshold sets the operating point between bits and fidelity
-(Fig.~\ref{fig:bits}, right). From
-$\psi=1/16$ to $\psi=1$, the bits for $K=4$ fall from $0.62$ to $0.42$ by day, from $0.74$ to
-$0.35$ by night and from $0.72$ to $0.52$ on DSEC, the fidelity falls from $0.75$ to $0.71$, from
-$0.74$ to $0.65$ and from $0.71$ to $0.67$, and $G$ rises from $1.17$ to $1.55$, from $0.93$ to
-$1.62$ and from $1.06$ to $1.31$. The blocks that a lower threshold adds cost key events and
-return few pairs in the later windows. Along the threshold REMAKE stays below the subset schemes
-in bits, except at night for $K=4$ and $\psi\le1/8$, where the gain is $0.93$ and $1.01$. At $\psi=1$ the regions are $1\%$ of the blocks of eTraM
-and hold $83\%$ of the events of the key window by day and $69\%$ by night. On DSEC they are $31\%$
-of the blocks and hold $86\%$.
+x265 in lossless mode codes the same scenes and follows the same limit. Its P pictures cost about
+$0.1$ bit per event at $\Delta_t/\tau\ge30$, about $1$ to $3$ at $\Delta_t/\tau\approx3$, and $5$ to
+$14$ at $\Delta_t/\tau\le1$. They are coded with merge and inter prediction in about equal parts,
+and fewer than $9\%$ of their coding units are skipped. The cost of a P picture thus rises where
+\eqref{eq:binfidmoved} says that the moved counts stop predicting the true ones.
 
-\emph{Source of the gain.} Key events that are repeated in place, without maps, stay below
-the subset schemes for $K=4$, with $G_{\mathrm{rep}}=0.60$, $0.90$ and $0.88$. The gain of REMAKE
-is therefore the gain of its maps, a factor $2.57$, $1.82$ and $1.48$ over repetition (the median
-of the ratio per recording). Repetition does better where true events stay in the regions. Ten
-windows after the key window, $25\%$ of the true events of eTraM by day still fall into the
-regions, and $70\%$ on DSEC, where the whole scene moves. A repeated event there meets some other
-event in its voxel, and the fidelity of repeated windows falls only from $0.39$ to $0.26$ over ten
-windows on DSEC, against $0.18$ to $0.07$ on eTraM by day. Such pairs do not need the right
-motion, and the ratio $G/G_{\mathrm{rep}}$ removes them.
-
-\emph{Rebuilt events.} Fig.~\ref{fig:recon} shows one group of each stratum. Its recording has
-the median fidelity of window $m=4$ in the stratum, with the fidelity of a recording formed from
-the sums over its groups, and the group is the one whose fidelity is closest to that of its
-recording: $0.61$ by day, $0.57$ by night and $0.56$ on DSEC. Where a region holds key events, the
-rebuilt edges lie where the true ones are. Where none does, nothing is rebuilt, as for the road in
-the lower half of the DSEC view, whose blocks hold fewer than $\psi B^2$ events in the key window.
-Inside the regions the rebuilt edges are dotted where the true ones are filled, since a map moves
-every key event to one pixel, and a map that enlarges the region spreads the same events over more
-pixels. The square of $80\times80$ pixels at the bottom of Fig.~\ref{fig:recon} is the one with
-the most true events of the window, and it holds about as many rebuilt as true events, so regions
-cover it. Its fidelity in each third of the window is $0.65$ to $0.68$ by day, $0.76$ to $0.79$ by
-night and $0.64$ to $0.65$ on DSEC, above the fidelity of the whole window, and it does not fall
-from one third to the next: inside the regions the rebuilt events follow the true ones in time at
-the resolution of the working grid.
-
-\subsection{Limits of the Gain}\label{sec:limits}
+\subsection{Moved Counts on Recordings}\label{sec:threshold-rec}
+% Numbers and figure: directive 020, results/th/ (report pending).
 \begin{figure}[t]
 \centering
-% Figure: results/paper/fig_limits.pdf, directive 014 at a1379d5 (fidelity panels as at 8623ddb).
-\figorbox{figs/fig_limits.pdf}
-\caption{Top: fidelity of a group of four windows against the time bin of the receiver grid, at
-$\Delta_x=2$ pixels. Middle: the gain on the same grids, transport coder. Bottom: fidelity of
-window $m$ on the working grid, for the affine map (solid) and the translation (dashed).}
-\label{fig:limits}
+\figorbox{figs/fig_threshold.pdf}
+\caption{Fidelity of the causally predicted counts against $\Delta_t/\tau$, with $\tau$ measured per
+pixel, for eTraM by day and by night and for DSEC; a prediction with the right pixels and random
+times; and \eqref{eq:binfid} and \eqref{eq:binfidmoved}.}
+\label{fig:threshold}
 \end{figure}
+On recordings neither the motion nor the event spacing is known. Each pixel estimates its spacing
+$\tau$ from the intervals between its events, the motion of each block of $20\times20$ pixels is
+chosen as the shift that best predicts window $w$ from window $w-1$, and the same shift then predicts
+window $w+1$ from window $w$, so that the prediction is causal. A time offset per block takes up
+motion that is not a whole number of pixels per window. The fidelity of the prediction is summed in
+bins of $\Delta_t/\tau$ and compared with a prediction that has the right pixels and random times,
+and with \eqref{eq:binfidmoved}. Pixels whose spacing matches a flicker of $100$ or $120$~Hz are
+reported apart, and hot pixels are masked.
+\todo{results of directive 020 and Fig.~\ref{fig:threshold}.}
+
+\subsection{A Standard Video Coder Against the Limits}\label{sec:hevc}
+% Numbers: directive 019, D1 and D2, results/hd/report.json#/tables/1_rate_vs_slice and
+% 2_representation at 5edad1d; the coarse-grid operating points: directive 018, results/fm/frontier.json at 4a4ee74.
 \begin{table}[t]
 \centering
-\caption{The affine map against one translation per block, matched coder, working grid. Map: the
-share of the bytes of a record that the affine maps take for $K=11$.}
-\label{tab:maps}
+\caption{Lossless bits per event, x265 ($b_{\mathrm L}$) and the voxel list ($b_{\mathrm Q}$), and
+the median ratio per recording.}
+\label{tab:lossless}
 \setlength{\tabcolsep}{3.2pt}
-\begin{tabular}{@{}lccccccc@{}}
+\begin{tabular}{@{}lccccccccc@{}}
 \toprule
- & \multicolumn{2}{c}{$G$, $K=4$} & \multicolumn{2}{c}{$G$, $K=11$} & \multicolumn{2}{c}{$F$, $K=11$} & map\\
-\cmidrule(lr){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-7}
- & affine & transl. & affine & transl. & affine & transl. & \\
+ & \multicolumn{3}{c}{eTraM, day} & \multicolumn{3}{c}{eTraM, night} & \multicolumn{3}{c}{DSEC}\\
+\cmidrule(lr){2-4}\cmidrule(lr){5-7}\cmidrule(lr){8-10}
+$(s,k)$ & $b_{\mathrm L}$ & $b_{\mathrm Q}$ & L/Q & $b_{\mathrm L}$ & $b_{\mathrm Q}$ & L/Q & $b_{\mathrm L}$ & $b_{\mathrm Q}$ & L/Q\\
 \midrule
-eTraM, day   & 1.55 & 1.57 & 3.26 & 3.32 & 0.62 & 0.60 & 10\%\\
-eTraM, night & 1.62 & 1.65 & 3.64 & 3.75 & 0.57 & 0.57 & 8\%\\
-DSEC         & 1.31 & 1.27 & 2.71 & 2.63 & 0.58 & 0.54 & 8\%\\
+$(1,1)$  & 2.13 & 2.18 & 1.00 & 1.97 & 2.01 & 0.98 & 1.64 & 1.69 & 0.97\\
+$(1,3)$  & 3.32 & 3.40 & 0.98 & 3.14 & 3.25 & 0.97 & 2.76 & 2.83 & 0.99\\
+$(1,12)$ & 6.43 & 6.12 & 1.06 & 5.51 & 5.59 & 1.00 & 4.88 & 4.74 & 1.04\\
+$(1,64)$ & 11.5 & 10.2 & 1.16 & 9.75 & 9.06 & 1.11 & 8.09 & 7.48 & 1.09\\
+$(2,3)$  & 2.08 & 2.17 & 0.95 & 1.93 & 1.99 & 0.98 & 1.49 & 1.59 & 0.93\\
+$(2,64)$ & 8.87 & 7.76 & 1.18 & 7.52 & 6.96 & 1.12 & 5.96 & 5.36 & 1.10\\
 \bottomrule
 \end{tabular}
 \end{table}
-\emph{Time bin.} The time bin of the receiver grid plays the role of the tolerance. From a bin of
-$33.3$~ms to one of $1.04$~ms, the fidelity of a group of four windows falls from $0.75$ to $0.52$
-on eTraM by day, from $0.69$ to $0.47$ by night and from $0.74$ to $0.45$ on DSEC, and the gain
-with the transport coder falls from $2.95$, $3.07$ and $2.73$ to $1.69$, $1.81$ and $1.35$
-(Fig.~\ref{fig:limits}, top and middle). On the grid of one pixel and $1.04$~ms it is $1.24$,
-$1.42$ and $1.01$. By \eqref{eq:binfid} and \eqref{eq:binfidmoved}, neither regenerated nor moved
-events fill bins shorter than the event spacing beyond the ratio of the two, while a subset keeps
-its fidelity on every grid. This is the scaling of the threshold of Theorem~\ref{thm:pixel}. The
-event spacings of the recorded pixels were not measured, so the comparison is one of trends. The
-same trend separates objects. With annotated vehicles as regions and one translation per vehicle,
-the fidelity for $K=4$ on the working grid rises from $0.52$ below $20$ pixels per second to $0.72$
-above $100$ by day, and from $0.61$ to between $0.71$ and $0.74$ by night: by \eqref{eq:tau} a
-faster edge has a shorter event spacing, so the same bin is a larger tolerance for it.
+HEVC on count pictures has been used to code event streams without loss \cite{khan2021talven}, and we
+use x265 here as a probe: it has motion-compensated prediction, a transform and a quantizer, and its
+own record of how it codes each picture shows where its bits go.
 
-\emph{Distance from the key window.} The fidelity of window $m$ falls with $m$, from $0.67$ to
-$0.51$ on eTraM by day, from $0.62$ to $0.49$ by night and from $0.62$ to $0.50$ on DSEC over ten
-windows (Fig.~\ref{fig:limits}, bottom). The number of rebuilt events does not cause the fall: its
-ratio to the number of true events moves from $0.83$ to $0.80$ by day and from $0.86$ to $0.83$ on
-DSEC. The moved events fall into the wrong voxels. Two losses are present from the first window
-on, where the fidelity is $0.62$ to $0.67$: the events outside the regions, which hold the key
-window itself to $0.91$, $0.82$ and $0.92$, and the timing of the moved events, which
-Section~\ref{sec:bridge} decomposes.
+\emph{Without loss.} x265 needs no fewer bits than the voxel list, which predicts nothing
+(Table~\ref{tab:lossless}). Over the twelve grids, the ratio of the two is $0.92$ to $1.02$ at
+slices of $T_0/6$ or longer, $1.00$ to $1.07$ at $T_0/12$, and $1.06$ to $1.18$ at $T_0/32$ and
+$T_0/64$. From $k=3$ on it rises with $k$ on every stratum and at both voxel sizes. The intra picture takes $26\%$ to $31\%$ of the lossless bits at $k=1$ and less than
+$1.5\%$ at $k=64$, so the P pictures carry the cost on fine grids. They do use prediction: merge
+accounts for $66\%$ to $95\%$ of their coding units on eTraM, and inter prediction for $68\%$ to
+$87\%$ on DSEC, where the whole scene moves. The prediction does not reduce the bits below those of a
+list of the counts. This is what Theorem~\ref{thm:lossless} and \eqref{eq:binfidmoved} lead one to
+expect: the motion is shared by the pixels of a path, and a lossless code of the counts must still
+describe the phases, which decide the counts on fine grids and which the motion does not carry.
 
-\emph{Motion model.} The affine map raises the fidelity more than the gain (Table~\ref{tab:maps}). With
-one translation per block, the fidelity of window $m$ is lower by up to $0.03$ by day, $0.01$ by
-night and $0.04$ on DSEC at the tenth window, as the residual of a block translation against the
-flow accumulates. On eTraM the translation still gains $1\%$ to $3\%$ more, because the shape
-parameters cost more bits than their pairs return. On DSEC the whole scene moves with the camera:
-ten windows after the key window the median block has moved by $38$ pixels, $91\%$ of the blocks
-have a nonzero shape parameter, and the affine map gains $2.5\%$ more for $K=4$. The affine flow of
-the theory is thus the right model for a moving camera, and a field of block translations
-approximates it well enough for a static one.
+\emph{With loss.} The quantizer of a video coder acts on the amplitude of the luma. On a fine grid the
+counts are almost all zero or one, so a coarser QP does not make a voxel less precise; it removes it.
+On the model at $\tau=1$~ms and $k=64$, the voxel list codes the counts exactly with $5.04$ bits per
+event and lossless x265 with $7.93$. x265 reaches $F=0.964$ at QP~$16$ with $20.9$ bits per event,
+$0.557$ at QP~$20$ with $7.55$, and $0.107$ at QP~$24$ with $1.27$: below the bits of the exact list,
+its fidelity is at most $0.27$, since a voxel with one event has the luma $16$, which vanishes between
+QP~$14$ and $26$. At $k=3$ on the same scenes, where a voxel holds up to a whole train, it reaches
+$0.982$ with $0.60$ bit per event and $0.959$ with $0.15$. On recordings the same holds. On the grid of
+two pixels and $T_0/3$, x265 by day reaches $F=0.975$ with $3.26$ bits per event at QP~$14$, $0.933$
+with $1.09$ at QP~$28$, $0.840$ with $0.31$ at QP~$36$ and $0.706$ with $0.051$ at QP~$46$, with the
+intra picture at the default QP offset of x265. On fine grids the cheapest QP of the ladder, $28$,
+still costs $0.2$ to $1$ bit per event, and at one bit per event by day the best point at $k=64$
+keeps a box fidelity of $0.011$ and leaves $71\%$ of the boxes without events, against $0.279$ and
+$38\%$ at $k=12$.
 
-\subsection{Lossless Cost}\label{sec:lossless-rec}
-By Theorem~\ref{thm:lossless}, a lossless code must describe the phase and the jitter of every
-pixel even when the motion is known. A recording does not give that conditional entropy, but it
-shows how much motion saves for a given coder. For the events inside annotated vehicles of eTraM
-that are isolated and move at $20$ to $300$ pixels per second, with addresses of one pixel and
-times of one microsecond, the ideal code length under a density that is uniform over the box of
-the vehicle and the window is $18.3$ bits per event. A density built from the events of the
-preceding $100$~ms saves $0.5$ bit by day and $1.2$ by night when these events are left in place,
-and $2.9$ and $3.0$ bits when they are moved along the estimated motion. Motion thus saves about a
-sixth of the lossless cost for these densities. The remaining $15$ bits bound the conditional cost
-of the events from above. They contain the private part of Theorem~\ref{thm:lossless} and what
-these densities fail to model, and the measurement does not separate the two.
+\emph{Representation.} The grid itself loses information before any coding. Turning the events into
+counts and back, with the events of a voxel placed at its first instant, loses nothing for the box
+fidelity at one pixel and at least three slices per window, with no box left empty. Two-pixel voxels
+raise the motion error: at $k=3$ it is $4.01$, $1.17$ and $2.67$ pixels per window by day, by night
+and on DSEC, against $1.49$, $0.67$ and $0.94$ at one pixel.
+
+\emph{Implications.} The three measurements separate what a coder of event counts can gain from what
+it cannot. Prediction from motion pays on bins long against the event spacing and not on short ones,
+where the bits describe the phases and the jitter of Theorem~\ref{thm:lossless}. A quantizer of
+amplitudes degrades gracefully only where voxels hold several events, and on fine grids it removes
+single events instead. A receiver that needs fine timing therefore calls for a different
+description of the residual, by event times relative to a prediction rather than by amplitudes, and
+a receiver that is satisfied with a bin longer than the event spacing is served by motion
+compensation and the quantizer of a video coder as they are.
 
 \section{Conclusion}
 The pixels on the path of a moving edge share the edge and its motion, and each has a threshold
-phase and a jitter of its own, which a lossless code must describe at every pixel. A
-timing tolerance removes first the jitter and then the phase from what a code must describe, and
-beyond a threshold set by the event spacing the events are regenerated from the edge and the
-motion alone. REMAKE carries this to a sender that has only the events: it moves key events along
-affine maps on a block grid. Moving instead of regenerating doubles the timing error but lowers
-the fidelity of a voxel receiver only by a term of order $1/n$. Calibrated on a few recordings of each
-dataset, REMAKE needs fewer bits than schemes that send a subset of the events at equal fidelity
-once a group holds four windows, on a static camera and on a moving one, and its advantage shrinks
-as the time bin of the receiver shortens, in line with the threshold of the theory. Two steps
-remain open. REMAKE moves a fixed number of events, keeps its regions for a whole group, and keeps
-its group length and threshold for a whole stream, while a change of scale changes the count, new
-objects enter, and the best group length and threshold vary with the scene. The theory covers one
-ramp edge in uniform passage, so texture, noise events and threshold mismatch remain to be
-modeled.
+phase and a jitter of its own, which a lossless code must describe at every pixel. A timing
+tolerance removes first the jitter and then the phase from what a code must describe, and beyond a
+threshold set by the event spacing the events are regenerated from the edge and the motion alone. A
+sender that has only the events can move them along the motion, which doubles the timing error and,
+on a voxel grid, reproduces a share $\Delta_t/\tau$ of the counts when the bin is shorter than the
+event spacing. A standard HEVC coder on count pictures behaves as these limits say: without loss its
+motion-compensated prediction saves nothing against a list of the counts, its P pictures grow
+expensive as the bin falls below the event spacing, and with loss its quantizer removes single
+events on fine grids. The theory covers one ramp edge in uniform passage, so texture, noise events
+and threshold mismatch remain to be modeled, and a coder that describes the residual of fine bins by
+event times remains to be built.
 
 \appendices
 \section{Proofs of Lemmas~\ref{lem:lattice} and~\ref{lem:times}}
