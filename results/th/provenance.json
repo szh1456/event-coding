@@ -1,0 +1,2690 @@
+{
+ "directive": "020",
+ "host": "cnt-js01",
+ "commits": {
+  "plan": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+  "executed": "c29cbede098548c284d34d7ef16584b9f21fd5e8",
+  "tasks": [
+   "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty"
+  ]
+ },
+ "versions": {
+  "python": "3.10.12",
+  "numpy": "1.26.4",
+  "scipy": "1.15.3",
+  "h5py": "3.16.0",
+  "zstandard": "0.25.0",
+  "numba": "0.60.0"
+ },
+ "suite": "141 passed at c29cbed (pytest exit 0; junit: tests 141, failures 0, errors 0, skipped 0)",
+ "events": "eTraM: bk_run.read once per recording (at most six at once); DSEC: the caches of 017",
+ "no_annotations_read": "directive 020 uses no boxes; no annotation or label file was opened",
+ "run_log_first_last": [
+  "19:45:14 136 of 136 tasks pending",
+  "20:04:10 DONE failed=[]"
+ ],
+ "projection": {
+  "projection": {
+   "etram": {
+    "n_first": 10,
+    "cpu_s_per_group": 4.2909307799,
+    "read_cpu_s_per_recording": 31.55218747095833,
+    "n_groups": 1011,
+    "n_recordings": 100,
+    "cpu_h": 2.0814860459929814
+   },
+   "dsec": {
+    "n_first": 10,
+    "cpu_s_per_group": 18.5540451506,
+    "read_cpu_s_per_recording": 13.247931194249997,
+    "n_groups": 253,
+    "n_recordings": 36,
+    "cpu_h": 1.436416373915222
+   }
+  },
+  "cpu_h": 3.5179024199082036,
+  "limit_cpu_h": 40,
+  "pass": true
+ },
+ "cpu_h": {
+  "tasks": 3.902269391108054,
+  "groups": 3.0724132901441665
+ },
+ "n_tasks": 136,
+ "tasks": [
+  {
+   "dataset": "etram",
+   "recording": "train_day_0002_td",
+   "n_groups": 5,
+   "read_s": 103.17628455162048,
+   "task_wall_s": 141.16208624839783,
+   "task_cpu_s": 67.689181022,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 37.97387929600002
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_day_0003_td",
+   "n_groups": 12,
+   "read_s": 103.47003960609436,
+   "task_wall_s": 142.00477290153503,
+   "task_cpu_s": 70.490504258,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 38.530839603999986
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_day_0004_td",
+   "n_groups": 10,
+   "read_s": 180.06387615203857,
+   "task_wall_s": 218.5014123916626,
+   "task_cpu_s": 59.873731074,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 38.043337732
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_day_0005_td",
+   "n_groups": 12,
+   "read_s": 171.70333099365234,
+   "task_wall_s": 184.5194046497345,
+   "task_cpu_s": 34.205002933,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 12.815006190999991
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_day_0006_td",
+   "n_groups": 12,
+   "read_s": 162.65906643867493,
+   "task_wall_s": 168.44672346115112,
+   "task_cpu_s": 20.925440737000002,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 5.786985008
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_day_0007_td",
+   "n_groups": 12,
+   "read_s": 219.422030210495,
+   "task_wall_s": 360.9989697933197,
+   "task_cpu_s": 198.20326615,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 139.452883883
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_day_0008_td",
+   "n_groups": 8,
+   "read_s": 207.08131980895996,
+   "task_wall_s": 297.2620737552643,
+   "task_cpu_s": 149.998502556,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 89.02899378000002
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_day_0009_td",
+   "n_groups": 12,
+   "read_s": 170.50782656669617,
+   "task_wall_s": 201.45576763153076,
+   "task_cpu_s": 58.787787355,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 30.699460005000002
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_day_0010_td",
+   "n_groups": 12,
+   "read_s": 205.91191291809082,
+   "task_wall_s": 311.33325600624084,
+   "task_cpu_s": 162.31093574599998,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 102.238882762
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_day_0012_td",
+   "n_groups": 7,
+   "read_s": 183.87487173080444,
+   "task_wall_s": 257.1321985721588,
+   "task_cpu_s": 115.670405137,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 70.483605452
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_day_0013_td",
+   "n_groups": 5,
+   "read_s": 150.0235939025879,
+   "task_wall_s": 156.25273489952087,
+   "task_cpu_s": 20.143300142,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 6.227688969000003
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_day_0014_td",
+   "n_groups": 12,
+   "read_s": 72.74712324142456,
+   "task_wall_s": 206.2665045261383,
+   "task_cpu_s": 161.82438193000002,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 133.41929867300001
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_day_0015_td",
+   "n_groups": 12,
+   "read_s": 53.64048910140991,
+   "task_wall_s": 127.0308952331543,
+   "task_cpu_s": 111.928215694,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 73.34427892699996
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_day_0016_td",
+   "n_groups": 6,
+   "read_s": 17.841673135757446,
+   "task_wall_s": 28.44394850730896,
+   "task_cpu_s": 26.582417155999998,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 10.572982094999997
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_day_0017_td",
+   "n_groups": 12,
+   "read_s": 45.74738144874573,
+   "task_wall_s": 108.68151307106018,
+   "task_cpu_s": 90.372431074,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 59.720508962
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_day_0018_td",
+   "n_groups": 12,
+   "read_s": 32.160645961761475,
+   "task_wall_s": 85.83486366271973,
+   "task_cpu_s": 84.479096464,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 53.07721862600003
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_day_0019_td",
+   "n_groups": 12,
+   "read_s": 73.58323359489441,
+   "task_wall_s": 167.59602403640747,
+   "task_cpu_s": 160.877483273,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 91.03702630299999
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_day_0020_td",
+   "n_groups": 12,
+   "read_s": 16.809791326522827,
+   "task_wall_s": 35.03345346450806,
+   "task_cpu_s": 34.804466311,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 18.206968089000004
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_day_0022_td",
+   "n_groups": 12,
+   "read_s": 45.880518674850464,
+   "task_wall_s": 140.71085023880005,
+   "task_cpu_s": 137.597888893,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 94.00073436399998
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_day_0023_td",
+   "n_groups": 12,
+   "read_s": 40.91639566421509,
+   "task_wall_s": 123.87227582931519,
+   "task_cpu_s": 110.30479482000001,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 77.07830043300004
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_day_0024_td",
+   "n_groups": 12,
+   "read_s": 157.6592435836792,
+   "task_wall_s": 264.92744493484497,
+   "task_cpu_s": 236.288314734,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 107.22063850299998
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_day_0025_td",
+   "n_groups": 6,
+   "read_s": 19.361883640289307,
+   "task_wall_s": 24.525984287261963,
+   "task_cpu_s": 14.12499731,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 5.013242786000001
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_day_0026_td",
+   "n_groups": 12,
+   "read_s": 25.84389328956604,
+   "task_wall_s": 44.13280200958252,
+   "task_cpu_s": 34.657376815,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 18.20478243
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_day_0027_td",
+   "n_groups": 12,
+   "read_s": 25.896848440170288,
+   "task_wall_s": 61.91612100601196,
+   "task_cpu_s": 51.814453207,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 27.567380946000007
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_day_0028_td",
+   "n_groups": 12,
+   "read_s": 18.92567491531372,
+   "task_wall_s": 52.59303665161133,
+   "task_cpu_s": 45.653367024,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 33.651056903999994
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_day_0029_td",
+   "n_groups": 4,
+   "read_s": 13.314561128616333,
+   "task_wall_s": 16.995668172836304,
+   "task_cpu_s": 15.780527455000001,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 3.6698028930000017
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_day_0030_td",
+   "n_groups": 12,
+   "read_s": 33.97718262672424,
+   "task_wall_s": 60.45012164115906,
+   "task_cpu_s": 59.395738122,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 26.470017058000003
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_day_0032_td",
+   "n_groups": 12,
+   "read_s": 33.423853635787964,
+   "task_wall_s": 48.52610898017883,
+   "task_cpu_s": 47.519431068,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 15.081184217000008
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_day_0033_td",
+   "n_groups": 12,
+   "read_s": 67.77682662010193,
+   "task_wall_s": 124.14141511917114,
+   "task_cpu_s": 122.321397169,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 56.30437073399999
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_day_0034_td",
+   "n_groups": 12,
+   "read_s": 19.96427893638611,
+   "task_wall_s": 47.19312143325806,
+   "task_cpu_s": 46.972042742,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 27.225403165
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_day_0035_td",
+   "n_groups": 3,
+   "read_s": 81.05906414985657,
+   "task_wall_s": 85.26949000358582,
+   "task_cpu_s": 13.151976953,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 4.209714951999999
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_day_0036_td",
+   "n_groups": 5,
+   "read_s": 74.53744602203369,
+   "task_wall_s": 81.42173361778259,
+   "task_cpu_s": 21.189129404,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 6.872110208999999
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_day_0037_td",
+   "n_groups": 12,
+   "read_s": 54.27036643028259,
+   "task_wall_s": 60.38691473007202,
+   "task_cpu_s": 20.926376579,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 6.115489800999994
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_day_0038_td",
+   "n_groups": 12,
+   "read_s": 24.0396466255188,
+   "task_wall_s": 55.906108379364014,
+   "task_cpu_s": 54.991800252,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 31.864095780000007
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_day_0039_td",
+   "n_groups": 12,
+   "read_s": 17.660701990127563,
+   "task_wall_s": 38.573686361312866,
+   "task_cpu_s": 38.098048061,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 20.909301781
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_day_0040_td",
+   "n_groups": 5,
+   "read_s": 16.240278959274292,
+   "task_wall_s": 25.623578786849976,
+   "task_cpu_s": 25.27004693,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 9.382308773000005
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_day_0042_td",
+   "n_groups": 4,
+   "read_s": 10.377406597137451,
+   "task_wall_s": 23.397822618484497,
+   "task_cpu_s": 23.192509308,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 13.007492139
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_day_0043_td",
+   "n_groups": 12,
+   "read_s": 10.99156141281128,
+   "task_wall_s": 20.570727825164795,
+   "task_cpu_s": 20.421961033000002,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 9.578320340000005
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_day_0044_td",
+   "n_groups": 12,
+   "read_s": 17.839083433151245,
+   "task_wall_s": 27.16349720954895,
+   "task_cpu_s": 26.98682835,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 9.323152509000003
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_day_0045_td",
+   "n_groups": 12,
+   "read_s": 11.177639245986938,
+   "task_wall_s": 34.70586705207825,
+   "task_cpu_s": 34.634016253000006,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 23.526441382999998
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_day_0046_td",
+   "n_groups": 1,
+   "read_s": 5.001074552536011,
+   "task_wall_s": 5.038771867752075,
+   "task_cpu_s": 5.0362302329999995,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 0.037481558000000526
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_day_0047_td",
+   "n_groups": 12,
+   "read_s": 12.109453678131104,
+   "task_wall_s": 20.746501445770264,
+   "task_cpu_s": 20.700791332,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 8.635886741999995
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_day_0048_td",
+   "n_groups": 12,
+   "read_s": 14.838606357574463,
+   "task_wall_s": 32.12266492843628,
+   "task_cpu_s": 32.026387735,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 17.282261289999994
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_day_0049_td",
+   "n_groups": 12,
+   "read_s": 32.27642202377319,
+   "task_wall_s": 65.8733479976654,
+   "task_cpu_s": 65.219275097,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 33.592110843
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_day_0050_td",
+   "n_groups": 12,
+   "read_s": 30.378506422042847,
+   "task_wall_s": 66.68160271644592,
+   "task_cpu_s": 65.871974684,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 36.300254018000004
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_day_0052_td",
+   "n_groups": 12,
+   "read_s": 34.505532026290894,
+   "task_wall_s": 67.5441689491272,
+   "task_cpu_s": 66.756343466,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 33.027072076999985
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_day_0053_td",
+   "n_groups": 12,
+   "read_s": 37.126039028167725,
+   "task_wall_s": 89.57470202445984,
+   "task_cpu_s": 88.721392303,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 52.437397689000015
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_day_0054_td",
+   "n_groups": 12,
+   "read_s": 22.607079029083252,
+   "task_wall_s": 46.216171741485596,
+   "task_cpu_s": 45.941274268,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 23.600528129000004
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_day_0055_td",
+   "n_groups": 12,
+   "read_s": 37.94324350357056,
+   "task_wall_s": 118.57085037231445,
+   "task_cpu_s": 117.694788738,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 80.61125874899999
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_day_0056_td",
+   "n_groups": 12,
+   "read_s": 20.18135356903076,
+   "task_wall_s": 29.574580430984497,
+   "task_cpu_s": 21.460831383,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 9.391493836000002
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_day_0057_td",
+   "n_groups": 2,
+   "read_s": 11.282405376434326,
+   "task_wall_s": 13.37753939628601,
+   "task_cpu_s": 8.894344608,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 2.094796499000001
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_day_0058_td",
+   "n_groups": 12,
+   "read_s": 16.696791172027588,
+   "task_wall_s": 32.861889123916626,
+   "task_cpu_s": 30.883834296,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 16.162542229000007
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_day_0059_td",
+   "n_groups": 12,
+   "read_s": 26.578522443771362,
+   "task_wall_s": 63.967610597610474,
+   "task_cpu_s": 60.399616213,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 37.38401220599999
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_day_0060_td",
+   "n_groups": 12,
+   "read_s": 21.06328272819519,
+   "task_wall_s": 48.33783006668091,
+   "task_cpu_s": 48.052180338999996,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 27.272650192000008
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_day_0061_td",
+   "n_groups": 12,
+   "read_s": 15.118449926376343,
+   "task_wall_s": 37.48625826835632,
+   "task_cpu_s": 37.257015744,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 22.36214331400001
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_night_0002_td",
+   "n_groups": 12,
+   "read_s": 41.370020151138306,
+   "task_wall_s": 80.18796229362488,
+   "task_cpu_s": 79.115714881,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 38.797821993999996
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_night_0003_td",
+   "n_groups": 12,
+   "read_s": 61.75035214424133,
+   "task_wall_s": 114.64713621139526,
+   "task_cpu_s": 112.475907928,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 52.88129066500002
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_night_0004_td",
+   "n_groups": 12,
+   "read_s": 29.942360877990723,
+   "task_wall_s": 63.144779682159424,
+   "task_cpu_s": 62.318308841,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 33.188793875
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_night_0005_td",
+   "n_groups": 12,
+   "read_s": 26.389443397521973,
+   "task_wall_s": 52.15496563911438,
+   "task_cpu_s": 51.017971531,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 25.763284013000003
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_night_0006_td",
+   "n_groups": 12,
+   "read_s": 26.475935697555542,
+   "task_wall_s": 53.29565382003784,
+   "task_cpu_s": 52.908299149,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 26.815598511000015
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_night_0007_td",
+   "n_groups": 12,
+   "read_s": 35.32914423942566,
+   "task_wall_s": 82.5552077293396,
+   "task_cpu_s": 81.447436665,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 47.220285611000016
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_night_0008_td",
+   "n_groups": 1,
+   "read_s": 13.132487297058105,
+   "task_wall_s": 13.908660411834717,
+   "task_cpu_s": 8.255069269,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 0.7758854700000004
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_night_0009_td",
+   "n_groups": 12,
+   "read_s": 27.071002960205078,
+   "task_wall_s": 52.484431982040405,
+   "task_cpu_s": 51.281466644000005,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 25.410270734999994
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_night_0010_td",
+   "n_groups": 5,
+   "read_s": 12.020751237869263,
+   "task_wall_s": 24.470719575881958,
+   "task_cpu_s": 24.209296799,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 12.448748406
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_night_0012_td",
+   "n_groups": 12,
+   "read_s": 14.73668885231018,
+   "task_wall_s": 32.05152130126953,
+   "task_cpu_s": 31.725941791,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 17.300196714000002
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_night_0013_td",
+   "n_groups": 12,
+   "read_s": 26.775200128555298,
+   "task_wall_s": 61.49311637878418,
+   "task_cpu_s": 60.97451748,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 34.712855542999996
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_night_0014_td",
+   "n_groups": 5,
+   "read_s": 25.438181161880493,
+   "task_wall_s": 47.72054839134216,
+   "task_cpu_s": 46.537575397999994,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 22.280443013000003
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_night_0015_td",
+   "n_groups": 12,
+   "read_s": 36.96059823036194,
+   "task_wall_s": 80.97601675987244,
+   "task_cpu_s": 80.096493467,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 44.01265042200001
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_night_0016_td",
+   "n_groups": 12,
+   "read_s": 17.532297134399414,
+   "task_wall_s": 47.027942180633545,
+   "task_cpu_s": 46.744472654,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 29.492466301000015
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_night_0017_td",
+   "n_groups": 12,
+   "read_s": 30.352348804473877,
+   "task_wall_s": 61.758145332336426,
+   "task_cpu_s": 56.64972576500001,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 31.400874015000003
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_night_0018_td",
+   "n_groups": 8,
+   "read_s": 9.194053888320923,
+   "task_wall_s": 16.56069779396057,
+   "task_cpu_s": 16.460031728,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 7.363345510999999
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_night_0019_td",
+   "n_groups": 12,
+   "read_s": 19.12742829322815,
+   "task_wall_s": 51.32795214653015,
+   "task_cpu_s": 51.014880788000006,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 32.19813626
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_night_0020_td",
+   "n_groups": 4,
+   "read_s": 7.662729740142822,
+   "task_wall_s": 10.757322072982788,
+   "task_cpu_s": 10.680099492,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 3.094058532000002
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_night_0022_td",
+   "n_groups": 12,
+   "read_s": 26.81937885284424,
+   "task_wall_s": 72.72330689430237,
+   "task_cpu_s": 71.512935514,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 45.888873807000024
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_night_0023_td",
+   "n_groups": 12,
+   "read_s": 38.53038740158081,
+   "task_wall_s": 89.29223322868347,
+   "task_cpu_s": 87.41544704,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 50.75730104399999
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_night_0024_td",
+   "n_groups": 6,
+   "read_s": 10.358265399932861,
+   "task_wall_s": 19.550628423690796,
+   "task_cpu_s": 19.484838228,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 9.191318562999998
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_night_0025_td",
+   "n_groups": 12,
+   "read_s": 41.56965136528015,
+   "task_wall_s": 84.27760601043701,
+   "task_cpu_s": 83.28452809,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 42.70513266700003
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_night_0026_td",
+   "n_groups": 12,
+   "read_s": 24.47617745399475,
+   "task_wall_s": 45.42952799797058,
+   "task_cpu_s": 44.244468991000005,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 20.95122867
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_night_0027_td",
+   "n_groups": 12,
+   "read_s": 12.81282901763916,
+   "task_wall_s": 22.504366636276245,
+   "task_cpu_s": 22.033173512999998,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 9.690433117999996
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_night_0028_td",
+   "n_groups": 12,
+   "read_s": 42.39792060852051,
+   "task_wall_s": 87.61700367927551,
+   "task_cpu_s": 86.21682313900001,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 45.215632049999996
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_night_0029_td",
+   "n_groups": 12,
+   "read_s": 27.583454132080078,
+   "task_wall_s": 60.651074171066284,
+   "task_cpu_s": 53.951112468000005,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 33.06393659700001
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_night_0030_td",
+   "n_groups": 12,
+   "read_s": 43.258549213409424,
+   "task_wall_s": 69.94634366035461,
+   "task_cpu_s": 64.046998957,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 26.686215677000014
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_night_0032_td",
+   "n_groups": 5,
+   "read_s": 13.229879379272461,
+   "task_wall_s": 23.911866188049316,
+   "task_cpu_s": 23.346154522,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 10.678250299999998
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_night_0033_td",
+   "n_groups": 1,
+   "read_s": 9.349242687225342,
+   "task_wall_s": 10.171607255935669,
+   "task_cpu_s": 6.144063696,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 0.8219580149999999
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_night_0034_td",
+   "n_groups": 12,
+   "read_s": 27.987687826156616,
+   "task_wall_s": 65.8026430606842,
+   "task_cpu_s": 59.023599888999996,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 37.810848909
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_night_0035_td",
+   "n_groups": 12,
+   "read_s": 22.725359439849854,
+   "task_wall_s": 45.514405965805054,
+   "task_cpu_s": 42.376891756000006,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 22.786928475
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_night_0036_td",
+   "n_groups": 12,
+   "read_s": 28.10045576095581,
+   "task_wall_s": 44.57243061065674,
+   "task_cpu_s": 37.347482003,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 16.470817234000005
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_night_0037_td",
+   "n_groups": 12,
+   "read_s": 26.232465028762817,
+   "task_wall_s": 49.29282188415527,
+   "task_cpu_s": 46.065377147,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 23.058469325000004
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_night_0038_td",
+   "n_groups": 12,
+   "read_s": 43.80808782577515,
+   "task_wall_s": 77.49532103538513,
+   "task_cpu_s": 68.74420027000001,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 33.684813685999984
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_night_0039_td",
+   "n_groups": 12,
+   "read_s": 25.697402954101562,
+   "task_wall_s": 47.98963665962219,
+   "task_cpu_s": 38.988267043,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 22.290533016999998
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_night_0040_td",
+   "n_groups": 1,
+   "read_s": 16.74875497817993,
+   "task_wall_s": 23.704097032546997,
+   "task_cpu_s": 13.614887203999999,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 6.954763483
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_night_0042_td",
+   "n_groups": 12,
+   "read_s": 27.069342613220215,
+   "task_wall_s": 51.38278841972351,
+   "task_cpu_s": 48.276906376,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 24.311853761
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_night_0043_td",
+   "n_groups": 12,
+   "read_s": 18.534764289855957,
+   "task_wall_s": 38.51840615272522,
+   "task_cpu_s": 37.867537195999994,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 19.982284062999998
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_night_0044_td",
+   "n_groups": 12,
+   "read_s": 20.32506036758423,
+   "task_wall_s": 47.23166036605835,
+   "task_cpu_s": 46.429847559,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 26.903748674000003
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_night_0045_td",
+   "n_groups": 12,
+   "read_s": 27.32025122642517,
+   "task_wall_s": 55.7528338432312,
+   "task_cpu_s": 51.5150561,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 28.427265255999995
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_night_0046_td",
+   "n_groups": 12,
+   "read_s": 46.86926770210266,
+   "task_wall_s": 96.24013805389404,
+   "task_cpu_s": 89.068285847,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 49.36446350099999
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_night_0047_td",
+   "n_groups": 12,
+   "read_s": 21.916375637054443,
+   "task_wall_s": 44.477627754211426,
+   "task_cpu_s": 44.121887094,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 22.55990529500001
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_night_0048_td",
+   "n_groups": 2,
+   "read_s": 6.417537689208984,
+   "task_wall_s": 7.4579384326934814,
+   "task_cpu_s": 7.451853160000001,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 1.040099070000001
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_night_0049_td",
+   "n_groups": 2,
+   "read_s": 6.304640293121338,
+   "task_wall_s": 9.47198224067688,
+   "task_cpu_s": 9.459831276,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 3.1668773959999994
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_night_0050_td",
+   "n_groups": 12,
+   "read_s": 23.893595218658447,
+   "task_wall_s": 44.0174880027771,
+   "task_cpu_s": 43.812742431,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 20.122404398000015
+  },
+  {
+   "dataset": "dsec",
+   "recording": "interlaken_00_d",
+   "n_groups": 10,
+   "read_s": 169.65805411338806,
+   "task_wall_s": 649.3494651317596,
+   "task_cpu_s": 445.855230927,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 427.681348284
+  },
+  {
+   "dataset": "dsec",
+   "recording": "interlaken_00_e",
+   "n_groups": 10,
+   "read_s": 152.01265263557434,
+   "task_wall_s": 482.5361394882202,
+   "task_cpu_s": 336.662793975,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 321.314868992
+  },
+  {
+   "dataset": "dsec",
+   "recording": "interlaken_00_f",
+   "n_groups": 8,
+   "read_s": 143.70309352874756,
+   "task_wall_s": 345.1834852695465,
+   "task_cpu_s": 206.53439817600002,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 191.94329405
+  },
+  {
+   "dataset": "dsec",
+   "recording": "interlaken_00_g",
+   "n_groups": 7,
+   "read_s": 139.50776362419128,
+   "task_wall_s": 313.2532503604889,
+   "task_cpu_s": 181.99862476200002,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 166.585367502
+  },
+  {
+   "dataset": "dsec",
+   "recording": "thun_00_a",
+   "n_groups": 2,
+   "read_s": 131.72208499908447,
+   "task_wall_s": 167.91770815849304,
+   "task_cpu_s": 49.078354742,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 33.520221894
+  },
+  {
+   "dataset": "dsec",
+   "recording": "zurich_city_00_a",
+   "n_groups": 5,
+   "read_s": 135.3798463344574,
+   "task_wall_s": 268.7197244167328,
+   "task_cpu_s": 134.748854396,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 119.67679090199998
+  },
+  {
+   "dataset": "dsec",
+   "recording": "zurich_city_00_b",
+   "n_groups": 8,
+   "read_s": 135.55588936805725,
+   "task_wall_s": 315.94710755348206,
+   "task_cpu_s": 183.785175518,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 168.547151375
+  },
+  {
+   "dataset": "dsec",
+   "recording": "zurich_city_01_a",
+   "n_groups": 4,
+   "read_s": 132.64307641983032,
+   "task_wall_s": 275.93563199043274,
+   "task_cpu_s": 146.402454886,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 132.011624492
+  },
+  {
+   "dataset": "dsec",
+   "recording": "zurich_city_01_b",
+   "n_groups": 7,
+   "read_s": 137.5809826850891,
+   "task_wall_s": 430.65426659584045,
+   "task_cpu_s": 267.264300013,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 253.34165981499999
+  },
+  {
+   "dataset": "dsec",
+   "recording": "zurich_city_01_d",
+   "n_groups": 4,
+   "read_s": 130.177325963974,
+   "task_wall_s": 277.8569703102112,
+   "task_cpu_s": 155.51501453499998,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 141.070986078
+  },
+  {
+   "dataset": "dsec",
+   "recording": "zurich_city_01_e",
+   "n_groups": 10,
+   "read_s": 138.64023756980896,
+   "task_wall_s": 488.57153248786926,
+   "task_cpu_s": 355.04458901199996,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 337.846147727
+  },
+  {
+   "dataset": "dsec",
+   "recording": "zurich_city_01_f",
+   "n_groups": 8,
+   "read_s": 195.68954205513,
+   "task_wall_s": 542.0725810527802,
+   "task_cpu_s": 316.003140965,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 302.58341369799996
+  },
+  {
+   "dataset": "dsec",
+   "recording": "zurich_city_02_a",
+   "n_groups": 2,
+   "read_s": 146.51928424835205,
+   "task_wall_s": 305.8408989906311,
+   "task_cpu_s": 133.714903268,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 122.109296677
+  },
+  {
+   "dataset": "dsec",
+   "recording": "zurich_city_02_b",
+   "n_groups": 6,
+   "read_s": 159.07357668876648,
+   "task_wall_s": 458.75963711738586,
+   "task_cpu_s": 265.561133863,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 253.90359288400003
+  },
+  {
+   "dataset": "dsec",
+   "recording": "zurich_city_02_c",
+   "n_groups": 15,
+   "read_s": 146.51168489456177,
+   "task_wall_s": 763.4227640628815,
+   "task_cpu_s": 583.327753031,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 569.3241519470001
+  },
+  {
+   "dataset": "dsec",
+   "recording": "zurich_city_02_d",
+   "n_groups": 10,
+   "read_s": 114.4586865901947,
+   "task_wall_s": 404.8591694831848,
+   "task_cpu_s": 292.35679750500003,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 280.045710499
+  },
+  {
+   "dataset": "dsec",
+   "recording": "zurich_city_02_e",
+   "n_groups": 10,
+   "read_s": 70.66487765312195,
+   "task_wall_s": 497.01258420944214,
+   "task_cpu_s": 423.12890229500005,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 411.967890927
+  },
+  {
+   "dataset": "dsec",
+   "recording": "zurich_city_03_a",
+   "n_groups": 5,
+   "read_s": 43.34681749343872,
+   "task_wall_s": 334.2752299308777,
+   "task_cpu_s": 293.897461384,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 281.576142834
+  },
+  {
+   "dataset": "dsec",
+   "recording": "zurich_city_04_b",
+   "n_groups": 2,
+   "read_s": 23.54094696044922,
+   "task_wall_s": 138.7034683227539,
+   "task_cpu_s": 94.730781186,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 84.206129049
+  },
+  {
+   "dataset": "dsec",
+   "recording": "zurich_city_04_c",
+   "n_groups": 6,
+   "read_s": 20.86889886856079,
+   "task_wall_s": 202.30588364601135,
+   "task_cpu_s": 151.19206314899998,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 140.69029521200005
+  },
+  {
+   "dataset": "dsec",
+   "recording": "zurich_city_04_d",
+   "n_groups": 5,
+   "read_s": 25.18120551109314,
+   "task_wall_s": 163.56168699264526,
+   "task_cpu_s": 119.476922269,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 108.90230131899997
+  },
+  {
+   "dataset": "dsec",
+   "recording": "zurich_city_04_e",
+   "n_groups": 2,
+   "read_s": 22.71094799041748,
+   "task_wall_s": 96.91172981262207,
+   "task_cpu_s": 61.338924111,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 52.349494684
+  },
+  {
+   "dataset": "dsec",
+   "recording": "zurich_city_04_f",
+   "n_groups": 5,
+   "read_s": 11.272417783737183,
+   "task_wall_s": 158.61617159843445,
+   "task_cpu_s": 145.583941079,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 136.989566201
+  },
+  {
+   "dataset": "dsec",
+   "recording": "zurich_city_05_a",
+   "n_groups": 9,
+   "read_s": 21.419726133346558,
+   "task_wall_s": 244.32675528526306,
+   "task_cpu_s": 215.787230074,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 205.04189726399997
+  },
+  {
+   "dataset": "dsec",
+   "recording": "zurich_city_05_b",
+   "n_groups": 9,
+   "read_s": 15.18462061882019,
+   "task_wall_s": 221.1406421661377,
+   "task_cpu_s": 210.331939663,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 199.47013655900003
+  },
+  {
+   "dataset": "dsec",
+   "recording": "zurich_city_06_a",
+   "n_groups": 8,
+   "read_s": 18.878451585769653,
+   "task_wall_s": 327.1778554916382,
+   "task_cpu_s": 313.130690463,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 301.86517248800004
+  },
+  {
+   "dataset": "dsec",
+   "recording": "zurich_city_07_a",
+   "n_groups": 8,
+   "read_s": 99.01546907424927,
+   "task_wall_s": 306.4469931125641,
+   "task_cpu_s": 216.955204314,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 203.95717700800003
+  },
+  {
+   "dataset": "dsec",
+   "recording": "zurich_city_09_a",
+   "n_groups": 9,
+   "read_s": 106.09080791473389,
+   "task_wall_s": 418.78283500671387,
+   "task_cpu_s": 322.370940489,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 309.960430525
+  },
+  {
+   "dataset": "dsec",
+   "recording": "zurich_city_09_b",
+   "n_groups": 2,
+   "read_s": 137.86735129356384,
+   "task_wall_s": 199.09875345230103,
+   "task_cpu_s": 70.90021586600001,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 59.172078828000004
+  },
+  {
+   "dataset": "dsec",
+   "recording": "zurich_city_09_c",
+   "n_groups": 7,
+   "read_s": 135.65349626541138,
+   "task_wall_s": 303.34780716896057,
+   "task_cpu_s": 177.98365067400002,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 165.95277504299997
+  },
+  {
+   "dataset": "dsec",
+   "recording": "zurich_city_09_d",
+   "n_groups": 9,
+   "read_s": 124.27192068099976,
+   "task_wall_s": 311.78853964805603,
+   "task_cpu_s": 197.664014877,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 186.221348218
+  },
+  {
+   "dataset": "dsec",
+   "recording": "zurich_city_09_e",
+   "n_groups": 4,
+   "read_s": 96.74807667732239,
+   "task_wall_s": 197.45696592330933,
+   "task_cpu_s": 108.661025195,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 99.01635154099999
+  },
+  {
+   "dataset": "dsec",
+   "recording": "zurich_city_10_a",
+   "n_groups": 12,
+   "read_s": 101.79744577407837,
+   "task_wall_s": 503.71260952949524,
+   "task_cpu_s": 411.885652788,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 399.29814497000007
+  },
+  {
+   "dataset": "dsec",
+   "recording": "zurich_city_10_b",
+   "n_groups": 12,
+   "read_s": 42.37092399597168,
+   "task_wall_s": 492.9694895744324,
+   "task_cpu_s": 459.352495817,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 447.778520646
+  },
+  {
+   "dataset": "dsec",
+   "recording": "zurich_city_11_a",
+   "n_groups": 3,
+   "read_s": 11.299123048782349,
+   "task_wall_s": 63.594364404678345,
+   "task_cpu_s": 58.752198752,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 51.002635979999994
+  },
+  {
+   "dataset": "dsec",
+   "recording": "zurich_city_11_b",
+   "n_groups": 10,
+   "read_s": 19.570629596710205,
+   "task_wall_s": 238.0512306690216,
+   "task_cpu_s": 226.057775258,
+   "commit": "993ea58b1f04c515ca08ff0cc2c6c844bde73823-dirty",
+   "group_cpu_s": 216.89329093700002
+  }
+ ],
+ "files_read": {
+  "event_files": [
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_day_0002_td.h5",
+    "size": 732942380
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_day_0003_td.h5",
+    "size": 1109384405
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_day_0004_td.h5",
+    "size": 401151884
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_day_0005_td.h5",
+    "size": 461242442
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_day_0006_td.h5",
+    "size": 205852070
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_day_0007_td.h5",
+    "size": 1415812950
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_day_0008_td.h5",
+    "size": 1567971936
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_day_0009_td.h5",
+    "size": 649988742
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_day_0010_td.h5",
+    "size": 1751663984
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_day_0012_td.h5",
+    "size": 1194714670
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_day_0013_td.h5",
+    "size": 178462940
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_day_0014_td.h5",
+    "size": 587661248
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_day_0015_td.h5",
+    "size": 836595605
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_day_0016_td.h5",
+    "size": 243284125
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_day_0017_td.h5",
+    "size": 737871869
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_day_0018_td.h5",
+    "size": 721436180
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_day_0019_td.h5",
+    "size": 1711384935
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_day_0020_td.h5",
+    "size": 259426520
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_day_0022_td.h5",
+    "size": 1210077772
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_day_0023_td.h5",
+    "size": 746573884
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_day_0024_td.h5",
+    "size": 3175914640
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_day_0025_td.h5",
+    "size": 70921180
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_day_0026_td.h5",
+    "size": 253877198
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_day_0027_td.h5",
+    "size": 634527017
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_day_0028_td.h5",
+    "size": 169725637
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_day_0029_td.h5",
+    "size": 122632445
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_day_0030_td.h5",
+    "size": 673822981
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_day_0032_td.h5",
+    "size": 781842676
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_day_0033_td.h5",
+    "size": 1889164259
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_day_0034_td.h5",
+    "size": 476112287
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_day_0035_td.h5",
+    "size": 55187188
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_day_0036_td.h5",
+    "size": 312550827
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_day_0037_td.h5",
+    "size": 369323366
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_day_0038_td.h5",
+    "size": 888875576
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_day_0039_td.h5",
+    "size": 599476332
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_day_0040_td.h5",
+    "size": 478543837
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_day_0042_td.h5",
+    "size": 224675146
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_day_0043_td.h5",
+    "size": 250436961
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_day_0044_td.h5",
+    "size": 443101313
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_day_0045_td.h5",
+    "size": 219509174
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_day_0046_td.h5",
+    "size": 11145529
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_day_0047_td.h5",
+    "size": 208612168
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_day_0048_td.h5",
+    "size": 447093727
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_day_0049_td.h5",
+    "size": 1113409685
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_day_0050_td.h5",
+    "size": 866706884
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_day_0052_td.h5",
+    "size": 1007261315
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_day_0053_td.h5",
+    "size": 1182924128
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_day_0054_td.h5",
+    "size": 680640541
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_day_0055_td.h5",
+    "size": 1435592507
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_day_0056_td.h5",
+    "size": 175938226
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_day_0057_td.h5",
+    "size": 29662442
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_day_0058_td.h5",
+    "size": 403319157
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_day_0059_td.h5",
+    "size": 665075979
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_day_0060_td.h5",
+    "size": 654265204
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_day_0061_td.h5",
+    "size": 362078222
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_night_0002_td.h5",
+    "size": 1112400480
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_night_0003_td.h5",
+    "size": 1968526645
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_night_0004_td.h5",
+    "size": 920737981
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_night_0005_td.h5",
+    "size": 869243987
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_night_0006_td.h5",
+    "size": 907131524
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_night_0007_td.h5",
+    "size": 1008954164
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_night_0008_td.h5",
+    "size": 64376390
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_night_0009_td.h5",
+    "size": 802210444
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_night_0010_td.h5",
+    "size": 258338754
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_night_0012_td.h5",
+    "size": 374587872
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_night_0013_td.h5",
+    "size": 852762915
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_night_0014_td.h5",
+    "size": 793731813
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_night_0015_td.h5",
+    "size": 1519880202
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_night_0016_td.h5",
+    "size": 639635556
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_night_0017_td.h5",
+    "size": 1021658962
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_night_0018_td.h5",
+    "size": 193675580
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_night_0019_td.h5",
+    "size": 723812888
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_night_0020_td.h5",
+    "size": 126976746
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_night_0022_td.h5",
+    "size": 1006307628
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_night_0023_td.h5",
+    "size": 1596956063
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_night_0024_td.h5",
+    "size": 238898789
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_night_0025_td.h5",
+    "size": 1507804405
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_night_0026_td.h5",
+    "size": 918535158
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_night_0027_td.h5",
+    "size": 384916574
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_night_0028_td.h5",
+    "size": 1565208701
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_night_0029_td.h5",
+    "size": 736447283
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_night_0030_td.h5",
+    "size": 1458706525
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_night_0032_td.h5",
+    "size": 348692045
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_night_0033_td.h5",
+    "size": 8796000
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_night_0034_td.h5",
+    "size": 706407257
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_night_0035_td.h5",
+    "size": 703293583
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_night_0036_td.h5",
+    "size": 704940829
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_night_0037_td.h5",
+    "size": 802172783
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_night_0038_td.h5",
+    "size": 1524801168
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_night_0039_td.h5",
+    "size": 566460200
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_night_0040_td.h5",
+    "size": 62635347
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_night_0042_td.h5",
+    "size": 928620592
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_night_0043_td.h5",
+    "size": 673812737
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_night_0044_td.h5",
+    "size": 765884656
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_night_0045_td.h5",
+    "size": 854299313
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_night_0046_td.h5",
+    "size": 1814231875
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_night_0047_td.h5",
+    "size": 888093271
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_night_0048_td.h5",
+    "size": 76520134
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_night_0049_td.h5",
+    "size": 72663860
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/sbu_full_staging/data/train_night_0050_td.h5",
+    "size": 993292302
+   }
+  ],
+  "dsec_cache_files": [
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/interlaken_00_d/t.npy",
+    "size": 3394257120
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/interlaken_00_d/x.npy",
+    "size": 848564376
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/interlaken_00_d/y.npy",
+    "size": 848564376
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/interlaken_00_d/p.npy",
+    "size": 424282252
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/interlaken_00_d/w.npy",
+    "size": 528
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/interlaken_00_d/n.npy",
+    "size": 528
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/interlaken_00_e/t.npy",
+    "size": 2314953112
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/interlaken_00_e/x.npy",
+    "size": 578738374
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/interlaken_00_e/y.npy",
+    "size": 578738374
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/interlaken_00_e/p.npy",
+    "size": 289369251
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/interlaken_00_e/w.npy",
+    "size": 528
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/interlaken_00_e/n.npy",
+    "size": 528
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/interlaken_00_f/t.npy",
+    "size": 1127620312
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/interlaken_00_f/x.npy",
+    "size": 281905174
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/interlaken_00_f/y.npy",
+    "size": 281905174
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/interlaken_00_f/p.npy",
+    "size": 140952651
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/interlaken_00_f/w.npy",
+    "size": 424
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/interlaken_00_f/n.npy",
+    "size": 424
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/interlaken_00_g/t.npy",
+    "size": 1120318632
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/interlaken_00_g/x.npy",
+    "size": 280079754
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/interlaken_00_g/y.npy",
+    "size": 280079754
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/interlaken_00_g/p.npy",
+    "size": 140039941
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/interlaken_00_g/w.npy",
+    "size": 392
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/interlaken_00_g/n.npy",
+    "size": 392
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/thun_00_a/t.npy",
+    "size": 222055720
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/thun_00_a/x.npy",
+    "size": 55514026
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/thun_00_a/y.npy",
+    "size": 55514026
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/thun_00_a/p.npy",
+    "size": 27757077
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/thun_00_a/w.npy",
+    "size": 176
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/thun_00_a/n.npy",
+    "size": 176
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_00_a/t.npy",
+    "size": 880403064
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_00_a/x.npy",
+    "size": 220100862
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_00_a/y.npy",
+    "size": 220100862
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_00_a/p.npy",
+    "size": 110050495
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_00_a/w.npy",
+    "size": 312
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_00_a/n.npy",
+    "size": 312
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_00_b/t.npy",
+    "size": 1027795416
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_00_b/x.npy",
+    "size": 256948950
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_00_b/y.npy",
+    "size": 256948950
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_00_b/p.npy",
+    "size": 128474539
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_00_b/w.npy",
+    "size": 416
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_00_b/n.npy",
+    "size": 416
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_01_a/t.npy",
+    "size": 593706192
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_01_a/x.npy",
+    "size": 148426644
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_01_a/y.npy",
+    "size": 148426644
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_01_a/p.npy",
+    "size": 74213386
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_01_a/w.npy",
+    "size": 264
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_01_a/n.npy",
+    "size": 264
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_01_b/t.npy",
+    "size": 1342723168
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_01_b/x.npy",
+    "size": 335680888
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_01_b/y.npy",
+    "size": 335680888
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_01_b/p.npy",
+    "size": 167840508
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_01_b/w.npy",
+    "size": 392
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_01_b/n.npy",
+    "size": 392
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_01_d/t.npy",
+    "size": 951853864
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_01_d/x.npy",
+    "size": 237963562
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_01_d/y.npy",
+    "size": 237963562
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_01_d/p.npy",
+    "size": 118981845
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_01_d/w.npy",
+    "size": 288
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_01_d/n.npy",
+    "size": 288
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_01_e/t.npy",
+    "size": 1899607320
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_01_e/x.npy",
+    "size": 474901926
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_01_e/y.npy",
+    "size": 474901926
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_01_e/p.npy",
+    "size": 237451027
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_01_e/w.npy",
+    "size": 528
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_01_e/n.npy",
+    "size": 528
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_01_f/t.npy",
+    "size": 2090256344
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_01_f/x.npy",
+    "size": 522564182
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_01_f/y.npy",
+    "size": 522564182
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_01_f/p.npy",
+    "size": 261282155
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_01_f/w.npy",
+    "size": 440
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_01_f/n.npy",
+    "size": 440
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_02_a/t.npy",
+    "size": 347833240
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_02_a/x.npy",
+    "size": 86958406
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_02_a/y.npy",
+    "size": 86958406
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_02_a/p.npy",
+    "size": 43479267
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_02_a/w.npy",
+    "size": 176
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_02_a/n.npy",
+    "size": 176
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_02_b/t.npy",
+    "size": 1891557432
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_02_b/x.npy",
+    "size": 472889454
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_02_b/y.npy",
+    "size": 472889454
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_02_b/p.npy",
+    "size": 236444791
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_02_b/w.npy",
+    "size": 368
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_02_b/n.npy",
+    "size": 368
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_02_c/t.npy",
+    "size": 6304973424
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_02_c/x.npy",
+    "size": 1576243452
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_02_c/y.npy",
+    "size": 1576243452
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_02_c/p.npy",
+    "size": 788121790
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_02_c/w.npy",
+    "size": 704
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_02_c/n.npy",
+    "size": 704
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_02_d/t.npy",
+    "size": 1509087944
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_02_d/x.npy",
+    "size": 377272082
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_02_d/y.npy",
+    "size": 377272082
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_02_d/p.npy",
+    "size": 188636105
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_02_d/w.npy",
+    "size": 496
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_02_d/n.npy",
+    "size": 496
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_02_e/t.npy",
+    "size": 4103929856
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_02_e/x.npy",
+    "size": 1025982560
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_02_e/y.npy",
+    "size": 1025982560
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_02_e/p.npy",
+    "size": 512991344
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_02_e/w.npy",
+    "size": 496
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_02_e/n.npy",
+    "size": 496
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_03_a/t.npy",
+    "size": 2116850416
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_03_a/x.npy",
+    "size": 529212700
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_03_a/y.npy",
+    "size": 529212700
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_03_a/p.npy",
+    "size": 264606414
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_03_a/w.npy",
+    "size": 304
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_03_a/n.npy",
+    "size": 304
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_04_b/t.npy",
+    "size": 263638272
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_04_b/x.npy",
+    "size": 65909664
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_04_b/y.npy",
+    "size": 65909664
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_04_b/p.npy",
+    "size": 32954896
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_04_b/w.npy",
+    "size": 184
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_04_b/n.npy",
+    "size": 184
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_04_c/t.npy",
+    "size": 721653440
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_04_c/x.npy",
+    "size": 180413456
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_04_c/y.npy",
+    "size": 180413456
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_04_c/p.npy",
+    "size": 90206792
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_04_c/w.npy",
+    "size": 360
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_04_c/n.npy",
+    "size": 360
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_04_d/t.npy",
+    "size": 619061216
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_04_d/x.npy",
+    "size": 154765400
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_04_d/y.npy",
+    "size": 154765400
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_04_d/p.npy",
+    "size": 77382764
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_04_d/w.npy",
+    "size": 320
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_04_d/n.npy",
+    "size": 320
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_04_e/t.npy",
+    "size": 238322408
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_04_e/x.npy",
+    "size": 59580698
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_04_e/y.npy",
+    "size": 59580698
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_04_e/p.npy",
+    "size": 29790413
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_04_e/w.npy",
+    "size": 184
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_04_e/n.npy",
+    "size": 184
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_04_f/t.npy",
+    "size": 612299944
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_04_f/x.npy",
+    "size": 153075082
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_04_f/y.npy",
+    "size": 153075082
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_04_f/p.npy",
+    "size": 76537605
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_04_f/w.npy",
+    "size": 296
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_04_f/n.npy",
+    "size": 296
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_05_a/t.npy",
+    "size": 1715175520
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_05_a/x.npy",
+    "size": 428793976
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_05_a/y.npy",
+    "size": 428793976
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_05_a/p.npy",
+    "size": 214397052
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_05_a/w.npy",
+    "size": 480
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_05_a/n.npy",
+    "size": 480
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_05_b/t.npy",
+    "size": 1785498464
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_05_b/x.npy",
+    "size": 446374712
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_05_b/y.npy",
+    "size": 446374712
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_05_b/p.npy",
+    "size": 223187420
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_05_b/w.npy",
+    "size": 456
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_05_b/n.npy",
+    "size": 456
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_06_a/t.npy",
+    "size": 2776212688
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_06_a/x.npy",
+    "size": 694053268
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_06_a/y.npy",
+    "size": 694053268
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_06_a/p.npy",
+    "size": 347026698
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_06_a/w.npy",
+    "size": 432
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_06_a/n.npy",
+    "size": 432
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_07_a/t.npy",
+    "size": 1680716416
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_07_a/x.npy",
+    "size": 420179200
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_07_a/y.npy",
+    "size": 420179200
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_07_a/p.npy",
+    "size": 210089664
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_07_a/w.npy",
+    "size": 416
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_07_a/n.npy",
+    "size": 416
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_09_a/t.npy",
+    "size": 3318951072
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_09_a/x.npy",
+    "size": 829737864
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_09_a/y.npy",
+    "size": 829737864
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_09_a/p.npy",
+    "size": 414868996
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_09_a/w.npy",
+    "size": 488
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_09_a/n.npy",
+    "size": 488
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_09_b/t.npy",
+    "size": 293592944
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_09_b/x.npy",
+    "size": 73398332
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_09_b/y.npy",
+    "size": 73398332
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_09_b/p.npy",
+    "size": 36699230
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_09_b/w.npy",
+    "size": 200
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_09_b/n.npy",
+    "size": 200
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_09_c/t.npy",
+    "size": 1216347920
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_09_c/x.npy",
+    "size": 304087076
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_09_c/y.npy",
+    "size": 304087076
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_09_c/p.npy",
+    "size": 152043602
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_09_c/w.npy",
+    "size": 392
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_09_c/n.npy",
+    "size": 392
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_09_d/t.npy",
+    "size": 1571797352
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_09_d/x.npy",
+    "size": 392949434
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_09_d/y.npy",
+    "size": 392949434
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_09_d/p.npy",
+    "size": 196474781
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_09_d/w.npy",
+    "size": 464
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_09_d/n.npy",
+    "size": 464
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_09_e/t.npy",
+    "size": 753702600
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_09_e/x.npy",
+    "size": 188425746
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_09_e/y.npy",
+    "size": 188425746
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_09_e/p.npy",
+    "size": 94212937
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_09_e/w.npy",
+    "size": 288
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_09_e/n.npy",
+    "size": 288
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_10_a/t.npy",
+    "size": 4455607424
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_10_a/x.npy",
+    "size": 1113901952
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_10_a/y.npy",
+    "size": 1113901952
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_10_a/p.npy",
+    "size": 556951040
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_10_a/w.npy",
+    "size": 592
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_10_a/n.npy",
+    "size": 592
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_10_b/t.npy",
+    "size": 5683250008
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_10_b/x.npy",
+    "size": 1420812598
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_10_b/y.npy",
+    "size": 1420812598
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_10_b/p.npy",
+    "size": 710406363
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_10_b/w.npy",
+    "size": 608
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_10_b/n.npy",
+    "size": 608
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_11_a/t.npy",
+    "size": 226630656
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_11_a/x.npy",
+    "size": 56657760
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_11_a/y.npy",
+    "size": 56657760
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_11_a/p.npy",
+    "size": 28328944
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_11_a/w.npy",
+    "size": 216
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_11_a/n.npy",
+    "size": 216
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_11_b/t.npy",
+    "size": 1611484632
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_11_b/x.npy",
+    "size": 402871254
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_11_b/y.npy",
+    "size": 402871254
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_11_b/p.npy",
+    "size": 201435691
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_11_b/w.npy",
+    "size": 512
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/cache/zurich_city_11_b/n.npy",
+    "size": 512
+   }
+  ]
+ },
+ "n_files": {
+  "event_files": 100,
+  "dsec_cache_files": 216
+ }
+}
