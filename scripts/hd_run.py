@@ -16,7 +16,8 @@ Events of a group: ``[w T0 - FIT_WINDOW_US, (w + 4) T0)``. eTraM is read with ``
 at once); DSEC comes from the caches of directive 017 (``fm_run.dsec_events``). Background, tasks, boxes and
 squares as Section 4 states. Outputs: eTraM and D3 under ``~/prjs/event_coding/hd/``, DSEC under
 ``/data/<user>/event_coding/ds/hd/``; x265 scratch under ``/data/<user>/event_coding/ds/hd/work/``.
-CPU time of a group counts the ffmpeg processes it starts (``RUSAGE_CHILDREN``).
+CPU time of a group counts the ffmpeg processes it starts (``RUSAGE_CHILDREN``). ``ec.hevcdiag.fidelities`` is
+wrapped from the runner to also return the summed terms (``sums``: N, N2, M, Dsnr, Lsnr); F and Fsnr are unchanged.
 """
 from __future__ import annotations
 
@@ -46,6 +47,17 @@ import mp_measure as M  # noqa: E402
 import rc_run as RC  # noqa: E402
 
 T0 = bc.T0_US
+_FIDELITIES = hd.fidelities
+
+
+def _fidelities(sums):
+    """``ec.hevcdiag.fidelities`` plus the summed terms it used, so that recordings can be pooled from sums."""
+    out = _FIDELITIES(sums)
+    out["sums"] = {key: float(sum(x[key] for x in sums)) for key in sums[0]}
+    return out
+
+
+hd.fidelities = _fidelities                 # code_counts calls the module attribute: wrapped from the runner
 HD_E = Path.home() / "prjs" / "event_coding" / "hd"
 HD_D = RC.DR.BASE / "ds" / "hd"
 WORK = HD_D / "work"
