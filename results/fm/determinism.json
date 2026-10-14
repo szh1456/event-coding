@@ -1,0 +1,396 @@
+{
+ "rule": "first group of the first five reporting recordings of each dataset; K = 4 frames; every QP; hevc_code twice",
+ "groups": [
+  {
+   "dataset": "etram",
+   "recording": "train_day_0002_td",
+   "w": 30,
+   "qp": {
+    "14": {
+     "equal": true,
+     "bytes": 47752
+    },
+    "20": {
+     "equal": true,
+     "bytes": 32545
+    },
+    "24": {
+     "equal": true,
+     "bytes": 23426
+    },
+    "28": {
+     "equal": true,
+     "bytes": 15647
+    },
+    "32": {
+     "equal": true,
+     "bytes": 9070
+    },
+    "36": {
+     "equal": true,
+     "bytes": 3938
+    },
+    "40": {
+     "equal": true,
+     "bytes": 1767
+    },
+    "46": {
+     "equal": true,
+     "bytes": 967
+    }
+   }
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_day_0003_td",
+   "w": 30,
+   "qp": {
+    "14": {
+     "equal": true,
+     "bytes": 75510
+    },
+    "20": {
+     "equal": true,
+     "bytes": 53721
+    },
+    "24": {
+     "equal": true,
+     "bytes": 39118
+    },
+    "28": {
+     "equal": true,
+     "bytes": 25600
+    },
+    "32": {
+     "equal": true,
+     "bytes": 14408
+    },
+    "36": {
+     "equal": true,
+     "bytes": 6163
+    },
+    "40": {
+     "equal": true,
+     "bytes": 2536
+    },
+    "46": {
+     "equal": true,
+     "bytes": 1076
+    }
+   }
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_day_0004_td",
+   "w": 30,
+   "qp": {
+    "14": {
+     "equal": true,
+     "bytes": 11778
+    },
+    "20": {
+     "equal": true,
+     "bytes": 7210
+    },
+    "24": {
+     "equal": true,
+     "bytes": 4353
+    },
+    "28": {
+     "equal": true,
+     "bytes": 2390
+    },
+    "32": {
+     "equal": true,
+     "bytes": 1121
+    },
+    "36": {
+     "equal": true,
+     "bytes": 602
+    },
+    "40": {
+     "equal": true,
+     "bytes": 526
+    },
+    "46": {
+     "equal": true,
+     "bytes": 525
+    }
+   }
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_day_0005_td",
+   "w": 30,
+   "qp": {
+    "14": {
+     "equal": true,
+     "bytes": 13223
+    },
+    "20": {
+     "equal": true,
+     "bytes": 8383
+    },
+    "24": {
+     "equal": true,
+     "bytes": 5165
+    },
+    "28": {
+     "equal": true,
+     "bytes": 2755
+    },
+    "32": {
+     "equal": true,
+     "bytes": 1421
+    },
+    "36": {
+     "equal": true,
+     "bytes": 766
+    },
+    "40": {
+     "equal": true,
+     "bytes": 536
+    },
+    "46": {
+     "equal": true,
+     "bytes": 526
+    }
+   }
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_day_0006_td",
+   "w": 30,
+   "qp": {
+    "14": {
+     "equal": true,
+     "bytes": 72505
+    },
+    "20": {
+     "equal": true,
+     "bytes": 52059
+    },
+    "24": {
+     "equal": true,
+     "bytes": 38203
+    },
+    "28": {
+     "equal": true,
+     "bytes": 24485
+    },
+    "32": {
+     "equal": true,
+     "bytes": 13446
+    },
+    "36": {
+     "equal": true,
+     "bytes": 5859
+    },
+    "40": {
+     "equal": true,
+     "bytes": 2702
+    },
+    "46": {
+     "equal": true,
+     "bytes": 1174
+    }
+   }
+  },
+  {
+   "dataset": "dsec",
+   "recording": "interlaken_00_d",
+   "w": 30,
+   "qp": {
+    "14": {
+     "equal": true,
+     "bytes": 609353
+    },
+    "20": {
+     "equal": true,
+     "bytes": 452321
+    },
+    "24": {
+     "equal": true,
+     "bytes": 347289
+    },
+    "28": {
+     "equal": true,
+     "bytes": 243565
+    },
+    "32": {
+     "equal": true,
+     "bytes": 153462
+    },
+    "36": {
+     "equal": true,
+     "bytes": 81026
+    },
+    "40": {
+     "equal": true,
+     "bytes": 31903
+    },
+    "46": {
+     "equal": true,
+     "bytes": 6276
+    }
+   }
+  },
+  {
+   "dataset": "dsec",
+   "recording": "interlaken_00_e",
+   "w": 30,
+   "qp": {
+    "14": {
+     "equal": true,
+     "bytes": 796966
+    },
+    "20": {
+     "equal": true,
+     "bytes": 608088
+    },
+    "24": {
+     "equal": true,
+     "bytes": 482389
+    },
+    "28": {
+     "equal": true,
+     "bytes": 356330
+    },
+    "32": {
+     "equal": true,
+     "bytes": 240280
+    },
+    "36": {
+     "equal": true,
+     "bytes": 142921
+    },
+    "40": {
+     "equal": true,
+     "bytes": 66572
+    },
+    "46": {
+     "equal": true,
+     "bytes": 12406
+    }
+   }
+  },
+  {
+   "dataset": "dsec",
+   "recording": "interlaken_00_f",
+   "w": 30,
+   "qp": {
+    "14": {
+     "equal": true,
+     "bytes": 341152
+    },
+    "20": {
+     "equal": true,
+     "bytes": 245387
+    },
+    "24": {
+     "equal": true,
+     "bytes": 178849
+    },
+    "28": {
+     "equal": true,
+     "bytes": 115614
+    },
+    "32": {
+     "equal": true,
+     "bytes": 65970
+    },
+    "36": {
+     "equal": true,
+     "bytes": 32663
+    },
+    "40": {
+     "equal": true,
+     "bytes": 14102
+    },
+    "46": {
+     "equal": true,
+     "bytes": 4017
+    }
+   }
+  },
+  {
+   "dataset": "dsec",
+   "recording": "interlaken_00_g",
+   "w": 30,
+   "qp": {
+    "14": {
+     "equal": true,
+     "bytes": 520171
+    },
+    "20": {
+     "equal": true,
+     "bytes": 389670
+    },
+    "24": {
+     "equal": true,
+     "bytes": 300102
+    },
+    "28": {
+     "equal": true,
+     "bytes": 210782
+    },
+    "32": {
+     "equal": true,
+     "bytes": 129887
+    },
+    "36": {
+     "equal": true,
+     "bytes": 66235
+    },
+    "40": {
+     "equal": true,
+     "bytes": 26285
+    },
+    "46": {
+     "equal": true,
+     "bytes": 5296
+    }
+   }
+  },
+  {
+   "dataset": "dsec",
+   "recording": "thun_00_a",
+   "w": 30,
+   "qp": {
+    "14": {
+     "equal": true,
+     "bytes": 522020
+    },
+    "20": {
+     "equal": true,
+     "bytes": 392280
+    },
+    "24": {
+     "equal": true,
+     "bytes": 306004
+    },
+    "28": {
+     "equal": true,
+     "bytes": 222700
+    },
+    "32": {
+     "equal": true,
+     "bytes": 146932
+    },
+    "36": {
+     "equal": true,
+     "bytes": 82184
+    },
+    "40": {
+     "equal": true,
+     "bytes": 36397
+    },
+    "46": {
+     "equal": true,
+     "bytes": 7047
+    }
+   }
+  }
+ ],
+ "pass": true
+}
