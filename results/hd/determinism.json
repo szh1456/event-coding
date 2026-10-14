@@ -1,0 +1,82 @@
+{
+ "rule": "first D1 group of the first two recordings with D1 groups, per dataset; code_counts at s = 2, k = 12, every mode, twice",
+ "groups": [
+  {
+   "dataset": "etram",
+   "recording": "train_day_0002_td",
+   "j": 0,
+   "w": 30,
+   "equal": true,
+   "bits": {
+    "lossless": 361736,
+    "sparse": 387616,
+    "qp12": 993832,
+    "qp14": 893824,
+    "qp16": 789736,
+    "qp18": 687800,
+    "qp20": 589576,
+    "qp22": 483760,
+    "qp24": 394480,
+    "qp28": 211384
+   }
+  },
+  {
+   "dataset": "etram",
+   "recording": "train_day_0003_td",
+   "j": 0,
+   "w": 30,
+   "equal": true,
+   "bits": {
+    "lossless": 577368,
+    "sparse": 535320,
+    "qp12": 1686496,
+    "qp14": 1530424,
+    "qp16": 1369040,
+    "qp18": 1196720,
+    "qp20": 1022384,
+    "qp22": 826576,
+    "qp24": 657056,
+    "qp28": 325040
+   }
+  },
+  {
+   "dataset": "dsec",
+   "recording": "interlaken_00_d",
+   "j": 0,
+   "w": 30,
+   "equal": true,
+   "bits": {
+    "lossless": 4842672,
+    "sparse": 4884136,
+    "qp12": 14397512,
+    "qp14": 13084888,
+    "qp16": 11801488,
+    "qp18": 10463848,
+    "qp20": 9032016,
+    "qp22": 7499576,
+    "qp24": 6112360,
+    "qp28": 3470048
+   }
+  },
+  {
+   "dataset": "dsec",
+   "recording": "interlaken_00_e",
+   "j": 0,
+   "w": 30,
+   "equal": true,
+   "bits": {
+    "lossless": 6976424,
+    "sparse": 7102832,
+    "qp12": 19221416,
+    "qp14": 17586040,
+    "qp16": 15964600,
+    "qp18": 14281360,
+    "qp20": 12541736,
+    "qp22": 10639480,
+    "qp24": 8919104,
+    "qp28": 5485040
+   }
+  }
+ ],
+ "pass": true
+}
