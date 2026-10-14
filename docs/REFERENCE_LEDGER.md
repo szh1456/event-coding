@@ -290,9 +290,9 @@ of the companion project.
 | claim supported | x265 is an encoder for HEVC (ITU-T H.265 / ISO/IEC 23008-2), reachable from ffmpeg as `libx265`, with constant-QP rate control, a settable intra period and no B frames |
 | source | the x265 project (MulticoreWare), https://x265.readthedocs.io/ ; ITU-T Recommendation H.265 |
 | source type | software documentation (primary for the encoder); standard (not read) |
-| used in | `ec/families.py` (directive 018): the `hevc` family |
+| used in | `ec/families.py` (directive 018): the `hevc` family; `ec/hevcdiag.py` (directive 019): lossless mode, `ipratio=1` and the per-frame CSV log at level 1 |
 | version / conditions | director's tests: ffmpeg 6.1.1 (Ubuntu build) with libx265 on 2026-10-13; the executor records the versions on `cnt` in `results/fm/provenance.json` |
-| status | `PARTIAL`: behavior of the parameters checked on synthetic streams (one intra picture per clip, no B frames, deterministic output, the P-frame QP as set and the intra frame at the default offset); the documentation pages were not read for this entry, and H.265 was not read |
+| status | `PARTIAL`: behavior of the parameters checked on synthetic streams (one intra picture per clip, no B frames, deterministic output, the P-frame QP as set and the intra frame at the default offset; for 019, with libx265 3.5: lossless mode returns the input exactly, `ipratio=1` gives the intra frame the P-frame QP, and the level-1 CSV names the intra 4x4 share `4x4`); the documentation pages were not read for this entry, and H.265 was not read |
 | does not support | that x265 at these settings is the best HEVC coder for count frames, or that HEVC is the best video coder for them |
 
 ### `fu2019spike`
