@@ -94,8 +94,8 @@ extrapolate them. A recent survey notes that reported results are hard to compar
 \cite{rezaee2026}. On the theoretical side, rate-distortion results for point processes concern
 Poisson and finite point processes \cite{rubin1974,verdu1996,lapidoth2015,koliander2018}. They do
 not model events that a moving profile generates through a threshold rule. Event streams have also
-been aggregated into count pictures per polarity and coded without loss by HEVC
-\cite{khan2021talven,sullivan2012hevc}, a video coder whose prediction is motion compensated
+been aggregated into count pictures per polarity and coded without loss \cite{khan2021talven} by
+HEVC \cite{sullivan2012hevc}, a video coder whose prediction is motion compensated
 \cite{sullivan1998}, but what the prediction saves on such pictures has not been reported.
 
 This paper models that mechanism and derives what a code can and cannot save. The phase mechanism
@@ -126,9 +126,8 @@ substitute, and the one that the prediction of a video coder implements, is to m
 along the motion. A moved event keeps the phase of its source pixel. At equal event spacings this
 doubles the timing error of the ideal decoder (Proposition~\ref{prop:moved}), and on a voxel grid
 the counts moved along the true motion reproduce a share of about $\Delta_t/\tau$ of the true counts
-when the bin is shorter than the event spacing. Because the phases are independent across pixels,
-no choice of source block raises this share in expectation. On the model, the true-motion prediction
-follows it within $0.005$. We then code voxel counts of recordings from a static camera
+when the bin is shorter than the event spacing. On the model, the true-motion prediction follows
+this share within $0.005$. We then code voxel counts of recordings from a static camera
 \cite{verma2024etram} and from a moving car \cite{gehrig2021dsec} with x265, an unmodified HEVC
 encoder, and with a list of the counts that predicts nothing. Without loss the two need about the
 same bits, and x265 needs more on fine grids. With loss, the fidelity of x265 on fine grids
@@ -518,19 +517,13 @@ $\Delta_t\le\tau_i/2$, the two contributions give
 A voxel grid does not distinguish the events of a pixel, so the doubled timing error of
 \eqref{eq:moved} lowers the fidelity only by a term of order $1/n$.
 
-Equation \eqref{eq:binfidmoved} is the expected fidelity of the prediction along the true motion.
-Under (A3) the phases are independent and identically distributed across pixels, so moving the train
-of any other source pixel onto pixel $i$ gives the same expected fidelity. A block displacement chosen
-to maximize the pairs in a window therefore gains only the fluctuation of that maximum over the
-candidates. When the displacement is chosen on one window and applied to the next, as by a causal
-coder, the next passages bring new phases, and the expected fidelity is again
-\eqref{eq:binfidmoved}. A gain in expectation requires choosing the
-source for each pixel separately, and this choice describes the phase of the pixel. When the bin is
+Equation \eqref{eq:binfidmoved} is the expected fidelity of the events of a given source pixel moved
+along the true motion. When the bin is
 shorter than the event spacing, the count of a pixel is zero or one, which bins hold the ones is
 decided by the phases, and about a share $1-\Delta_t/\tau_i$ of the counts remains a residual. When
 the bin is long against the spacing, a bin holds whole trains or long parts of them, the offset
 $\delta$ moves only the events at their ends, and the moved counts approach the true ones. Prediction
-along the motion can therefore remove most of the counts on long bins and few on short ones.
+along the true motion therefore removes most of the counts on long bins and few on short ones.
 
 \section{Experiments}\label{sec:experiments}
 The experiments address three questions: on the model, the three regimes of
@@ -559,7 +552,9 @@ by side in the luma plane of a $4{:}2{:}0$ picture and constant chroma. They are
 the preset \texttt{slow}. Each clip has one intra picture and P pictures after it, without B
 pictures. Adaptive quantization and the psychovisual options are off. In lossless mode the luma is
 the count. At a constant quantization parameter (QP) the luma is $16$ times the count, the decoder
-rounds the luma divided by $16$, and the intra picture is coded at the QP of the P pictures. Counts
+rounds the luma divided by $16$, and the intra picture is coded at the QP of the P pictures, except
+for the operating points on the grid of two pixels and $T_0/3$, where it has the default QP offset of
+x265. Counts
 are clipped at $15$. On one-pixel voxels with $k\ge3$, clipping removes less than $1\%$ of the events;
 at $k=1$ and on two-pixel voxels it removes up to $6\%$ and $28\%$, by night. The fidelity of a
 decode is measured against the true events, so clipped events count as lost. Every bit of the HEVC stream is counted, parameter
@@ -652,7 +647,7 @@ $\Delta_t\le\tau/2$, the fidelity of the moved counts lies $0.001$ to $0.005$ be
 (Table~\ref{tab:model}). As $\Delta_t/\tau$ falls from $33$ to $0.52$ at $\tau=1$~ms, the fidelity
 falls from $0.990$ to $0.489$, so half of the counts are a residual even under the true motion.
 
-x265 in lossless mode codes the same scenes and follows the same limit. Its P pictures cost about
+x265 in lossless mode codes the same scenes, and its bits show a consistent trend. Its P pictures cost about
 $0.1$ bit per event at $\Delta_t/\tau\ge30$, about $1$ to $3$ at $\Delta_t/\tau\approx3$, and $5$ to
 $14$ at $\Delta_t/\tau\le1$. They are coded with merge and inter prediction in about equal parts,
 and fewer than $9\%$ of their coding units are skipped. The cost of a P picture thus rises where
@@ -714,9 +709,9 @@ intra picture takes $26\%$ to $31\%$ of the lossless bits at $k=1$ and less than
 so the P pictures carry the cost on fine grids. They do use prediction: merge accounts for $66\%$ to
 $95\%$ of their coding units on eTraM, and inter prediction for $68\%$ to $87\%$ on DSEC, where the
 whole scene moves. The ratio compares two complete coders, which also differ in their partitioning,
-syntax and entropy coding, so it bounds what the prediction of x265 achieves relative to a list and
-does not isolate it. \todo{the same x265 with intra pictures only, directive 021.} The trend with $k$
-is the one that Theorem~\ref{thm:lossless} and \eqref{eq:binfidmoved} predict: the motion is shared
+syntax and entropy coding, so it compares the total cost of the two coders and does not isolate the
+prediction. \todo{the same x265 with intra pictures only, directive 021.} The trend with $k$
+is consistent with Theorem~\ref{thm:lossless} and \eqref{eq:binfidmoved}: the motion is shared
 by the pixels of a path, and on fine grids a lossless code of the counts must describe the phases,
 which the motion does not carry.
 
@@ -729,8 +724,7 @@ $24$. \todo{the counts that the decode removes, adds and changes, and lossless x
 $16$ times the count, directive 021.} At $k=3$ on the same scenes, where a voxel holds up to a whole train, it reaches
 $0.982$ with $0.60$ bit per event and $0.959$ with $0.15$. On recordings the contrast is the same. On the grid of
 two pixels and $T_0/3$, x265 by day reaches $F=0.975$ with $3.26$ bits per event at QP~$14$, $0.933$
-with $1.09$ at QP~$28$, $0.840$ with $0.31$ at QP~$36$ and $0.706$ with $0.051$ at QP~$46$, with the
-intra picture at the default QP offset of x265. On fine grids the cheapest QP of the ladder, $28$,
+with $1.09$ at QP~$28$, $0.840$ with $0.31$ at QP~$36$ and $0.706$ with $0.051$ at QP~$46$. On fine grids the cheapest QP of the ladder, $28$,
 still costs $0.2$ to $1$ bit per event, and at one bit per event by day the best point at $k=64$
 keeps a box fidelity of $0.011$ and leaves $71\%$ of the boxes without events, against $0.279$ and
 $38\%$ at $k=12$.
