@@ -13,3 +13,9 @@ logs/
 
 # Per-instant result files stay on the compute host; directives commit aggregates only.
 results/**/instants_*.npz
+
+# LaTeX build byproducts
+papers/**/*.aux
+papers/**/*.bbl
+papers/**/*.blg
+papers/**/*.log
