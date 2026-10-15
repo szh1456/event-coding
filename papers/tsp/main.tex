@@ -531,8 +531,9 @@ along the true motion therefore removes most of the counts on long bins and few 
 The experiments address three questions: on the model, the three regimes of
 Theorem~\ref{thm:pixel} (Section~\ref{sec:regimes}); on the model, whether moved counts follow
 \eqref{eq:binfidmoved} and what temporal prediction costs (Section~\ref{sec:moved-model}); on
-recordings, whether the phases of the pixels are independent (Section~\ref{sec:phase-rec}); and what
-the mechanism means for a standard video coder on recordings (Section~\ref{sec:hevc}).
+recordings, whether the phases of the pixels are independent (Section~\ref{sec:phase-rec}), what a
+receiver gets in each regime (Section~\ref{sec:demo}), and what the mechanism means for a standard
+video coder (Section~\ref{sec:hevc}).
 
 \subsection{Protocol}\label{sec:protocol}
 \emph{Data.} The recordings from a static camera are the 112 recordings of the training split of
@@ -688,6 +689,36 @@ interval of the pixel over $133$~ms, is $0.142$ by day and $0.151$ on DSEC at $\
 on the grid of one pixel and $T_0/32$, against $0.141$ from \eqref{eq:binfidmoved}, and $0.190$ at
 night. Only $30\%$ to $48\%$ of the events lie in such pixels, and the remaining events come from
 pixels without a regular train.
+
+\subsection{What a Receiver Gets}\label{sec:demo}
+% Numbers and figure: directive 025, results/td2/demo.json and results/td2/fig_tolerance.pdf at ad42960.
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.92\textwidth]{figs/fig_tolerance.pdf}
+\caption{A moving car in eTraM by day (top) and at night (bottom), as recorded and as received at three
+timing tolerances. Signed event counts, red for positive polarity; first column: the whole window;
+other columns: slices of $T_0/16$.}
+\label{fig:tolerance}
+\end{figure*}
+Fig.~\ref{fig:tolerance} shows what a receiver displays in each regime of Theorem~\ref{thm:pixel}, for
+a car that crosses the sensor at $13$ pixels per window by day and $9$ at night. Each reconstruction
+is a practical code for its regime. For a small tolerance, every event is sent with its time in bins
+of $T_0/256$ by the voxel list. For a medium tolerance, the events of the previous window are moved
+along the motion of their block, and one number per pixel corrects them: the offset of the first true
+event of the pixel from its first moved event, rounded to $T_0/64$, or a symbol that deletes them. For a
+large tolerance, only the motion is sent. The motion of each block is fitted on the window it
+predicts, so that the lower rows show what motion cannot carry and not the errors of its estimate.
+
+Over the whole window the three reconstructions are hard to tell apart from the recording: the motion
+places the edges of the car where they are. In slices of $2.1$~ms the moved events fall on other pixels
+and in other slices than the recorded ones, since each pixel fires on its own phase. Every event costs
+$9.8$ bits by day and $9.5$ at night and keeps $F=1$ on the grid of $T_0/32$. One number per pixel costs
+$2.4$ and $2.7$ bits per event and keeps $F=0.48$ and $0.47$; the motion alone costs $0.04$ and $0.07$
+bits and keeps $0.28$ and $0.25$. On the grid of $T_0/3$ the same three codes keep $1.00$, $0.73$ to
+$0.75$ and $0.61$ to $0.64$: the longer the bin against the event spacing, the more of the recording the
+motion carries. The car scores below the model at the same speed, where one number per pixel keeps
+$0.80$ and the motion $0.48$. On recordings $52\%$ to $70\%$ of the events lie in pixels without a
+regular train (Section~\ref{sec:phase-rec}), against none on the model.
 
 \subsection{A Standard Video Coder}\label{sec:hevc}
 % Numbers: directives 019 (results/hd at 5edad1d), 021 (results/hc at cac17c2); the coarse-grid
