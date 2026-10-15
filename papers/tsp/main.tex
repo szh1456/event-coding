@@ -44,14 +44,15 @@ the code describes every event time, and the rate is exact. Above it, the code d
 per pixel, and the rate is known within $0.255$ bit. Beyond a threshold set by the event spacing of
 the pixel, the rate given the edge and its motion is zero, and a description of the motion needs a
 number of nats that grows at most logarithmically with the length of the path. A sender has the
-events and not the edge, and the closest it can come is to move events along the motion. A moved
-event keeps the phase of its source pixel, so on a voxel grid the moved counts reproduce only a
-share of about $\Delta_t/\tau$ of the true counts when the time bin $\Delta_t$ is shorter than the
-event spacing $\tau$. A standard HEVC coder on count pictures follows these limits. On the model,
-its lossless P pictures cost about $0.1$ bit per event when the bin is long against the event spacing
-and $5$ to $14$ bits when it is not. On recordings from a static camera and from a moving car, its
-lossless bits are $0.92$ to $1.18$ times those of a list of the counts without prediction, and on
-fine grids its quantizer removes single events instead of coarsening them.
+events and not the edge, and a common substitute is to move reference events along the motion. A
+moved event keeps the phase of its source pixel, so on a voxel grid the counts moved along the true
+motion reproduce only a share of about $\Delta_t/\tau$ of the true counts when the time bin
+$\Delta_t$ is shorter than the event spacing $\tau$. We probe the consequences with a standard HEVC
+coder on count pictures. On the model, its lossless P pictures cost about $0.1$ bit per event when
+the bin is long against the event spacing and $5$ to $14$ bits when it is not. On recordings from a
+static camera and from a moving car, its lossless bits are $0.92$ to $1.18$ times those of a list of
+the counts without prediction, and on fine grids its fidelity collapses within a narrow range of the
+quantization parameter.
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -93,8 +94,8 @@ extrapolate them. A recent survey notes that reported results are hard to compar
 \cite{rezaee2026}. On the theoretical side, rate-distortion results for point processes concern
 Poisson and finite point processes \cite{rubin1974,verdu1996,lapidoth2015,koliander2018}. They do
 not model events that a moving profile generates through a threshold rule. Event streams have also
-been aggregated into count pictures per polarity and coded without loss by HEVC
-\cite{khan2021talven,sullivan2012hevc}, a video coder whose prediction is motion compensated
+been aggregated into count pictures per polarity and coded without loss \cite{khan2021talven} by
+HEVC \cite{sullivan2012hevc}, a video coder whose prediction is motion compensated
 \cite{sullivan1998}, but what the prediction saves on such pictures has not been reported.
 
 This paper models that mechanism and derives what a code can and cannot save. The phase mechanism
@@ -120,16 +121,17 @@ contrast threshold divided by the rate of change of its intensity, so slowly cro
 larger tolerance. Along a path of $M$ pixels, a description of the motion of $O(\ln M)$ nats then
 replaces a lossless description of order $M$.
 
-\emph{3) Moved events and a video coder.} A sender has the events and not the edge, and the
-closest it can come to regeneration is to move events along the motion, which is what the prediction
-of a video coder does. A moved event keeps the phase of its source pixel. At equal event spacings
-this doubles the timing error of the ideal decoder (Proposition~\ref{prop:moved}), and on a voxel
-grid the moved counts reproduce a share of about $\Delta_t/\tau$ of the true counts when the bin is
-shorter than the event spacing. On the model, the best block motion compensation follows this share
-within $0.005$. We then code voxel counts of recordings from a static camera \cite{verma2024etram}
-and from a moving car \cite{gehrig2021dsec} with x265, an unmodified HEVC encoder, and with a list of
-the counts that predicts nothing. Without loss, the motion-compensated prediction of x265 saves
-nothing against the list, and with loss its quantizer removes single events on fine grids.
+\emph{3) Moved events and a video coder.} A sender has the events and not the edge. A common
+substitute, and the one that the prediction of a video coder implements, is to move reference events
+along the motion. A moved event keeps the phase of its source pixel. At equal event spacings this
+doubles the timing error of the ideal decoder (Proposition~\ref{prop:moved}), and on a voxel grid
+the counts moved along the true motion reproduce a share of about $\Delta_t/\tau$ of the true counts
+when the bin is shorter than the event spacing. On the model, the true-motion prediction follows
+this share within $0.005$. We then code voxel counts of recordings from a static camera
+\cite{verma2024etram} and from a moving car \cite{gehrig2021dsec} with x265, an unmodified HEVC
+encoder, and with a list of the counts that predicts nothing. Without loss the two need about the
+same bits, and x265 needs more on fine grids. With loss, the fidelity of x265 on fine grids
+collapses within a narrow range of the quantization parameter.
 
 Section~\ref{sec:model} states the model. Sections~\ref{sec:lossless} and~\ref{sec:tolerance}
 contain the theory, Section~\ref{sec:moved} the moved events, and Section~\ref{sec:experiments}
@@ -457,11 +459,12 @@ here.
 \end{remark}
 
 \section{Moved Events}\label{sec:moved}
-The decoder \eqref{eq:regen} needs the edge and the flow. A sender has neither. It has the events,
-and the closest it can come to \eqref{eq:regen} is to let the receiver move events it already holds
-along the motion. This is motion-compensated prediction, the core of a hybrid video coder
-\cite{sullivan1998,sullivan2012hevc}: a block of a decoded picture, displaced by a motion vector,
-predicts a block of the next picture, and the coder sends the residual. This section gives what a
+The decoder \eqref{eq:regen} needs the edge and the flow. A sender has neither. It has the events.
+It could estimate the edge from them, and this paper does not pursue that route. We study a common
+substitute: the receiver moves reference events that it already holds along the motion. This is
+motion-compensated prediction, the core of a hybrid video coder \cite{sullivan1998,sullivan2012hevc}:
+a block of a decoded picture, displaced by a motion vector, predicts a block of the next picture, and
+the coder sends the residual. This section gives what a
 moved event costs in timing error and in the fidelity of a receiver that counts events.
 
 \subsection{Timing Error}
@@ -514,14 +517,13 @@ $\Delta_t\le\tau_i/2$, the two contributions give
 A voxel grid does not distinguish the events of a pixel, so the doubled timing error of
 \eqref{eq:moved} lowers the fidelity only by a term of order $1/n$.
 
-For prediction, \eqref{eq:binfidmoved} sets a limit that no motion estimate can raise. With the exact
-motion, the counts of the previous window moved to their targets reproduce a share of about
-$\Delta_t/\tau_i$ of the true counts when the bin is shorter than the event spacing, and the rest is a
-residual. On such a bin the count of a pixel is zero or one, and which bins hold the ones is decided
-by the phases, which motion does not carry. When the bin is long against the spacing, a bin holds
-whole trains or long parts of them, the offset $\delta$ moves only the events at its ends, and the
-moved counts approach the true ones. A motion-compensated coder of voxel counts can therefore save
-bits through its prediction on long bins and not on short ones.
+Equation \eqref{eq:binfidmoved} is the expected fidelity of the events of a given source pixel moved
+along the true motion. When the bin is
+shorter than the event spacing, the count of a pixel is zero or one, which bins hold the ones is
+decided by the phases, and about a share $1-\Delta_t/\tau_i$ of the counts remains a residual. When
+the bin is long against the spacing, a bin holds whole trains or long parts of them, the offset
+$\delta$ moves only the events at their ends, and the moved counts approach the true ones. Prediction
+along the true motion therefore removes most of the counts on long bins and few on short ones.
 
 \section{Experiments}\label{sec:experiments}
 The experiments address three questions: on the model, the three regimes of
@@ -550,9 +552,12 @@ by side in the luma plane of a $4{:}2{:}0$ picture and constant chroma. They are
 the preset \texttt{slow}. Each clip has one intra picture and P pictures after it, without B
 pictures. Adaptive quantization and the psychovisual options are off. In lossless mode the luma is
 the count. At a constant quantization parameter (QP) the luma is $16$ times the count, the decoder
-rounds the luma divided by $16$, and the intra picture is coded at the QP of the P pictures. Counts
+rounds the luma divided by $16$, and the intra picture is coded at the QP of the P pictures, except
+for the operating points on the grid of two pixels and $T_0/3$, where it has the default QP offset of
+x265. Counts
 are clipped at $15$. On one-pixel voxels with $k\ge3$, clipping removes less than $1\%$ of the events;
-at $k=1$ and on two-pixel voxels it removes up to $6\%$ and $28\%$, by night. Every bit of the HEVC stream is counted, parameter
+at $k=1$ and on two-pixel voxels it removes up to $6\%$ and $28\%$, by night. The fidelity of a
+decode is measured against the true events, so clipped events count as lost. Every bit of the HEVC stream is counted, parameter
 sets included.
 
 \emph{Voxel list.} As a coder without prediction, the voxel list sorts the events of a window by
@@ -635,14 +640,14 @@ $\tau$ (ms) & $k$ & $\Delta_t/\tau$ & $F$ & \eqref{eq:binfidmoved} & $b_{\mathrm
 Straight edges cross a sensor of $320\times240$ pixels at six pixels per window, $40$ pixels apart,
 for twelve windows. Every row of pixels is a path of the model, with $\tau$ from $0.25$ to $8$~ms,
 $n\in\{1,3\}$ and $\sigma=0.05\,\tau$. The prediction of window $m$ is the counts of window $m-1$
-moved by exactly six pixels, the best that block motion compensation can do.
+moved by exactly six pixels, the true-motion prediction.
 
 Wherever \eqref{eq:binfidmoved} applies, in all twelve cells of $\tau$, $n$ and $k$ with
 $\Delta_t\le\tau/2$, the fidelity of the moved counts lies $0.001$ to $0.005$ below it
 (Table~\ref{tab:model}). As $\Delta_t/\tau$ falls from $33$ to $0.52$ at $\tau=1$~ms, the fidelity
 falls from $0.990$ to $0.489$, so half of the counts are a residual even under the true motion.
 
-x265 in lossless mode codes the same scenes and follows the same limit. Its P pictures cost about
+x265 in lossless mode codes the same scenes, and its bits show a consistent trend. Its P pictures cost about
 $0.1$ bit per event at $\Delta_t/\tau\ge30$, about $1$ to $3$ at $\Delta_t/\tau\approx3$, and $5$ to
 $14$ at $\Delta_t/\tau\le1$. They are coded with merge and inter prediction in about equal parts,
 and fewer than $9\%$ of their coding units are skipped. The cost of a P picture thus rises where
@@ -696,28 +701,30 @@ HEVC on count pictures has been used to code event streams without loss \cite{kh
 use x265 here as a probe: it has motion-compensated prediction, a transform and a quantizer, and its
 own record of how it codes each picture shows where its bits go.
 
-\emph{Without loss.} x265 needs no fewer bits than the voxel list, which predicts nothing
-(Table~\ref{tab:lossless}). Over the twelve grids, the ratio of the two is $0.92$ to $1.02$ at
-slices of $T_0/6$ or longer, $1.00$ to $1.07$ at $T_0/12$, and $1.06$ to $1.18$ at $T_0/32$ and
-$T_0/64$. From $k=3$ on it rises with $k$ on every stratum and at both voxel sizes. The intra picture takes $26\%$ to $31\%$ of the lossless bits at $k=1$ and less than
-$1.5\%$ at $k=64$, so the P pictures carry the cost on fine grids. They do use prediction: merge
-accounts for $66\%$ to $95\%$ of their coding units on eTraM, and inter prediction for $68\%$ to
-$87\%$ on DSEC, where the whole scene moves. The prediction does not reduce the bits below those of a
-list of the counts. This is what Theorem~\ref{thm:lossless} and \eqref{eq:binfidmoved} lead one to
-expect: the motion is shared by the pixels of a path, and a lossless code of the counts must still
-describe the phases, which decide the counts on fine grids and which the motion does not carry.
+\emph{Without loss.} x265 needs about the bits of the voxel list, which predicts nothing, and more
+on fine grids (Table~\ref{tab:lossless}). Over the twelve grids, the ratio of the two is $0.92$ to
+$1.02$ at slices of $T_0/6$ or longer, $1.00$ to $1.07$ at $T_0/12$, and $1.06$ to $1.18$ at
+$T_0/32$ and $T_0/64$. From $k=3$ on it rises with $k$ on every stratum and at both voxel sizes. The
+intra picture takes $26\%$ to $31\%$ of the lossless bits at $k=1$ and less than $1.5\%$ at $k=64$,
+so the P pictures carry the cost on fine grids. They do use prediction: merge accounts for $66\%$ to
+$95\%$ of their coding units on eTraM, and inter prediction for $68\%$ to $87\%$ on DSEC, where the
+whole scene moves. The ratio compares two complete coders, which also differ in their partitioning,
+syntax and entropy coding, so it compares the total cost of the two coders and does not isolate the
+prediction. \todo{the same x265 with intra pictures only, directive 021.} The trend with $k$
+is consistent with Theorem~\ref{thm:lossless} and \eqref{eq:binfidmoved}: the motion is shared
+by the pixels of a path, and on fine grids a lossless code of the counts must describe the phases,
+which the motion does not carry.
 
-\emph{With loss.} The quantizer of a video coder acts on the amplitude of the luma. On a fine grid the
-counts are almost all zero or one, so a coarser QP does not make a voxel less precise; it removes it.
-On the model at $\tau=1$~ms and $k=64$, the voxel list codes the counts exactly with $5.04$ bits per
-event and lossless x265 with $7.93$. x265 reaches $F=0.964$ at QP~$16$ with $20.9$ bits per event,
+\emph{With loss.} On a fine grid almost all nonzero counts are one, and a voxel with one event has
+the luma $16$. On the model at $\tau=1$~ms and $k=64$, the voxel list codes the counts exactly with
+$5.04$ bits per event and lossless x265 with $7.93$. x265 reaches $F=0.964$ at QP~$16$ with $20.9$ bits per event,
 $0.557$ at QP~$20$ with $7.55$, and $0.107$ at QP~$24$ with $1.27$: below the bits of the exact list,
-its fidelity is at most $0.27$, since a voxel with one event has the luma $16$, which vanishes between
-QP~$14$ and $26$. At $k=3$ on the same scenes, where a voxel holds up to a whole train, it reaches
-$0.982$ with $0.60$ bit per event and $0.959$ with $0.15$. On recordings the same holds. On the grid of
+its fidelity is at most $0.27$, and the fidelity falls from $0.995$ to $0.107$ between QP~$14$ and
+$24$. \todo{the counts that the decode removes, adds and changes, and lossless x265 on the luma
+$16$ times the count, directive 021.} At $k=3$ on the same scenes, where a voxel holds up to a whole train, it reaches
+$0.982$ with $0.60$ bit per event and $0.959$ with $0.15$. On recordings the contrast is the same. On the grid of
 two pixels and $T_0/3$, x265 by day reaches $F=0.975$ with $3.26$ bits per event at QP~$14$, $0.933$
-with $1.09$ at QP~$28$, $0.840$ with $0.31$ at QP~$36$ and $0.706$ with $0.051$ at QP~$46$, with the
-intra picture at the default QP offset of x265. On fine grids the cheapest QP of the ladder, $28$,
+with $1.09$ at QP~$28$, $0.840$ with $0.31$ at QP~$36$ and $0.706$ with $0.051$ at QP~$46$. On fine grids the cheapest QP of the ladder, $28$,
 still costs $0.2$ to $1$ bit per event, and at one bit per event by day the best point at $k=64$
 keeps a box fidelity of $0.011$ and leaves $71\%$ of the boxes without events, against $0.279$ and
 $38\%$ at $k=12$.
@@ -728,14 +735,13 @@ fidelity at one pixel and at least three slices per window, with no box left emp
 raise the motion error: at $k=3$ it is $4.01$, $1.17$ and $2.67$ pixels per window by day, by night
 and on DSEC, against $1.49$, $0.67$ and $0.94$ at one pixel.
 
-\emph{Implications.} The three measurements separate what a coder of event counts can gain from what
-it cannot. Prediction from motion pays on bins long against the event spacing and not on short ones,
-where the bits describe the phases and the jitter of Theorem~\ref{thm:lossless}. A quantizer of
-amplitudes degrades gracefully only where voxels hold several events, and on fine grids it removes
-single events instead. A receiver that needs fine timing therefore calls for a different
-description of the residual, by event times relative to a prediction rather than by amplitudes, and
-a receiver that is satisfied with a bin longer than the event spacing is served by motion
-compensation and the quantizer of a video coder as they are.
+\emph{Implications.} On the bins long against the event spacing, the counts moved along the motion
+predict the true counts, and voxels hold several events, so the prediction and the quantizer of a
+video coder have something to work with. On short bins the counts are single events placed by the
+phases: the true-motion prediction leaves most of them as a residual, and in our settings the
+fidelity of x265 collapses over a few steps of the QP. A receiver that needs bins shorter than the
+event spacing is therefore poorly matched to the residual description of a video coder, and a
+description by event times relative to the prediction is the natural alternative.
 
 \section{Conclusion}
 The pixels on the path of a moving edge share the edge and its motion, and each has a threshold
@@ -744,11 +750,11 @@ tolerance removes first the jitter and then the phase from what a code must desc
 threshold set by the event spacing the events are regenerated from the edge and the motion alone. A
 sender that has only the events can move them along the motion, which doubles the timing error and,
 on a voxel grid, reproduces a share $\Delta_t/\tau$ of the counts when the bin is shorter than the
-event spacing. A standard HEVC coder on count pictures behaves as these limits say: without loss its
-motion-compensated prediction saves nothing against a list of the counts, its P pictures grow
-expensive as the bin falls below the event spacing, and with loss its quantizer removes single
-events on fine grids. The theory covers one ramp edge in uniform passage, so texture, noise events
-and threshold mismatch remain to be modeled, and a coder that describes the residual of fine bins by
+event spacing. A standard HEVC coder on count pictures shows the consequences: without loss it needs
+about the bits of a list of the counts and more on fine grids, its P pictures grow expensive as the
+bin falls below the event spacing, and with loss its fidelity on fine grids collapses within a narrow
+range of the QP. The theory covers one ramp edge in uniform passage, so texture, noise events and
+threshold mismatch remain to be modeled, and a coder that describes the residual of fine bins by
 event times remains to be built.
 
 \appendices
