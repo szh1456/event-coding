@@ -33,23 +33,21 @@
 
 \begin{abstract}
 An event camera reports when the log intensity of a pixel crosses a threshold. When an edge moves
-across the sensor, the pixels on its path share the edge and its motion, but each fires on its own
-lattice of threshold levels, offset by a threshold phase, and every event carries timing jitter. We
-derive the rate-distortion function of the event times under a mean-squared timing tolerance, given
-the edge and its motion, for a ramp edge that passes each pixel once under an affine flow with
-independent uniform phases and Gaussian jitter. Below the jitter variance a code describes every
-event time, and the rate is exact. Up to $D_A=\sigma^2+\tau^2/12$, where $\tau$ is the event spacing
-of the pixel, it describes one number per pixel, and the rate is known within $0.255$ bit. From $D_A$
-on the conditional rate is zero, and describing the motion of a path of $M$ pixels adds $O(\ln M)$
-nats. A sender that instead moves reference events along the motion keeps the phase of the source
-pixel: for equal spacings the timing error doubles, and on a voxel grid the moved counts reproduce a
-share of about $\Delta_t/\tau$ of the true counts when the bin $\Delta_t$ is shorter than $\tau$. A
-controlled model shows that the phases alone cause this loss. On recordings from a static and a
-moving camera, a per-block test detects no phase lock on regular event trains with spacings below
-$4$~ms, and a lock appears only in a band consistent with mains lighting. Coding count pictures with
-HEVC shows the consequences: on fine time grids its P pictures save bits against intra pictures but
-not against a list of the counts, its lossy decodes remove single events, and the motion recovered
-from them falls with the rate.
+across the sensor, the pixels on its path share the edge and its motion, yet each fires on its own
+lattice of threshold levels, offset by a threshold phase, and each event carries timing jitter, so the
+pixels emit different events. We ask what information the events still hold once the edge and the
+motion are known, and which of it a mean-squared timing tolerance allows a code to leave out. For a
+ramp edge that passes each pixel once under an affine flow, with independent uniform phases and
+Gaussian jitter, the event times of a pixel split into a common shift, which carries the phase, and
+relative variations, which carry only jitter. The conditional rate-distortion function follows. Below
+the jitter variance every event time must be described, and the rate is exact. Up to
+$D_A=\sigma^2+\tau^2/12$, with $\tau$ the event spacing of the pixel, a description of the common shift
+alone comes within $0.255$ bit per pixel of the rate. From $D_A$ on the conditional rate is zero, and
+the events are regenerated from the edge and the motion. Events moved along the motion keep the phase
+of their source pixel, so the event spacing also sets the time bins over which moved counts remain
+predictive. A controlled model shows that the phases alone cause the loss of moved counts, a test on
+recordings from a static and a moving camera detects no phase lock on regular event trains, and an
+HEVC coder on count pictures shows what the mechanism means for a standard coder.
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -107,38 +105,40 @@ code to leave out.
 
 We model the events of a ramp edge that passes each pixel once under an affine flow, with independent
 uniform phases and Gaussian jitter, and give the edge and its motion to the encoder and the decoder.
-The rate-distortion function of the event times under a mean-squared timing tolerance then has three
-regimes. Below the jitter variance a code describes every event time. Up to a threshold
-$D_A=\sigma^2+\tau^2/12$, set by the event spacing $\tau$ of the pixel, it describes one number per
-pixel, its phase together with its mean jitter. Beyond $D_A$ it describes nothing: the decoder
-regenerates the events from the edge and the motion. Describing the motion itself adds $O(\ln M)$ nats
-along a path of $M$ pixels. A sender holds the events and not the edge, and a common substitute is to
+The event times of a pixel then split into a common shift, which carries the phase and the mean
+jitter, and relative variations, which carry only jitter, and the rate-distortion function of the event
+times under a mean-squared timing tolerance has three regimes. Below the jitter variance a code must
+describe every event time. Up to a threshold $D_A=\sigma^2+\tau^2/12$, set by the event spacing $\tau$
+of the pixel, a description of the common shift alone comes within $0.255$ bit per pixel of the rate.
+Beyond $D_A$ the rate is zero: the decoder regenerates the events from the edge and the motion. These
+are rates given the edge and the motion. When the motion has a fixed number of parameters and must be
+described, a description of $O(\ln M)$ nats along a path of $M$ pixels suffices. A sender holds the events and not the edge, and a common substitute is to
 move reference events along the motion, as the prediction of a video coder does. A moved event keeps
 the phase of its source pixel, and the same event spacing that sets $D_A$ sets the time bins over which
 moved counts remain predictive. A controlled model, a phase test on recordings and an HEVC coder test
 and illustrate these consequences.
 
-\emph{1) The conditional rate-distortion function of the event times.} Under independent phases and
-jitter, the event times of the pixels are conditionally independent given the edge and the motion,
+\emph{1) Information structure and conditional rate-distortion function.} Under independent phases
+and jitter, the event times of the pixels are conditionally independent given the edge and the motion,
 and the lossless code length of their time stamps grows in proportion to $M$
 (Theorem~\ref{thm:lossless}). The rate-distortion function of a pixel is exact below the jitter
-variance, known within $0.255$ bit up to $D_A$, and zero from $D_A$ on (Theorem~\ref{thm:pixel}); a
-path allocates the tolerance over its pixels (Theorem~\ref{thm:path}), and a motion that must be
-described costs $O(\ln M)$ nats (Proposition~\ref{prop:motion}).
+variance, bounded within $0.255$ bit per pixel up to $D_A$, and zero from $D_A$ on
+(Theorem~\ref{thm:pixel}). A path allocates the tolerance over its pixels (Theorem~\ref{thm:path}), and
+a motion with a fixed number of parameters can be described with $O(\ln M)$ nats when the template is
+known (Proposition~\ref{prop:motion}).
 
-\emph{2) The cost of reusing events along the motion.} For different source and target pixels with
+\emph{2) Reusing events along the motion: error and time scale.} For different source and target pixels with
 equal event spacings, moved events have twice the timing error of the regenerated ones
 (Proposition~\ref{prop:moved}), and on a voxel grid the counts of a source pixel moved along the true
 motion reproduce a share of about $\Delta_t/\tau$ of the true counts when the bin is shorter than the
 event spacing. A controlled model, with exact motion and equal counts, shows that the phases alone
 cause this loss.
 
-\emph{3) Recordings and a video coder.} On recordings from a static camera \cite{verma2024etram} and
-from a moving car \cite{gehrig2021dsec}, a per-block phase test detects no lock of moved events on the
-regular event trains where it can be applied, and a reconstruction shows what a receiver loses when
-the timing is left out. Coded by x265, an unmodified HEVC encoder, count pictures on fine time grids
-show a prediction gain against intra pictures but no gain against a list of the counts, lossy errors
-that remove single events, and a motion task that degrades with the rate.
+\emph{3) Experimental test of the mechanism.} On recordings from a static camera
+\cite{verma2024etram} and from a moving car \cite{gehrig2021dsec}, a per-block phase test detects no
+lock of moved events on the regular event trains where it can be applied, and a reconstruction shows
+what a receiver loses when the timing is left out. An HEVC coder serves as a case for the consequences
+on fine time grids.
 
 Section~\ref{sec:model} states the model and the problem. Section~\ref{sec:lossless} gives the
 structure of the events, Section~\ref{sec:tolerance} the rate-distortion function, and
@@ -148,7 +148,10 @@ Euclidean norm of a vector and the spectral norm of a matrix, and $[x]^+=\max(x,
 
 \section{Model}\label{sec:model}
 We first state the pixel rule, from which the phase mechanism follows for any scene. We then
-specialize to a ramp edge in uniform passage, for which the rates have closed forms.
+specialize to a ramp edge in uniform passage, for which the rates have closed forms. The model leads to
+one representation of the events of a pixel (Lemma~\ref{lem:times}): a deterministic train set by the
+edge and the motion, shifted by a common phase offset and perturbed by an independent jitter per
+event.
 \subsection{Pixel}
 Pixels sit at the lattice points $i\in\Z^2$ of the image plane. Pixel $i$ observes the log intensity
 $\ell_i(t)=L(i,t)$ of a continuous field $L$.
@@ -322,10 +325,25 @@ $\hat T_i\in\R^n$ for each pixel, and the distortion is the mean-squared timing 
 \subsection{One Pixel}
 Let $R_i(D)=\inf I(T_i;\hat T_i)$, with the infimum over the conditional laws of $\hat T_i$ that
 satisfy $\E\,d(T_i,\hat T_i)\le D$, be the rate-distortion function of the events of pixel $i$. It
-is the rate that block codes over many independent passages approach. Define
+is the rate that block codes over many independent passages approach.
+
+The three regimes below come from one decomposition. By Lemma~\ref{lem:times},
+$T_i=c_i+A_i\mathbf 1+\varepsilon_i$, with $c_i$ fixed by the template and the flow, $\mathbf 1$ the
+all-ones vector and $\varepsilon_i\sim\mathcal N(0,\sigma^2I_n)$. An orthogonal matrix $Q$ whose first
+row is $\mathbf 1^{\!\top}/\sqrt n$ maps $T_i-c_i$ to
+\begin{equation}\label{eq:XW}
+  X_i=\sqrt n\,A_i+\varepsilon^{\parallel}_i,\qquad W_i\sim\mathcal N(0,\sigma^2I_{n-1}),
+\end{equation}
+with $\varepsilon^{\parallel}_i\sim\mathcal N(0,\sigma^2)$ and $X_i$ independent of $W_i$. The common
+shift $X_i$ carries the phase and the mean jitter, and the $n-1$ relative components $W_i$ carry jitter
+only. The distortion \eqref{eq:dist} is invariant under this map. A tolerance below $\sigma^2$ therefore
+requires all $n$ components; above it, the relative components can be left at their error $\sigma^2$
+and only the common shift is described; and once the error of leaving out everything,
+$(\operatorname{Var}X_i+(n-1)\sigma^2)/n$, is tolerated, nothing is described. Define
 \begin{equation}\label{eq:defs}
   s_i^2=\frac{n\tau_i^2}{12}+\sigma^2,\qquad D_{A,i}=\sigma^2+\frac{\tau_i^2}{12},
 \end{equation}
+so that $s_i^2=\operatorname{Var}X_i$ and $D_{A,i}=(s_i^2+(n-1)\sigma^2)/n$, and
 \begin{equation}\label{eq:gap}
   \Gamma_i=\tfrac12\ln(2\pi e\,s_i^2)-\eta(\sqrt n\,\tau_i,\sigma).
 \end{equation}
@@ -354,10 +372,11 @@ so that $R_i(D)>0$ for $D<D_{A,i}$.
 \end{theorem}
 The three regimes have a direct reading. Below the jitter variance, every bit of timing precision
 costs a bit, per event: the rate falls by $\log_210=3.32$ bits per event and per decade of the
-root-mean-square tolerance $\sqrt D$. Between $\sigma^2$ and $D_{A,i}$, the $n-1$ jitter components
-orthogonal to a common shift of the events are no longer described, and the code describes one
-number per pixel, the phase together with the mean jitter, to within $0.255$ bit. From $D_{A,i}$
-on, nothing is described. The decoder that attains \eqref{eq:rdzero} outputs the mean times
+root-mean-square tolerance $\sqrt D$. Between $\sigma^2$ and $D_{A,i}$, the rate lies between the
+bounds \eqref{eq:rdmid}, whose upper bound is attained by describing the common shift $X_i$ alone, so a
+scalar description comes within $\Gamma_i\le0.255$ bit per pixel of the optimum. The theorem does not
+state that every optimal code describes a scalar; it states that a scalar is enough to within this gap.
+From $D_{A,i}$ on, nothing is described. The decoder that attains \eqref{eq:rdzero} outputs the mean times
 \begin{equation}\label{eq:regen}
   \hat T_{i,k}=t_i+\big(k-\tfrac12\big)\tau_i,\qquad k=1,\dots,n .
 \end{equation}
@@ -368,7 +387,7 @@ Two of these statements extend beyond the ramp. If the noise-free event times of
 function of its phase, \eqref{eq:rdlow} holds below the jitter variance with the entropy of the
 actual event times, and the smallest distortion at zero rate is
 $\tfrac1n\operatorname{tr}\operatorname{Cov}(T_i)$, attained by the mean times. The middle regime,
-in which one number per pixel is described to within $0.255$ bit, and the closed forms
+in which a scalar description comes within $0.255$ bit per pixel of the rate, and the closed forms
 \eqref{eq:hT}, \eqref{eq:U} and \eqref{eq:defs} belong to the ramp in uniform passage, where the
 phase shifts all events of a pixel by a common time.
 
@@ -382,9 +401,10 @@ regenerated, and a pixel that is crossed quickly needs a small one.
 \centering
 \includegraphics[width=\columnwidth]{figs/fig_regimes.pdf}
 \caption{Rate of one pixel against the timing tolerance for $n=3$ and $\sigma/\tau_i=0.05$:
-Theorem~\ref{thm:pixel}, a numerical rate-distortion function and a scalar quantizer. Left of $\sigma$
-every event time is described, between $\sigma$ and $\sqrt{D_{A,i}}$ one number per pixel, and beyond
-$\sqrt{D_{A,i}}$ nothing. Bottom: the middle regime.}
+Theorem~\ref{thm:pixel}, a numerical rate-distortion function and a scalar quantizer, in bits per
+event. Below $\sigma$ every event time is described; between $\sigma$ and $\sqrt{D_{A,i}}$ the common
+shift alone comes within $\Gamma_i$ per pixel, $\Gamma_i/n$ per event; beyond $\sqrt{D_{A,i}}$ nothing is
+described. Bottom: the middle regime.}
 \label{fig:regimes}
 \end{figure}
 Fig.~\ref{fig:regimes} compares Theorem~\ref{thm:pixel} with a rate-distortion function that is
@@ -395,7 +415,7 @@ components in closed form at the same slope.
 Below $\sigma^2$ the numerical rate equals \eqref{eq:rdlow} to within $4\times10^{-6}$ nat.
 Between $\sigma^2$ and $D_{A,i}$ it stays inside the band between the bounds \eqref{eq:rdmid} and
 \eqref{eq:rdpos}, which is at most $\Gamma_i=0.187$ bit per pixel wide here, against the limit of
-$0.255$ bit. Near $\sigma^2$ the phase is described finely and the rate sits on the lower bound,
+$0.255$ bit per pixel. Near $\sigma^2$ the phase is described finely and the rate sits on the lower bound,
 which uses its uniform distribution; toward $D_{A,i}$ the description is coarse and the rate meets
 \eqref{eq:rdpos}, which uses only its variance. From $D_{A,i}$ on
 the rate is zero, and the regenerated events \eqref{eq:regen} of $2\times10^6$ simulated pixels
@@ -432,8 +452,9 @@ If $\tau_i\le\tau_{\max}$ on the path, then for $D\le\bar D_A$
 \end{equation}
 \end{theorem}
 If the tolerance is imposed on every pixel separately, the rate is zero if and only if
-$D\ge\max_iD_{A,i}$, and the slowest crossing sets the tolerance. By \eqref{eq:pathpos}, below
-$\bar D_A$ a rate that is proportional to $M$ remains.
+$D\ge\max_iD_{A,i}$, and the slowest crossing sets the tolerance. By \eqref{eq:pathpos}, a tolerance
+a fixed margin below $\bar D_A$, with $\tau_{\max}$ bounded uniformly in $M$, leaves a rate proportional
+to $M$.
 
 \subsection{The Motion}
 Theorems~\ref{thm:pixel} and~\ref{thm:path} assume that the decoder knows the flow. We now extend
@@ -459,9 +480,10 @@ the position of the edge, with a range of order $M$ and a sensitivity of order o
 with a range of order one and a sensitivity of order $M$, so $B\le2\ln M+O(1)$. The same holds with
 finite exponents, and hence $B=O(\ln M)$, for an affine flow whose normal speed is bounded away from
 zero on the path and whose duration is polynomial in $M$. The lossless cost of the same events is
-the sum of \eqref{eq:HY}, of order $M$, so the ratio of the two grows at least as $M/\ln M$. Above
-$\bar D_A$ the description that remains is $O(\ln M)$. Below it, a rate proportional to $M$
-remains. The bound \eqref{eq:B} is for a receiver that holds the edge.
+the sum of \eqref{eq:HY}, of order $M$, so the ratio of the two grows at least as $M/\ln M$. The
+bound \eqref{eq:B} is an achievable cost for a motion with a fixed number of parameters and the stated
+ranges and sensitivities, for a receiver that holds the template; it is not a cost for an arbitrary
+motion field or for describing the scene.
 
 \begin{remark}[Departures from the model]\label{rem:relax}
 \emph{Reference ahead of the passage.} If $\mu_i\in(0,C)$ before a rising passage, as after a
@@ -648,8 +670,10 @@ intervals, the position of the moved events in its train is
   u_i=\frac1{2\pi}\arg\Big(\sum_{k}e^{2\pi\mathrm{i}\,p_k/\tau_i}\sum_{l}e^{-2\pi\mathrm{i}\,t_l/\tau_i}\Big),
 \end{equation}
 over its predicted times $p_k$ and its true times $t_l$. Under (A3), $A_j-A_i$ is uniform modulo
-$\tau_i$, so $u_i$ is uniform on $[0,1)$ whatever the residual offset of the motion and the length of
-the trains. If the pixels of a path shared their phases, $u_i$ would be constant. Pooling $\cos2\pi
+$\tau_i$, so $u_i$ is uniform on $[0,1)$ for any lengths of the trains and any residual time offset of
+the motion that is independent of $A_i$. The offset used here is a median over the pixels of a block,
+in which the phase of one target pixel enters only weakly; on the model, with the same estimate,
+independent phases give a mean Rayleigh statistic of $1.05$ (below). If the pixels of a path shared their phases, $u_i$ would be constant. Pooling $\cos2\pi
 u_i$ over pixels detects a lock common to all blocks, but locks at different values in different
 blocks would cancel. The Rayleigh statistic of a block of $m$ tested pixels,
 \begin{equation}\label{eq:rayleigh}
@@ -692,7 +716,8 @@ mix the phase with count mismatch and motion error and do not test \eqref{eq:bin
 \includegraphics[width=0.92\textwidth]{figs/fig_tolerance_compact2.pdf}
 \caption{A moving car in eTraM by day, as recorded and as received from three codes. Top: the whole
 window; middle: a slice of $T_0/16$; signed event counts, red for positive polarity. Bottom: the slice
-against the recorded one.}
+against the recorded one. The fidelity in each panel is scored on the grid of $T_0/3$ (top) or
+$T_0/32$ (middle), not on the displayed slice.}
 \label{fig:tolerance}
 \end{figure*}
 Fig.~\ref{fig:tolerance} shows what a receiver displays as a code leaves out more of the timing, for
@@ -766,9 +791,10 @@ pays against intra pictures. On eTraM the intra pictures cost $1.1$ to $3.4$ tim
 increasingly so at fine slices: a static camera leaves pictures almost empty, and the P pictures save
 the cost of signaling empty regions, which an intra picture pays anew. On DSEC, where the camera moves,
 the intra pictures cost $1.03$ to $1.10$ times the P pictures. The prediction gain thus survives on
-fine grids, but it does not make the coder cheaper than a list of the counts, as
-Theorem~\ref{thm:lossless} and \eqref{eq:binfidmoved} lead one to expect: on fine grids the counts are
-set by the phases, which the motion does not carry.
+fine grids, but it does not make the coder cheaper than a list of the counts. This ordering is a
+measurement of these two coders, which also differ in transform, motion search and syntax, and not a
+consequence of the theory. It agrees with the mechanism: on fine grids the counts are set by the
+phases, which the motion does not carry.
 
 \emph{With loss.} On a fine grid almost all nonzero counts are one: $92\%$ to $99\%$ of the events lie
 in voxels of one event at $T_0/64$. The quantizer then removes events instead of coarsening them. At
@@ -781,23 +807,23 @@ quantizer coarsens counts instead, and $F$ stays above $0.82$ down to about one 
 grids answer different timing requirements: $F$ on $T_0/3$ ignores timing differences within $11$~ms,
 so its curves give the cost of a looser requirement and not that of a better coder.
 
-\emph{The motion task.} The fine grid serves the task best when it is coded finely. Uncoded, the counts
-on $T_0/64$ let $75\%$, $86\%$ and $73\%$ of the squares be recovered, against $44\%$, $71\%$ and $50\%$
-on $T_0/3$ (Fig.~\ref{fig:hevc}c). As the rate falls, the decode on $T_0/64$ empties squares: by day
-the recovered share falls from $0.71$ at $41$ bits per event to $0.13$ at $0.9$, with $49\%$ of the
-squares left without events; at night it falls from $0.83$ to $0.36$ and on DSEC from $0.74$ to
-$0.36$. On $T_0/3$ the share stays at its uncoded value at every QP. Below a crossing that lies between
-$1.5$ and $10$ bits per event depending on the stratum, the coarse grid therefore serves the task
-better. Counting a decode without events as a failure matters here: at QP~$24$ by day, $29\%$ of the
-squares are left without events, and the median error over all squares is $3.4$ pixels per window,
-against $1.4$ when only the squares with events enter.
+\emph{The motion task.} Uncoded, the counts on $T_0/64$ let more squares be recovered than those on
+$T_0/3$: $75\%$, $86\%$ and $73\%$ against $44\%$, $71\%$ and $50\%$ (Fig.~\ref{fig:hevc}c). As the
+rate falls, the decode on $T_0/64$ empties squares, and the recovered share falls to $0.13$ to $0.36$
+near one bit per event; by day $49\%$ of the squares are then left without events. On $T_0/3$ the share
+stays at its uncoded value at every QP. Below a rate between $1.5$ and $10$ bits per event, depending on
+the stratum, the coarse grid therefore serves the task better. Scoring the squares left without events
+as failures matters: at QP~$24$ by day the median error is $3.4$ pixels per window over all squares and
+$1.4$ over the squares with events.
 
 \section{Conclusion}
 The pixels on the path of a moving edge share the edge and its motion, and each holds a threshold
 phase and a jitter of its own. Given the edge and the motion, a timing tolerance decides which of these
-private quantities a code must describe: below the jitter variance every event time, up to
-$D_A=\sigma^2+\tau^2/12$ one number per pixel, and beyond it nothing, so that a description of the
-motion of $O(\ln M)$ nats replaces a description of order $M$. The event spacing sets the scale of the
+private quantities a code must describe. The event times split into a common shift, which carries the
+phase, and relative variations, which carry jitter. Below the jitter variance every event time must be
+described; up to $D_A=\sigma^2+\tau^2/12$ a description of the common shift comes within $0.255$ bit per
+pixel of the rate; beyond $D_A$ nothing is described, and for a motion with a fixed number of
+parameters a description of $O(\ln M)$ nats replaces one of order $M$. The event spacing sets the scale of the
 tolerance needed for regeneration and of the time bins over which motion-aligned events remain
 predictive. A sender that moves events along the motion keeps the phase of the source pixel, and a
 controlled model shows that the phase alone then makes moved counts miss on bins shorter than the
@@ -850,10 +876,7 @@ template and the flow, $\mathbf 1$ the all-ones vector, and
 $\varepsilon_i\sim\mathcal N(0,\sigma^2I_n)$. Independence over $i$ follows from (A3) and (A4). Let
 $Q$ be an orthogonal matrix whose first row is $\mathbf 1^{\!\top}/\sqrt n$. Then
 $Q(T_i-c_i)=(X_i,W_i)$ with
-\begin{equation}\label{eq:XW}
-  X_i=\sqrt n\,A_i+\varepsilon^{\parallel}_i,\qquad W_i\sim\mathcal N(0,\sigma^2I_{n-1}),
-\end{equation}
-where $\varepsilon^{\parallel}_i\sim\mathcal N(0,\sigma^2)$. The variables $X_i$ and $W_i$ are
+$(X_i,W_i)$ as in \eqref{eq:XW}. The variables $X_i$ and $W_i$ are
 independent, because $Q\varepsilon_i$ has independent coordinates and $A_i$ is independent of
 $\varepsilon_i$. Differential entropy is invariant under translations and orthogonal maps, so
 $h(T_i)=h(X_i)+h(W_i)$, which is \eqref{eq:hT}.
