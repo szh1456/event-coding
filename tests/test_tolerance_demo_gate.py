@@ -93,3 +93,24 @@ def test_save_and_figure(tmp_path):
     assert fig["day"]["recs"]["motion"]["F"] == d["recs"]["motion"]["F"]
     for ext in ("pdf", "png"):
         assert (tmp_path / f"fig_tolerance.{ext}").stat().st_size > 0
+
+
+def test_eligible_boxes():
+    assert td.eligible((50.0, 50.0, 100.0, 80.0), (40.0, 50.0, 100.0, 80.0), W, H)
+    assert not td.eligible((10.0, 50.0, 100.0, 80.0), (0.0, 50.0, 100.0, 80.0), W, H)        # near the edge
+    assert not td.eligible((50.0, 50.0, 100.0, 80.0), (48.0, 50.0, 100.0, 80.0), W, H)       # too slow
+    assert not td.eligible((40.0, 40.0, 250.0, 80.0), (30.0, 40.0, 250.0, 80.0), 400, 300)   # too wide
+    assert not td.eligible((50.0, 50.0, 100.0, 80.0), None, W, H)
+
+
+def test_same_window_fit_on_the_model():
+    for v in (6.5, 13.3):
+        ev = ph.edge_scene_v(W, H, v, 2000.0, 3, 0.05, 40, 8, 1, False)
+        c = td.demo(ev, 5, W, H, (100.0, 60.0, 120.0, 100.0))
+        s = td.demo(ev, 5, W, H, (100.0, 60.0, 120.0, 100.0), fit="same")
+        assert s["fit"] == "same" and c["fit"] == "causal"
+        assert s["recs"]["motion"]["F"]["k32"] >= c["recs"]["motion"]["F"]["k32"] - 0.01
+        assert s["recs"]["motion"]["F"]["k32"] < 0.6 < s["recs"]["pixel"]["F"]["k32"]           # independent phases
+    ev = ph.edge_scene_v(W, H, 6.5, 2000.0, 3, 0.05, 40, 8, 1, True)
+    s = td.demo(ev, 5, W, H, (100.0, 60.0, 120.0, 100.0), fit="same")
+    assert s["recs"]["motion"]["F"]["k32"] > 0.75                                              # shared phases

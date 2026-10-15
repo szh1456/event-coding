@@ -1,4 +1,4 @@
-"""What a receiver gets from a recorded object at three timing tolerances (directive 024).
+"""What a receiver gets from a recorded object at three timing tolerances (directives 024 and 025).
 
 The theory has three regimes: below the jitter the code describes every event time; above it one number
 per pixel; beyond the event spacing nothing but the edge and its motion. This module builds a practical
@@ -15,8 +15,11 @@ reconstruction for each regime from the recorded events of one window, inside a 
 The crop is the box, cut to its central MAX_BOX pixels if larger, with a margin of MARGIN pixels. Hot pixels
 (the rule of ``ec.threshold``) are removed from the recorded events before anything else.
 
-The motion is that of ``ec.phase``: per block of B pixels, the shift chosen on the pair (w - 1, w) and the
-onset delay, applied to window w to predict window w + 1. Its parameters (dx, dy, delay in us) for the blocks
+The motion is that of ``ec.phase``: per block of B pixels, a shift and an onset delay, applied to window w to
+predict window w + 1. With ``fit = "causal"`` (directive 024) they are chosen on the pair (w - 1, w), as an
+encoder that has not seen window w + 1 would choose them. With ``fit = "same"`` (directive 025) they are
+chosen on the pair (w, w + 1) itself, as an encoder that holds window w + 1 and sends the motion that fits it
+best; this isolates the timing from the errors of motion estimation. Its parameters (dx, dy, delay in us) for the blocks
 that meet the crop are coded with Zstandard, and their bits count for ``pixel`` and ``motion``. Bits are per
 true event of the crop. The fidelity F of Eq. (fid) is measured inside the crop on (1 px, T0 / k) for every
 k of F_KS. The images are event frames, as an event camera is usually shown: the signed count per pixel
@@ -43,6 +46,8 @@ F_KS = (3, 32, 256)
 MARGIN = 16
 LEVEL = 19
 MAX_BOX = (240, 180)
+EDGE_MARGIN = 32
+MIN_SPEED = 6.0
 N_FRAMES = 4
 FRAME_US = T0 // 16
 
@@ -79,7 +84,7 @@ def _zbits(arr) -> int:
     return 8 * len(zstandard.ZstdCompressor(level=LEVEL).compress(np.ascontiguousarray(arr).tobytes()))
 
 
-def motion_prediction(ev, w: int, width: int, height: int, crop, radius: int = ph.RADIUS):
+def motion_prediction(ev, w: int, width: int, height: int, crop, radius: int = ph.RADIUS, fit: str = "causal"):
     """Window w moved to window w + 1 along the motion of every block that meets the crop.
 
     Returns the moved events inside the crop, and the parameters (dx, dy, delay) of those blocks."""
@@ -88,8 +93,11 @@ def motion_prediction(ev, w: int, width: int, height: int, crop, radius: int = p
     hot = th.hot_pixels(span, width, height)
     keep = ~hot[ev[2] * width + ev[1]]
     ev = tuple(a[keep] for a in ev)
-    win = {m: th._window(ev, (w + m) * T0, (w + m + 1) * T0) for m in (-1, 0)}
-    by = {m: th._ByBlock(win[m], width, height) for m in (-1, 0)}
+    if fit not in ("causal", "same"):
+        raise ValueError(fit)
+    win = {m: th._window(ev, (w + m) * T0, (w + m + 1) * T0) for m in (-1, 0, 1)}
+    by = {m: th._ByBlock(win[m], width, height) for m in (-1, 0, 1)}
+    src, tgt, w_fit = (-1, 0, w) if fit == "causal" else (0, 1, w + 1)
     reach = -(-radius // B)
     nbx = -(-width // B)
     x0, y0, x1, y1 = crop
@@ -97,13 +105,13 @@ def motion_prediction(ev, w: int, width: int, height: int, crop, radius: int = p
     for by0 in range((y0 // B) * B, y1, B):
         for bx0 in range((x0 // B) * B, x1, B):
             b = (by0 // B) * nbx + bx0 // B
-            a_prev, a_ref = by[-1].around(b, reach), by[0].around(b, reach)
-            fit_true = th._in_block(a_ref, bx0, by0)
-            d, pairs, _ = ph.choose_shift(ph.shift_scores(a_prev, fit_true, bx0, by0, radius), radius)
+            a_src, a_ref = by[src].around(b, reach), by[0].around(b, reach)
+            fit_true = th._in_block(by[tgt].around(b, 0), bx0, by0)
+            d, pairs, _ = ph.choose_shift(ph.shift_scores(a_src, fit_true, bx0, by0, radius), radius)
             if pairs < th.N_MIN / 2:
                 d, delta = (0, 0), 0
             else:
-                delta = ph.onset_delay(th._moved(a_prev, d, 0, bx0, by0, w * T0), fit_true, w * T0, width)
+                delta = ph.onset_delay(th._moved(a_src, d, 0, bx0, by0, w_fit * T0), fit_true, w_fit * T0, width)
             params.append((d[0], d[1], delta))
             parts.append(th._moved(a_ref, d, delta, bx0, by0, (w + 1) * T0))
     pred = tuple(np.concatenate([q[i] for q in parts]) for i in range(4))
@@ -166,7 +174,21 @@ def fidelity(true, rec, crop, w1: int) -> dict:
     return out
 
 
-def demo(ev, w: int, width: int, height: int, box) -> dict:
+def eligible(box, box_before, width: int, height: int) -> bool:
+    """Directive 025: a box that fits the crop whole, lies EDGE_MARGIN px inside the sensor, and whose centre
+    moved at least MIN_SPEED px from the box of the previous window."""
+    x, y, w, h = box
+    if w > MAX_BOX[0] or h > MAX_BOX[1]:
+        return False
+    if x < EDGE_MARGIN or y < EDGE_MARGIN or x + w > width - EDGE_MARGIN or y + h > height - EDGE_MARGIN:
+        return False
+    if box_before is None:
+        return False
+    xb, yb, wb, hb = box_before
+    return float(np.hypot(x + w / 2 - xb - wb / 2, y + h / 2 - yb - hb / 2)) >= MIN_SPEED
+
+
+def demo(ev, w: int, width: int, height: int, box, fit: str = "causal") -> dict:
     """The three reconstructions of window w + 1 inside the crop around ``box``, with images and metrics."""
     ev = tuple(np.asarray(a, dtype=np.int64) for a in ev)
     span = th._window(ev, max(0, w - th.SPAN_BEFORE) * T0, (w + 1) * T0)
@@ -179,11 +201,11 @@ def demo(ev, w: int, width: int, height: int, box) -> dict:
     if n == 0:
         raise ValueError("no event in the crop")
     every, b_every = every_event(true, crop, w1)
-    motion, params = motion_prediction(ev, w, width, height, crop)
+    motion, params = motion_prediction(ev, w, width, height, crop, fit=fit)
     b_motion = _zbits(params)
     pixel, sym = pixel_offsets(motion, true, width)
     b_pixel = b_motion + _zbits(sym)
-    out = {"crop": [int(c) for c in crop], "n_true": int(n), "w": int(w), "recs": {}}
+    out = {"crop": [int(c) for c in crop], "n_true": int(n), "w": int(w), "fit": fit, "recs": {}}
     for name, rec, bits in (("recorded", true, None), ("every", every, b_every), ("pixel", pixel, b_pixel),
                             ("motion", motion, b_motion)):
         img, starts = frames(rec, crop, w1)
