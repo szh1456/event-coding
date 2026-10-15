@@ -27,34 +27,29 @@
 \newcommand{\ip}[2]{\langle #1,#2\rangle}
 
 \begin{document}
-\title{Threshold Phases and the Limits of Motion Compensation for Event Streams}
+\title{Rate--Distortion Analysis of Event Streams from Moving Edges}
 \author{[Author list to be set]}
 \maketitle
 
 \begin{abstract}
 An event camera reports when the log intensity of a pixel crosses a threshold. When an edge moves
-across the sensor, every pixel on its path sees the same intensity profile, yet the pixels do not
-emit the same events: each fires on its own lattice of threshold levels, offset by a threshold
-phase, and every event carries timing jitter. We determine the rate that these differences require
-in an analytic model: a ramp edge that passes each pixel once under an affine flow, with independent
-uniform phases and Gaussian jitter. Given the edge and its motion, a lossless code must still
-describe the phase and the jitter of every pixel, so its rate per event does not fall as the path
-grows. Under a mean-squared timing tolerance the rate has three regimes. Below the jitter variance,
-the code describes every event time, and the rate is exact. Above it, the code describes one number
-per pixel, and the rate is known within $0.255$ bit. Beyond a threshold set by the event spacing of
-the pixel, the rate given the edge and its motion is zero, and a description of the motion needs a
-number of nats that grows at most logarithmically with the length of the path. A sender has the
-events and not the edge, and a common substitute is to move reference events along the motion. A
-moved event keeps the phase of its source pixel, so on a voxel grid the counts moved along the true
-motion reproduce only a share of about $\Delta_t/\tau$ of the true counts when the time bin
-$\Delta_t$ is shorter than the event spacing $\tau$. On recordings from a static camera and from a
-moving car, moved events show no phase lock within the regular event trains of their target pixels
-for spacings below $4$~ms, as independent phases imply; a lock appears only in a band that holds the
-periods of mains lighting. For a standard HEVC coder on count pictures, this means that on fine time
-grids its P pictures save bits against intra pictures but do not undercut a list of the counts, and
-its lossy errors are single events that it removes, so that intra pictures reach a given fidelity
-with $0.69$ to $1.00$ times the bits of P pictures. The ratio of the time bin to the event spacing
-tells a sender whether motion-compensated prediction of counts can pay.
+across the sensor, the pixels on its path share the edge and its motion, but each fires on its own
+lattice of threshold levels, offset by a threshold phase, and every event carries timing jitter. We
+derive the rate-distortion function of the event times under a mean-squared timing tolerance, given
+the edge and its motion, for a ramp edge that passes each pixel once under an affine flow with
+independent uniform phases and Gaussian jitter. Below the jitter variance a code describes every
+event time, and the rate is exact. Up to $D_A=\sigma^2+\tau^2/12$, where $\tau$ is the event spacing
+of the pixel, it describes one number per pixel, and the rate is known within $0.255$ bit. From $D_A$
+on the conditional rate is zero, and describing the motion of a path of $M$ pixels adds $O(\ln M)$
+nats. A sender that instead moves reference events along the motion keeps the phase of the source
+pixel: for equal spacings the timing error doubles, and on a voxel grid the moved counts reproduce a
+share of about $\Delta_t/\tau$ of the true counts when the bin $\Delta_t$ is shorter than $\tau$. A
+controlled model shows that the phases alone cause this loss. On recordings from a static and a
+moving camera, a per-block test detects no phase lock on regular event trains with spacings below
+$4$~ms, and a lock appears only in a band consistent with mains lighting. Coding count pictures with
+HEVC shows the consequences: on fine time grids its P pictures save bits against intra pictures but
+not against a list of the counts, its lossy decodes remove single events, and the motion recovered
+from them falls with the rate.
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -68,7 +63,9 @@ reference and emits an event, with a time stamp and a polarity, whenever the dif
 contrast threshold \cite{lichtsteiner2008,gallego2022survey}. The output is a stream of
 address-events whose rate follows the scene: it is close to zero for a static scene and rises with
 the speed and the contrast of what moves. A sensor node that forwards this stream over a
-rate-limited link must decide how many bits the stream needs.
+rate-limited link must decide how many bits the stream needs, and a receiver that does not need
+every event at its exact time should let it send fewer. How many bits does the stream of a moving
+scene need when the receiver tolerates a given timing error?
 
 The stream of a moving scene looks highly redundant. If an object moves across the sensor, the
 pixels along the path of one of its edges observe the same intensity profile, one after the other.
@@ -86,71 +83,68 @@ offset, the threshold phase. (b), (c) The events of each pixel in time, and thos
 moved along the motion, for shared and for independent phases. Jitter is omitted.}
 \label{fig:mechanism}
 \end{figure}
-This paper asks what these differences cost: how many bits
-a code needs to preserve them, and how many it saves when a timing error is allowed.
-
-The setting has precedents in sampling theory. An event pixel is a send-on-delta sampler
-\cite{miskowicz2006}, which for a monotone input coincides with level-crossing sampling
-\cite{mark1981,martineznuevo2019}. An object that crosses $M$ pixels is sampled by $M$ such
-samplers, which recalls the generalized sampling expansion \cite{papoulis1977gse}, by which a
-bandlimited signal is recovered from the outputs of $m$ linear systems that are each sampled at
-$1/m$ of the Nyquist rate. In multi-channel time encoding, several integrate-and-fire encoders
-with shifted integrators share one input, and the shifts are what make the channels complementary
-\cite{lazar2004,adam2020multichannel,adam2022}. The threshold phases play that role here.
+Which of these differences a code must describe depends on the timing error that the receiver
+tolerates.
 
 Existing event coders approach the rate empirically. Lossless coders exploit the spatial and temporal
 correlation of addresses and time stamps \cite{bi2018,khan2021talven,schiopu2022spl}. Lossy coders
 discard or aggregate events \cite{banerjee2021icip,huang2023icip}, and the coder of
 \cite{stumpp2024} suppresses events that an on-sensor optical flow can predict and lets the receiver
-extrapolate them. A recent survey notes that reported results are hard to compare
-\cite{brites2025}, and no accepted distortion measure for lossy event coding exists
-\cite{rezaee2026}. On the theoretical side, rate-distortion results for point processes concern
-Poisson and finite point processes \cite{rubin1974,verdu1996,lapidoth2015,koliander2018}. They do
-not model events that a moving profile generates through a threshold rule. Event streams have also
-been aggregated into count pictures per polarity and coded without loss \cite{khan2021talven} by
-HEVC \cite{sullivan2012hevc}, a video coder whose prediction is motion compensated
-\cite{sullivan1998}, but what the prediction saves on such pictures has not been reported.
+extrapolate them. Event streams have also been aggregated into count pictures and coded by HEVC
+\cite{khan2021talven,sullivan2012hevc}, a video coder whose prediction is motion compensated
+\cite{sullivan1998}. Reported results are hard to compare \cite{brites2025,rezaee2026}. On the
+theoretical side, rate-distortion results for point processes concern Poisson and finite point
+processes \cite{rubin1974,verdu1996,lapidoth2015,koliander2018}. Sampling theory comes closer to the
+mechanism. An event pixel is a send-on-delta sampler \cite{miskowicz2006}, which for a monotone input
+coincides with level-crossing sampling \cite{mark1981,martineznuevo2019}, and an object that crosses
+$M$ pixels is sampled by $M$ such samplers. This recalls the generalized sampling expansion
+\cite{papoulis1977gse} and multi-channel time encoding, where shifted integrate-and-fire encoders
+share one input and the shifts make the channels complementary
+\cite{lazar2004,adam2020multichannel,adam2022}; the threshold phases play the role of these shifts.
+None of these results separates the cost of what the pixels of a path share, the edge and its motion,
+from the cost of what each pixel holds privately, and so none says what a timing tolerance allows a
+code to leave out.
 
-This paper models that mechanism and derives what a code can and cannot save. The phase mechanism
-holds for any scene (Lemma~\ref{lem:lattice}). For the rates we specialize to a ramp edge that
-passes each pixel once under an affine flow, with independent uniform phases and Gaussian jitter,
-which isolates the mechanism and gives closed forms. Recordings then test its premise, and a standard
-video coder shows its consequences. The central result is the rate-distortion function of the events of a pixel under a timing
-tolerance. The other results lead to it or follow from it.
+We model the events of a ramp edge that passes each pixel once under an affine flow, with independent
+uniform phases and Gaussian jitter, and give the edge and its motion to the encoder and the decoder.
+The rate-distortion function of the event times under a mean-squared timing tolerance then has three
+regimes. Below the jitter variance a code describes every event time. Up to a threshold
+$D_A=\sigma^2+\tau^2/12$, set by the event spacing $\tau$ of the pixel, it describes one number per
+pixel, its phase together with its mean jitter. Beyond $D_A$ it describes nothing: the decoder
+regenerates the events from the edge and the motion. Describing the motion itself adds $O(\ln M)$ nats
+along a path of $M$ pixels. A sender holds the events and not the edge, and a common substitute is to
+move reference events along the motion, as the prediction of a video coder does. A moved event keeps
+the phase of its source pixel, and the same event spacing that sets $D_A$ sets the time bins over which
+moved counts remain predictive. A controlled model, a phase test on recordings and an HEVC coder test
+and illustrate these consequences.
 
-\emph{1) Mechanism.} Given the edge and its motion, the events of a pixel are a function of a
-single number, its threshold phase, up to timing jitter. The phase is a property of the pixel and
-is independent across pixels. Next to what the pixels of a path share, the edge and its motion,
-each pixel therefore holds a private quantity. A lossless code must describe it for every pixel, and
-its rate per event does not decrease with the number $M$ of pixels on the path
-(Theorem~\ref{thm:lossless}).
+\emph{1) The conditional rate-distortion function of the event times.} Under independent phases and
+jitter, the event times of the pixels are conditionally independent given the edge and the motion,
+and the lossless code length of their time stamps grows in proportion to $M$
+(Theorem~\ref{thm:lossless}). The rate-distortion function of a pixel is exact below the jitter
+variance, known within $0.255$ bit up to $D_A$, and zero from $D_A$ on (Theorem~\ref{thm:pixel}); a
+path allocates the tolerance over its pixels (Theorem~\ref{thm:path}), and a motion that must be
+described costs $O(\ln M)$ nats (Proposition~\ref{prop:motion}).
 
-\emph{2) Rate under a timing tolerance.} The tolerance decides which of the private quantities a
-code must describe (Theorem~\ref{thm:pixel}). Below the jitter variance it describes all of them,
-and the rate is known exactly. Above it one number per pixel remains, and the rate is known within
-$0.255$ bit. Beyond a threshold the rate given the edge and its motion is zero: the decoder
-regenerates the events. The threshold grows with the event spacing of the pixel, which is the
-contrast threshold divided by the rate of change of its intensity, so slowly crossed pixels need a
-larger tolerance. Along a path of $M$ pixels, a description of the motion of $O(\ln M)$ nats then
-replaces a lossless description of order $M$.
+\emph{2) The cost of reusing events along the motion.} For different source and target pixels with
+equal event spacings, moved events have twice the timing error of the regenerated ones
+(Proposition~\ref{prop:moved}), and on a voxel grid the counts of a source pixel moved along the true
+motion reproduce a share of about $\Delta_t/\tau$ of the true counts when the bin is shorter than the
+event spacing. A controlled model, with exact motion and equal counts, shows that the phases alone
+cause this loss.
 
-\emph{3) Moved events, on recordings and in a video coder.} A sender has the events and not the
-edge. A common substitute, and the one that the prediction of a video coder implements, is to move
-reference events along the motion. A moved event keeps the phase of its source pixel. At equal event
-spacings this doubles the timing error of the ideal decoder (Proposition~\ref{prop:moved}), and on a
-voxel grid the counts moved along the true motion reproduce a share of about $\Delta_t/\tau$ of the
-true counts when the bin is shorter than the event spacing. On recordings from a static camera
-\cite{verma2024etram} and from a moving car \cite{gehrig2021dsec}, a phase test finds no phase lock
-of moved events within the regular trains of their target pixels, as independent phases imply. We
-then code count pictures of the same recordings with x265, an unmodified HEVC encoder. On fine time
-grids its P pictures save bits against intra pictures but do not undercut a list of the counts, its
-lossy errors are removed single events, and intra pictures reach a given fidelity with as few bits
-as P pictures or fewer.
+\emph{3) Recordings and a video coder.} On recordings from a static camera \cite{verma2024etram} and
+from a moving car \cite{gehrig2021dsec}, a per-block phase test detects no lock of moved events on the
+regular event trains where it can be applied, and a reconstruction shows what a receiver loses when
+the timing is left out. Coded by x265, an unmodified HEVC encoder, count pictures on fine time grids
+show a prediction gain against intra pictures but no gain against a list of the counts, lossy errors
+that remove single events, and a motion task that degrades with the rate.
 
-Section~\ref{sec:model} states the model. Sections~\ref{sec:lossless} and~\ref{sec:tolerance}
-contain the theory, Section~\ref{sec:moved} the moved events, and Section~\ref{sec:experiments}
-the measurements. Proofs are in the appendices. Rates are in nats unless bits are named, $\|\cdot\|$
-is the Euclidean norm of a vector and the spectral norm of a matrix, and $[x]^+=\max(x,0)$.
+Section~\ref{sec:model} states the model and the problem. Section~\ref{sec:lossless} gives the
+structure of the events, Section~\ref{sec:tolerance} the rate-distortion function, and
+Section~\ref{sec:moved} the cost of moved events. Section~\ref{sec:experiments} reports the
+experiments. Proofs are in the appendices. Rates are in nats unless bits are named, $\|\cdot\|$ is the
+Euclidean norm of a vector and the spectral norm of a matrix, and $[x]^+=\max(x,0)$.
 
 \section{Model}\label{sec:model}
 We first state the pixel rule, from which the phase mechanism follows for any scene. We then
@@ -253,7 +247,18 @@ by the entropy power inequality \cite[Ch.~17]{cover2006elements} and by the Gaus
 entropy at a given variance \cite[Ch.~8]{cover2006elements}, and $\eta(a,\sigma)-\ln a\to0$ as
 $\sigma/a\to0$.
 
-\section{Structure and Lossless Limit}\label{sec:lossless}
+\subsection{Problem}
+The encoder and the decoder know the template $g$ and the flow $\phi$, and hence the pixels that the
+edge passes, the number $n$ of events of each and their polarity. The index $k$ of every event is
+known (A4). The addresses and the correspondence between events are therefore given, and what remains
+to be described are the event times. Theorem~\ref{thm:lossless} counts the bits of their time stamps
+at the clock resolution $\delta$. Theorems~\ref{thm:pixel} and~\ref{thm:path} count the bits of the
+event times under a mean-squared timing tolerance, and their zero rate is a rate given all of the
+above. Proposition~\ref{prop:motion} extends them to a flow that must be described, while the decoder
+still holds the template. A practical sender holds neither, and Section~\ref{sec:moved} turns to what
+it can send instead.
+
+\section{Structure of the Events}\label{sec:lossless}
 \begin{lemma}\label{lem:lattice}
 Under (A1), for any continuous $\ell_i$, every event of pixel $i$ occurs at a time $t$ with
 $\ell_i(t)\in a_i+C\Z$.
@@ -296,19 +301,7 @@ term of \eqref{eq:perevent} falls as the path gets longer: a decoder that knows 
 motion exactly still needs \eqref{eq:perevent} for every event. What the pixels of a path share,
 the edge and its motion, a code can describe once. What is private to each pixel, its phase and its
 jitter, it must describe for each pixel, and \eqref{eq:HY} is that irreducible conditional rate.
-Section~\ref{sec:hevc} measures what the motion saves a video coder on recordings.
 
-\begin{remark}[Accuracy of the uniform passage]\label{rem:passage}
-For an affine flow \eqref{eq:flow}, $\dot\nu_t=-\Lambda^{\!\top}\nu_t$ and
-$\ddot z_i=\ip{\nu_t}{\Lambda v(i)}$, hence $|\ddot z_i|\le\kappa_i|\dot z_i|$ with
-$\kappa_i=\|\Lambda\|/|\cos\vartheta_i|$, where $\vartheta_i$ is the angle between the velocity
-$v(i)$ and the normal $\nu_t$. Take $r_i$ as the slope of $z_i$ at $t_i$. Over a passage of
-duration $P_i=n\tau_i$, the event times then deviate from \eqref{eq:times} by at most
-$\kappa_iP_i^2/2$, to first order in $\kappa_iP_i$. For a generator of norm $0.3\,\mathrm{s}^{-1}$,
-a passage of $5$~ms and motion along the normal this is $4\,\mu$s, three orders of magnitude below
-the passage time. The bound grows without limit for edges that are nearly parallel to their motion.
-Such edges pass few pixels per unit time and contribute few events.
-\end{remark}
 \begin{remark}[Several edges]\label{rem:texture}
 Theorem~\ref{thm:lossless} counts one edge that passes each pixel once. If further edges of the
 same object pass the same pixel, they meet the same lattice, so the phase is paid once per pixel and
@@ -316,15 +309,11 @@ not once per edge. With many edges per pixel the cost per event tends to the jit
 $\ln(\sigma\sqrt{2\pi e}/\delta)$, which does not depend on the path either.
 \end{remark}
 
-\section{Rate Under a Timing Tolerance}\label{sec:tolerance}
-The results of this section and the next assume decoders with different inputs.
-Theorems~\ref{thm:pixel} and~\ref{thm:path} count the bits of the event times when the encoder and
-the decoder know the template, the flow, and hence the pixels that the edge passes and the number
-of events of each, and when the index of every event is known (A4). Their zero rate is a rate
-given all of this. Proposition~\ref{prop:motion} adds the cost of the flow, while the decoder still
-holds the template. A practical sender holds neither, and Section~\ref{sec:moved} turns to what it
-can send instead.
-
+\section{Rate-Distortion Function}\label{sec:tolerance}
+Theorem~\ref{thm:lossless} gives the entropy of time stamps on a clock of resolution $\delta$, and the
+results of this section give the rate of a lossy reconstruction of the continuous event times. Both
+describe the same structure, the shared edge and motion and the private phase and jitter, but they are
+different quantities.
 The decoder outputs
 $\hat T_i\in\R^n$ for each pixel, and the distortion is the mean-squared timing error
 \begin{equation}\label{eq:dist}
@@ -387,6 +376,39 @@ The threshold $D_{A,i}$ grows with the square of the event spacing. By \eqref{eq
 intensity changes slowly has a large spacing and needs a large tolerance before its events can be
 regenerated, and a pixel that is crossed quickly needs a small one.
 
+\subsection{Numerical Check}\label{sec:regimes}
+% Numbers and figure: directive 006, results/rd/regimes.json and results/rd/fig_regimes.pdf at f063a79.
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figs/fig_regimes.pdf}
+\caption{Rate of one pixel against the timing tolerance for $n=3$ and $\sigma/\tau_i=0.05$:
+Theorem~\ref{thm:pixel}, a numerical rate-distortion function and a scalar quantizer. Left of $\sigma$
+every event time is described, between $\sigma$ and $\sqrt{D_{A,i}}$ one number per pixel, and beyond
+$\sqrt{D_{A,i}}$ nothing. Bottom: the middle regime.}
+\label{fig:regimes}
+\end{figure}
+Fig.~\ref{fig:regimes} compares Theorem~\ref{thm:pixel} with a rate-distortion function that is
+computed without it, for one pixel with $n=3$ and $\sigma/\tau_i=0.05$: the iteration of
+\cite{blahut1972computation} on the phase component $X_i$ of \eqref{eq:XW}, with the $n-1$ normal
+components in closed form at the same slope.
+
+Below $\sigma^2$ the numerical rate equals \eqref{eq:rdlow} to within $4\times10^{-6}$ nat.
+Between $\sigma^2$ and $D_{A,i}$ it stays inside the band between the bounds \eqref{eq:rdmid} and
+\eqref{eq:rdpos}, which is at most $\Gamma_i=0.187$ bit per pixel wide here, against the limit of
+$0.255$ bit. Near $\sigma^2$ the phase is described finely and the rate sits on the lower bound,
+which uses its uniform distribution; toward $D_{A,i}$ the description is coarse and the rate meets
+\eqref{eq:rdpos}, which uses only its variance. From $D_{A,i}$ on
+the rate is zero, and the regenerated events \eqref{eq:regen} of $2\times10^6$ simulated pixels
+have the distortion $0.9994\,D_{A,i}$.
+
+The squares are a uniform scalar quantizer with entropy coding, applied to what each regime
+describes. On every component of the event times it stays $0.254$ to $0.258$ bit per event above
+\eqref{eq:rdlow}, the loss $\tfrac12\ln(2\pi e/12)$ of a uniform quantizer at fine resolution. On the mean event time alone, with
+the other components left out, it stays $0.09$ to $0.19$ bit per event above the lower bound up to
+$D_{A,i}$. A code that describes every event time, then one number per pixel, then nothing, is
+therefore within $0.26$ bit per event of the limit in all three regimes.
+
+
 \subsection{A Path}
 For the $M$ pixels of a path, let the distortion be the average of \eqref{eq:dist} over
 $i\in\mathcal P$, and let $R_{\mathcal P}(D)$ be the rate-distortion function of
@@ -414,8 +436,8 @@ $D\ge\max_iD_{A,i}$, and the slowest crossing sets the tolerance. By \eqref{eq:p
 $\bar D_A$ a rate that is proportional to $M$ remains.
 
 \subsection{The Motion}
-Theorems~\ref{thm:pixel} and~\ref{thm:path} assume that the decoder knows the flow. It remains to
-count what describing the flow costs. An error in a speed displaces the regenerated events in
+Theorems~\ref{thm:pixel} and~\ref{thm:path} assume that the decoder knows the flow. We now extend
+them to a flow that must be described, while the decoder still holds the template. An error in a speed displaces the regenerated events in
 proportion to the distance that the edge has traveled, so a longer path needs the motion to a finer
 precision for the same distortion. A parameter of fixed dimension costs only logarithmically more
 at a finer precision, and Proposition~\ref{prop:motion} states this in general form.
@@ -441,15 +463,6 @@ the sum of \eqref{eq:HY}, of order $M$, so the ratio of the two grows at least a
 $\bar D_A$ the description that remains is $O(\ln M)$. Below it, a rate proportional to $M$
 remains. The bound \eqref{eq:B} is for a receiver that holds the edge.
 
-\begin{remark}[Event count under a change of scale]\label{rem:count}
-An edge segment emits $n$ events for every pixel that it passes, so its event rate is $n$ times the
-area that it sweeps per unit time, that is $n$ times its length times its mean normal speed. Under
-a similarity flow about a fixed point, growth by a factor $\zeta$ makes the segment $\zeta$ times
-longer and $\zeta$ times faster, and the rate grows as $\zeta^2$. For an object that approaches at
-constant speed, the image speed itself grows as $\zeta^2$ and the rate as $\zeta^3$. A regeneration
-that moves a fixed set of events keeps their number. Under a change of scale it must also change
-the number of events, or regenerate them from the edge.
-\end{remark}
 \begin{remark}[Departures from the model]\label{rem:relax}
 \emph{Reference ahead of the passage.} If $\mu_i\in(0,C)$ before a rising passage, as after a
 passage of the opposite polarity at the same pixel, the first level that the intensity meets is the
@@ -464,7 +477,7 @@ depends on the slope are outside the model, and their effect on the three regime
 here.
 \end{remark}
 
-\section{Moved Events}\label{sec:moved}
+\section{Reusing Events Along the Motion}\label{sec:moved}
 The decoder \eqref{eq:regen} needs the edge and the flow. A sender has neither. It has the events.
 It could estimate the edge from them, and this paper does not pursue that route. We study a common
 substitute: the receiver moves reference events that it already holds along the motion. This is
@@ -482,7 +495,7 @@ $i$ at the time $\tilde T_{i,k}=T_{j,k}+t_i-t_j$. Then
   \frac1n\,\E\|T_i-\tilde T_i\|^2=D_{A,i}+D_{A,j}+\frac{4n^2-1}{12}\,(\tau_i-\tau_j)^2 .
 \end{equation}
 \end{proposition}
-With equal event spacings the error is $2D_A$, twice that of \eqref{eq:regen}: a moved event carries
+For different source and target pixels with equal event spacings the error is $2D_A$, twice that of \eqref{eq:regen}: a moved event carries
 the phase and the jitter of its source pixel, and both are independent of those of its target.
 Unequal spacings, as under a change of scale, add the last term, which grows with the square of the
 number of events per pixel. If the moved events fall on their own pixel, as for an object at rest,
@@ -530,293 +543,293 @@ decided by the phases, and about a share $1-\Delta_t/\tau_i$ of the counts remai
 the bin is long against the spacing, a bin holds whole trains or long parts of them, the offset
 $\delta$ moves only the events at their ends, and the moved counts approach the true ones. Prediction
 along the true motion therefore removes most of the counts on long bins and few on short ones.
+Equation \eqref{eq:binfidmoved} describes one way of reusing events, not a bound for all motion
+compensation. It makes three predictions that Section~\ref{sec:experiments} tests: with the motion
+exact, the phases alone make moved counts miss; on recordings, the positions of moved events within
+the trains of their target pixels show no lock; and a coder that predicts counts along the motion
+gains little where $\Delta_t$ is short against $\tau$.
 
 \section{Experiments}\label{sec:experiments}
-The experiments answer four questions in turn. What does a timing tolerance remove
-(Section~\ref{sec:regimes})? Do the phases cause moved events to miss, on the model and on
-recordings (Sections~\ref{sec:moved-model} and~\ref{sec:phase-rec})? What does a receiver lose when
-a code leaves out timing detail (Section~\ref{sec:demo})? And what does this mean for a standard video
-coder (Section~\ref{sec:hevc})?
+The experiments test the predictions of Section~\ref{sec:moved} and then follow them into a standard
+coder. On the model, a controlled experiment isolates the phase as the cause of the missing counts
+(Section~\ref{sec:control}). On recordings, a phase test checks the premise of the mechanism on the
+events where it can be measured (Section~\ref{sec:phase-rec}), and a reconstruction shows what a
+receiver loses when a code leaves out timing detail (Section~\ref{sec:demo}). An HEVC coder then serves
+as a case for what the mechanism means in practice (Section~\ref{sec:hevc}).
 
 \subsection{Protocol}\label{sec:protocol}
 \emph{Data.} The recordings from a static camera are the 112 recordings of the training split of
 eTraM \cite{verma2024etram}, 61 by day and 51 by night, from a sensor of $1280\times720$ pixels
 above a road, with $2.4\times10^{10}$ events. The recordings from a moving camera are the 41
 training sequences of DSEC \cite{gehrig2021dsec}, left event camera, $640\times480$ pixels, on a
-car, with $3.7\times10^{10}$ events in $2634$~s. A window of $33.3$~ms of the median DSEC sequence
-holds $1.15$ events per pixel, against $0.04$ for eTraM. Twelve eTraM recordings and five DSEC
-sequences are held out for tuning, and the results below are over the other 100 and 36.
+car, with $3.7\times10^{10}$ events in $2634$~s. Twelve eTraM recordings and five DSEC sequences are
+held out for tuning, and the results below are over the other 100 and 36.
 
 \emph{Grids.} Time is cut into windows of $T_0=33.3$~ms and each window into $k$ slices, so
-$\Delta_t=T_0/k$. A voxel holds $s\times s$ pixels and one polarity. We use $s\in\{1,2\}$ and
-$k\in\{1,3,6,12,32,64\}$, from $\Delta_t=33.3$~ms to $0.52$~ms. A group is four consecutive windows,
-taken every $3$~s of an eTraM recording and every $2$~s of a DSEC sequence.
+$\Delta_t=T_0/k$. A voxel holds one pixel and one polarity. We use $k\in\{1,3,6,12,32,64\}$, from
+$\Delta_t=33.3$~ms to $0.52$~ms. A group is four consecutive windows, taken every $3$~s of an eTraM
+recording and every $2$~s of a DSEC sequence.
 
 \emph{Video coder.} The counts of a group form one clip of $4k$ pictures, with the two polarities side
-by side in the luma plane of a $4{:}2{:}0$ picture and constant chroma. They are coded by x265~3.5
-\cite{x265}, an encoder of HEVC \cite{sullivan2012hevc}, through ffmpeg~4.4.2, in the Main profile at
-the preset \texttt{slow}. Each clip has one intra picture and P pictures after it, without B
-pictures. Adaptive quantization and the psychovisual options are off. In lossless mode the luma is
-the count. At a constant quantization parameter (QP) the luma is $16$ times the count, the decoder
-rounds the luma divided by $16$, and the intra picture is coded at the QP of the P pictures, except
-for the operating points on the grid of two pixels and $T_0/3$, where it has the default QP offset of
-x265. Counts
-are clipped at $15$, which removes less than $1\%$ of the events on one-pixel voxels with $k\ge3$; the
-Supplementary Material gives the other grids. The fidelity of a decode is measured against the true
-events, so clipped events count as lost. Every bit of the HEVC stream is counted, parameter
-sets included.
+by side in the luma plane and constant chroma. They are coded by x265~3.5 \cite{x265}, an encoder of
+HEVC \cite{sullivan2012hevc}, through ffmpeg~4.4.2, in the Main profile at the preset
+\texttt{slow}, with one intra picture and P pictures after it, without B pictures, and with adaptive
+quantization and the psychovisual options off. In lossless mode the luma is the count. At a constant
+quantization parameter (QP) the luma is $16$ times the count, the decoder rounds the luma divided by
+$16$, and the intra picture is coded at the QP of the P pictures. Counts are clipped at $15$, which
+removes less than $1\%$ of the events for $k\ge3$; clipped events count as lost, and the
+Supplementary Material gives the clip on other grids. Every bit of the
+stream is counted, parameter sets included. A lossless decode returns the clipped counts, not the
+event stream.
 
 \emph{Voxel list.} As a coder without prediction, the voxel list sorts the events of a window by
 voxel, writes the gaps between their voxel indices in a variable-length integer code and compresses
-the result with Zstandard at level 19 \cite{rfc8878}. It codes the same clipped counts as HEVC and
-returns them exactly.
+the result with Zstandard at level 19 \cite{rfc8878}. It codes the same clipped counts and returns
+them exactly.
 
-\emph{Tasks.} With the annotated objects of eTraM and of DSEC-Detection \cite{dsecdet}, the fidelity \eqref{eq:fid} inside
-the boxes of the objects (box $F$), the share of boxes that the decode leaves without events, and
-the error of the motion of each box estimated by contrast maximization \cite{gallego2018cmax}, in
-pixels per window.
+\emph{Motion task.} In each group, the ten densest squares of $40\times40$ pixels with at least $200$
+events in the third window are selected, and the velocity of each is estimated by contrast
+maximization \cite{gallego2018cmax} on the true events and on the decoded events. A square counts
+as recovered when the two velocities differ by at most one pixel per window, and a square that the
+decode leaves without events counts as not recovered.
 
-\emph{Statistics.} Bits are per true event. A recording enters with the sums over its groups, and
-we report the median over recordings, or the value pooled over recordings with a 95\% interval from a
-bootstrap over recordings where one is given. The coder comparisons of Section~\ref{sec:hevc} use one
-group in $40$ of eTraM and one in $20$ of DSEC, with all grids and QPs ($42$ recordings by day, $34$
-by night and $36$ sequences); the representation of Section~\ref{sec:hevc} and the phase test of
-Section~\ref{sec:phase-rec} use one group in five ($55$, $45$ and $36$ recordings).
+\emph{Statistics.} Bits are per true event. A recording enters with the sums over its groups. We
+report the median over recordings, or the value pooled over recordings with a 95\% interval from a
+bootstrap over recordings where one is given. The coder uses one group in $40$ of eTraM and one in
+$20$ of DSEC ($42$ recordings by day, $34$ by night and $36$ sequences), and the phase test one
+group in five ($55$, $45$ and $36$).
 
-\subsection{What a Tolerance Removes}\label{sec:regimes}
-% Numbers and figure: directive 006, results/rd/regimes.json and results/rd/fig_regimes.pdf at f063a79.
+\subsection{The Phase as the Cause: a Controlled Model}\label{sec:control}
+% Numbers: directive 027, results/pc/report.json#/control at 12708e6. Figure: directive 028,
+% results/paper/fig_control.pdf at 2c732af.
 \begin{figure}[t]
 \centering
-\includegraphics[width=\columnwidth]{figs/fig_regimes.pdf}
-\caption{Rate of one pixel against the timing tolerance for $n=3$ and $\sigma/\tau_i=0.05$:
-Theorem~\ref{thm:pixel}, a numerical rate-distortion function and a scalar quantizer. Bottom: the
-regime between $\sigma$ and $\sqrt{D_{A,i}}$.}
-\label{fig:regimes}
-\end{figure}
-Fig.~\ref{fig:regimes} compares Theorem~\ref{thm:pixel} with a rate-distortion function that is
-computed without it, for one pixel with $n=3$ and $\sigma/\tau_i=0.05$: the iteration of
-\cite{blahut1972computation} on the phase component $X_i$ of \eqref{eq:XW}, with the $n-1$ normal
-components in closed form at the same slope.
-
-Below $\sigma^2$ the numerical rate equals \eqref{eq:rdlow} to within $4\times10^{-6}$ nat.
-Between $\sigma^2$ and $D_{A,i}$ it stays inside the band between the bounds \eqref{eq:rdmid} and
-\eqref{eq:rdpos}, which is at most $\Gamma_i=0.187$ bit per pixel wide here, against the limit of
-$0.255$ bit. Near $\sigma^2$ the phase is described finely and the rate sits on the lower bound,
-which uses its uniform distribution; toward $D_{A,i}$ the description is coarse and the rate meets
-\eqref{eq:rdpos}, which uses only its variance. From $D_{A,i}$ on
-the rate is zero, and the regenerated events \eqref{eq:regen} of $2\times10^6$ simulated pixels
-have the distortion $0.9994\,D_{A,i}$.
-
-The squares are a uniform scalar quantizer with entropy coding, applied to what each regime
-describes. On every component of the event times it stays $0.254$ to $0.258$ bit per event above
-\eqref{eq:rdlow}, the loss $\tfrac12\ln(2\pi e/12)$ of a uniform quantizer at fine resolution. On the mean event time alone, with
-the other components left out, it stays $0.09$ to $0.19$ bit per event above the lower bound up to
-$D_{A,i}$. A code that describes every event time, then one number per pixel, then nothing, is
-therefore within $0.26$ bit per event of the limit in all three regimes.
-
-\subsection{Phases and Moved Counts on the Model}\label{sec:moved-model}
-% Numbers: directive 019, D3, results/hd/report.json#/tables/4_model at 5edad1d;
-% directive 021, results/hc/report.json#/tables/5_model at cac17c2. Figure: directive 023.
-\begin{figure}[t]
-\centering
-\figorbox{figs/fig_moved.pdf}
-\caption{The model, one-pixel voxels. (a) Fidelity of the counts moved along the true motion. (b)
-Lossless bits per event for $n=3$.}
-\label{fig:moved}
+\includegraphics[width=\columnwidth]{figs/fig_control.pdf}
+\caption{Fidelity of the counts moved along the exact motion on the model, $n=3$, one-pixel voxels,
+for $\tau$ from $0.25$ to $8$~ms and every $k$.}
+\label{fig:control}
 \end{figure}
 Straight edges cross a sensor of $320\times240$ pixels at six pixels per window, $40$ pixels apart,
-for twelve windows. Every row of pixels is a path of the model, with $\tau$ from $0.25$ to $8$~ms,
-$n\in\{1,3\}$ and $\sigma=0.05\,\tau$. The prediction of window $m$ is the counts of window $m-1$
-moved by exactly six pixels, the true-motion prediction.
+for twelve windows, with $n=3$ and $\tau$ from $0.25$ to $8$~ms. Three conditions share the edges,
+their arrival times and the number of events of every pixel: phases shared along each path without
+jitter, independent phases without jitter, and independent phases with $\sigma=0.05\,\tau$. The
+prediction of a window is the counts of the previous window moved by exactly six pixels, so the
+motion is exact and only the phases and the jitter can make the counts differ.
 
-Wherever \eqref{eq:binfidmoved} applies, in all twelve cells of $\tau$, $n$ and $k$ with
-$\Delta_t\le\tau/2$, the fidelity of the moved counts lies $0.001$ to $0.005$ below it
-(Fig.~\ref{fig:moved}a). As $\Delta_t/\tau$ falls from $33$ to $0.52$ at $\tau=1$~ms, the fidelity
-falls from $0.990$ to $0.489$, so half of the counts are a residual even under the true motion.
-
-x265 codes the same counts without loss, once with P pictures and once with intra pictures only
-(Fig.~\ref{fig:moved}b). Its P pictures cost $0.14$ bit per event at $\Delta_t/\tau=33$ and $7.9$ at
-$0.52$ for $\tau=1$~ms. They undercut the voxel list for $\Delta_t/\tau\ge5.6$, match it near $2.8$,
-and cost up to $1.7$ times as much below $1.4$. Against intra pictures only, they save a factor of
-$2$ to $2.5$ at $\Delta_t/\tau\ge11$ and of $1.1$ to $1.3$ below $1$. The cost of temporal prediction thus rises
-where \eqref{eq:binfidmoved} says that moved counts stop predicting the true ones.
+With shared phases the moved counts equal the true ones, $F=1$ in all $36$ cells
+(Fig.~\ref{fig:control}). With independent phases they follow \eqref{eq:binfidmoved} to within
+$4\times10^{-4}$ wherever it applies, and $F$ falls with $\Delta_t/\tau$: at $\tau=1$~ms, from
+$0.99$ at $\Delta_t/\tau=33$ to $0.49$ at $0.52$. Jitter changes $F$ by at most $0.016$. Between
+$\Delta_t/\tau=1$ and $4$, where \eqref{eq:binfid} would give $1$ for regenerated events, the moved
+counts keep $0.80$ to $0.92$, since a moved train still sits at the offset of its source pixel; from
+$\Delta_t/\tau=11$ on they keep $0.97$ or more. In this model the phase alone causes the loss.
 
 \subsection{Phases on Recordings}\label{sec:phase-rec}
-% Numbers: directive 022, results/ph/report.json at 464ac60. Figure: directive 026, results/paper/fig_phase2.pdf.
+% Numbers: directive 022, results/ph/report.json at 464ac60; directive 027, results/pc/report.json at
+% 12708e6; directive 028, results/pc2/binned_fidelity.json at 929e8be. Figure: directive 027,
+% results/paper/fig_phase3.pdf at 18bfa00.
 \begin{figure}[t]
 \centering
-\includegraphics[width=\columnwidth]{figs/fig_phase2.pdf}
-\caption{Phase lock of moved events on recordings against the spacing of the target pixel, moving blocks,
-with 95\% intervals; open grey markers: random times. Tested pixels: $1.4\times10^6$ by day,
-$0.59\times10^6$ at night, $4.4\times10^6$ on DSEC.}
+\includegraphics[width=\columnwidth]{figs/fig_phase3.pdf}
+\caption{Moved events on recordings, moving blocks. (a) Mean of $\cos2\pi u_i$ against the spacing of
+the target pixel, with 95\% intervals; open grey markers: random times. (b) Histogram of $u_i$ for
+$0.25\le\tau_i<4$~ms, with the mean Rayleigh statistic per block; the peak of the shared-phase model
+is clipped.}
 \label{fig:phase}
 \end{figure}
-On recordings neither the motion nor the event spacing is known, and \eqref{eq:binfidmoved} cannot
-be evaluated pixel by pixel: many pixels fire one or two events per passing edge, so an interval
-between their events often separates two passages. We test its premise instead, the independence of
-the phases. For each block of $20\times20$ pixels the shift that pairs the most events of window
-$w-1$ with window $w$ is chosen, and the same shift, with the median offset between the first moved
-and the first true event of each pixel as a time offset, predicts window $w+1$ from window $w$. For a
-target pixel and polarity whose true events in window $w+1$ hold two consecutive intervals within a
-factor $1.2$ of each other, $\tau_i$ is the median of such intervals, and the position of the moved
-events in its train is
+On recordings neither the motion nor the event spacing is known, so we test the premise of the
+mechanism rather than \eqref{eq:binfidmoved}. For each block of $20\times20$ pixels, the shift that
+pairs the most events of window $w-1$ with window $w$ is chosen, and the same shift, with the median
+offset between the first moved and the first true event of the pixels of the block, predicts window
+$w+1$ from window $w$. A target pixel and polarity is tested when its true events in window $w+1$
+hold two consecutive intervals within a factor $1.2$ of each other. With $\tau_i$ the median of such
+intervals, the position of the moved events in its train is
 \begin{equation}\label{eq:phase}
   u_i=\frac1{2\pi}\arg\Big(\sum_{k}e^{2\pi\mathrm{i}\,p_k/\tau_i}\sum_{l}e^{-2\pi\mathrm{i}\,t_l/\tau_i}\Big),
 \end{equation}
 over its predicted times $p_k$ and its true times $t_l$. Under (A3), $A_j-A_i$ is uniform modulo
-$\tau_i$, so $u_i$ is uniform on $[0,1)$ whatever the residual offset of the motion and the length
-of the trains, and the mean of $\cos2\pi u_i$ is $0$. If the pixels of a path shared their phases,
-$u_i$ would be constant. On the model at $1.5$ to $13.3$ pixels per window, shared phases give a
-mean of $0.91$ to $0.97$, and independent phases a mean within four standard errors of $0$. Before
-the recordings were read, a 95\% interval below $0.1$ was set to read as independent phases, one
-above $0.3$ as correlated phases, and anything else as partial correlation. The test uses one group
-in five, $1264$ groups, and the moving blocks; blocks with a zero shift are left out, since a pixel
-moved onto itself keeps its own phase.
+$\tau_i$, so $u_i$ is uniform on $[0,1)$ whatever the residual offset of the motion and the length of
+the trains. If the pixels of a path shared their phases, $u_i$ would be constant. Pooling $\cos2\pi
+u_i$ over pixels detects a lock common to all blocks, but locks at different values in different
+blocks would cancel. The Rayleigh statistic of a block of $m$ tested pixels,
+\begin{equation}\label{eq:rayleigh}
+  Z=\frac1m\Big|\sum_{i}e^{2\pi\mathrm{i}\,u_i}\Big|^2,
+\end{equation}
+does not depend on the value of the lock: its mean is $1$ for independent uniform $u_i$ and close to
+$m$ when the pixels of a block share one. Before the recordings were read, a 95\% interval of the mean
+$Z$ below $2$ was set to read as no lock within blocks, one above $5$ as a lock, and anything else as
+partial. Blocks with a zero shift are left out, since a pixel moved onto itself keeps its own phase.
 
-Moved events show no phase lock in the regular trains of moving blocks (Fig.~\ref{fig:phase}). For
-pixels with $\tau_i$ between $0.25$ and $4$~ms, $84\%$ of the tested pixels by day, $62\%$ at night
-and $62\%$ on DSEC, the mean of $\cos2\pi u_i$ lies within $0.006$ of $0$ in every bin of $\tau_i$, against $0.91$ to $0.97$
-for shared phases. Pooled over all spacings, the mean is
-$0.007$ ($95\%$ interval $0.005$ to $0.008$) by day, which reads as independent, and $0.077$
-($0.044$ to $0.106$) at night and $0.096$ ($0.042$ to $0.148$) on DSEC, which read as partial. The
-partial readings come from pixels with $\tau_i$ between $8$ and $16$~ms, where the mean reaches
-$0.35$ at night and $0.39$ on DSEC. That band holds the periods of mains lighting, $8.33$ and
-$10$~ms, and the lock is consistent with lamps that modulate many pixels in step, a common cause
-outside the model.
+For pixels with $\tau_i$ between $0.25$ and $4$~ms, the mean of $\cos2\pi u_i$ lies within $0.006$ of
+$0$ in every bin of $\tau_i$ and in all three strata, against $0.91$ to $0.97$ for shared phases on the
+model (Fig.~\ref{fig:phase}a). The histogram of $u_i$ is flat (Fig.~\ref{fig:phase}b). Per block,
+the mean $Z$ is $1.07$ ($95\%$ interval $1.02$ to $1.13$) by day, $1.09$ ($1.06$ to $1.14$) at night
+and $1.22$ ($1.04$ to $1.46$) on DSEC, over $15{,}028$, $6{,}933$ and $44{,}715$ blocks; the same test
+gives $63.8$ on the model with shared phases and $1.05$ with independent ones. All three strata
+therefore read as no lock within blocks. A small excess over random times remains: their mean $Z$
+is $1.00$, and $1.1\%$ to $1.7\%$ of the blocks exceed $Z=\ln100$, against $0.8\%$ to $1.0\%$ for
+random times. The tested pixels hold $33\%$, $27\%$ and $27\%$ of the true events of the scored
+windows, and those in the band of Fig.~\ref{fig:phase}b hold $29\%$, $20\%$ and $19\%$. The other
+events come from pixels without a regular train in the window.
 
-The fidelity of the same prediction, binned by $\Delta_t/\tau_i$ with $\tau_i$ the median regular
-interval of the pixel over $133$~ms, is $0.142$ by day and $0.151$ on DSEC at $\Delta_t/\tau_i\approx1/8$
-on the grid of one pixel and $T_0/32$, against $0.141$ from \eqref{eq:binfidmoved}, and $0.190$ at
-night. Only $30\%$ to $48\%$ of the events lie in such pixels, and the remaining events come from
-pixels without a regular train.
+A lock appears at longer spacings: for $\tau_i$ between $8$ and $16$~ms the mean of $\cos2\pi u_i$
+reaches $0.10$ by day, $0.35$ at night and $0.39$ on DSEC, and at night already $0.13$ between $4$ and
+$8$~ms. That band holds the periods of mains lighting, $8.33$ and $10$~ms, and the lock is consistent
+with lamps that modulate many pixels in step, a common cause outside the model. On the selected regular
+trains and at the tested spacings, the recordings thus show no detectable lock of the phases along
+the motion.
+
+On the same pixels, the counts moved along the estimated motion reproduce $0.1$ to $0.4$ of the true
+counts on the grid of $T_0/32$, above the $0.06$ to $0.20$ of random times. Count matching alone,
+without any timing, would reach $0.48$ to $0.75$ there, and the motion is estimated, so these values
+mix the phase with count mismatch and motion error and do not test \eqref{eq:binfidmoved}.
 
 \subsection{What a Receiver Loses}\label{sec:demo}
-% Numbers: directive 025, results/td2/demo.json at ad42960; figure and pixel counts: directive 026,
-% results/paper/fig_tolerance_compact.{pdf,json} at 1c73c67.
+% Numbers: directive 025, results/td2/demo.json at ad42960; figure and pixel counts: directive 027,
+% results/paper/fig_tolerance_compact2.{pdf,json} at 18bfa00.
 \begin{figure*}[t]
 \centering
-\includegraphics[width=0.92\textwidth]{figs/fig_tolerance_compact.pdf}
-\caption{A moving car in eTraM by day, as recorded and as received from codes that send all events,
-the motion with one time correction per pixel, and the motion only. Top: the
-whole window; middle: a slice of $T_0/16$, signed event counts, red for positive polarity; bottom: the
-slice against the recorded one.}
+\includegraphics[width=0.92\textwidth]{figs/fig_tolerance_compact2.pdf}
+\caption{A moving car in eTraM by day, as recorded and as received from three codes. Top: the whole
+window; middle: a slice of $T_0/16$; signed event counts, red for positive polarity. Bottom: the slice
+against the recorded one.}
 \label{fig:tolerance}
 \end{figure*}
 Fig.~\ref{fig:tolerance} shows what a receiver displays as a code leaves out more of the timing, for
 a car that crosses the sensor at $13$ pixels per window by day; a second car, at night at $9$ pixels
-per window, gives the same picture and the numbers below. The three codes are simple, and they follow
-the order of Theorem~\ref{thm:pixel} without attaining its rates. The first sends every event with its
-time in bins of $T_0/256$ by the voxel list. The second moves the events of the previous window along
-the motion of their block and corrects them with one number per pixel: the offset of the first true
-event of the pixel from its first moved event, rounded to $T_0/64$, or a symbol that deletes them. The
-third sends only the motion. The motion of each block is fitted on the window it
-predicts, so that the lower rows show what motion cannot carry and not the errors of its estimate.
+per window, gives the same picture. The three codes follow the order of Theorem~\ref{thm:pixel}
+without attaining its rates. The first sends every event with its time in bins of $T_0/256$ by the
+voxel list. The second moves the events of the previous window along the motion of their block and
+corrects them with one number per pixel: the offset of the first true event of the pixel from its
+first moved event, rounded to $T_0/64$, or a symbol that deletes them. The third sends only the
+motion. The motion of each block is fitted on the window it predicts, so that the lower rows show
+what motion cannot carry and not the errors of its estimate.
 
 Over the whole window the three reconstructions are hard to tell apart from the recording: the motion
-places the edges of the car where they are. In a slice of $2.1$~ms the moved events fall on other pixels
-than the recorded ones, since each pixel fires on its own phase. Of the $4821$ pixels with an event in
-the slice of Fig.~\ref{fig:tolerance}, every event reproduces $4816$; one number per pixel reproduces
-$3098$ and adds $1864$ elsewhere; the motion alone reproduces $2569$ and adds $3981$. Every event costs
-$9.8$ bits by day and $9.5$ at night and keeps $F=1$ on the grid of $T_0/32$. One number per pixel costs
+places the edges of the car where they are. In a slice of $2.1$~ms the moved events fall on other
+pixels than the recorded ones, since each pixel fires on its own phase. Of the $4821$ pixels with an
+event in the slice, all events reproduce $4816$; the per-pixel correction reproduces $3098$ and adds
+$1864$ elsewhere; the motion alone reproduces $2569$ and adds $3981$. All events cost $9.8$ bits per
+event by day and $9.5$ at night and keep $F=1$ on the grid of $T_0/32$. The per-pixel correction costs
 $2.4$ and $2.7$ bits per event and keeps $F=0.48$ and $0.47$; the motion alone costs $0.04$ and $0.07$
-bits and keeps $0.28$ and $0.25$. On the grid of $T_0/3$ the same three codes keep $1.00$, $0.73$ to
-$0.75$ and $0.61$ to $0.64$: the longer the bin against the event spacing, the more of the recording the
-motion carries. The car scores below the model at the same speed, where one number per pixel keeps
-$0.80$ and the motion $0.48$. On recordings $52\%$ to $70\%$ of the events lie in pixels without a
-regular train (Section~\ref{sec:phase-rec}), against none on the model.
+bits and keeps $0.28$ and $0.25$. On the grid of $T_0/3$ the three codes keep $1.00$, $0.73$ to $0.75$
+and $0.61$ to $0.64$: the longer the bin against the event spacing, the more of the recording the
+motion carries.
 
-\subsection{Consequences for a Video Coder}\label{sec:hevc}
-% Numbers: directives 019 (results/hd at 5edad1d), 021 (results/hc at cac17c2); the coarse-grid
-% operating points: directive 018, results/fm/frontier.json at 4a4ee74. Figure: directive 023.
+\subsection{A Video Coder as a Case}\label{sec:hevc}
+% Numbers: directives 019 (results/hd at 5edad1d), 021 (results/hc at cac17c2), 028 (results/pc2 at
+% 929e8be). Figure: directive 028, results/paper/fig_coding.pdf at 2c732af.
 \begin{table}[t]
 \centering
-\caption{Lossless bits per event: x265 with P pictures (P), with intra pictures only (I), and the
-voxel list (Q).}
+\caption{Lossless bits per event on recordings, one-pixel voxels: x265 with P pictures (P), with intra
+pictures only (I), and the voxel list (Q).}
 \label{tab:lossless}
-\setlength{\tabcolsep}{3.2pt}
+\setlength{\tabcolsep}{3.4pt}
 \begin{tabular}{@{}lccccccccc@{}}
 \toprule
  & \multicolumn{3}{c}{eTraM, day} & \multicolumn{3}{c}{eTraM, night} & \multicolumn{3}{c}{DSEC}\\
 \cmidrule(lr){2-4}\cmidrule(lr){5-7}\cmidrule(lr){8-10}
-$(s,k)$ & P & I & Q & P & I & Q & P & I & Q\\
+$k$ & P & I & Q & P & I & Q & P & I & Q\\
 \midrule
-$(1,1)$  & 2.13 & 2.46 & 2.18 & 1.97 & 2.19 & 2.01 & 1.64 & 1.70 & 1.69\\
-$(1,3)$  & 3.32 & 4.81 & 3.40 & 3.14 & 3.90 & 3.25 & 2.76 & 3.00 & 2.83\\
-$(1,12)$ & 6.43 & 11.3 & 6.12 & 5.51 & 8.17 & 5.59 & 4.88 & 5.12 & 4.74\\
-$(1,64)$ & 11.5 & 38.2 & 10.2 & 9.75 & 24.6 & 9.06 & 8.09 & 8.39 & 7.48\\
-$(2,3)$  & 2.08 & 2.70 & 2.17 & 1.93 & 2.29 & 1.99 & 1.49 & 1.69 & 1.59\\
+$1$  & 2.13 & 2.46 & 2.18 & 1.97 & 2.19 & 2.01 & 1.64 & 1.70 & 1.69\\
+$3$  & 3.32 & 4.81 & 3.40 & 3.14 & 3.90 & 3.25 & 2.76 & 3.00 & 2.83\\
+$12$ & 6.43 & 11.3 & 6.12 & 5.51 & 8.17 & 5.59 & 4.88 & 5.12 & 4.74\\
+$64$ & 11.5 & 38.2 & 10.2 & 9.75 & 24.6 & 9.06 & 8.09 & 8.39 & 7.48\\
 \bottomrule
 \end{tabular}
 \end{table}
 \begin{figure*}[t]
 \centering
-\figorboxw{figs/fig_hevc.pdf}{0.92\textwidth}
-\caption{x265 on count pictures of recordings, one-pixel voxels, $\Delta_t=T_0/3$ (grey) and $T_0/64$.
-(a) Fidelity, (b) single events removed by the decode, (c) box fidelity, against bits per event.}
+\includegraphics[width=0.92\textwidth]{figs/fig_coding.pdf}
+\caption{x265 as a case. (a) Model, lossless bits per event, $n=3$. (b) Recordings, fidelity against
+bits per event on the grids of $T_0/3$ (grey) and $T_0/64$; star: voxel list. (c) Share of squares
+whose motion the P-picture decode recovers within one pixel per window, decodes without events
+counted as failures; dotted: uncoded counts on the same grid.}
 \label{fig:hevc}
 \end{figure*}
-HEVC on count pictures has been used to code event streams without loss \cite{khan2021talven}. We
-use x265 as a probe of what the mechanism means for such a coder: it has motion-compensated
-prediction, a transform and a quantizer, and it records how it codes each picture.
+HEVC on count pictures has been used to code event streams without loss \cite{khan2021talven}. We use
+x265 as a case: it has motion-compensated prediction, a transform and a quantizer, and we can compare
+its P pictures with intra pictures, which isolates the gain of prediction, and with the voxel list,
+which gives the total cost of a coder without prediction.
 
-\emph{Without loss.} x265 with P pictures needs about the bits of the voxel list, which predicts
-nothing, and more on fine grids (Table~\ref{tab:lossless}). Over the twelve grids, the ratio of the
-two is $0.92$ to $1.02$ at slices of $T_0/6$ or longer, $1.00$ to $1.07$ at $T_0/12$, and $1.06$ to
-$1.18$ at $T_0/32$ and $T_0/64$. On DSEC, where the camera moves, the same x265 with intra pictures
-only needs $1.03$ to $1.10$ times the bits of the P pictures at every slice, so temporal prediction
-saves little there. On eTraM the intra pictures cost $1.1$ to $3.4$ times more, increasingly so at
-fine slices, where they also cost up to $3.7$ times the voxel list: a static camera leaves pictures
-almost empty, and the P pictures save the cost of signaling empty regions, which an intra picture
-pays anew. Neither version of x265 undercuts the voxel list on fine grids, as Theorem~\ref{thm:lossless}
-and \eqref{eq:binfidmoved} lead one to expect: on fine grids the counts are set by the phases, which
-the motion does not carry.
+\emph{On the model.} x265 codes the counts of Section~\ref{sec:control}, with independent phases,
+without loss (Fig.~\ref{fig:hevc}a). At $\tau=1$~ms its P pictures cost $0.14$ bit per event at
+$\Delta_t/\tau=33$ and $7.9$ at $0.52$. They undercut the voxel list for $\Delta_t/\tau\ge5.6$, match it
+near $2.8$, and cost up to $1.7$ times as much below $1.4$. Against intra pictures only they save a
+factor of $2$ to $2.5$ at $\Delta_t/\tau\ge11$ and of $1.1$ to $1.3$ below $1$. The gain of temporal
+prediction shrinks where \eqref{eq:binfidmoved} says that moved counts stop predicting the true ones.
 
-\emph{With loss.} On a fine grid almost all nonzero counts are one: $92\%$ to $99\%$ of the input
-events lie in voxels of one event at $T_0/64$. The quantizer then removes events instead of coarsening
-them (Fig.~\ref{fig:hevc}b). At $T_0/64$ and QP~$20$ or below, $91\%$ to $99\%$ of the errors of a
-decode are voxels of one event that it empties, and $1\%$ to $7\%$ are events that it adds. At QP~$20$
-by day the decode removes $27\%$ of the input events, and at QP~$28$ it removes $90\%$. The P pictures
-lose more of them than intra pictures at the same QP, so at equal fidelity the intra pictures are as
-cheap or cheaper: to reach $F=0.9$ at $T_0/64$ they need $1.00$, $0.89$ and $0.72$ times the bits of
-the P pictures by day, at night and on DSEC, and $0.88$, $0.78$ and $0.69$ times to reach $0.95$. The
-box fidelity follows (Fig.~\ref{fig:hevc}c): at one bit per event by day the best point at $T_0/64$
-keeps a box fidelity of $0.011$ and leaves $71\%$ of the boxes without events, against $0.279$ and
-$38\%$ at $T_0/12$. On coarse grids the quantizer coarsens counts that hold several events
-instead. The fidelity on a coarse grid ignores timing differences within its bin, so the grey curves
-give the cost of a looser timing requirement and not that of a better coder. Operating points on
-coarse grids are in the Supplementary Material.
+\emph{Without loss, on recordings.} The P pictures need about the bits of the voxel list, and more on
+fine grids (Table~\ref{tab:lossless}): the ratio of the two is $0.97$ to $0.98$ for $k\le3$, $0.99$
+to $1.05$ at $k=12$, and $1.08$ to $1.13$ at $k=64$. Prediction itself still
+pays against intra pictures. On eTraM the intra pictures cost $1.1$ to $3.4$ times the P pictures,
+increasingly so at fine slices: a static camera leaves pictures almost empty, and the P pictures save
+the cost of signaling empty regions, which an intra picture pays anew. On DSEC, where the camera moves,
+the intra pictures cost $1.03$ to $1.10$ times the P pictures. The prediction gain thus survives on
+fine grids, but it does not make the coder cheaper than a list of the counts, as
+Theorem~\ref{thm:lossless} and \eqref{eq:binfidmoved} lead one to expect: on fine grids the counts are
+set by the phases, which the motion does not carry.
 
-\emph{Representation.} The grid itself loses information before any coding. Turning the events into
-counts and back, with the events of a voxel placed at its first instant, loses nothing for the box
-fidelity at one pixel and at least three slices per window, with no box left empty. Two-pixel voxels
-raise the motion error: at $k=3$ it is $4.01$, $1.17$ and $2.67$ pixels per window by day, by night
-and on DSEC, against $1.49$, $0.67$ and $0.94$ at one pixel.
+\emph{With loss.} On a fine grid almost all nonzero counts are one: $92\%$ to $99\%$ of the events lie
+in voxels of one event at $T_0/64$. The quantizer then removes events instead of coarsening them. At
+$T_0/64$ and QP~$20$ or below, $91\%$ to $99\%$ of the errors of a decode are voxels of one event that
+it empties, and $1\%$ to $7\%$ are events that it adds. The P pictures lose more of them than intra
+pictures at the same QP, so at equal fidelity the intra pictures are as cheap or cheaper: to reach
+$F=0.9$ at $T_0/64$ they need $1.00$, $0.89$ and $0.72$ times the bits of the P pictures by day, at night
+and on DSEC (Fig.~\ref{fig:hevc}b). On the grid of $T_0/3$, where voxels hold several events, the
+quantizer coarsens counts instead, and $F$ stays above $0.82$ down to about one bit per event. The two
+grids answer different timing requirements: $F$ on $T_0/3$ ignores timing differences within $11$~ms,
+so its curves give the cost of a looser requirement and not that of a better coder.
 
-\emph{Design rule.} The bin of the receiver decides what motion compensation can do, through the ratio
-$\Delta_t/\tau$. When the bin is long against the event spacing, moved counts predict the true ones,
-voxels hold several events, and the prediction and the quantizer of a video coder both work. When it
-is short, the phases of the pixels decide the counts. Prediction then still saves the signaling of
-empty regions against intra pictures, but a list of the counts is the cheaper lossless code, and at
-a given fidelity intra pictures need as few bits as P pictures or fewer.
+\emph{The motion task.} The fine grid serves the task best when it is coded finely. Uncoded, the counts
+on $T_0/64$ let $75\%$, $86\%$ and $73\%$ of the squares be recovered, against $44\%$, $71\%$ and $50\%$
+on $T_0/3$ (Fig.~\ref{fig:hevc}c). As the rate falls, the decode on $T_0/64$ empties squares: by day
+the recovered share falls from $0.71$ at $41$ bits per event to $0.13$ at $0.9$, with $49\%$ of the
+squares left without events; at night it falls from $0.83$ to $0.36$ and on DSEC from $0.74$ to
+$0.36$. On $T_0/3$ the share stays at its uncoded value at every QP. Below a crossing that lies between
+$1.5$ and $10$ bits per event depending on the stratum, the coarse grid therefore serves the task
+better. Counting a decode without events as a failure matters here: at QP~$24$ by day, $29\%$ of the
+squares are left without events, and the median error over all squares is $3.4$ pixels per window,
+against $1.4$ when only the squares with events enter.
 
 \section{Conclusion}
-The pixels on the path of a moving edge share the edge and its motion, and each has a threshold
-phase and a jitter of its own, which a lossless code must describe at every pixel. A timing
-tolerance removes first the jitter and then the phase from what a code must describe, and beyond a
-threshold set by the event spacing the events are regenerated from the edge and the motion alone. A
-sender that has only the events can move them along the motion, which doubles the timing error and,
-on a voxel grid, reproduces a share $\Delta_t/\tau$ of the counts when the bin is shorter than the
-event spacing. On recordings from a static and a moving camera, moved events show no phase lock
-within the regular trains of their target pixels, as independent phases imply, except in a band that
-holds the periods of mains lighting. A standard HEVC coder on count pictures shows the consequences:
-on fine grids its P pictures save bits against intra pictures but do not undercut a list of the
-counts, and its lossy errors are single events that it
-removes, so that intra pictures reach a given fidelity with as few bits or fewer. The bin of the
-receiver against the event spacing therefore tells a sender whether motion-compensated prediction of
-counts can pay. The theory covers one ramp edge in uniform passage, so texture, noise events and
-threshold mismatch remain to be modeled.
+The pixels on the path of a moving edge share the edge and its motion, and each holds a threshold
+phase and a jitter of its own. Given the edge and the motion, a timing tolerance decides which of these
+private quantities a code must describe: below the jitter variance every event time, up to
+$D_A=\sigma^2+\tau^2/12$ one number per pixel, and beyond it nothing, so that a description of the
+motion of $O(\ln M)$ nats replaces a description of order $M$. The event spacing sets the scale of the
+tolerance needed for regeneration and of the time bins over which motion-aligned events remain
+predictive. A sender that moves events along the motion keeps the phase of the source pixel, and a
+controlled model shows that the phase alone then makes moved counts miss on bins shorter than the
+event spacing. Recordings show no detectable phase lock on the regular trains where the test applies,
+and an HEVC coder on count pictures shows the consequences on fine grids: prediction helps against
+intra pictures but not against a list of the counts, and lossy decodes remove single events. The
+theory points to a sender that estimates the edge from the events and sends it with the motion. Its
+scope is a ramp edge in uniform passage, and texture, noise events and threshold mismatch remain to be
+modeled.
 
 \appendices
+\section{Remarks on the Model}
+\begin{remark}[Accuracy of the uniform passage]\label{rem:passage}
+For an affine flow \eqref{eq:flow}, $\dot\nu_t=-\Lambda^{\!\top}\nu_t$ and
+$\ddot z_i=\ip{\nu_t}{\Lambda v(i)}$, hence $|\ddot z_i|\le\kappa_i|\dot z_i|$ with
+$\kappa_i=\|\Lambda\|/|\cos\vartheta_i|$, where $\vartheta_i$ is the angle between the velocity
+$v(i)$ and the normal $\nu_t$. Take $r_i$ as the slope of $z_i$ at $t_i$. Over a passage of
+duration $P_i=n\tau_i$, the event times then deviate from \eqref{eq:times} by at most
+$\kappa_iP_i^2/2$, to first order in $\kappa_iP_i$. For a generator of norm $0.3\,\mathrm{s}^{-1}$,
+a passage of $5$~ms and motion along the normal this is $4\,\mu$s, three orders of magnitude below
+the passage time. The bound grows without limit for edges that are nearly parallel to their motion.
+Such edges pass few pixels per unit time and contribute few events.
+\end{remark}
+\begin{remark}[Event count under a change of scale]\label{rem:count}
+An edge segment emits $n$ events for every pixel that it passes, so its event rate is $n$ times the
+area that it sweeps per unit time, that is $n$ times its length times its mean normal speed. Under
+a similarity flow about a fixed point, growth by a factor $\zeta$ makes the segment $\zeta$ times
+longer and $\zeta$ times faster, and the rate grows as $\zeta^2$. For an object that approaches at
+constant speed, the image speed itself grows as $\zeta^2$ and the rate as $\zeta^3$. A regeneration
+that moves a fixed set of events keeps their number. Under a change of scale it must also change
+the number of events, or regenerate them from the edge.
+\end{remark}
 \section{Proofs of Lemmas~\ref{lem:lattice} and~\ref{lem:times}}
 \begin{proof}[Proof of Lemma~\ref{lem:lattice}]
 The reference starts in $a_i+C\Z$ by the definition of the phase. By (A1) it changes by $\pm C$, so
