@@ -1,0 +1,2119 @@
+{
+ "directive": "028",
+ "host": "cnt-js01",
+ "commit": "bac131d0b24fab356a9f723860668dc2810c80d1",
+ "versions": {
+  "python": "3.10.12",
+  "numpy": "1.26.4",
+  "scipy": "1.15.3"
+ },
+ "suite": "180 passed, 0 failed, 0 errors, 0 skipped at bac131d on cnt (junitxml)",
+ "wall_s": 21.141428232192993,
+ "cpu_s": 21.139559264000003,
+ "recordings_read": "none: only the kept per-group outputs of directives 022 and 019 and committed results",
+ "files_read": {
+  "ph_outputs": [
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_day_0002_td.pkl",
+    "size": 692777
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_day_0003_td.pkl",
+    "size": 1604653
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_day_0004_td.pkl",
+    "size": 1333614
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_day_0005_td.pkl",
+    "size": 1582594
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_day_0006_td.pkl",
+    "size": 1579887
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_day_0007_td.pkl",
+    "size": 1625557
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_day_0008_td.pkl",
+    "size": 1089271
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_day_0009_td.pkl",
+    "size": 1592681
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_day_0010_td.pkl",
+    "size": 1610223
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_day_0012_td.pkl",
+    "size": 949676
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_day_0013_td.pkl",
+    "size": 660091
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_day_0014_td.pkl",
+    "size": 1614905
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_day_0015_td.pkl",
+    "size": 1604340
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_day_0016_td.pkl",
+    "size": 792343
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_day_0017_td.pkl",
+    "size": 1592995
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_day_0018_td.pkl",
+    "size": 1592017
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_day_0019_td.pkl",
+    "size": 1618075
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_day_0020_td.pkl",
+    "size": 1582820
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_day_0022_td.pkl",
+    "size": 1613732
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_day_0023_td.pkl",
+    "size": 1600538
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_day_0024_td.pkl",
+    "size": 1654609
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_day_0025_td.pkl",
+    "size": 790386
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_day_0026_td.pkl",
+    "size": 1583201
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_day_0027_td.pkl",
+    "size": 1583753
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_day_0028_td.pkl",
+    "size": 1589746
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_day_0029_td.pkl",
+    "size": 525980
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_day_0030_td.pkl",
+    "size": 1583513
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_day_0032_td.pkl",
+    "size": 1583965
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_day_0033_td.pkl",
+    "size": 1614504
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_day_0034_td.pkl",
+    "size": 1594670
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_day_0035_td.pkl",
+    "size": 398333
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_day_0036_td.pkl",
+    "size": 662579
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_day_0037_td.pkl",
+    "size": 1576603
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_day_0038_td.pkl",
+    "size": 1595848
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_day_0039_td.pkl",
+    "size": 1589057
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_day_0040_td.pkl",
+    "size": 664068
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_day_0042_td.pkl",
+    "size": 533820
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_day_0043_td.pkl",
+    "size": 1582678
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_day_0044_td.pkl",
+    "size": 1581305
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_day_0045_td.pkl",
+    "size": 1589378
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_day_0046_td.pkl",
+    "size": 131556
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_day_0047_td.pkl",
+    "size": 1582886
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_day_0048_td.pkl",
+    "size": 1588216
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_day_0049_td.pkl",
+    "size": 1602598
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_day_0050_td.pkl",
+    "size": 1602532
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_day_0052_td.pkl",
+    "size": 1599577
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_day_0053_td.pkl",
+    "size": 1610270
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_day_0054_td.pkl",
+    "size": 1589317
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_day_0055_td.pkl",
+    "size": 1624418
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_day_0056_td.pkl",
+    "size": 1579960
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_day_0057_td.pkl",
+    "size": 264774
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_day_0058_td.pkl",
+    "size": 1589024
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_day_0059_td.pkl",
+    "size": 1595199
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_day_0060_td.pkl",
+    "size": 1597204
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_day_0061_td.pkl",
+    "size": 1585357
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_night_0002_td.pkl",
+    "size": 1610286
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_night_0003_td.pkl",
+    "size": 1620278
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_night_0004_td.pkl",
+    "size": 1608628
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_night_0005_td.pkl",
+    "size": 1598357
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_night_0006_td.pkl",
+    "size": 1603984
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_night_0007_td.pkl",
+    "size": 1619976
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_night_0008_td.pkl",
+    "size": 132404
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_night_0009_td.pkl",
+    "size": 1603232
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_night_0010_td.pkl",
+    "size": 669142
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_night_0012_td.pkl",
+    "size": 1589866
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_night_0013_td.pkl",
+    "size": 1614760
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_night_0014_td.pkl",
+    "size": 678313
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_night_0015_td.pkl",
+    "size": 1612581
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_night_0016_td.pkl",
+    "size": 1602143
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_night_0017_td.pkl",
+    "size": 1607453
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_night_0018_td.pkl",
+    "size": 1057255
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_night_0019_td.pkl",
+    "size": 1615204
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_night_0020_td.pkl",
+    "size": 527911
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_night_0022_td.pkl",
+    "size": 1615664
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_night_0023_td.pkl",
+    "size": 1621626
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_night_0024_td.pkl",
+    "size": 798864
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_night_0025_td.pkl",
+    "size": 1610864
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_night_0026_td.pkl",
+    "size": 1597059
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_night_0027_td.pkl",
+    "size": 1584791
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_night_0028_td.pkl",
+    "size": 1614440
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_night_0029_td.pkl",
+    "size": 1614317
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_night_0030_td.pkl",
+    "size": 1604886
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_night_0032_td.pkl",
+    "size": 666522
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_night_0033_td.pkl",
+    "size": 132717
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_night_0034_td.pkl",
+    "size": 1613720
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_night_0035_td.pkl",
+    "size": 1599437
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_night_0036_td.pkl",
+    "size": 1591816
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_night_0037_td.pkl",
+    "size": 1599783
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_night_0038_td.pkl",
+    "size": 1613138
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_night_0039_td.pkl",
+    "size": 1598608
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_night_0040_td.pkl",
+    "size": 139216
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_night_0042_td.pkl",
+    "size": 1604502
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_night_0043_td.pkl",
+    "size": 1596233
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_night_0044_td.pkl",
+    "size": 1606664
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_night_0045_td.pkl",
+    "size": 1609258
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_night_0046_td.pkl",
+    "size": 1621339
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_night_0047_td.pkl",
+    "size": 1603984
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_night_0048_td.pkl",
+    "size": 263699
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_night_0049_td.pkl",
+    "size": 266160
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/ph/rec/train_night_0050_td.pkl",
+    "size": 1601346
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/ph/rec/interlaken_00_d.pkl",
+    "size": 1519151
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/ph/rec/interlaken_00_e.pkl",
+    "size": 1451752
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/ph/rec/interlaken_00_f.pkl",
+    "size": 1139783
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/ph/rec/interlaken_00_g.pkl",
+    "size": 1015067
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/ph/rec/thun_00_a.pkl",
+    "size": 290173
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/ph/rec/zurich_city_00_a.pkl",
+    "size": 745435
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/ph/rec/zurich_city_00_b.pkl",
+    "size": 1164913
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/ph/rec/zurich_city_01_a.pkl",
+    "size": 612044
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/ph/rec/zurich_city_01_b.pkl",
+    "size": 1061707
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/ph/rec/zurich_city_01_d.pkl",
+    "size": 618914
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/ph/rec/zurich_city_01_e.pkl",
+    "size": 1502581
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/ph/rec/zurich_city_01_f.pkl",
+    "size": 1246257
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/ph/rec/zurich_city_02_a.pkl",
+    "size": 314257
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/ph/rec/zurich_city_02_b.pkl",
+    "size": 937078
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/ph/rec/zurich_city_02_c.pkl",
+    "size": 2314383
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/ph/rec/zurich_city_02_d.pkl",
+    "size": 1496830
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/ph/rec/zurich_city_02_e.pkl",
+    "size": 1560471
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/ph/rec/zurich_city_03_a.pkl",
+    "size": 795230
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/ph/rec/zurich_city_04_b.pkl",
+    "size": 296990
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/ph/rec/zurich_city_04_c.pkl",
+    "size": 860283
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/ph/rec/zurich_city_04_d.pkl",
+    "size": 712476
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/ph/rec/zurich_city_04_e.pkl",
+    "size": 291095
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/ph/rec/zurich_city_04_f.pkl",
+    "size": 724974
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/ph/rec/zurich_city_05_a.pkl",
+    "size": 1316239
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/ph/rec/zurich_city_05_b.pkl",
+    "size": 1332528
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/ph/rec/zurich_city_06_a.pkl",
+    "size": 1220280
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/ph/rec/zurich_city_07_a.pkl",
+    "size": 1191187
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/ph/rec/zurich_city_09_a.pkl",
+    "size": 1413839
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/ph/rec/zurich_city_09_b.pkl",
+    "size": 314057
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/ph/rec/zurich_city_09_c.pkl",
+    "size": 1081221
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/ph/rec/zurich_city_09_d.pkl",
+    "size": 1375568
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/ph/rec/zurich_city_09_e.pkl",
+    "size": 622627
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/ph/rec/zurich_city_10_a.pkl",
+    "size": 1881505
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/ph/rec/zurich_city_10_b.pkl",
+    "size": 1899697
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/ph/rec/zurich_city_11_a.pkl",
+    "size": 434146
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/ph/rec/zurich_city_11_b.pkl",
+    "size": 1465924
+   }
+  ],
+  "hd_outputs": [
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d1/d1_dsec_interlaken_00_d_0.pkl",
+    "size": 984392
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0002_td_0.pkl",
+    "size": 1006634
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d1/d1_dsec_interlaken_00_d_20.pkl",
+    "size": 1029851
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0003_td_0.pkl",
+    "size": 974808
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d1/d1_dsec_interlaken_00_d_40.pkl",
+    "size": 1057782
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0003_td_40.pkl",
+    "size": 974273
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d1/d1_dsec_interlaken_00_e_0.pkl",
+    "size": 1023414
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0004_td_0.pkl",
+    "size": 902221
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d1/d1_dsec_interlaken_00_e_20.pkl",
+    "size": 978157
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0004_td_40.pkl",
+    "size": 877852
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d1/d1_dsec_interlaken_00_e_40.pkl",
+    "size": 1170391
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0005_td_0.pkl",
+    "size": 869837
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d1/d1_dsec_interlaken_00_f_0.pkl",
+    "size": 1237841
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0005_td_40.pkl",
+    "size": 878257
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d1/d1_dsec_interlaken_00_f_20.pkl",
+    "size": 1069763
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0006_td_0.pkl",
+    "size": 941616
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d1/d1_dsec_interlaken_00_g_0.pkl",
+    "size": 1088731
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0006_td_40.pkl",
+    "size": 862132
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d1/d1_dsec_interlaken_00_g_20.pkl",
+    "size": 947216
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0007_td_0.pkl",
+    "size": 911150
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d1/d1_dsec_thun_00_a_0.pkl",
+    "size": 994045
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0007_td_40.pkl",
+    "size": 974488
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d1/d1_dsec_zurich_city_00_a_0.pkl",
+    "size": 1204860
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0008_td_0.pkl",
+    "size": 1053712
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d1/d1_dsec_zurich_city_00_a_20.pkl",
+    "size": 1080008
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0009_td_0.pkl",
+    "size": 1006669
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d1/d1_dsec_zurich_city_00_b_0.pkl",
+    "size": 1190378
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0009_td_40.pkl",
+    "size": 869536
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d1/d1_dsec_zurich_city_00_b_20.pkl",
+    "size": 1246153
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0010_td_0.pkl",
+    "size": 951137
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d1/d1_dsec_zurich_city_01_a_0.pkl",
+    "size": 1114300
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0010_td_40.pkl",
+    "size": 982445
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d1/d1_dsec_zurich_city_01_b_0.pkl",
+    "size": 982630
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0012_td_0.pkl",
+    "size": 1084496
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d1/d1_dsec_zurich_city_01_b_20.pkl",
+    "size": 1189579
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0013_td_0.pkl",
+    "size": 861253
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d1/d1_dsec_zurich_city_01_d_0.pkl",
+    "size": 1368896
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0014_td_0.pkl",
+    "size": 981749
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d1/d1_dsec_zurich_city_01_e_0.pkl",
+    "size": 1326878
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0014_td_40.pkl",
+    "size": 993905
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d1/d1_dsec_zurich_city_01_e_20.pkl",
+    "size": 1046978
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0015_td_0.pkl",
+    "size": 975463
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d1/d1_dsec_zurich_city_01_e_40.pkl",
+    "size": 1347309
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0015_td_40.pkl",
+    "size": 902002
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d1/d1_dsec_zurich_city_01_f_0.pkl",
+    "size": 1314527
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0016_td_0.pkl",
+    "size": 1010055
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d1/d1_dsec_zurich_city_01_f_20.pkl",
+    "size": 1195798
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0017_td_0.pkl",
+    "size": 940540
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d1/d1_dsec_zurich_city_02_a_0.pkl",
+    "size": 952717
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0017_td_40.pkl",
+    "size": 976043
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d1/d1_dsec_zurich_city_02_b_0.pkl",
+    "size": 1087729
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0018_td_0.pkl",
+    "size": 973245
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d1/d1_dsec_zurich_city_02_b_20.pkl",
+    "size": 1423157
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0018_td_40.pkl",
+    "size": 861556
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d1/d1_dsec_zurich_city_02_c_0.pkl",
+    "size": 1161295
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0019_td_0.pkl",
+    "size": 1112854
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d1/d1_dsec_zurich_city_02_c_20.pkl",
+    "size": 1195093
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0019_td_40.pkl",
+    "size": 1108703
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d1/d1_dsec_zurich_city_02_c_40.pkl",
+    "size": 988083
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0020_td_0.pkl",
+    "size": 859930
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d1/d1_dsec_zurich_city_02_c_60.pkl",
+    "size": 1084651
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0020_td_40.pkl",
+    "size": 860374
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d1/d1_dsec_zurich_city_02_d_0.pkl",
+    "size": 949701
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0022_td_0.pkl",
+    "size": 1148951
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d1/d1_dsec_zurich_city_02_d_20.pkl",
+    "size": 951256
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0022_td_40.pkl",
+    "size": 1015265
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d1/d1_dsec_zurich_city_02_d_40.pkl",
+    "size": 950749
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0023_td_0.pkl",
+    "size": 861213
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d1/d1_dsec_zurich_city_02_e_0.pkl",
+    "size": 950717
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0023_td_40.pkl",
+    "size": 861321
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d1/d1_dsec_zurich_city_02_e_20.pkl",
+    "size": 991516
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0024_td_0.pkl",
+    "size": 1241122
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d1/d1_dsec_zurich_city_02_e_40.pkl",
+    "size": 1293235
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0024_td_40.pkl",
+    "size": 1041465
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d1/d1_dsec_zurich_city_03_a_0.pkl",
+    "size": 988633
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0025_td_0.pkl",
+    "size": 1040950
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d1/d1_dsec_zurich_city_03_a_20.pkl",
+    "size": 953930
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0026_td_0.pkl",
+    "size": 974396
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d1/d1_dsec_zurich_city_04_b_0.pkl",
+    "size": 1232070
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0026_td_40.pkl",
+    "size": 983529
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d1/d1_dsec_zurich_city_04_c_0.pkl",
+    "size": 1153925
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0027_td_0.pkl",
+    "size": 1010530
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d1/d1_dsec_zurich_city_04_c_20.pkl",
+    "size": 1099370
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0027_td_40.pkl",
+    "size": 860937
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d1/d1_dsec_zurich_city_04_d_0.pkl",
+    "size": 1200207
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0028_td_0.pkl",
+    "size": 1004456
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d1/d1_dsec_zurich_city_04_d_20.pkl",
+    "size": 1098658
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0028_td_40.pkl",
+    "size": 861533
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d1/d1_dsec_zurich_city_04_e_0.pkl",
+    "size": 1288962
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0029_td_0.pkl",
+    "size": 862435
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d1/d1_dsec_zurich_city_04_f_0.pkl",
+    "size": 1147070
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0030_td_0.pkl",
+    "size": 983028
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d1/d1_dsec_zurich_city_04_f_20.pkl",
+    "size": 1158589
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0030_td_40.pkl",
+    "size": 942817
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d1/d1_dsec_zurich_city_05_a_0.pkl",
+    "size": 951949
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0032_td_0.pkl",
+    "size": 1009367
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d1/d1_dsec_zurich_city_05_a_20.pkl",
+    "size": 1114537
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0032_td_40.pkl",
+    "size": 903347
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d1/d1_dsec_zurich_city_05_a_40.pkl",
+    "size": 1217090
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0033_td_0.pkl",
+    "size": 1080908
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d1/d1_dsec_zurich_city_05_b_0.pkl",
+    "size": 985386
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0033_td_40.pkl",
+    "size": 1014893
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d1/d1_dsec_zurich_city_05_b_20.pkl",
+    "size": 1138823
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0034_td_0.pkl",
+    "size": 1076734
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d1/d1_dsec_zurich_city_05_b_40.pkl",
+    "size": 1047949
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0034_td_40.pkl",
+    "size": 1055416
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d1/d1_dsec_zurich_city_06_a_0.pkl",
+    "size": 1047002
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0035_td_0.pkl",
+    "size": 1040789
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d1/d1_dsec_zurich_city_06_a_20.pkl",
+    "size": 986291
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0036_td_0.pkl",
+    "size": 861560
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d1/d1_dsec_zurich_city_07_a_0.pkl",
+    "size": 1361514
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0037_td_0.pkl",
+    "size": 870925
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d1/d1_dsec_zurich_city_07_a_20.pkl",
+    "size": 1016922
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0037_td_40.pkl",
+    "size": 861484
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d1/d1_dsec_zurich_city_09_a_0.pkl",
+    "size": 1087709
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0038_td_0.pkl",
+    "size": 961511
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d1/d1_dsec_zurich_city_09_a_20.pkl",
+    "size": 1161036
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0038_td_40.pkl",
+    "size": 1111588
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d1/d1_dsec_zurich_city_09_a_40.pkl",
+    "size": 1011140
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0039_td_0.pkl",
+    "size": 1014148
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d1/d1_dsec_zurich_city_09_b_0.pkl",
+    "size": 1367407
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0039_td_40.pkl",
+    "size": 861262
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d1/d1_dsec_zurich_city_09_c_0.pkl",
+    "size": 1219562
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0040_td_0.pkl",
+    "size": 1043082
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d1/d1_dsec_zurich_city_09_c_20.pkl",
+    "size": 1085691
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0042_td_0.pkl",
+    "size": 1050252
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d1/d1_dsec_zurich_city_09_d_0.pkl",
+    "size": 1210282
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0043_td_0.pkl",
+    "size": 927776
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d1/d1_dsec_zurich_city_09_d_20.pkl",
+    "size": 1269629
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0043_td_40.pkl",
+    "size": 927568
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d1/d1_dsec_zurich_city_09_d_40.pkl",
+    "size": 1390930
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0044_td_0.pkl",
+    "size": 869403
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d1/d1_dsec_zurich_city_09_e_0.pkl",
+    "size": 1151156
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0044_td_40.pkl",
+    "size": 902389
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d1/d1_dsec_zurich_city_10_a_0.pkl",
+    "size": 987857
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0045_td_0.pkl",
+    "size": 860674
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d1/d1_dsec_zurich_city_10_a_20.pkl",
+    "size": 955028
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0045_td_40.pkl",
+    "size": 976997
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d1/d1_dsec_zurich_city_10_a_40.pkl",
+    "size": 955193
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0046_td_0.pkl",
+    "size": 861269
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d1/d1_dsec_zurich_city_10_b_0.pkl",
+    "size": 1007463
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0047_td_0.pkl",
+    "size": 1107545
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d1/d1_dsec_zurich_city_10_b_20.pkl",
+    "size": 1226162
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0047_td_40.pkl",
+    "size": 894388
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d1/d1_dsec_zurich_city_10_b_40.pkl",
+    "size": 1095656
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0048_td_0.pkl",
+    "size": 1037583
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d1/d1_dsec_zurich_city_11_a_0.pkl",
+    "size": 1281021
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0048_td_40.pkl",
+    "size": 911260
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d1/d1_dsec_zurich_city_11_b_0.pkl",
+    "size": 1080006
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0049_td_0.pkl",
+    "size": 1083076
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d1/d1_dsec_zurich_city_11_b_20.pkl",
+    "size": 1017189
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0049_td_40.pkl",
+    "size": 910916
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d1/d1_dsec_zurich_city_11_b_40.pkl",
+    "size": 1046328
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0050_td_0.pkl",
+    "size": 1237009
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0050_td_40.pkl",
+    "size": 1112643
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0052_td_0.pkl",
+    "size": 1113796
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0052_td_40.pkl",
+    "size": 983294
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0053_td_0.pkl",
+    "size": 886231
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0053_td_40.pkl",
+    "size": 1047069
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0054_td_0.pkl",
+    "size": 1005624
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0054_td_40.pkl",
+    "size": 973163
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0055_td_0.pkl",
+    "size": 1161444
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0055_td_40.pkl",
+    "size": 1051730
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0056_td_0.pkl",
+    "size": 945670
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0056_td_40.pkl",
+    "size": 936598
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0057_td_0.pkl",
+    "size": 1008422
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0058_td_0.pkl",
+    "size": 862031
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0058_td_40.pkl",
+    "size": 935531
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0059_td_0.pkl",
+    "size": 903336
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0059_td_40.pkl",
+    "size": 1016337
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0060_td_0.pkl",
+    "size": 930926
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0060_td_40.pkl",
+    "size": 1047253
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0061_td_0.pkl",
+    "size": 869294
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_day_0061_td_40.pkl",
+    "size": 869686
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_night_0002_td_0.pkl",
+    "size": 1085823
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_night_0002_td_40.pkl",
+    "size": 1070767
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_night_0003_td_0.pkl",
+    "size": 1082761
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_night_0003_td_40.pkl",
+    "size": 974887
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_night_0004_td_0.pkl",
+    "size": 1143945
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_night_0004_td_40.pkl",
+    "size": 1060865
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_night_0005_td_0.pkl",
+    "size": 1007941
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_night_0005_td_40.pkl",
+    "size": 921429
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_night_0006_td_0.pkl",
+    "size": 940065
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_night_0006_td_40.pkl",
+    "size": 974928
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_night_0007_td_0.pkl",
+    "size": 979342
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_night_0007_td_40.pkl",
+    "size": 1304102
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_night_0008_td_0.pkl",
+    "size": 1010059
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_night_0009_td_0.pkl",
+    "size": 1009183
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_night_0009_td_40.pkl",
+    "size": 1032778
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_night_0010_td_0.pkl",
+    "size": 940267
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_night_0012_td_0.pkl",
+    "size": 1041921
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_night_0012_td_40.pkl",
+    "size": 974699
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_night_0013_td_0.pkl",
+    "size": 974939
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_night_0013_td_40.pkl",
+    "size": 1009907
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_night_0014_td_0.pkl",
+    "size": 975245
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_night_0015_td_0.pkl",
+    "size": 1006956
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_night_0015_td_40.pkl",
+    "size": 1014013
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_night_0016_td_0.pkl",
+    "size": 975069
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_night_0016_td_40.pkl",
+    "size": 981706
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_night_0017_td_0.pkl",
+    "size": 976192
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_night_0017_td_40.pkl",
+    "size": 1091523
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_night_0018_td_0.pkl",
+    "size": 1006798
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_night_0019_td_0.pkl",
+    "size": 1138160
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_night_0019_td_40.pkl",
+    "size": 1075436
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_night_0020_td_0.pkl",
+    "size": 951758
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_night_0022_td_0.pkl",
+    "size": 1179285
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_night_0022_td_40.pkl",
+    "size": 1077716
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_night_0023_td_0.pkl",
+    "size": 973298
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_night_0023_td_40.pkl",
+    "size": 1008120
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_night_0024_td_0.pkl",
+    "size": 974535
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_night_0025_td_0.pkl",
+    "size": 1141938
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_night_0025_td_40.pkl",
+    "size": 1083851
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_night_0026_td_0.pkl",
+    "size": 1143024
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_night_0026_td_40.pkl",
+    "size": 902253
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_night_0027_td_0.pkl",
+    "size": 965755
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_night_0027_td_40.pkl",
+    "size": 1172379
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_night_0028_td_0.pkl",
+    "size": 1074516
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_night_0028_td_40.pkl",
+    "size": 1174452
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_night_0029_td_0.pkl",
+    "size": 1108413
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_night_0029_td_40.pkl",
+    "size": 974187
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_night_0030_td_0.pkl",
+    "size": 1006465
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_night_0030_td_40.pkl",
+    "size": 1066932
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_night_0032_td_0.pkl",
+    "size": 1012100
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_night_0033_td_0.pkl",
+    "size": 949539
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_night_0034_td_0.pkl",
+    "size": 1005850
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_night_0034_td_40.pkl",
+    "size": 974453
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_night_0035_td_0.pkl",
+    "size": 1108397
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_night_0035_td_40.pkl",
+    "size": 1038641
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_night_0036_td_0.pkl",
+    "size": 1074913
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_night_0036_td_40.pkl",
+    "size": 1113516
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_night_0037_td_0.pkl",
+    "size": 1377590
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_night_0037_td_40.pkl",
+    "size": 1112225
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_night_0038_td_0.pkl",
+    "size": 1106973
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_night_0038_td_40.pkl",
+    "size": 1048560
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_night_0039_td_0.pkl",
+    "size": 974169
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_night_0039_td_40.pkl",
+    "size": 927412
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_night_0040_td_0.pkl",
+    "size": 1046087
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_night_0042_td_0.pkl",
+    "size": 1041128
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_night_0042_td_40.pkl",
+    "size": 941366
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_night_0043_td_0.pkl",
+    "size": 1142795
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_night_0043_td_40.pkl",
+    "size": 940117
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_night_0044_td_0.pkl",
+    "size": 967226
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_night_0044_td_40.pkl",
+    "size": 1041581
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_night_0045_td_0.pkl",
+    "size": 860505
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_night_0045_td_40.pkl",
+    "size": 893870
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_night_0046_td_0.pkl",
+    "size": 940493
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_night_0046_td_40.pkl",
+    "size": 975587
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_night_0047_td_0.pkl",
+    "size": 1074192
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_night_0047_td_40.pkl",
+    "size": 1009941
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_night_0048_td_0.pkl",
+    "size": 966271
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_night_0049_td_0.pkl",
+    "size": 1006695
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_night_0050_td_0.pkl",
+    "size": 1011524
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d1/d1_etram_train_night_0050_td_40.pkl",
+    "size": 940597
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d2/d2_dsec_interlaken_00_d.pkl",
+    "size": 109396
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d2/d2_dsec_interlaken_00_e.pkl",
+    "size": 133122
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d2/d2_dsec_interlaken_00_f.pkl",
+    "size": 115051
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d2/d2_dsec_interlaken_00_g.pkl",
+    "size": 160123
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d2/d2_dsec_thun_00_a.pkl",
+    "size": 21170
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d2/d2_dsec_zurich_city_00_a.pkl",
+    "size": 105238
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d2/d2_dsec_zurich_city_00_b.pkl",
+    "size": 255876
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d2/d2_dsec_zurich_city_01_a.pkl",
+    "size": 93937
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d2/d2_dsec_zurich_city_01_b.pkl",
+    "size": 199652
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d2/d2_dsec_zurich_city_01_d.pkl",
+    "size": 178028
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d2/d2_dsec_zurich_city_01_e.pkl",
+    "size": 269318
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d2/d2_dsec_zurich_city_01_f.pkl",
+    "size": 178249
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d2/d2_dsec_zurich_city_02_a.pkl",
+    "size": 36043
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d2/d2_dsec_zurich_city_02_b.pkl",
+    "size": 112538
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d2/d2_dsec_zurich_city_02_c.pkl",
+    "size": 245644
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d2/d2_dsec_zurich_city_02_d.pkl",
+    "size": 93382
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d2/d2_dsec_zurich_city_02_e.pkl",
+    "size": 167061
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d2/d2_dsec_zurich_city_03_a.pkl",
+    "size": 33907
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d2/d2_dsec_zurich_city_04_b.pkl",
+    "size": 21732
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d2/d2_dsec_zurich_city_04_c.pkl",
+    "size": 137263
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d2/d2_dsec_zurich_city_04_d.pkl",
+    "size": 85811
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d2/d2_dsec_zurich_city_04_e.pkl",
+    "size": 26409
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d2/d2_dsec_zurich_city_04_f.pkl",
+    "size": 113094
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d2/d2_dsec_zurich_city_05_a.pkl",
+    "size": 78435
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d2/d2_dsec_zurich_city_05_b.pkl",
+    "size": 148478
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d2/d2_dsec_zurich_city_06_a.pkl",
+    "size": 116717
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d2/d2_dsec_zurich_city_07_a.pkl",
+    "size": 180722
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d2/d2_dsec_zurich_city_09_a.pkl",
+    "size": 168369
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d2/d2_dsec_zurich_city_09_b.pkl",
+    "size": 59074
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d2/d2_dsec_zurich_city_09_c.pkl",
+    "size": 121706
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d2/d2_dsec_zurich_city_09_d.pkl",
+    "size": 192347
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d2/d2_dsec_zurich_city_09_e.pkl",
+    "size": 82396
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d2/d2_dsec_zurich_city_10_a.pkl",
+    "size": 207763
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d2/d2_dsec_zurich_city_10_b.pkl",
+    "size": 236451
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d2/d2_dsec_zurich_city_11_a.pkl",
+    "size": 52425
+   },
+   {
+    "path": "/data/fi81zw@es.aau.dk/event_coding/ds/hd/d2/d2_dsec_zurich_city_11_b.pkl",
+    "size": 167023
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_day_0002_td.pkl",
+    "size": 92652
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_day_0003_td.pkl",
+    "size": 141712
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_day_0004_td.pkl",
+    "size": 89951
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_day_0005_td.pkl",
+    "size": 97069
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_day_0006_td.pkl",
+    "size": 75843
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_day_0007_td.pkl",
+    "size": 132018
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_day_0008_td.pkl",
+    "size": 240015
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_day_0009_td.pkl",
+    "size": 96904
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_day_0010_td.pkl",
+    "size": 141029
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_day_0012_td.pkl",
+    "size": 189254
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_day_0013_td.pkl",
+    "size": 32928
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_day_0014_td.pkl",
+    "size": 92106
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_day_0015_td.pkl",
+    "size": 98555
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_day_0016_td.pkl",
+    "size": 33482
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_day_0017_td.pkl",
+    "size": 114113
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_day_0018_td.pkl",
+    "size": 164811
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_day_0019_td.pkl",
+    "size": 164943
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_day_0020_td.pkl",
+    "size": 112146
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_day_0022_td.pkl",
+    "size": 249494
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_day_0023_td.pkl",
+    "size": 145096
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_day_0024_td.pkl",
+    "size": 334134
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_day_0025_td.pkl",
+    "size": 54882
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_day_0026_td.pkl",
+    "size": 145936
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_day_0027_td.pkl",
+    "size": 60562
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_day_0028_td.pkl",
+    "size": 129674
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_day_0029_td.pkl",
+    "size": 30269
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_day_0030_td.pkl",
+    "size": 65518
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_day_0032_td.pkl",
+    "size": 98199
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_day_0033_td.pkl",
+    "size": 151480
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_day_0034_td.pkl",
+    "size": 42113
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_day_0035_td.pkl",
+    "size": 27086
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_day_0036_td.pkl",
+    "size": 35874
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_day_0037_td.pkl",
+    "size": 43890
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_day_0038_td.pkl",
+    "size": 211886
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_day_0039_td.pkl",
+    "size": 93727
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_day_0040_td.pkl",
+    "size": 45978
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_day_0042_td.pkl",
+    "size": 42538
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_day_0043_td.pkl",
+    "size": 98911
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_day_0044_td.pkl",
+    "size": 77513
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_day_0045_td.pkl",
+    "size": 121041
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_day_0047_td.pkl",
+    "size": 97194
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_day_0048_td.pkl",
+    "size": 77558
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_day_0049_td.pkl",
+    "size": 222032
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_day_0050_td.pkl",
+    "size": 189273
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_day_0052_td.pkl",
+    "size": 197070
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_day_0053_td.pkl",
+    "size": 143136
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_day_0054_td.pkl",
+    "size": 112731
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_day_0055_td.pkl",
+    "size": 243404
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_day_0056_td.pkl",
+    "size": 117802
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_day_0057_td.pkl",
+    "size": 11617
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_day_0058_td.pkl",
+    "size": 101269
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_day_0059_td.pkl",
+    "size": 84618
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_day_0060_td.pkl",
+    "size": 177847
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_day_0061_td.pkl",
+    "size": 95012
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_night_0002_td.pkl",
+    "size": 233698
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_night_0003_td.pkl",
+    "size": 175126
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_night_0004_td.pkl",
+    "size": 214869
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_night_0005_td.pkl",
+    "size": 193435
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_night_0006_td.pkl",
+    "size": 201647
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_night_0007_td.pkl",
+    "size": 190021
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_night_0009_td.pkl",
+    "size": 110473
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_night_0010_td.pkl",
+    "size": 78908
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_night_0012_td.pkl",
+    "size": 112546
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_night_0013_td.pkl",
+    "size": 173399
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_night_0014_td.pkl",
+    "size": 113894
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_night_0015_td.pkl",
+    "size": 151450
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_night_0016_td.pkl",
+    "size": 124781
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_night_0017_td.pkl",
+    "size": 189184
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_night_0018_td.pkl",
+    "size": 90741
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_night_0019_td.pkl",
+    "size": 159737
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_night_0020_td.pkl",
+    "size": 25011
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_night_0022_td.pkl",
+    "size": 221954
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_night_0023_td.pkl",
+    "size": 200470
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_night_0024_td.pkl",
+    "size": 94677
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_night_0025_td.pkl",
+    "size": 186921
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_night_0026_td.pkl",
+    "size": 186471
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_night_0027_td.pkl",
+    "size": 152894
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_night_0028_td.pkl",
+    "size": 183233
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_night_0029_td.pkl",
+    "size": 224203
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_night_0030_td.pkl",
+    "size": 271167
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_night_0032_td.pkl",
+    "size": 83362
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_night_0034_td.pkl",
+    "size": 177171
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_night_0035_td.pkl",
+    "size": 229190
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_night_0036_td.pkl",
+    "size": 188475
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_night_0037_td.pkl",
+    "size": 288888
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_night_0038_td.pkl",
+    "size": 240929
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_night_0039_td.pkl",
+    "size": 196070
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_night_0042_td.pkl",
+    "size": 218905
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_night_0043_td.pkl",
+    "size": 174644
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_night_0044_td.pkl",
+    "size": 220377
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_night_0045_td.pkl",
+    "size": 155951
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_night_0046_td.pkl",
+    "size": 209270
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_night_0047_td.pkl",
+    "size": 190517
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_night_0048_td.pkl",
+    "size": 5952
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_night_0049_td.pkl",
+    "size": 25061
+   },
+   {
+    "path": "/home/es.aau.dk/fi81zw/prjs/event_coding/hd/d2/d2_etram_train_night_0050_td.pkl",
+    "size": 167255
+   }
+  ],
+  "committed_results": [
+   {
+    "path": "results/ph/report.json",
+    "size": 1275572
+   },
+   {
+    "path": "results/hd/frontier.json",
+    "size": 210765
+   }
+  ]
+ },
+ "n_files": {
+  "ph_outputs": 136,
+  "hd_outputs": 385,
+  "committed_results": 2
+ }
+}
