@@ -1,0 +1,56 @@
+{
+ "commit": "0e6e56ff56f67be54b9766594dadf6a91e0fa1d4",
+ "choice": {
+  "day": {
+   "dataset": "etram",
+   "recording": "train_day_0007_td",
+   "population_index": 5,
+   "j": 50,
+   "w": 4530,
+   "track_id": 55,
+   "box": [
+    2.354099988937378,
+    483.1500244140625,
+    1148.6591796875,
+    213.2550048828125
+   ],
+   "n_in_box": 422111,
+   "n_boxes_compared": 1111,
+   "demo_cpu_s": 2.2760267269999943
+  },
+  "night": {
+   "dataset": "etram",
+   "recording": "train_night_0038_td",
+   "population_index": 88,
+   "j": 5,
+   "w": 480,
+   "track_id": 49,
+   "box": [
+    233.24349009603378,
+    442.8222032220322,
+    516.0981846042826,
+    254.36496389210112
+   ],
+   "n_in_box": 193596,
+   "n_boxes_compared": 1270,
+   "demo_cpu_s": 1.9999665670000013
+  },
+  "all": {
+   "dataset": "dsec",
+   "recording": "interlaken_00_f",
+   "population_index": 2,
+   "j": 20,
+   "w": 1230,
+   "track_id": 572,
+   "box": [
+    0.0,
+    159.47626667733482,
+    192.78584001760245,
+    288.975866621327
+   ],
+   "n_in_box": 517752,
+   "n_boxes_compared": 1278,
+   "demo_cpu_s": 3.084046275999995
+  }
+ }
+}
