@@ -93,7 +93,7 @@ def binned_fidelity():
         R = A[:, 0].sum(axis=1)                                         # flicker 0, speeds pooled: (rec, grid, bin, 4)
         rng = np.random.default_rng(SEED)
         idx = rng.integers(0, len(A), size=(N_BOOT, len(A)))
-        grids = {}
+        grids, other = {}, {}
         for gname, g in (("s1_k32", g32), ("s1_k64", g64)):
             rows = []
             boot = R[idx][:, :, g].sum(axis=1)                           # (boot, bin, 4)
@@ -114,7 +114,9 @@ def binned_fidelity():
                                         else [float("nan")] * 2),
                              "n_recordings": int((R[:, g, b, 0] > 0).sum()),
                              "F_k1_same_pixels": float(k1), "k1_bin": kb if exact else None})
-            grids[gname] = rows
+            # rows are the bins of r with a finite centre; [128, inf) and the no-tau bin have no r to plot at
+            grids[gname] = [r for r in rows if math.isfinite(r["r_centre"])]
+            other[gname] = {"r_ge_128": rows[th.N_BINS - 2], "no_tau_reg": rows[th.N_BINS - 1]}
         tot = A[:, :, :, g32, :, 0].sum()                               # all flicker, speeds, bins on (1, 32)
         no_tau = A[:, :, :, g32, th.N_BINS - 1, 0].sum()
         plotted = sum(r["N"] for r in grids["s1_k32"]
@@ -129,7 +131,7 @@ def binned_fidelity():
                                         "classes, the no-tau bin included, grid (1, 32): the denominator of Table 4 of "
                                         "report 022",
                          "n_true_events": int(tot)},
-            "grids": grids}
+            "grids": grids, "other_bins": other}
     out["definitions"] = {
         "source": "directive 022, ec.phase.evaluate_group sums['reg'], flicker 0, speed classes pooled",
         "tau_reg": "median of the regular intervals (two consecutive intervals a, b of one pixel and polarity with "
@@ -151,7 +153,10 @@ def binned_fidelity():
         "r_centre": "th_reduce.bin_centre (geometric centre; NaN for [128, inf) and the no-tau bin)",
         "F_k1_same_pixels": "F on grid (1, 1) of bin k1_bin, which holds the same pixel-polarities (k1_bin = bin + 10 "
                             "for (1, 32), bin + 12 for (1, 64)); count matching alone, an upper bound of F",
-        "plotted_rule": f"N >= {MIN_EVENTS} and n_recordings >= {MIN_RECORDINGS} (scripts/fig_028.py), on (1, 32)"}
+        "plotted_rule": f"N >= {MIN_EVENTS} and n_recordings >= {MIN_RECORDINGS} (scripts/fig_028.py), on (1, 32), "
+                        "over the rows of 'grids'",
+        "rows": "'grids' holds the bins of r with a finite centre (bins 0 to 28 of ec.threshold.R_EDGES); the bin "
+                "[128, inf) and the bin of pixel-polarities without tau_reg have no r and are in 'other_bins'"}
     return out
 
 
@@ -286,8 +291,10 @@ def main(out_dir):
     chk2 = {}
     for s in STRATA:
         t2 = ph_rep["tables"]["2_binned_fidelity"][s]["reg"]["s1_k32"]
-        dev = [abs(a["F"] - b["F_pooled"]) for a, b in zip(bf["strata"][s]["grids"]["s1_k32"], t2)
-               if math.isfinite(a["F"]) and b["F_pooled"] is not None and math.isfinite(b["F_pooled"])]
+        mine = {r["bin"]: r for r in bf["strata"][s]["grids"]["s1_k32"]}
+        mine.update({r["bin"]: r for r in bf["strata"][s]["other_bins"]["s1_k32"].values()})
+        dev = [abs(mine[b["bin"]]["F"] - b["F_pooled"]) for b in t2
+               if math.isfinite(mine[b["bin"]]["F"]) and b["F_pooled"] is not None and math.isfinite(b["F_pooled"])]
         t4 = ph_rep["tables"]["4_coverage"][s]["share_true_events_without_tau_reg"]
         chk2[s] = {"F_max_abs_dev": max(dev), "n_bins_compared": len(dev), "F_ok": max(dev) <= 1e-9,
                    "without_tau_reg_dev": abs(1.0 - bf["strata"][s]["coverage"]["share_events_with_tau_reg"] - t4),
