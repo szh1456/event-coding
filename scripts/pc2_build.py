@@ -229,8 +229,9 @@ def motion_task():
         D2 = {rid: gs for (ds, rid), gs in allg.items() if stratum(ds, rid) == s}
         out["strata"][s] = {}
         for gn in GRID_4B:
-            ref = task_cell(_records(D2, lambda g, gn=gn: g["d2"][f"{gn}_start"]["tasks"]["motion"]))
-            cell = {"reference": ref, "qp": {}}
+            ref = task_cell(_records(D1, lambda g, gn=gn: g["d2"][f"{gn}_start"]["tasks"]["motion"]))
+            ref_all = task_cell(_records(D2, lambda g, gn=gn: g["d2"][f"{gn}_start"]["tasks"]["motion"]))
+            cell = {"reference": ref, "reference_all_019_groups": ref_all, "qp": {}}
             for q in QPS:
                 qm = f"qp{q}"
                 recs = _records(D1, lambda g, gn=gn, qm=qm: g["d1"][gn]["modes"][qm]["tasks"]["start"]["motion"])
@@ -262,8 +263,9 @@ def motion_task():
                    "warped to (w + 2) T0; error_px = |v_dec - v_true| T0 in px per window",
         "D1": "P-picture modes qp<q> of the D1 groups of directive 019 (j % 40 == 0 eTraM, j % 20 == 0 DSEC), "
               "recordings with at least 2 (eTraM) or 1 (DSEC) groups",
-        "reference": "D2: hevcdiag.represent, counts on (1, k) back to events at the voxel start, no coding, on every "
-                     "group of directive 019 (D1 and D2 tasks), same recording rule",
+        "reference": "D2: hevcdiag.represent, counts on (1, k) back to events at the voxel start, no coding, on the "
+                     "same D1 groups and squares as the QP points; 'reference_all_019_groups' gives it on every group "
+                     "of directive 019 (D1 and D2 tasks, the population of Table 2 of report 019), same recording rule",
         "undefined": "true velocity not finite; cmax_velocity is NaN only for an empty set and every square holds >= 200 "
                      "true events, so none occurs; a record with NaN error and n_rec > 0 would count here",
         "failure": "decoded velocity not finite: the decode leaves no event in the square (n_rec == 0); counted as not "
