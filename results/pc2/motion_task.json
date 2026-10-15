@@ -1,0 +1,960 @@
+{
+ "strata": {
+  "day": {
+   "s1_k3": {
+    "reference": {
+     "success1": 0.43824701195219123,
+     "ci95": [
+      0.3726636606980431,
+      0.5074317900941154
+     ],
+     "fail_share": 0.0,
+     "median_err": 1.4120085389400043,
+     "n_squares": 502,
+     "n_undefined": 0,
+     "n_recordings": 42
+    },
+    "reference_all_019_groups": {
+     "success1": 0.41339628208911183,
+     "ci95": [
+      0.3814756537263276,
+      0.44710560211763994
+     ],
+     "fail_share": 0.0,
+     "median_err": 1.4906970778800093,
+     "n_squares": 3389,
+     "n_undefined": 0,
+     "n_recordings": 54
+    },
+    "qp": {
+     "qp12": {
+      "success1": 0.4402390438247012,
+      "ci95": [
+       0.3757507700205339,
+       0.5088501610870331
+      ],
+      "fail_share": 0.0,
+      "median_err": 1.4906970778800075,
+      "n_squares": 502,
+      "n_undefined": 0,
+      "n_recordings": 42,
+      "b": 10.243499644288539,
+      "success_only_median_err": 1.4120085389400057,
+      "frontier_motion_error_px": 1.4120085389400057,
+      "frontier_motion_no_event": 0.0
+     },
+     "qp14": {
+      "success1": 0.44621513944223107,
+      "ci95": [
+       0.38172827989560515,
+       0.5131187367142424
+      ],
+      "fail_share": 0.0,
+      "median_err": 1.3333200000000012,
+      "n_squares": 502,
+      "n_undefined": 0,
+      "n_recordings": 42,
+      "b": 9.024078238509368,
+      "success_only_median_err": 1.4120085389400048,
+      "frontier_motion_error_px": 1.4120085389400048,
+      "frontier_motion_no_event": 0.0
+     },
+     "qp16": {
+      "success1": 0.45219123505976094,
+      "ci95": [
+       0.3886716773152834,
+       0.5176230946161943
+      ],
+      "fail_share": 0.0,
+      "median_err": 1.3333200000000005,
+      "n_squares": 502,
+      "n_undefined": 0,
+      "n_recordings": 42,
+      "b": 7.778141372507992,
+      "success_only_median_err": 1.3726642694700022,
+      "frontier_motion_error_px": 1.3726642694700022,
+      "frontier_motion_no_event": 0.0
+     },
+     "qp18": {
+      "success1": 0.4581673306772908,
+      "ci95": [
+       0.3983516283175651,
+       0.5219657727656972
+      ],
+      "fail_share": 0.0,
+      "median_err": 1.33332,
+      "n_squares": 502,
+      "n_undefined": 0,
+      "n_recordings": 42,
+      "b": 6.544448439703288,
+      "success_only_median_err": 1.3726642694700024,
+      "frontier_motion_error_px": 1.3726642694700024,
+      "frontier_motion_no_event": 0.0
+     },
+     "qp20": {
+      "success1": 0.4342629482071713,
+      "ci95": [
+       0.37424307751269525,
+       0.49714312821902956
+      ],
+      "fail_share": 0.0,
+      "median_err": 1.4906970778800086,
+      "n_squares": 502,
+      "n_undefined": 0,
+      "n_recordings": 42,
+      "b": 5.447556884531621,
+      "success_only_median_err": 1.4120085389400048,
+      "frontier_motion_error_px": 1.4120085389400048,
+      "frontier_motion_no_event": 0.0
+     },
+     "qp22": {
+      "success1": 0.44223107569721115,
+      "ci95": [
+       0.3799549983423979,
+       0.5073805613848951
+      ],
+      "fail_share": 0.0,
+      "median_err": 1.4906970778800084,
+      "n_squares": 502,
+      "n_undefined": 0,
+      "n_recordings": 42,
+      "b": 4.279449557616919,
+      "success_only_median_err": 1.451352808410007,
+      "frontier_motion_error_px": 1.451352808410007,
+      "frontier_motion_no_event": 0.0
+     },
+     "qp24": {
+      "success1": 0.4262948207171315,
+      "ci95": [
+       0.36100366074432466,
+       0.49385493786356427
+      ],
+      "fail_share": 0.0,
+      "median_err": 1.4906970778800093,
+      "n_squares": 502,
+      "n_undefined": 0,
+      "n_recordings": 42,
+      "b": 3.0622936434947365,
+      "success_only_median_err": 1.49069707788001,
+      "frontier_motion_error_px": 1.49069707788001,
+      "frontier_motion_no_event": 0.0
+     },
+     "qp28": {
+      "success1": 0.4063745019920319,
+      "ci95": [
+       0.3423910206952891,
+       0.4707114105228764
+      ],
+      "fail_share": 0.00398406374501992,
+      "median_err": 1.4906970778800095,
+      "n_squares": 502,
+      "n_undefined": 0,
+      "n_recordings": 42,
+      "b": 1.205514213617879,
+      "success_only_median_err": 1.4906970778800104,
+      "frontier_motion_error_px": 1.4906970778800104,
+      "frontier_motion_no_event": 0.0
+     }
+    }
+   },
+   "s1_k64": {
+    "reference": {
+     "success1": 0.7450199203187251,
+     "ci95": [
+      0.6863056678804461,
+      0.8024999638341579
+     ],
+     "fail_share": 0.0,
+     "median_err": 0.6666599999999987,
+     "n_squares": 502,
+     "n_undefined": 0,
+     "n_recordings": 42
+    },
+    "reference_all_019_groups": {
+     "success1": 0.7592210091472411,
+     "ci95": [
+      0.7371572498476612,
+      0.7810253087120304
+     ],
+     "fail_share": 0.0,
+     "median_err": 4.137515546509568e-15,
+     "n_squares": 3389,
+     "n_undefined": 0,
+     "n_recordings": 54
+    },
+    "qp": {
+     "qp12": {
+      "success1": 0.7111553784860558,
+      "ci95": [
+       0.6445119541045135,
+       0.7790729502631133
+      ],
+      "fail_share": 0.0,
+      "median_err": 0.6666599999999996,
+      "n_squares": 502,
+      "n_undefined": 0,
+      "n_recordings": 42,
+      "b": 40.8151266497121,
+      "success_only_median_err": 0.6666599999999997,
+      "frontier_motion_error_px": 0.6666599999999997,
+      "frontier_motion_no_event": 0.0
+     },
+     "qp14": {
+      "success1": 0.6593625498007968,
+      "ci95": [
+       0.591504458952297,
+       0.7269709421306961
+      ],
+      "fail_share": 0.0,
+      "median_err": 0.6666600000000006,
+      "n_squares": 502,
+      "n_undefined": 0,
+      "n_recordings": 42,
+      "b": 32.165729457683966,
+      "success_only_median_err": 0.6666600000000006,
+      "frontier_motion_error_px": 0.6666600000000006,
+      "frontier_motion_no_event": 0.0
+     },
+     "qp16": {
+      "success1": 0.6155378486055777,
+      "ci95": [
+       0.5402292925702098,
+       0.6872590382590382
+      ],
+      "fail_share": 0.017928286852589643,
+      "median_err": 0.6666600000000006,
+      "n_squares": 502,
+      "n_undefined": 0,
+      "n_recordings": 42,
+      "b": 23.966340794584386,
+      "success_only_median_err": 0.6666600000000006,
+      "frontier_motion_error_px": 0.6666600000000006,
+      "frontier_motion_no_event": 0.0
+     },
+     "qp18": {
+      "success1": 0.5597609561752988,
+      "ci95": [
+       0.4767905161671149,
+       0.6318137079099422
+      ],
+      "fail_share": 0.07171314741035857,
+      "median_err": 0.9427996134916474,
+      "n_squares": 502,
+      "n_undefined": 0,
+      "n_recordings": 42,
+      "b": 17.48995407975501,
+      "success_only_median_err": 0.804729806745824,
+      "frontier_motion_error_px": 0.804729806745824,
+      "frontier_motion_no_event": 0.0
+     },
+     "qp20": {
+      "success1": 0.4721115537848606,
+      "ci95": [
+       0.3953441485371343,
+       0.5482630221991924
+      ],
+      "fail_share": 0.13147410358565736,
+      "median_err": 1.3333199999999996,
+      "n_squares": 502,
+      "n_undefined": 0,
+      "n_recordings": 42,
+      "b": 11.625764132930396,
+      "success_only_median_err": 0.9427996134916483,
+      "frontier_motion_error_px": 0.9427996134916483,
+      "frontier_motion_no_event": 0.08712121212121213
+     },
+     "qp22": {
+      "success1": 0.3784860557768924,
+      "ci95": [
+       0.29723685511319503,
+       0.4574543002697033
+      ],
+      "fail_share": 0.21314741035856574,
+      "median_err": 1.999979999999998,
+      "n_squares": 502,
+      "n_undefined": 0,
+      "n_recordings": 42,
+      "b": 7.035066119435726,
+      "success_only_median_err": 1.4906970778800097,
+      "frontier_motion_error_px": 1.4906970778800097,
+      "frontier_motion_no_event": 0.16666666666666666
+     },
+     "qp24": {
+      "success1": 0.30677290836653387,
+      "ci95": [
+       0.22427365417012396,
+       0.3884383429837975
+      ],
+      "fail_share": 0.2848605577689243,
+      "median_err": 3.3993123489317654,
+      "n_squares": 502,
+      "n_undefined": 0,
+      "n_recordings": 42,
+      "b": 4.236789897292313,
+      "success_only_median_err": 1.412008538940006,
+      "frontier_motion_error_px": 1.412008538940006,
+      "frontier_motion_no_event": 0.17914438502673796
+     },
+     "qp28": {
+      "success1": 0.13147410358565736,
+      "ci95": [
+       0.08258447866506152,
+       0.18052924895018554
+      ],
+      "fail_share": 0.49203187250996017,
+      "median_err": 33.215375528415436,
+      "n_squares": 502,
+      "n_undefined": 0,
+      "n_recordings": 42,
+      "b": 0.911145446869865,
+      "success_only_median_err": 5.993750783625112,
+      "frontier_motion_error_px": 5.993750783625112,
+      "frontier_motion_no_event": 0.6583333333333333
+     }
+    }
+   }
+  },
+  "night": {
+   "s1_k3": {
+    "reference": {
+     "success1": 0.7118110236220473,
+     "ci95": [
+      0.6535887677754808,
+      0.765158529741863
+     ],
+     "fail_share": 0.0,
+     "median_err": 0.6666599999999996,
+     "n_squares": 635,
+     "n_undefined": 0,
+     "n_recordings": 34
+    },
+    "reference_all_019_groups": {
+     "success1": 0.7074913750616068,
+     "ci95": [
+      0.6655920674837252,
+      0.7404193957105051
+     ],
+     "fail_share": 0.0,
+     "median_err": 0.6666599999999996,
+     "n_squares": 4058,
+     "n_undefined": 0,
+     "n_recordings": 42
+    },
+    "qp": {
+     "qp12": {
+      "success1": 0.7070866141732284,
+      "ci95": [
+       0.6503124142728377,
+       0.7607722866735123
+      ],
+      "fail_share": 0.0,
+      "median_err": 0.66666,
+      "n_squares": 635,
+      "n_undefined": 0,
+      "n_recordings": 34,
+      "b": 9.842677364547415,
+      "success_only_median_err": 0.66666,
+      "frontier_motion_error_px": 0.66666,
+      "frontier_motion_no_event": 0.0
+     },
+     "qp14": {
+      "success1": 0.7070866141732284,
+      "ci95": [
+       0.6516185812350528,
+       0.760401327129435
+      ],
+      "fail_share": 0.0,
+      "median_err": 0.66666,
+      "n_squares": 635,
+      "n_undefined": 0,
+      "n_recordings": 34,
+      "b": 8.691081194539006,
+      "success_only_median_err": 0.66666,
+      "frontier_motion_error_px": 0.66666,
+      "frontier_motion_no_event": 0.0
+     },
+     "qp16": {
+      "success1": 0.7039370078740157,
+      "ci95": [
+       0.648137177461822,
+       0.7579984418619748
+      ],
+      "fail_share": 0.0,
+      "median_err": 0.66666,
+      "n_squares": 635,
+      "n_undefined": 0,
+      "n_recordings": 34,
+      "b": 7.470796604812839,
+      "success_only_median_err": 0.66666,
+      "frontier_motion_error_px": 0.66666,
+      "frontier_motion_no_event": 0.0
+     },
+     "qp18": {
+      "success1": 0.6976377952755906,
+      "ci95": [
+       0.6403540601317653,
+       0.752656354528693
+      ],
+      "fail_share": 0.0,
+      "median_err": 0.66666,
+      "n_squares": 635,
+      "n_undefined": 0,
+      "n_recordings": 34,
+      "b": 6.194918033857654,
+      "success_only_median_err": 0.66666,
+      "frontier_motion_error_px": 0.66666,
+      "frontier_motion_no_event": 0.0
+     },
+     "qp20": {
+      "success1": 0.6976377952755906,
+      "ci95": [
+       0.6397335575369703,
+       0.7511630808065983
+      ],
+      "fail_share": 0.0,
+      "median_err": 0.66666,
+      "n_squares": 635,
+      "n_undefined": 0,
+      "n_recordings": 34,
+      "b": 5.084332496723624,
+      "success_only_median_err": 0.66666,
+      "frontier_motion_error_px": 0.66666,
+      "frontier_motion_no_event": 0.0
+     },
+     "qp22": {
+      "success1": 0.6913385826771653,
+      "ci95": [
+       0.6338933326678063,
+       0.7472633790358248
+      ],
+      "fail_share": 0.0,
+      "median_err": 0.66666,
+      "n_squares": 635,
+      "n_undefined": 0,
+      "n_recordings": 34,
+      "b": 3.796063124480583,
+      "success_only_median_err": 0.66666,
+      "frontier_motion_error_px": 0.66666,
+      "frontier_motion_no_event": 0.0
+     },
+     "qp24": {
+      "success1": 0.6913385826771653,
+      "ci95": [
+       0.627832185276982,
+       0.7503992621710946
+      ],
+      "fail_share": 0.0,
+      "median_err": 0.66666,
+      "n_squares": 635,
+      "n_undefined": 0,
+      "n_recordings": 34,
+      "b": 2.800311602095758,
+      "success_only_median_err": 0.66666,
+      "frontier_motion_error_px": 0.66666,
+      "frontier_motion_no_event": 0.0
+     },
+     "qp28": {
+      "success1": 0.6740157480314961,
+      "ci95": [
+       0.6122738434023043,
+       0.7323734118086695
+      ],
+      "fail_share": 0.0031496062992125984,
+      "median_err": 0.66666,
+      "n_squares": 635,
+      "n_undefined": 0,
+      "n_recordings": 34,
+      "b": 1.1343886621409933,
+      "success_only_median_err": 0.66666,
+      "frontier_motion_error_px": 0.66666,
+      "frontier_motion_no_event": 0.0
+     }
+    }
+   },
+   "s1_k64": {
+    "reference": {
+     "success1": 0.8551181102362204,
+     "ci95": [
+      0.8236150159036525,
+      0.8830599310734244
+     ],
+     "fail_share": 0.0,
+     "median_err": 0.0,
+     "n_squares": 635,
+     "n_undefined": 0,
+     "n_recordings": 34
+    },
+    "reference_all_019_groups": {
+     "success1": 0.865943814687038,
+     "ci95": [
+      0.8493041647875792,
+      0.8802271510120181
+     ],
+     "fail_share": 0.0,
+     "median_err": 0.0,
+     "n_squares": 4058,
+     "n_undefined": 0,
+     "n_recordings": 42
+    },
+    "qp": {
+     "qp12": {
+      "success1": 0.831496062992126,
+      "ci95": [
+       0.7951215782800031,
+       0.8650341214586061
+      ],
+      "fail_share": 0.0,
+      "median_err": 0.0,
+      "n_squares": 635,
+      "n_undefined": 0,
+      "n_recordings": 34,
+      "b": 32.68054001958997,
+      "success_only_median_err": 0.0,
+      "frontier_motion_error_px": 0.0,
+      "frontier_motion_no_event": 0.0
+     },
+     "qp14": {
+      "success1": 0.8047244094488188,
+      "ci95": [
+       0.7648052791878173,
+       0.8413200298432262
+      ],
+      "fail_share": 0.0,
+      "median_err": 0.0,
+      "n_squares": 635,
+      "n_undefined": 0,
+      "n_recordings": 34,
+      "b": 26.096571110177802,
+      "success_only_median_err": 0.0,
+      "frontier_motion_error_px": 0.0,
+      "frontier_motion_no_event": 0.0
+     },
+     "qp16": {
+      "success1": 0.7590551181102362,
+      "ci95": [
+       0.7077272233094151,
+       0.8048066359041969
+      ],
+      "fail_share": 0.006299212598425197,
+      "median_err": 0.0,
+      "n_squares": 635,
+      "n_undefined": 0,
+      "n_recordings": 34,
+      "b": 19.741396988632943,
+      "success_only_median_err": 0.0,
+      "frontier_motion_error_px": 0.0,
+      "frontier_motion_no_event": 0.0
+     },
+     "qp18": {
+      "success1": 0.7291338582677165,
+      "ci95": [
+       0.670159752170802,
+       0.7833143338435699
+      ],
+      "fail_share": 0.02047244094488189,
+      "median_err": 0.0,
+      "n_squares": 635,
+      "n_undefined": 0,
+      "n_recordings": 34,
+      "b": 12.846276776857243,
+      "success_only_median_err": 0.0,
+      "frontier_motion_error_px": 0.0,
+      "frontier_motion_no_event": 0.0
+     },
+     "qp20": {
+      "success1": 0.6976377952755906,
+      "ci95": [
+       0.6338998943475964,
+       0.7562371983310415
+      ],
+      "fail_share": 0.047244094488188976,
+      "median_err": 0.0,
+      "n_squares": 635,
+      "n_undefined": 0,
+      "n_recordings": 34,
+      "b": 8.73079355208776,
+      "success_only_median_err": 0.0,
+      "frontier_motion_error_px": 0.0,
+      "frontier_motion_no_event": 0.0
+     },
+     "qp22": {
+      "success1": 0.6173228346456693,
+      "ci95": [
+       0.5454320432043204,
+       0.6856732513481585
+      ],
+      "fail_share": 0.08661417322834646,
+      "median_err": 0.6666599999999996,
+      "n_squares": 635,
+      "n_undefined": 0,
+      "n_recordings": 34,
+      "b": 5.24272184470667,
+      "success_only_median_err": 0.3333299999999998,
+      "frontier_motion_error_px": 0.3333299999999998,
+      "frontier_motion_no_event": 0.0
+     },
+     "qp24": {
+      "success1": 0.5385826771653544,
+      "ci95": [
+       0.45038041555027547,
+       0.6238297646246215
+      ],
+      "fail_share": 0.14173228346456693,
+      "median_err": 0.6666600000000011,
+      "n_squares": 635,
+      "n_undefined": 0,
+      "n_recordings": 34,
+      "b": 3.0387064188909716,
+      "success_only_median_err": 0.6666600000000003,
+      "frontier_motion_error_px": 0.6666600000000003,
+      "frontier_motion_no_event": 0.05
+     },
+     "qp28": {
+      "success1": 0.3606299212598425,
+      "ci95": [
+       0.29166501584786053,
+       0.42740863746869645
+      ],
+      "fail_share": 0.32598425196850395,
+      "median_err": 2.7487095963742703,
+      "n_squares": 635,
+      "n_undefined": 0,
+      "n_recordings": 34,
+      "b": 0.9013870615266804,
+      "success_only_median_err": 0.9427996134916481,
+      "frontier_motion_error_px": 0.9427996134916481,
+      "frontier_motion_no_event": 0.2
+     }
+    }
+   }
+  },
+  "all": {
+   "s1_k3": {
+    "reference": {
+     "success1": 0.5038961038961038,
+     "ci95": [
+      0.4486111111111111,
+      0.5609572723765431
+     ],
+     "fail_share": 0.0,
+     "median_err": 0.9427996134916488,
+     "n_squares": 770,
+     "n_undefined": 0,
+     "n_recordings": 36
+    },
+    "reference_all_019_groups": {
+     "success1": 0.5293650793650794,
+     "ci95": [
+      0.4831969230769231,
+      0.578251687252236
+     ],
+     "fail_share": 0.0,
+     "median_err": 0.9427996134916476,
+     "n_squares": 2520,
+     "n_undefined": 0,
+     "n_recordings": 36
+    },
+    "qp": {
+     "qp12": {
+      "success1": 0.5012987012987012,
+      "ci95": [
+       0.446047149122807,
+       0.5583333333333333
+      ],
+      "fail_share": 0.0,
+      "median_err": 0.942799613491649,
+      "n_squares": 770,
+      "n_undefined": 0,
+      "n_recordings": 36,
+      "b": 8.626298832913065,
+      "success_only_median_err": 0.9427996134916484,
+      "frontier_motion_error_px": 0.9427996134916484,
+      "frontier_motion_no_event": 0.0
+     },
+     "qp14": {
+      "success1": 0.5,
+      "ci95": [
+       0.44444092827004217,
+       0.556532306763285
+      ],
+      "fail_share": 0.0,
+      "median_err": 1.1380598067458236,
+      "n_squares": 770,
+      "n_undefined": 0,
+      "n_recordings": 36,
+      "b": 7.836224786499078,
+      "success_only_median_err": 1.0404297101187354,
+      "frontier_motion_error_px": 1.0404297101187354,
+      "frontier_motion_no_event": 0.0
+     },
+     "qp16": {
+      "success1": 0.5038961038961038,
+      "ci95": [
+       0.4499702380952381,
+       0.5607166988416988
+      ],
+      "fail_share": 0.0,
+      "median_err": 0.9427996134916488,
+      "n_squares": 770,
+      "n_undefined": 0,
+      "n_recordings": 36,
+      "b": 7.077685694258804,
+      "success_only_median_err": 0.942799613491648,
+      "frontier_motion_error_px": 0.942799613491648,
+      "frontier_motion_no_event": 0.0
+     },
+     "qp18": {
+      "success1": 0.509090909090909,
+      "ci95": [
+       0.45405138691322905,
+       0.5657258403361344
+      ],
+      "fail_share": 0.0,
+      "median_err": 0.9427996134916484,
+      "n_squares": 770,
+      "n_undefined": 0,
+      "n_recordings": 36,
+      "b": 6.1869105647017015,
+      "success_only_median_err": 0.9427996134916479,
+      "frontier_motion_error_px": 0.9427996134916479,
+      "frontier_motion_no_event": 0.0
+     },
+     "qp20": {
+      "success1": 0.5038961038961038,
+      "ci95": [
+       0.45068404198541184,
+       0.5602568493150685
+      ],
+      "fail_share": 0.0,
+      "median_err": 0.9427996134916488,
+      "n_squares": 770,
+      "n_undefined": 0,
+      "n_recordings": 36,
+      "b": 5.176555572937101,
+      "success_only_median_err": 0.9427996134916489,
+      "frontier_motion_error_px": 0.9427996134916489,
+      "frontier_motion_no_event": 0.0
+     },
+     "qp22": {
+      "success1": 0.512987012987013,
+      "ci95": [
+       0.46219512195121953,
+       0.5679513888888889
+      ],
+      "fail_share": 0.0,
+      "median_err": 0.9427996134916484,
+      "n_squares": 770,
+      "n_undefined": 0,
+      "n_recordings": 36,
+      "b": 4.075935954176446,
+      "success_only_median_err": 0.9427996134916483,
+      "frontier_motion_error_px": 0.9427996134916483,
+      "frontier_motion_no_event": 0.0
+     },
+     "qp24": {
+      "success1": 0.5142857142857142,
+      "ci95": [
+       0.45810277382645803,
+       0.5727334152334153
+      ],
+      "fail_share": 0.0,
+      "median_err": 0.9427996134916484,
+      "n_squares": 770,
+      "n_undefined": 0,
+      "n_recordings": 36,
+      "b": 3.1224752499058015,
+      "success_only_median_err": 0.9427996134916484,
+      "frontier_motion_error_px": 0.9427996134916484,
+      "frontier_motion_no_event": 0.0
+     },
+     "qp28": {
+      "success1": 0.5064935064935064,
+      "ci95": [
+       0.44743243243243247,
+       0.5636438152011922
+      ],
+      "fail_share": 0.0,
+      "median_err": 0.9427996134916488,
+      "n_squares": 770,
+      "n_undefined": 0,
+      "n_recordings": 36,
+      "b": 1.4683918724457508,
+      "success_only_median_err": 0.9427996134916478,
+      "frontier_motion_error_px": 0.9427996134916478,
+      "frontier_motion_no_event": 0.0
+     }
+    }
+   },
+   "s1_k64": {
+    "reference": {
+     "success1": 0.7272727272727273,
+     "ci95": [
+      0.6712283705839942,
+      0.780556592039801
+     ],
+     "fail_share": 0.0,
+     "median_err": 0.6666599999999996,
+     "n_squares": 770,
+     "n_undefined": 0,
+     "n_recordings": 36
+    },
+    "reference_all_019_groups": {
+     "success1": 0.7384920634920635,
+     "ci95": [
+      0.7028688157353546,
+      0.7779591836734694
+     ],
+     "fail_share": 0.0,
+     "median_err": 0.6666599999999996,
+     "n_squares": 2520,
+     "n_undefined": 0,
+     "n_recordings": 36
+    },
+    "qp": {
+     "qp12": {
+      "success1": 0.7389610389610389,
+      "ci95": [
+       0.6927706478086257,
+       0.7833430232558138
+      ],
+      "fail_share": 0.0,
+      "median_err": 0.6666599999999996,
+      "n_squares": 770,
+      "n_undefined": 0,
+      "n_recordings": 36,
+      "b": 34.951794546771346,
+      "success_only_median_err": 0.6666599999999999,
+      "frontier_motion_error_px": 0.6666599999999999,
+      "frontier_motion_no_event": 0.0
+     },
+     "qp14": {
+      "success1": 0.7324675324675325,
+      "ci95": [
+       0.6912290239726028,
+       0.7761919642857142
+      ],
+      "fail_share": 0.0,
+      "median_err": 0.6666599999999996,
+      "n_squares": 770,
+      "n_undefined": 0,
+      "n_recordings": 36,
+      "b": 30.18285341632044,
+      "success_only_median_err": 0.6666599999999998,
+      "frontier_motion_error_px": 0.6666599999999998,
+      "frontier_motion_no_event": 0.0
+     },
+     "qp16": {
+      "success1": 0.7363636363636363,
+      "ci95": [
+       0.6885485008818343,
+       0.782515422077922
+      ],
+      "fail_share": 0.0,
+      "median_err": 0.6666599999999996,
+      "n_squares": 770,
+      "n_undefined": 0,
+      "n_recordings": 36,
+      "b": 24.027732322561814,
+      "success_only_median_err": 0.6666599999999996,
+      "frontier_motion_error_px": 0.6666599999999996,
+      "frontier_motion_no_event": 0.0
+     },
+     "qp18": {
+      "success1": 0.7311688311688311,
+      "ci95": [
+       0.6808152587519026,
+       0.7759493670886076
+      ],
+      "fail_share": 0.0,
+      "median_err": 0.6666599999999996,
+      "n_squares": 770,
+      "n_undefined": 0,
+      "n_recordings": 36,
+      "b": 15.783729842313036,
+      "success_only_median_err": 0.6666599999999996,
+      "frontier_motion_error_px": 0.6666599999999996,
+      "frontier_motion_no_event": 0.0
+     },
+     "qp20": {
+      "success1": 0.7181818181818181,
+      "ci95": [
+       0.674025974025974,
+       0.760532145236509
+      ],
+      "fail_share": 0.0,
+      "median_err": 0.6666599999999996,
+      "n_squares": 770,
+      "n_undefined": 0,
+      "n_recordings": 36,
+      "b": 10.424296743357969,
+      "success_only_median_err": 0.66666,
+      "frontier_motion_error_px": 0.66666,
+      "frontier_motion_no_event": 0.0
+     },
+     "qp22": {
+      "success1": 0.6935064935064935,
+      "ci95": [
+       0.65,
+       0.7373375
+      ],
+      "fail_share": 0.0,
+      "median_err": 0.66666,
+      "n_squares": 770,
+      "n_undefined": 0,
+      "n_recordings": 36,
+      "b": 5.268268703474687,
+      "success_only_median_err": 0.66666,
+      "frontier_motion_error_px": 0.66666,
+      "frontier_motion_no_event": 0.0
+     },
+     "qp24": {
+      "success1": 0.6090909090909091,
+      "ci95": [
+       0.5610964912280701,
+       0.6581164443664443
+      ],
+      "fail_share": 0.0025974025974025974,
+      "median_err": 0.6666600000000006,
+      "n_squares": 770,
+      "n_undefined": 0,
+      "n_recordings": 36,
+      "b": 2.779926756195828,
+      "success_only_median_err": 0.6666600000000006,
+      "frontier_motion_error_px": 0.6666600000000006,
+      "frontier_motion_no_event": 0.0
+     },
+     "qp28": {
+      "success1": 0.36103896103896105,
+      "ci95": [
+       0.30704225352112674,
+       0.41482905982905977
+      ],
+      "fail_share": 0.08441558441558442,
+      "median_err": 1.8855992269832962,
+      "n_squares": 770,
+      "n_undefined": 0,
+      "n_recordings": 36,
+      "b": 0.331634135757496,
+      "success_only_median_err": 1.5894226151558315,
+      "frontier_motion_error_px": 1.5894226151558315,
+      "frontier_motion_no_event": 0.0
+     }
+    }
+   }
+  }
+ },
+ "definitions": {
+  "source": "directive 019 per-group outputs (hd_run.load), ec.families._Tasks.run key 'motion', placement 'start'",
+  "squares": "fb_run.squares_for on the true events of window w + 2: the 10 densest 40 x 40 squares with at least 200 events; the velocity is ec.downstream.cmax_velocity (contrast maximisation) over the square, warped to (w + 2) T0; error_px = |v_dec - v_true| T0 in px per window",
+  "D1": "P-picture modes qp<q> of the D1 groups of directive 019 (j % 40 == 0 eTraM, j % 20 == 0 DSEC), recordings with at least 2 (eTraM) or 1 (DSEC) groups",
+  "reference": "D2: hevcdiag.represent, counts on (1, k) back to events at the voxel start, no coding, on the same D1 groups and squares as the QP points; 'reference_all_019_groups' gives it on every group of directive 019 (D1 and D2 tasks, the population of Table 2 of report 019), same recording rule",
+  "undefined": "true velocity not finite; cmax_velocity is NaN only for an empty set and every square holds >= 200 true events, so none occurs; a record with NaN error and n_rec > 0 would count here",
+  "failure": "decoded velocity not finite: the decode leaves no event in the square (n_rec == 0); counted as not recovered",
+  "success1": "share of defined squares with error <= 1 px per window, pooled over squares of the stratum",
+  "ci95": "bootstrap over recordings of the pooled share, 2000 resamples, seed 20261016",
+  "fail_share": "share of defined squares that fail",
+  "median_err": "median error with failures as infinite; null when fail_share >= 0.5",
+  "b": "median over recordings of bits per true event of the four windows at that QP (results/hd/frontier.json)",
+  "success_only_median_err": "median over recordings of the per-recording median of the finite errors: the construction of motion_error_px in results/hd/frontier.json"
+ }
+}
