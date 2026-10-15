@@ -32,6 +32,8 @@ def _json(o):
         return [_json(v) for v in o]
     if isinstance(o, np.ndarray):
         return _json(o.tolist())
+    if isinstance(o, np.bool_):
+        return bool(o)
     if isinstance(o, np.integer):
         return int(o)
     if isinstance(o, np.floating):
