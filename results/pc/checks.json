@@ -1,0 +1,91 @@
+{
+ "missing_tasks": [],
+ "counts": {
+  "day": {
+   "groups": 563,
+   "recordings": 55,
+   "expected": [
+    563,
+    55
+   ],
+   "ok": true
+  },
+  "night": {
+   "groups": 448,
+   "recordings": 45,
+   "expected": [
+    448,
+    45
+   ],
+   "ok": true
+  },
+  "all": {
+   "groups": 253,
+   "recordings": 36,
+   "expected": [
+    253,
+    36
+   ],
+   "ok": true
+  }
+ },
+ "control": {
+  "shared_all_F_1": true,
+  "independent_max_abs_dev": 0.0003710701689582374,
+  "independent_n_cells_with_equation": 6,
+  "independent_within_0.01": true
+ },
+ "model": {
+  "shared_mean_Z": 63.833807930076944,
+  "independent_mean_Z": 1.044622676341426,
+  "ok": true
+ },
+ "coverage_order": {
+  "day": true,
+  "night": true,
+  "all": true
+ },
+ "hist_holds": {
+  "day": {
+   "hist_pred": 1156751,
+   "rayleigh_pixels": 1148835,
+   "ok": true
+  },
+  "night": {
+   "hist_pred": 360305,
+   "rayleigh_pixels": 353733,
+   "ok": true
+  },
+  "all": {
+   "hist_pred": 2722980,
+   "rayleigh_pixels": 2681912,
+   "ok": true
+  }
+ },
+ "reading": {
+  "day": {
+   "mean_Z": 1.0665251203112436,
+   "ci95": [
+    1.0214266073538831,
+    1.1321356115619088
+   ],
+   "reading": "no lock within blocks"
+  },
+  "night": {
+   "mean_Z": 1.0943664219137716,
+   "ci95": [
+    1.056944268039547,
+    1.134816963751502
+   ],
+   "reading": "no lock within blocks"
+  },
+  "all": {
+   "mean_Z": 1.2158678280072055,
+   "ci95": [
+    1.0374557833271958,
+    1.462441612900206
+   ],
+   "reading": "no lock within blocks"
+  }
+ }
+}
