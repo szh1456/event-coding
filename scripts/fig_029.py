@@ -161,7 +161,7 @@ def fig_phase4(st, pc, p2, out):
         plotted["c"][f"cv{cv}"] = {"w": w.tolist(), "mean_Z": z.tolist(), "ci95": np.c_[lo, hi].tolist()}
     ax.set_yscale("log")
     ax.set_xlim(-0.03, 1.03)
-    ax.set_xlabel(r"lock width $w$ (0: shared, 1: independent)")
+    ax.set_xlabel(r"lock width $w$")
     ax.set_ylabel(r"mean Rayleigh statistic $\bar Z$")
     ax.legend(fontsize=6.0, frameon=False, loc="upper right")
     _clean(ax)
