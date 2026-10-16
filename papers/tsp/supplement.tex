@@ -1,0 +1,24 @@
+\documentclass[journal,onecolumn]{IEEEtran}
+\usepackage{amsmath}
+% Supplementary Material. Numbers moved from the main text after the third external review; sources as
+% in main.tex: directive 018 (results/fm/frontier.json at 4a4ee74), directive 019 (results/hd at
+% 5edad1d), directive 021 (results/hc at cac17c2).
+\begin{document}
+\title{Supplementary Material: Threshold Phases and the Limits of Motion Compensation for Event Streams}
+\maketitle
+
+\section*{S1. Clipping of Counts}
+Counts are clipped at $15$ before coding. On one-pixel voxels with $k\ge3$, clipping removes less than
+$1\%$ of the events. At $k=1$ it removes up to $6\%$ and on two-pixel voxels up to $28\%$, both by
+night. On the grid of two pixels and $T_0/3$ the clip costs up to $0.16$ of fidelity at night and at
+most $0.04$ of box fidelity.
+
+\section*{S2. Scaled Luma}
+In the lossy modes the luma is $16$ times the count. Coding this scaled luma without loss costs $1.9$
+to $2.5$ times the bits of the unscaled lossless mode.
+
+\section*{S3. Operating Points on a Coarse Grid}
+On the grid of two pixels and $T_0/3$, x265 by day reaches $F=0.975$ with $3.26$ bits per event at
+QP~$14$, $0.933$ with $1.09$ at QP~$28$, $0.840$ with $0.31$ at QP~$36$ and $0.706$ with $0.051$ at
+QP~$46$. On this grid the intra picture has the default QP offset of x265.
+\end{document}
