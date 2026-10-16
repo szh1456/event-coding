@@ -1,0 +1,23 @@
+{
+ "directive": "029",
+ "host": "cnt-js01",
+ "commit": "ab1aa234d7e3d18ca123511335d5c42e837e5f87",
+ "versions": {
+  "python": "3.10.12",
+  "numpy": "1.26.4",
+  "scipy": "1.15.3"
+ },
+ "suite": "185 passed, 0 failed, 0 errors, 0 skipped at ab1aa23 on cnt (junitxml)",
+ "timing": {
+  "path_costs": {
+   "wall_s": 5.206949472427368,
+   "cpu_s": 5.206652342
+  },
+  "power_table": {
+   "wall_s": 261.2405831813812,
+   "cpu_s": 261.20810720400004
+  }
+ },
+ "files_read": [],
+ "recordings_read": "none: synthetic only"
+}
