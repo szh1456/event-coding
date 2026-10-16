@@ -485,6 +485,25 @@ bound \eqref{eq:B} is an achievable cost for a motion with a fixed number of par
 ranges and sensitivities, for a receiver that holds the template; it is not a cost for an arbitrary
 motion field or for describing the scene.
 
+% Numbers and figure: directive 029, results/st/report.json and results/paper/fig_scaling.pdf at caf042f.
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figs/fig_scaling.pdf}
+\caption{Total bits along a translating path of $M$ pixels on the model, $n=3$: every event time at
+$D=\sigma^2/16$, the common shift at $D=(\sigma^2+D_A)/2$, and the two motion parameters at $1.1\,D_A$.}
+\label{fig:scaling}
+\end{figure}
+Fig.~\ref{fig:scaling} shows how the three descriptions grow along a path, for an edge that translates
+at $0.5$ to $2$ pixels per millisecond with $\sigma=50~\mu$s, the first two at $\tau=1$~ms. Each curve
+is at its own tolerance. A uniform quantizer on every component of the event times costs $9.91$ bits per
+pixel against $9.14$ from \eqref{eq:rdlow}, and one on the common shift alone costs $0.80$ bit per pixel
+against the bounds $0.31$ to $0.49$ of \eqref{eq:rdmid}; both totals grow in proportion to $M$, since the
+pixels are independent given the edge and the motion. The position and the speed of the edge, quantized
+so that every regenerated mean time is biased by at most $\sqrt{0.1\,D_A}$, cost $21$ bits at $M=10$
+and $48$ at $M=10^5$, with a measured distortion of $1.00$ to $1.01$ times $D_A$. Between $M=10^2$ and
+$10^4$ they grow by $13.25$ bits, against $2\log_2 100=13.29$ from \eqref{eq:B}. From $M=100$ on, the
+motion costs fewer bits than even the lower bound for the common shift.
+
 \begin{remark}[Departures from the model]\label{rem:relax}
 \emph{Reference ahead of the passage.} If $\mu_i\in(0,C)$ before a rising passage, as after a
 passage of the opposite polarity at the same pixel, the first level that the intensity meets is the
@@ -649,16 +668,18 @@ $\Delta_t/\tau=11$ on they keep $0.97$ or more. In this model the phase alone ca
 \subsection{Phases on Recordings}\label{sec:phase-rec}
 % Numbers: directive 022, results/ph/report.json at 464ac60; directive 027, results/pc/report.json at
 % 12708e6; directive 028, results/pc2/binned_fidelity.json at 929e8be. Figure: directive 027,
-% results/paper/fig_phase3.pdf at 18bfa00.
-\begin{figure}[t]
+% results/paper/fig_phase3.pdf at 18bfa00; directive 029, results/st/report.json#/power and
+% results/paper/fig_phase4.pdf at caf042f.
+\begin{figure*}[t]
 \centering
-\includegraphics[width=\columnwidth]{figs/fig_phase3.pdf}
+\includegraphics[width=0.92\textwidth]{figs/fig_phase4.pdf}
 \caption{Moved events on recordings, moving blocks. (a) Mean of $\cos2\pi u_i$ against the spacing of
 the target pixel, with 95\% intervals; open grey markers: random times. (b) Histogram of $u_i$ for
-$0.25\le\tau_i<4$~ms, with the mean Rayleigh statistic per block; the peak of the shared-phase model
-is clipped.}
+$0.25\le\tau_i<4$~ms, with the mean Rayleigh statistic per block; the peak of the shared-phase model is
+clipped. (c) Mean Rayleigh statistic on the model against the lock width $w$ ($0$: shared,
+$1$: independent), with 95\% intervals; bands: the intervals of the recordings.}
 \label{fig:phase}
-\end{figure}
+\end{figure*}
 On recordings neither the motion nor the event spacing is known, so we test the premise of the
 mechanism rather than \eqref{eq:binfidmoved}. For each block of $20\times20$ pixels, the shift that
 pairs the most events of window $w-1$ with window $w$ is chosen, and the same shift, with the median
@@ -699,9 +720,20 @@ events come from pixels without a regular train in the window.
 A lock appears at longer spacings: for $\tau_i$ between $8$ and $16$~ms the mean of $\cos2\pi u_i$
 reaches $0.10$ by day, $0.35$ at night and $0.39$ on DSEC, and at night already $0.13$ between $4$ and
 $8$~ms. That band holds the periods of mains lighting, $8.33$ and $10$~ms, and the lock is consistent
-with lamps that modulate many pixels in step, a common cause outside the model. On the selected regular
-trains and at the tested spacings, the recordings thus show no detectable lock of the phases along
-the motion.
+with lamps that modulate many pixels in step, a common cause outside the model.
+
+How weak a lock the test would see is measured on the model. The phases of each path are spread over a
+width $w\tau$, from $w=0$, a shared phase, to $w=1$, independent phases, with the spacings either equal
+or spread by $20\%$ from pixel to pixel, and the motion and the offset are estimated from the events as
+on the recordings (Fig.~\ref{fig:phase}c). With equal spacings the mean $Z$ is $80.5$ at $w=0$ and the
+test detects locks up to $w=0.6$; with spread spacings it is $5.1$ at $w=0$ and detects locks up to
+$w=0.3$, because a common fraction of unequal spacings is no longer a common time. Against the
+intervals of the recordings, a lock narrower than $w=0.92$ by day and at night and $0.79$ on DSEC, or
+$0.72$, $0.71$ and $0.54$ with spread spacings, would have given a larger mean $Z$ than was measured. The
+model blocks hold $86$ tested pixels, the recordings $76$, $51$ and $60$, and a lock gives a smaller $Z$
+on a smaller block, so these widths are an optimistic reading at night and on DSEC. On the selected
+regular trains, the recordings thus rule out a lock of the phases along the motion that is concentrated
+within about half the spacing or less, and they leave weaker locks open.
 
 On the same pixels, the counts moved along the estimated motion reproduce $0.1$ to $0.4$ of the true
 counts on the grid of $T_0/32$, above the $0.06$ to $0.20$ of random times. Count matching alone,
@@ -743,7 +775,7 @@ motion carries.
 
 \subsection{A Video Coder as a Case}\label{sec:hevc}
 % Numbers: directives 019 (results/hd at 5edad1d), 021 (results/hc at cac17c2), 028 (results/pc2 at
-% 929e8be). Figure: directive 028, results/paper/fig_coding.pdf at 2c732af.
+% 929e8be). Figures: directive 029, results/paper/fig_coding_cost.pdf and fig_task.pdf at caf042f.
 \begin{table}[t]
 \centering
 \caption{Lossless bits per event on recordings, one-pixel voxels: x265 with P pictures (P), with intra
@@ -765,12 +797,17 @@ $64$ & 11.5 & 38.2 & 10.2 & 9.75 & 24.6 & 9.06 & 8.09 & 8.39 & 7.48\\
 \end{table}
 \begin{figure*}[t]
 \centering
-\includegraphics[width=0.92\textwidth]{figs/fig_coding.pdf}
-\caption{x265 as a case. (a) Model, lossless bits per event, $n=3$. (b) Recordings, fidelity against
-bits per event on the grids of $T_0/3$ (grey) and $T_0/64$; star: voxel list. (c) Share of squares
-whose motion the P-picture decode recovers within one pixel per window, decodes without events
-counted as failures; dotted: uncoded counts on the same grid.}
+\includegraphics[width=0.92\textwidth]{figs/fig_coding_cost.pdf}
+\caption{Cost of x265 on count pictures. (a) Model, lossless bits per event, $n=3$. (b) Recordings,
+fidelity against bits per event on the grids of $T_0/3$ (grey) and $T_0/64$; star: voxel list.}
 \label{fig:hevc}
+\end{figure*}
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.92\textwidth]{figs/fig_task.pdf}
+\caption{Share of squares whose motion the P-picture decode recovers within one pixel per window, decodes
+without events counted as failures; dotted: uncoded counts on the same grid.}
+\label{fig:task}
 \end{figure*}
 HEVC on count pictures has been used to code event streams without loss \cite{khan2021talven}. We use
 x265 as a case: it has motion-compensated prediction, a transform and a quantizer, and we can compare
@@ -808,7 +845,7 @@ grids answer different timing requirements: $F$ on $T_0/3$ ignores timing differ
 so its curves give the cost of a looser requirement and not that of a better coder.
 
 \emph{The motion task.} Uncoded, the counts on $T_0/64$ let more squares be recovered than those on
-$T_0/3$: $75\%$, $86\%$ and $73\%$ against $44\%$, $71\%$ and $50\%$ (Fig.~\ref{fig:hevc}c). As the
+$T_0/3$: $75\%$, $86\%$ and $73\%$ against $44\%$, $71\%$ and $50\%$ (Fig.~\ref{fig:task}). As the
 rate falls, the decode on $T_0/64$ empties squares, and the recovered share falls to $0.13$ to $0.36$
 near one bit per event; by day $49\%$ of the squares are then left without events. On $T_0/3$ the share
 stays at its uncoded value at every QP. Below a rate between $1.5$ and $10$ bits per event, depending on
